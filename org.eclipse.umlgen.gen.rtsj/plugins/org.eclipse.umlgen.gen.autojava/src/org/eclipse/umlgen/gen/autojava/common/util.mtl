@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module util('http://www.eclipse.org/uml2/4.0.0/UML')]
+[module util('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [template public genName(aNamedElement : NamedElement) post(trim())]
 [if (not name.oclIsUndefined() and name.equalsIgnoreCase('return'))]

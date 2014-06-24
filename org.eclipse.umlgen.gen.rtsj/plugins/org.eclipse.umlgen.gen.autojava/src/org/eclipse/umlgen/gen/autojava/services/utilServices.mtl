@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module utilServices('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module utilServices('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public minimizeByString(arg0 : Sequence(NamedElement), arg1 : Sequence(String)) : Sequence(NamedElement)
 	= invoke('org.eclipse.umlgen.gen.autojava.services.UtilServices', 'minimizeByString(java.util.List, java.util.List)', Sequence{arg0, arg1}) /]

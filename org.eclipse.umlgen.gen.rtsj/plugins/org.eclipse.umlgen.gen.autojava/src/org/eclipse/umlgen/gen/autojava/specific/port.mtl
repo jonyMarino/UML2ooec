@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module port('http://www.eclipse.org/uml2/4.0.0/UML')]
+[module port('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::autojava::specific::lib::requests::common /]
 [import org::eclipse::umlgen::gen::autojava::specific::lib::type /]

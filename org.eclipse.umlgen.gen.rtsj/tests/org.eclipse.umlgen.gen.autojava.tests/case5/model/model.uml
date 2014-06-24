@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RTSJ="http://www.eclipse.org/umlgen/profile/rtsj" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/umlgen/profile/rtsj pathmap://RTSJ_PROFILE/rtsj.uml#_9PbAoH55EeG4FeIadmNNXw">
-  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RTSJ="http://www.eclipse.org/umlgen/profile/rtsj" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/umlgen/profile/rtsj pathmap://RTSJ_PROFILE/rtsj.uml#_9PbAoH55EeG4FeIadmNNXw">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="">
     <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="model">
       <packagedElement xmi:type="uml:Class" xmi:id="_yiJ0qPzIEeGx_JSe6enqwQ" name="Class1" isActive="true">
         <ownedAttribute xmi:type="uml:Port" xmi:id="_unpLIwDfEeKdmvY4XMoptg" name="Port3" type="_2-Cq0ADeEeKdmvY4XMoptg" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_8DdLyPzIEeGx_JSe6enqwQ" name="Class2" isActive="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_EGGQwADgEeKdmvY4XMoptg" clientDependency="_rwhNAADfEeKdmvY4XMoptg" name="Port4" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_EGGQwADgEeKdmvY4XMoptg" name="Port4" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_MVU3wPzJEeGx_JSe6enqwQ" name="RootClass">
         <ownedAttribute xmi:id="_OyYJAvzJEeGx_JSe6enqwQ" name="class1" isStatic="true" type="_yiJ0qPzIEeGx_JSe6enqwQ">

@@ -10,7 +10,7 @@
  *     Stephane Thibaudeau (Obeo) - initial API and implementation
  *     Fabien Toral (CS Information Systems) - Circular dependencies and other corrections for PolarSys migration
 [/comment]
-[module if('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/emf/2002/Ecore')/]
+[module if('http://www.eclipse.org/uml2/5.0.0/UML', 'http://www.eclipse.org/emf/2002/Ecore')/]
 [import org::eclipse::umlgen::gen::c::files::activity::common /]
 
 [template public gen (decisionNode : DecisionNode) post (trim())]

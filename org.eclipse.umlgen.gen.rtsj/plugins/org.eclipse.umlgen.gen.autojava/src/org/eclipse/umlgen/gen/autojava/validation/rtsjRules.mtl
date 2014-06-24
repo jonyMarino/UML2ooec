@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module rtsjRules('http://www.eclipse.org/uml2/4.0.0/UML')]
+[module rtsjRules('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::autojava::validation::validator /]
 [import org::eclipse::umlgen::gen::autojava::specific::lib::requests::common /]

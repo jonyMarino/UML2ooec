@@ -9,7 +9,7 @@
  * Contributors:
  *     Stephane Begaudeau (Obeo) - initial API and implementation
 [/comment]
-[module typesServices('http://www.eclipse.org/uml2/4.0.0/UML')]
+[module typesServices('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [query public reqReturnTypeName(anOperation : Operation) : String =
 	invoke('org.eclipse.umlgen.gen.java.services.TypesServices', 'returnTypeName(org.eclipse.uml2.uml.Operation)', Sequence{anOperation})

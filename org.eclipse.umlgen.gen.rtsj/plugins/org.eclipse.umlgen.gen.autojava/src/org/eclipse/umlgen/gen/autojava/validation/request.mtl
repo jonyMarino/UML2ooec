@@ -14,7 +14,7 @@
  * The documentation of the module request.
  * @author Stephane Begaudeau - Obeo
  */]
-[module request('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module request('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [**
  * Returns all the content of the model. Since this is a query, the result is stored in cache.

@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module ethernet('http://www.eclipse.org/umlgen/dsl/asl','http://www.eclipse.org/umlgen/dsl/eth','http://www.eclipse.org/uml2/4.0.0/UML')]
+[module ethernet('http://www.eclipse.org/umlgen/dsl/asl','http://www.eclipse.org/umlgen/dsl/eth','http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::autojava::requests::port /]
 [import org::eclipse::umlgen::gen::autojava::requests::connectors /]
@@ -52,6 +52,6 @@
 
 [query protected getNameServices(aClass : Class) : Sequence(String) = aClass.getEthernetUserPorts().getInterfacesPortUser().ownedReception->select(aRecep : Reception | not aRecep.signal.oclIsUndefined()).signal.name/]
 
-[query protected getEthernetUserPorts(aClass : Class) : Sequence(Port) = aClass.get('ownedPort')->filter(Port)->select(aPort: Port | aPort.type.oclIsUndefined() and aPort.end->notEmpty() and aPort.end->first().owner.oclAsType(Connector).isEthernet())/]
+[query protected getEthernetUserPorts(aClass : Class) : Sequence(Port) = aClass.get('ownedPort')->filter(Port)->select(aPort: Port | aPort.type.oclIsUndefined() and aPort.end->notEmpty() and aPort.end->asSequence()->first().owner.oclAsType(Connector).isEthernet())/]
 
 [query protected getNotEthernetClasses(pak : Package) : Sequence(Class) = pak.eContents()->filter(Class)->select(c : Class | c.getRootComponents()->isEmpty() or c.getRootComponents().getEthernetContainer()->select(cont : Container | not cont.oclIsUndefined())->size() <> 1) /]

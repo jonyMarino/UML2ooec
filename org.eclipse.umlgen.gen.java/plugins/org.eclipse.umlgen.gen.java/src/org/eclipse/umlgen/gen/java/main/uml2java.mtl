@@ -14,7 +14,7 @@
  * This module is the starting point of the generation.
  * @author Stephane Begaudeau - Obeo
  */]
-[module uml2java('http://www.eclipse.org/uml2/4.0.0/UML')]
+[module uml2java('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::java::common::documentation /]
 [import org::eclipse::umlgen::gen::java::common::path /]

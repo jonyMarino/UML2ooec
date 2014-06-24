@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RTSJ="http://www.eclipse.org/umlgen/profile/rtsj" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/umlgen/profile/rtsj pathmap://RTSJ_PROFILE/rtsj.uml#_9PbAoH55EeG4FeIadmNNXw">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RTSJ="http://www.eclipse.org/umlgen/profile/rtsj" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/umlgen/profile/rtsj pathmap://RTSJ_PROFILE/rtsj.uml#_9PbAoH55EeG4FeIadmNNXw">
   <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA" name="">
     <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="model">
       <packagedElement xmi:type="uml:Class" xmi:id="_8DdLyPzIEeGx_JSe6enqwQ" name="Class2" isActive="true">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_RYKmIBIrEeKZcOCLefDd4w" clientDependency="_o68wcBIqEeKZcOCLefDd4w" name="monPort2" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_RYKmIBIrEeKZcOCLefDd4w" name="monPort2" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_MVU3wPzJEeGx_JSe6enqwQ" name="RootClass">
         <ownedAttribute xmi:id="_SHKTgvzJEeGx_JSe6enqwQ" name="class2" isStatic="true" type="_8DdLyPzIEeGx_JSe6enqwQ">
@@ -39,7 +39,7 @@
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_apc-YADfEeKdmvY4XMoptg" value="-1"/>
         </ownedAttribute>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_2ENhWAboEeKcl9xO6KiJ9g" clientDependency="_D5wooCz4EeKtnbyJltH_nw" name="Class3" isActive="true">
+      <packagedElement xmi:type="uml:Class" xmi:id="_2ENhWAboEeKcl9xO6KiJ9g" name="Class3" isActive="true">
         <ownedAttribute xmi:type="uml:Port" xmi:id="_OSlVQBIrEeKZcOCLefDd4w" name="monPort1" type="_ZJzy8BIqEeKZcOCLefDd4w" aggregation="composite"/>
         <interfaceRealization xmi:id="_D5wooCz4EeKtnbyJltH_nw" name="InterfaceRealization1" client="_2ENhWAboEeKcl9xO6KiJ9g" supplier="_ZJzy8BIqEeKZcOCLefDd4w" contract="_ZJzy8BIqEeKZcOCLefDd4w"/>
         <ownedOperation xmi:id="_8gVkAiz3EeKtnbyJltH_nw" name="monService1">

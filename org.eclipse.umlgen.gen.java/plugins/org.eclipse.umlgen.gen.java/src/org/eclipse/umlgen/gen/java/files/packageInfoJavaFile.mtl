@@ -9,7 +9,7 @@
  * Contributors:
  *     Stephane Begaudeau (Obeo) - initial API and implementation
 [/comment]
-[module packageInfoJavaFile('http://www.eclipse.org/uml2/4.0.0/UML')]
+[module packageInfoJavaFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::java::common::path /]
 

@@ -9,7 +9,7 @@
  * Contributors:
  *     Stephane Begaudeau (Obeo) - initial API and implementation
 [/comment]
-[module classifierServices('http://www.eclipse.org/uml2/4.0.0/UML')]
+[module classifierServices('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [query public reqGetAllInheritedOperations(aClass : Class) : Sequence(Operation) =
 	invoke('org.eclipse.umlgen.gen.java.services.ClassifierServices', 'getAllInheritedOperations(org.eclipse.uml2.uml.Class)', Sequence{aClass})

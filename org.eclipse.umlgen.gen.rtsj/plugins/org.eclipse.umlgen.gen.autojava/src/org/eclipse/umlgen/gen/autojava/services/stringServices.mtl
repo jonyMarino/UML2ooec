@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module stringServices('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module stringServices('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public getMaxLength(arg0 : Sequence(String)) : Integer
 	= invoke('org.eclipse.umlgen.gen.autojava.services.StringServices', 'getMaxLength(java.util.List)', Sequence{arg0}) /]

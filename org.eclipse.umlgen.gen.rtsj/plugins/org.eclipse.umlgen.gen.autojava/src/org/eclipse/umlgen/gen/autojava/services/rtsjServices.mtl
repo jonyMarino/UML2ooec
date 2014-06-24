@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module rtsjServices('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module rtsjServices('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public getPortSize(arg0 : Port) : Integer
 	= invoke('org.eclipse.umlgen.gen.autojava.services.RTSJServices', 'getPortSize(org.eclipse.uml2.uml.Port)', Sequence{arg0}) /]

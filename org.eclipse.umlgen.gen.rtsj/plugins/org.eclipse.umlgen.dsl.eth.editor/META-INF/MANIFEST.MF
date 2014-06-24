@@ -21,6 +21,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.umlgen.dsl.asl.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.uml2.uml.edit;visibility:=reexport,
+ org.eclipse.uml2.uml.edit;bundle-version="5.0.0";visibility:=reexport,
  org.eclipse.umlgen.dsl.asl.editor
 Bundle-ActivationPolicy: lazy

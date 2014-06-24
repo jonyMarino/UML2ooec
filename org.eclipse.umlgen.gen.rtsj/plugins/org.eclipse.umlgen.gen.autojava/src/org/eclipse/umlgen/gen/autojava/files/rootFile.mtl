@@ -10,7 +10,7 @@
  *     Cedric Notot (Obeo) - initial API and implementation
 [/comment]
 
-[module rootFile('http://www.eclipse.org/uml2/4.0.0/UML','http://www.eclipse.org/umlgen/dsl/asl','http://www.eclipse.org/umlgen/dsl/eth')]
+[module rootFile('http://www.eclipse.org/uml2/5.0.0/UML','http://www.eclipse.org/umlgen/dsl/asl','http://www.eclipse.org/umlgen/dsl/eth')]
 
 [import org::eclipse::umlgen::gen::autojava::files::ethernetComFile /]
 [import org::eclipse::umlgen::gen::autojava::specific::root /]
