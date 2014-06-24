@@ -55,6 +55,7 @@
             </entries>
           </acceleoProject>
           <packagesToRegister>
+          	<packageToRegister>org.eclipse.emf.ecore.EcorePackage</packageToRegister>
 		    <packageToRegister>org.eclipse.uml2.uml.UMLPackage</packageToRegister>
 			<packageToRegister>org.eclipse.umlgen.dsl.asl.AslPackage</packageToRegister>
 		    <packageToRegister>org.eclipse.umlgen.dsl.eth.EthPackage</packageToRegister>
