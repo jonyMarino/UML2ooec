@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_o4mNg5BIEd-7JaiZxuUTlw" name="array" visibility="private">
+      <eAnnotations xmi:id="_o4mNhJBIEd-7JaiZxuUTlw" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_o4mNhZBIEd-7JaiZxuUTlw" key="C_FILENAME" value="/testTypeDefMultipleArrayC/array.c"/>
+      </eAnnotations>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_p7WqcZBIEd-7JaiZxuUTlw" name="intarray" visibility="private">
+        <eAnnotations xmi:id="_p7WqdZBIEd-7JaiZxuUTlw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_p7WqdpBIEd-7JaiZxuUTlw" key="C_FILENAME" value="/testTypeDefMultipleArrayC/array.c"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_p7WqcpBIEd-7JaiZxuUTlw" name="size" type="_p7WqcJBIEd-7JaiZxuUTlw"/>
+        <ownedAttribute xmi:id="_p7Wqc5BIEd-7JaiZxuUTlw" name="elementType" type="_p7WqcJBIEd-7JaiZxuUTlw">
+          <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_p7WqdJBIEd-7JaiZxuUTlw" name="defaultElementType">
+            <language>C</language>
+            <body>int</body>
+          </defaultValue>
+        </ownedAttribute>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_qARmsJBIEd-7JaiZxuUTlw" name="intarray2" visibility="private">
+        <eAnnotations xmi:id="_qARmtJBIEd-7JaiZxuUTlw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_qARmtZBIEd-7JaiZxuUTlw" key="C_FILENAME" value="/testTypeDefMultipleArrayC/array.c"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_qARmsZBIEd-7JaiZxuUTlw" name="size" type="_p7WqcJBIEd-7JaiZxuUTlw"/>
+        <ownedAttribute xmi:id="_qARmspBIEd-7JaiZxuUTlw" name="elementType" type="_p7WqcJBIEd-7JaiZxuUTlw">
+          <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_qARms5BIEd-7JaiZxuUTlw" name="defaultElementType">
+            <language>C</language>
+            <body>int</body>
+          </defaultValue>
+        </ownedAttribute>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_p7WqcJBIEd-7JaiZxuUTlw" name="char"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_RskC4G_VEd-BBtz5R2ziCg" name="testEmptyActivity">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_RtUQ0G_VEd-BBtz5R2ziCg" name="f">
+    <node xmi:type="uml:DecisionNode" xmi:id="_RtUQ02_VEd-BBtz5R2ziCg" name="if (b == 0)" outgoing="_RtU34G_VEd-BBtz5R2ziCg _RtU342_VEd-BBtz5R2ziCg" incoming="_RtU35m_VEd-BBtz5R2ziCg"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_RtUQ1G_VEd-BBtz5R2ziCg" outgoing="_RtU36W_VEd-BBtz5R2ziCg" incoming="_RtU342_VEd-BBtz5R2ziCg"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_RtUQ1W_VEd-BBtz5R2ziCg" name="return;" outgoing="_RtUQ1m_VEd-BBtz5R2ziCg" incoming="_RtU34G_VEd-BBtz5R2ziCg">
+      <language>C</language>
+      <body>return;</body>
+    </node>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_b7EiQHSLEd-0f88igH2QCQ" incoming="_RtUQ1m_VEd-BBtz5R2ziCg"/>
+    <node xmi:type="uml:InitialNode" xmi:id="_RtUQ0W_VEd-BBtz5R2ziCg" outgoing="_RtU35m_VEd-BBtz5R2ziCg"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_RtUQ0m_VEd-BBtz5R2ziCg" incoming="_RtU36W_VEd-BBtz5R2ziCg"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RtUQ1m_VEd-BBtz5R2ziCg" source="_RtUQ1W_VEd-BBtz5R2ziCg" target="_b7EiQHSLEd-0f88igH2QCQ">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_RtUQ12_VEd-BBtz5R2ziCg" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RtUQ2G_VEd-BBtz5R2ziCg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RtU34G_VEd-BBtz5R2ziCg" source="_RtUQ02_VEd-BBtz5R2ziCg" target="_RtUQ1W_VEd-BBtz5R2ziCg">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_RtU34W_VEd-BBtz5R2ziCg">
+        <language>C</language>
+        <body>b == 0</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RtU34m_VEd-BBtz5R2ziCg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RtU342_VEd-BBtz5R2ziCg" source="_RtUQ02_VEd-BBtz5R2ziCg" target="_RtUQ1G_VEd-BBtz5R2ziCg">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_RtU35G_VEd-BBtz5R2ziCg">
+        <language>C</language>
+        <body>[else]</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RtU35W_VEd-BBtz5R2ziCg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RtU35m_VEd-BBtz5R2ziCg" source="_RtUQ0W_VEd-BBtz5R2ziCg" target="_RtUQ02_VEd-BBtz5R2ziCg">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_RtU352_VEd-BBtz5R2ziCg" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RtU36G_VEd-BBtz5R2ziCg" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_RtU36W_VEd-BBtz5R2ziCg" source="_RtUQ1G_VEd-BBtz5R2ziCg" target="_RtUQ0m_VEd-BBtz5R2ziCg">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_RtU36m_VEd-BBtz5R2ziCg" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_RtU362_VEd-BBtz5R2ziCg" value="1"/>
+    </edge>
+  </packagedElement>
+</uml:Model>

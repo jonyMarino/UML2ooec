@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_jUbRQI9tEd-dZ8OF2QWr8g" name="extern4" visibility="private">
+      <eAnnotations xmi:id="_jUuMMI9tEd-dZ8OF2QWr8g" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_jUuMMY9tEd-dZ8OF2QWr8g" key="C_FILENAME" value="/testextern4C/extern4.c"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_oi8kkI9tEd-dZ8OF2QWr8g" name="a" visibility="private" type="_mlYrsI9tEd-dZ8OF2QWr8g">
+        <eAnnotations xmi:id="_oi8kkY9tEd-dZ8OF2QWr8g" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_oi8kko9tEd-dZ8OF2QWr8g" key="C_FILE_POSITION_DECLARATION" value="11"/>
+          <details xmi:id="_oi8kk49tEd-dZ8OF2QWr8g" key="C_FILENAME" value="/testextern4C/extern4.c"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_oi8klI9tEd-dZ8OF2QWr8g" source="Extern">
+          <details xmi:id="_oi8klY9tEd-dZ8OF2QWr8g" key="Extern" value="true"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_oi8klo9tEd-dZ8OF2QWr8g" source="Register">
+          <details xmi:id="_oi8kl49tEd-dZ8OF2QWr8g" key="Register" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_oi8kmI9tEd-dZ8OF2QWr8g" source="Volatile">
+          <details xmi:id="_oi8kmY9tEd-dZ8OF2QWr8g" key="Volatile" value="false"/>
+        </eAnnotations>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_tr9FwI9tEd-dZ8OF2QWr8g" name="b" visibility="private" type="_qKTj8I9tEd-dZ8OF2QWr8g">
+        <eAnnotations xmi:id="_23qnYI9tEd-dZ8OF2QWr8g" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_23qnYY9tEd-dZ8OF2QWr8g" key="C_FILE_POSITION_DECLARATION" value="29"/>
+          <details xmi:id="_7Yd5EI9tEd-dZ8OF2QWr8g" key="C_FILENAME" value="/testextern4C/extern4.c"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_7Yd5EY9tEd-dZ8OF2QWr8g" source="Extern">
+          <details xmi:id="_7Yd5Eo9tEd-dZ8OF2QWr8g" key="Extern" value="true"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_7Yd5E49tEd-dZ8OF2QWr8g" source="Register">
+          <details xmi:id="_7Yd5FI9tEd-dZ8OF2QWr8g" key="Register" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_7Yd5FY9tEd-dZ8OF2QWr8g" source="Volatile">
+          <details xmi:id="_7Yd5Fo9tEd-dZ8OF2QWr8g" key="Volatile" value="false"/>
+        </eAnnotations>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_mlYrsI9tEd-dZ8OF2QWr8g" name="int*"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_qKTj8I9tEd-dZ8OF2QWr8g" name="INT32*"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

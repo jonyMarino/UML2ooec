@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_2hfky6vFEd-EE4akb1Y_tw" name="extern5">
+      <eAnnotations xmi:id="_2hfkzKvFEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_2hfkzavFEd-EE4akb1Y_tw" key="H_FILENAME" value="/testextern5H/extern5.h"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_3N5W8avFEd-EE4akb1Y_tw" name="a" visibility="public" type="_3N5W8KvFEd-EE4akb1Y_tw">
+        <eAnnotations xmi:id="_3N5W8qvFEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_3N5W86vFEd-EE4akb1Y_tw" key="H_FILE_POSITION_DECLARATION" value="52"/>
+          <details xmi:id="_3N5W9KvFEd-EE4akb1Y_tw" key="H_FILENAME" value="/testextern5H/extern5.h"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_3N5W9avFEd-EE4akb1Y_tw" source="Extern">
+          <details xmi:id="_3N5W9qvFEd-EE4akb1Y_tw" key="Extern" value="true"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_3N5W96vFEd-EE4akb1Y_tw" source="Register">
+          <details xmi:id="_3N5W-KvFEd-EE4akb1Y_tw" key="Register" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_3N5W-avFEd-EE4akb1Y_tw" source="Volatile">
+          <details xmi:id="_3N5W-qvFEd-EE4akb1Y_tw" key="Volatile" value="false"/>
+        </eAnnotations>
+      </ownedAttribute>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_3NThEKvFEd-EE4akb1Y_tw" name="x">
+        <eAnnotations xmi:id="_3NThEavFEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_3NThEqvFEd-EE4akb1Y_tw" key="H_FILENAME" value="/testextern5H/extern5.h"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_3NThFKvFEd-EE4akb1Y_tw" name="a" type="_3NThE6vFEd-EE4akb1Y_tw"/>
+        <ownedAttribute xmi:id="_3NThFavFEd-EE4akb1Y_tw" name="b" type="_3NThE6vFEd-EE4akb1Y_tw"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_3NThE6vFEd-EE4akb1Y_tw" name="int"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_3N5W8KvFEd-EE4akb1Y_tw" name="x*"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

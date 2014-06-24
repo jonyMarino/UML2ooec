@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_cz4pu6uTEd-OKYOerM7ncA" name="commentDuplicataOperation" visibility="private" clientDependency="_d5BsIauTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_cz4pvKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_cz4pvauTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentDuplicataOperationN/commentDuplicataOperation.c"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_d5xTAKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_d5xTAauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* mon comment de classe dans le fichier C */&#xA;/* suite de mon comment de classe&#xD;&#xA; * hello&#xD;&#xA; */&#xA;"/>
+      </eAnnotations>
+      <ownedBehavior xmi:type="uml:FunctionBehavior" xmi:id="_d5UnE6uTEd-OKYOerM7ncA" name="maFonction" visibility="private">
+        <eAnnotations xmi:id="_d5UnFKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_d5UnFauTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentDuplicataOperationN/commentDuplicataOperation.c"/>
+          <details xmi:id="_d5UnFquTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="152"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_d6E1AKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_d6E1AauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* mon commentaire de fonction */&#xA;"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_d5UnF6uTEd-OKYOerM7ncA" name="k" type="_d5UnEKuTEd-OKYOerM7ncA"/>
+        <ownedParameter xmi:id="_d5UnGKuTEd-OKYOerM7ncA" name="l" type="_d5UnEauTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_d5UnGauTEd-OKYOerM7ncA" name="*m" type="_d5UnEquTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_d5UnGquTEd-OKYOerM7ncA" name=" " type="_d5UnEKuTEd-OKYOerM7ncA" direction="return"/>
+        <language>C</language>
+        <body>int maFonction(int k, char *l, long **m) {&#xD;&#xA;&#x9;return 0;&#xD;&#xA;}</body>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_d5eYEKuTEd-OKYOerM7ncA" name="monOperation" visibility="private">
+        <eAnnotations xmi:id="_d5eYFKuTEd-OKYOerM7ncA" source="Extern">
+          <details xmi:id="_d5eYFauTEd-OKYOerM7ncA" key="Extern" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_d5eYFquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_d5eYF6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentDuplicataOperationN/commentDuplicataOperation.c"/>
+          <details xmi:id="_d5eYGauTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="248"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_d6Xv8KuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_d6Xv8auTEd-OKYOerM7ncA" key="C_FILENAME" value="/* mon commentaire d'operation */&#xA;"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_d5eYEauTEd-OKYOerM7ncA" name="k" type="_d5UnEKuTEd-OKYOerM7ncA"/>
+        <ownedParameter xmi:id="_d5eYEquTEd-OKYOerM7ncA" name="l" type="_d5UnEauTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_d5eYE6uTEd-OKYOerM7ncA" name="*m" type="_d5UnEquTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_d5eYGKuTEd-OKYOerM7ncA" name=" " type="_d5UnEKuTEd-OKYOerM7ncA" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_dD-6gKuTEd-OKYOerM7ncA" name="commentDuplicataOperation" clientDependency="_eV7qkKuTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_dD-6gauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_dD-6gquTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentDuplicataOperationN/commentDuplicataOperation.h"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_eXRuYKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_eXRuYauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* mon comment de classe dans le fichier H */&#xA;/* suite de mon comment de classe&#xD;&#xA; * hello&#xD;&#xA; */&#xA;"/>
+      </eAnnotations>
+      <ownedOperation xmi:id="_eW-zcKuTEd-OKYOerM7ncA" name="monOperation" visibility="public">
+        <eAnnotations xmi:id="_eW-zdKuTEd-OKYOerM7ncA" source="Extern">
+          <details xmi:id="_eW-zdauTEd-OKYOerM7ncA" key="Extern" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_eW-zdquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_eW-zd6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentDuplicataOperationN/commentDuplicataOperation.h"/>
+          <details xmi:id="_eW-zeauTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="248"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_eX4LUKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_eX4LUauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* mon commentaire d'operation */&#xA;"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_eW-zcauTEd-OKYOerM7ncA" name="k" type="_d5UnEKuTEd-OKYOerM7ncA"/>
+        <ownedParameter xmi:id="_eW-zcquTEd-OKYOerM7ncA" name="l" type="_d5UnEauTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_eW-zc6uTEd-OKYOerM7ncA" name="*m" type="_d5UnEquTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_eW-zeKuTEd-OKYOerM7ncA" name=" " type="_d5UnEKuTEd-OKYOerM7ncA" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_d5BsIauTEd-OKYOerM7ncA" name="stdio" visibility="private" supplier="_d5BsIKuTEd-OKYOerM7ncA" client="_cz4pu6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_d5BsIquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_d5BsI6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentDuplicataOperationN/commentDuplicataOperation.c"/>
+        <details xmi:id="_d5BsJKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="97"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_eV7qkKuTEd-OKYOerM7ncA" name="stdio" supplier="_d5BsIKuTEd-OKYOerM7ncA" client="_dD-6gKuTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_eV7qkauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_eV7qkquTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentDuplicataOperationN/commentDuplicataOperation.h"/>
+        <details xmi:id="_eV7qk6uTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="97"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_d5UnEKuTEd-OKYOerM7ncA" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_d5UnEauTEd-OKYOerM7ncA" name="char"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_d5UnEquTEd-OKYOerM7ncA" name="long"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_d5BsIKuTEd-OKYOerM7ncA" name="stdio"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_a4D2W6uTEd-OKYOerM7ncA" name="commentDuplicataClass" visibility="private">
+      <eAnnotations xmi:id="_a4D2XKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_a4D2XauTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentDuplicataClassE/commentDuplicataClass.c"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_b567IKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_b567IauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* mon comment de classe dans le fichier C */&#xA;/* suite de mon comment de classe&#xD;&#xA; * hello&#xD;&#xA; */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_bITQ8KuTEd-OKYOerM7ncA" name="commentDuplicataClass">
+      <eAnnotations xmi:id="_bITQ8auTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_bITQ8quTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentDuplicataClassE/commentDuplicataClass.h"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_ccVrsKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_ccVrsauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* mon commentaire de classe H */&#xA;"/>
+      </eAnnotations>
+      <ownedOperation xmi:id="_cbv10quTEd-OKYOerM7ncA" name="monOperationPublique1" visibility="public">
+        <eAnnotations xmi:id="_cbv11quTEd-OKYOerM7ncA" source="Extern">
+          <details xmi:id="_cbv116uTEd-OKYOerM7ncA" key="Extern" value="true"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_cbv12KuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_cbv12auTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentDuplicataClassE/commentDuplicataClass.h"/>
+          <details xmi:id="_cbv126uTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="37"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_cbv106uTEd-OKYOerM7ncA" name="k" type="_cbmE0KuTEd-OKYOerM7ncA"/>
+        <ownedParameter xmi:id="_cbv11KuTEd-OKYOerM7ncA" name="l" type="_cbv10KuTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_cbv11auTEd-OKYOerM7ncA" name="*m" type="_cbv10auTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_cbv12quTEd-OKYOerM7ncA" name=" " type="_cbmE0KuTEd-OKYOerM7ncA" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cbmE0KuTEd-OKYOerM7ncA" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cbv10KuTEd-OKYOerM7ncA" name="char"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_cbv10auTEd-OKYOerM7ncA" name="long"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_WuEhi6uTEd-OKYOerM7ncA" name="commentInclude" visibility="private" clientDependency="_Xa7AQKuTEd-OKYOerM7ncA _XbExQauTEd-OKYOerM7ncA _XbqnIauTEd-OKYOerM7ncA _Xb-JIauTEd-OKYOerM7ncA _XcHTEauTEd-OKYOerM7ncA _Xca1EauTEd-OKYOerM7ncA _XctwAauTEd-OKYOerM7ncA _Xc258auTEd-OKYOerM7ncA _XdTl4auTEd-OKYOerM7ncA _XdnH4auTEd-OKYOerM7ncA _XeDMwauTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_WuEhjKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_WuEhjauTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_XeWuwKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_XeWuwauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* Mon Commentaire de Classe */&#xA;/* Ce commentaire est un commentaire de Classe */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Xa7AQKuTEd-OKYOerM7ncA" name="vxWorks" visibility="private" supplier="_XaoFUKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Xa7AQauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Xa7AQquTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_Xa7AQ6uTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="84"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XbExQauTEd-OKYOerM7ncA" name="define" visibility="private" supplier="_XbExQKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_XbExQquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_XbExQ6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_XbExRKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="165"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_XezasKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_XezasauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* Ceci est un commentaire de include pour le define.h */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XbqnIauTEd-OKYOerM7ncA" name="taskLib" visibility="private" supplier="_XbqnIKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_XbqnIquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_XbqnI6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_XbqnJKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="309"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_XfGVoKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_XfGVoauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* Ceci est un commentaire de include pour le tasklib.h */&#xA;/* La deuxieme ligne permet de tester les retours charriot */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Xb-JIauTEd-OKYOerM7ncA" name="string" visibility="private" supplier="_Xb-JIKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Xb-JIquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Xb-JI6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_Xb-JJKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="331"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XcHTEauTEd-OKYOerM7ncA" name="laser" visibility="private" supplier="_XcHTEKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_XcHTEquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_XcHTE6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_XcHTFKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="352"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Xca1EauTEd-OKYOerM7ncA" name="bsp_RCOMM" visibility="private" supplier="_Xca1EKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Xca1EquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Xca1E6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_Xca1FKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="372"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XctwAauTEd-OKYOerM7ncA" name="bsp_RMUX" visibility="private" supplier="_XctwAKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_XctwAquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_XctwA6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_XctwBKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="396"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Xc258auTEd-OKYOerM7ncA" name="bsp_RVAL" visibility="private" supplier="_Xc258KuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Xc258quTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Xc2586uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_Xc259KuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="419"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XdTl4auTEd-OKYOerM7ncA" name="acquisition" visibility="private" supplier="_XdTl4KuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_XdTl4quTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_XdTl46uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_XdTl5KuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="442"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XdnH4auTEd-OKYOerM7ncA" name="communication" visibility="private" supplier="_XdnH4KuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_XdnH4quTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_XdnH46uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_XdnH5KuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="468"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_XeDMwauTEd-OKYOerM7ncA" name="donnees" visibility="private" supplier="_XeDMwKuTEd-OKYOerM7ncA" client="_WuEhi6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_XeDMwquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_XeDMw6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testcommentIncludeC/commentInclude.c"/>
+        <details xmi:id="_XeDMxKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="496"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XaoFUKuTEd-OKYOerM7ncA" name="vxWorks"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XbExQKuTEd-OKYOerM7ncA" name="define"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XbqnIKuTEd-OKYOerM7ncA" name="taskLib"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Xb-JIKuTEd-OKYOerM7ncA" name="string"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XcHTEKuTEd-OKYOerM7ncA" name="laser"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Xca1EKuTEd-OKYOerM7ncA" name="bsp_RCOMM"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XctwAKuTEd-OKYOerM7ncA" name="bsp_RMUX"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Xc258KuTEd-OKYOerM7ncA" name="bsp_RVAL"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XdTl4KuTEd-OKYOerM7ncA" name="acquisition"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XdnH4KuTEd-OKYOerM7ncA" name="communication"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_XeDMwKuTEd-OKYOerM7ncA" name="donnees"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RTSJ="http://www.eclipse.org/umlgen/profile/rtsj" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/umlgen/profile/rtsj pathmap://RTSJ_PROFILE/rtsj.uml#_9PbAoH55EeG4FeIadmNNXw">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="model">
+      <packagedElement xmi:type="uml:Class" xmi:id="_yiJ0qPzIEeGx_JSe6enqwQ" name="Class1" isActive="true">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_unpLIwDfEeKdmvY4XMoptg" name="Port3" type="_2-Cq0ADeEeKdmvY4XMoptg" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_8DdLyPzIEeGx_JSe6enqwQ" name="Class2" isActive="true">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_EGGQwADgEeKdmvY4XMoptg" clientDependency="_rwhNAADfEeKdmvY4XMoptg" name="Port4" aggregation="composite"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_MVU3wPzJEeGx_JSe6enqwQ" name="RootClass">
+        <ownedAttribute xmi:id="_OyYJAvzJEeGx_JSe6enqwQ" name="class1" isStatic="true" type="_yiJ0qPzIEeGx_JSe6enqwQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QSVf4PzJEeGx_JSe6enqwQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QSVf4fzJEeGx_JSe6enqwQ" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_xNLo8PzMEeGx_JSe6enqwQ" value="new Class1()"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_SHKTgvzJEeGx_JSe6enqwQ" name="class2" isStatic="true" type="_8DdLyPzIEeGx_JSe6enqwQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TUMuYPzJEeGx_JSe6enqwQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TUMuYfzJEeGx_JSe6enqwQ" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_ypRMcPzMEeGx_JSe6enqwQ" value="new Class2()"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_7Y2DsAboEeKcl9xO6KiJ9g" name="class3" isStatic="true" type="_2ENhWAboEeKcl9xO6KiJ9g">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7Y2DsgboEeKcl9xO6KiJ9g" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7Y2DsQboEeKcl9xO6KiJ9g" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_7Y2DswboEeKcl9xO6KiJ9g" value="new Class3()"/>
+        </ownedAttribute>
+        <ownedConnector xmi:id="_dIZQkADgEeKdmvY4XMoptg" name="Connector2">
+          <end xmi:id="_dIZQkQDgEeKdmvY4XMoptg" partWithPort="_OyYJAvzJEeGx_JSe6enqwQ" role="_unpLIwDfEeKdmvY4XMoptg">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dIZQkwDgEeKdmvY4XMoptg" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dIZQkgDgEeKdmvY4XMoptg" value="1"/>
+          </end>
+          <end xmi:id="_dIZQlADgEeKdmvY4XMoptg" partWithPort="_SHKTgvzJEeGx_JSe6enqwQ" role="_EGGQwADgEeKdmvY4XMoptg">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dIZQlgDgEeKdmvY4XMoptg" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dIZQlQDgEeKdmvY4XMoptg" value="1"/>
+          </end>
+        </ownedConnector>
+        <ownedConnector xmi:id="_L8cY5wbpEeKcl9xO6KiJ9g" name="Connector1">
+          <end xmi:id="_L8cY6AbpEeKcl9xO6KiJ9g" partWithPort="_7Y2DsAboEeKcl9xO6KiJ9g" role="__B5OAAboEeKcl9xO6KiJ9g">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8cY6gbpEeKcl9xO6KiJ9g" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8cY6QbpEeKcl9xO6KiJ9g" value="1"/>
+          </end>
+          <end xmi:id="_L8cY6wbpEeKcl9xO6KiJ9g" partWithPort="_SHKTgvzJEeGx_JSe6enqwQ" role="_EGGQwADgEeKdmvY4XMoptg">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8cY7QbpEeKcl9xO6KiJ9g" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8cY7AbpEeKcl9xO6KiJ9g" value="1"/>
+          </end>
+        </ownedConnector>
+        <ownedOperation xmi:id="_7_JMQP20EeGdmvY4XMoptg" name="exec" isStatic="true"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_2-Cq0ADeEeKdmvY4XMoptg" name="Interface2">
+        <ownedReception xmi:id="_2SEysgYuEeKxruEQqJ-17w" name="Signal3" signal="_v5MlEAYuEeKxruEQqJ-17w"/>
+        <ownedReception xmi:id="_2HnqogY4EeKxruEQqJ-17w" name="Signal2" signal="_5_JrZQDeEeKdmvY4XMoptg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Signal" xmi:id="_5_JrZQDeEeKdmvY4XMoptg" name="Signal2">
+        <ownedAttribute xmi:id="_Bw2GEgDfEeKdmvY4XMoptg" name="param" type="_EXle2ADfEeKdmvY4XMoptg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DpitEADfEeKdmvY4XMoptg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DpitEQDfEeKdmvY4XMoptg" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_EXle2ADfEeKdmvY4XMoptg" name="SharedData">
+        <ownedAttribute xmi:id="_IUTMAgDfEeKdmvY4XMoptg" name="data1" type="_ANAUwQDfEeKdmvY4XMoptg" isUnique="false">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_N4IoAADfEeKdmvY4XMoptg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_N4IoAQDfEeKdmvY4XMoptg" value="5"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_SgXXYgDfEeKdmvY4XMoptg" name="data2" type="_YcySggDfEeKdmvY4XMoptg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YcySgADfEeKdmvY4XMoptg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YcySgQDfEeKdmvY4XMoptg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_apc-YADfEeKdmvY4XMoptg" value="-1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_rwhNAADfEeKdmvY4XMoptg" name="Class2_Interface2_Usage" client="_EGGQwADgEeKdmvY4XMoptg" supplier="_2-Cq0ADeEeKdmvY4XMoptg"/>
+      <packagedElement xmi:type="uml:Signal" xmi:id="_v5MlEAYuEeKxruEQqJ-17w" name="Signal3">
+        <ownedAttribute xmi:id="_w5HxAgYuEeKxruEQqJ-17w" name="paramInteger" type="_ANAUwQDfEeKdmvY4XMoptg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zkfLEAYuEeKxruEQqJ-17w" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zkfLEQYuEeKxruEQqJ-17w" value="1"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_2ENhWAboEeKcl9xO6KiJ9g" name="Class3" isActive="true">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="__B5OAAboEeKcl9xO6KiJ9g" name="Port5" type="_2-Cq0ADeEeKdmvY4XMoptg" aggregation="composite"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_ANAUwADfEeKdmvY4XMoptg" name="Java Types View">
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ANAUwQDfEeKdmvY4XMoptg" name="int"/>
+      <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_YcySggDfEeKdmvY4XMoptg" name="byte"/>
+    </packagedElement>
+    <profileApplication xmi:id="_2kGAEPzIEeGx_JSe6enqwQ">
+      <eAnnotations xmi:id="_2kGAEfzIEeGx_JSe6enqwQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://RTSJ_PROFILE/rtsj.uml#_9PbAoH55EeG4FeIadmNNXw"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://RTSJ_PROFILE/rtsj.uml#_LWgzs6eLEd6bH54HwZDLzQ"/>
+    </profileApplication>
+  </uml:Model>
+  <RTSJ:LossyBuffer xmi:id="_ptUQAPzKEeGx_JSe6enqwQ" mbufSize="1"/>
+  <RTSJ:EventData xmi:id="_3opuEADeEeKdmvY4XMoptg" base_Interface="_2-Cq0ADeEeKdmvY4XMoptg"/>
+  <RTSJ:EventDataBuffer xmi:id="_kfmkIADfEeKdmvY4XMoptg" size="1"/>
+  <RTSJ:Sporadic xmi:id="_AJGgAAYgEeKxruEQqJ-17w" base_Class="_yiJ0qPzIEeGx_JSe6enqwQ" period="1000" priority="30" messages="10"/>
+  <RTSJ:Sporadic xmi:id="_C3IzkAYgEeKxruEQqJ-17w" base_Class="_8DdLyPzIEeGx_JSe6enqwQ" period="1000" priority="29" messages="10"/>
+  <RTSJ:Asynchronous xmi:id="_FYEfQAYgEeKxruEQqJ-17w"/>
+  <RTSJ:Root xmi:id="_IfSu4AYgEeKxruEQqJ-17w" base_Class="_MVU3wPzJEeGx_JSe6enqwQ"/>
+  <RTSJ:EventDataBuffer xmi:id="_3rCJsAYuEeKxruEQqJ-17w" size="1" base_Reception="_2SEysgYuEeKxruEQqJ-17w"/>
+  <RTSJ:EventDataBuffer xmi:id="_4blRUAY4EeKxruEQqJ-17w" size="1" base_Reception="_2HnqogY4EeKxruEQqJ-17w"/>
+  <RTSJ:Sporadic xmi:id="_qGcQYAY7EeKxruEQqJ-17w" period="1000" priority="20" messages="10"/>
+  <RTSJ:LossyBuffer xmi:id="_G2jlwAY8EeKxruEQqJ-17w" base_Port="_unpLIwDfEeKdmvY4XMoptg" mbufSize="1"/>
+  <RTSJ:LossyBuffer xmi:id="_QrLFAAY9EeKxruEQqJ-17w" mbufSize="1"/>
+  <RTSJ:Sporadic xmi:id="_3qlCMAboEeKcl9xO6KiJ9g" base_Class="_2ENhWAboEeKcl9xO6KiJ9g" period="1000" priority="20" messages="10"/>
+  <RTSJ:LossyBuffer xmi:id="_DXWLUAbpEeKcl9xO6KiJ9g" base_Port="__B5OAAboEeKcl9xO6KiJ9g" mbufSize="1"/>
+</xmi:XMI>

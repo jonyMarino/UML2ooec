@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_lWZpa46HEd-lpfxpbkxz7A" name="multipleReferences" visibility="private">
+      <eAnnotations xmi:id="_lWjZkI6HEd-lpfxpbkxz7A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_lWjZkY6HEd-lpfxpbkxz7A" key="C_FILENAME" value="/testmultipleReferencesC/multipleReferences.c"/>
+      </eAnnotations>
+      <ownedBehavior xmi:type="uml:FunctionBehavior" xmi:id="_l-VyUI6HEd-lpfxpbkxz7A" name="monOperationC" visibility="private" specification="_l95GY46HEd-lpfxpbkxz7A">
+        <eAnnotations xmi:id="_l-VyUY6HEd-lpfxpbkxz7A" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_l-VyUo6HEd-lpfxpbkxz7A" key="C_FILENAME" value="/testmultipleReferencesC/multipleReferences.c"/>
+          <details xmi:id="_l-VyU46HEd-lpfxpbkxz7A" key="C_FILE_POSITION_DECLARATION" value="69"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_l-VyVI6HEd-lpfxpbkxz7A" name="par1" type="_l95GYI6HEd-lpfxpbkxz7A" direction="inout"/>
+        <ownedParameter xmi:id="_l-VyVY6HEd-lpfxpbkxz7A" name="secondPar" type="_l95GYY6HEd-lpfxpbkxz7A"/>
+        <ownedParameter xmi:id="_l-VyVo6HEd-lpfxpbkxz7A" name="***Status" type="_l95GYo6HEd-lpfxpbkxz7A" direction="inout"/>
+        <ownedParameter xmi:id="_l-VyV46HEd-lpfxpbkxz7A" name=" " type="_l95GYI6HEd-lpfxpbkxz7A" direction="return"/>
+        <language>C</language>
+        <body>int monOperationC(int *par1, char secondPar, INT32 ****Status) {&#xD;&#xA;&#x9;   /* mise de l'adresse de commande dans le buffer de communication */&#xD;&#xA;&#x9;   buffer[C_IDENTIFIANT] = C_ADR_STATUT_SL;&#xD;&#xA;&#x9;   buffer[C_OCTET1] = 0;&#xD;&#xA;&#x9;   buffer[C_OCTET2] = 0;&#xD;&#xA;}</body>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_l95GY46HEd-lpfxpbkxz7A" name="monOperationC" visibility="private" method="_l-VyUI6HEd-lpfxpbkxz7A">
+        <eAnnotations xmi:id="_l95GZ46HEd-lpfxpbkxz7A" source="Extern">
+          <details xmi:id="_l95GaI6HEd-lpfxpbkxz7A" key="Extern" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_l95GaY6HEd-lpfxpbkxz7A" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_l95Gao6HEd-lpfxpbkxz7A" key="C_FILENAME" value="/testmultipleReferencesC/multipleReferences.c"/>
+          <details xmi:id="_l95GbI6HEd-lpfxpbkxz7A" key="C_FILE_POSITION_DECLARATION" value="2"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_l95GZI6HEd-lpfxpbkxz7A" name="par1" type="_l95GYI6HEd-lpfxpbkxz7A" direction="inout"/>
+        <ownedParameter xmi:id="_l95GZY6HEd-lpfxpbkxz7A" name="secondPar" type="_l95GYY6HEd-lpfxpbkxz7A"/>
+        <ownedParameter xmi:id="_l95GZo6HEd-lpfxpbkxz7A" name="***Status" type="_l95GYo6HEd-lpfxpbkxz7A" direction="inout"/>
+        <ownedParameter xmi:id="_l95Ga46HEd-lpfxpbkxz7A" name=" " type="_l95GYI6HEd-lpfxpbkxz7A" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_l95GYI6HEd-lpfxpbkxz7A" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_l95GYY6HEd-lpfxpbkxz7A" name="char"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_l95GYo6HEd-lpfxpbkxz7A" name="INT32"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

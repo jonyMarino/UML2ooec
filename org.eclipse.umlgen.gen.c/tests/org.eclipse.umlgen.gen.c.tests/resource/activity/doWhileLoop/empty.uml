@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_0H8JgFg9Ed-4YJLcX8kfHA" name="testEmptyActivity">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_D-2bAFhCEd-SpYsa8i3q8w" name="f">
+    <node xmi:type="uml:InitialNode" xmi:id="_mGi5EFhCEd-SpYsa8i3q8w" outgoing="_sJ6pMF0CEd-Adcm4D89XYA"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_JFf-cGP4Ed-6NJ1MeQ4dZw" name="int a = 1;" outgoing="_aRqIcGP4Ed-6NJ1MeQ4dZw" incoming="_sJ6pMF0CEd-Adcm4D89XYA">
+      <language>C</language>
+      <body>int a = 1;</body>
+    </node>
+    <node xmi:type="uml:LoopNode" xmi:id="_mtSBYF0CEd-Adcm4D89XYA" name="do ... while (a &lt; 100);" outgoing="_tDD3sF0CEd-Adcm4D89XYA" incoming="_aRqIcGP4Ed-6NJ1MeQ4dZw" bodyPart="_gkGDUF0HEd--moLccNRE6A" decider="_T-opkF0FEd--moLccNRE6A" test="_OHgeIF0FEd--moLccNRE6A">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_He7f8GNNEd-23vyZjz3NqA" source="_gkGDUF0HEd--moLccNRE6A" target="_G7dmgGNNEd-23vyZjz3NqA">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_B2hQgGNOEd-23vyZjz3NqA" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_CxfrAGNOEd-23vyZjz3NqA" value="1"/>
+      </edge>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_OHgeIF0FEd--moLccNRE6A" name="a &lt; 100">
+        <language>C</language>
+        <outputValue xmi:id="_T-opkF0FEd--moLccNRE6A">
+          <upperBound xmi:type="uml:LiteralNull" xmi:id="_2Hh18F0PEd-f0aMC7vAyWA"/>
+        </outputValue>
+        <body>a &lt; 100</body>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_gkGDUF0HEd--moLccNRE6A" outgoing="_He7f8GNNEd-23vyZjz3NqA">
+        <language>C</language>
+        <body></body>
+      </node>
+      <node xmi:type="uml:FlowFinalNode" xmi:id="_G7dmgGNNEd-23vyZjz3NqA" name="end of loop" incoming="_He7f8GNNEd-23vyZjz3NqA"/>
+    </node>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_n4TKkFhCEd-SpYsa8i3q8w" incoming="_tDD3sF0CEd-Adcm4D89XYA"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_sJ6pMF0CEd-Adcm4D89XYA" source="_mGi5EFhCEd-SpYsa8i3q8w" target="_JFf-cGP4Ed-6NJ1MeQ4dZw">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_ggvxMF0DEd--moLccNRE6A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_0xTjgF0HEd--moLccNRE6A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_tDD3sF0CEd-Adcm4D89XYA" source="_mtSBYF0CEd-Adcm4D89XYA" target="_n4TKkFhCEd-SpYsa8i3q8w">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_ijpdEF0DEd--moLccNRE6A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_jaCSgF0DEd--moLccNRE6A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_aRqIcGP4Ed-6NJ1MeQ4dZw" source="_JFf-cGP4Ed-6NJ1MeQ4dZw" target="_mtSBYF0CEd-Adcm4D89XYA">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_bROIAGP4Ed-6NJ1MeQ4dZw" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_cZFH8GP4Ed-6NJ1MeQ4dZw" value="1"/>
+    </edge>
+  </packagedElement>
+</uml:Model>

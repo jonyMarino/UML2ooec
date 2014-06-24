@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_VtsqPauTEd-OKYOerM7ncA" name="commentClasse">
+      <eAnnotations xmi:id="_VtsqPquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_VtsqP6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentClasseH/commentClasse.h"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_WZzhgKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_WZzhgauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* mon commentaire de classe H */&#xA;"/>
+      </eAnnotations>
+      <ownedOperation xmi:id="_WZgmkquTEd-OKYOerM7ncA" name="monOperationPublique1" visibility="public">
+        <eAnnotations xmi:id="_WZgmlquTEd-OKYOerM7ncA" source="Extern">
+          <details xmi:id="_WZgml6uTEd-OKYOerM7ncA" key="Extern" value="true"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_WZgmmKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_WZgmmauTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentClasseH/commentClasse.h"/>
+          <details xmi:id="_WZgmm6uTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="37"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_WZgmk6uTEd-OKYOerM7ncA" name="k" type="_WZW1kKuTEd-OKYOerM7ncA"/>
+        <ownedParameter xmi:id="_WZgmlKuTEd-OKYOerM7ncA" name="l" type="_WZgmkKuTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_WZgmlauTEd-OKYOerM7ncA" name="*m" type="_WZgmkauTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_WZgmmquTEd-OKYOerM7ncA" name=" " type="_WZW1kKuTEd-OKYOerM7ncA" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_WZW1kKuTEd-OKYOerM7ncA" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_WZgmkKuTEd-OKYOerM7ncA" name="char"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_WZgmkauTEd-OKYOerM7ncA" name="long"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

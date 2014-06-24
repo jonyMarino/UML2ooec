@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_bXBvQG4jEd-B0osXphtQYw" name="testEmptyActivity">
+  <packagedElement xsi:type="uml:Activity" xmi:id="_bXu54G4jEd-B0osXphtQYw" name="f">
+    <node xsi:type="uml:InitialNode" xmi:id="_bXu54W4jEd-B0osXphtQYw" outgoing="_bXu56G4jEd-B0osXphtQYw"/>
+    <node xsi:type="uml:ActivityFinalNode" xmi:id="_bXu54m4jEd-B0osXphtQYw" incoming="_bXu5624jEd-B0osXphtQYw"/>
+    <node xsi:type="uml:OpaqueAction" xmi:id="_bXu5424jEd-B0osXphtQYw" name="printf(&quot;befo..." outgoing="_bXu5624jEd-B0osXphtQYw" incoming="_bXu56G4jEd-B0osXphtQYw">
+      <body>printf(&quot;before label&quot;);&#xA;come_here :&#xA;printf(&quot;right after label&quot;);&#xA;goto come_here;&#xA;printf(&quot;end of function&quot;);</body>
+      <language>C</language>
+    </node>
+    <edge xsi:type="uml:ControlFlow" xmi:id="_bXu56G4jEd-B0osXphtQYw" source="_bXu54W4jEd-B0osXphtQYw" target="_bXu5424jEd-B0osXphtQYw">
+      <guard xsi:type="uml:LiteralBoolean" xmi:id="_bXu56W4jEd-B0osXphtQYw" value="true"/>
+      <weight xsi:type="uml:LiteralInteger" xmi:id="_bXu56m4jEd-B0osXphtQYw" value="1"/>
+    </edge>
+    <edge xsi:type="uml:ControlFlow" xmi:id="_bXu5624jEd-B0osXphtQYw" source="_bXu5424jEd-B0osXphtQYw" target="_bXu54m4jEd-B0osXphtQYw">
+      <guard xsi:type="uml:LiteralBoolean" xmi:id="_bXu57G4jEd-B0osXphtQYw" value="true"/>
+      <weight xsi:type="uml:LiteralInteger" xmi:id="_bXu57W4jEd-B0osXphtQYw" value="1"/>
+    </edge>
+  </packagedElement>
+</uml:Model>

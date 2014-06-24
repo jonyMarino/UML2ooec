@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_1ASg-awjEd-K5cm9fuUnww" name="struct">
+      <eAnnotations xmi:id="_1ASg-qwjEd-K5cm9fuUnww" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_1ASg-6wjEd-K5cm9fuUnww" key="H_FILENAME" value="/testTypeDefStructH/struct.h"/>
+      </eAnnotations>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_1rWPYKwjEd-K5cm9fuUnww" name="">
+        <eAnnotations xmi:id="_1rWPYawjEd-K5cm9fuUnww" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_1rWPYqwjEd-K5cm9fuUnww" key="H_FILENAME" value="/testTypeDefStructH/struct.h"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_1rWPZKwjEd-K5cm9fuUnww" name="resultat" type="_1rWPY6wjEd-K5cm9fuUnww"/>
+        <ownedAttribute xmi:id="_1rWPZqwjEd-K5cm9fuUnww" name="* MUX" type="_1rWPZawjEd-K5cm9fuUnww"/>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_1r8sUKwjEd-K5cm9fuUnww" name="LOCAL_MAC_RESULTAT" redefinedClassifier="_1rWPYKwjEd-K5cm9fuUnww">
+        <eAnnotations xmi:id="_1r8sUawjEd-K5cm9fuUnww" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_1r8sUqwjEd-K5cm9fuUnww" key="H_FILENAME" value="/testTypeDefStructH/struct.h"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_1r8sU6wjEd-K5cm9fuUnww" name="resultat" type="_1rWPY6wjEd-K5cm9fuUnww"/>
+        <ownedAttribute xmi:id="_1r8sVKwjEd-K5cm9fuUnww" name="* MUX" type="_1rWPZawjEd-K5cm9fuUnww"/>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_1sPnQKwjEd-K5cm9fuUnww" name="UNAUTRE" redefinedClassifier="_1rWPYKwjEd-K5cm9fuUnww">
+        <eAnnotations xmi:id="_1sPnQawjEd-K5cm9fuUnww" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_1sPnQqwjEd-K5cm9fuUnww" key="H_FILENAME" value="/testTypeDefStructH/struct.h"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_1sPnQ6wjEd-K5cm9fuUnww" name="resultat" type="_1rWPY6wjEd-K5cm9fuUnww"/>
+        <ownedAttribute xmi:id="_1sPnRKwjEd-K5cm9fuUnww" name="* MUX" type="_1rWPZawjEd-K5cm9fuUnww"/>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_1sZYQKwjEd-K5cm9fuUnww" name="ENCOREUN" redefinedClassifier="_1rWPYKwjEd-K5cm9fuUnww">
+        <eAnnotations xmi:id="_1sZYQawjEd-K5cm9fuUnww" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_1sZYQqwjEd-K5cm9fuUnww" key="H_FILENAME" value="/testTypeDefStructH/struct.h"/>
+        </eAnnotations>
+        <ownedAttribute xmi:id="_1sZYQ6wjEd-K5cm9fuUnww" name="resultat" type="_1rWPY6wjEd-K5cm9fuUnww"/>
+        <ownedAttribute xmi:id="_1sZYRKwjEd-K5cm9fuUnww" name="* MUX" type="_1rWPZawjEd-K5cm9fuUnww"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:DataType" xmi:id="_1rWPY6wjEd-K5cm9fuUnww" name="INT16"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_1rWPZawjEd-K5cm9fuUnww" name="INT32"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

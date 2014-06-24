@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_Qc77S6uTEd-OKYOerM7ncA" name="functionDefinitionBOTH" visibility="private">
+      <eAnnotations xmi:id="_Qc77TKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Qc77TauTEd-OKYOerM7ncA" key="C_FILENAME" value="/testfunctionDefinitionBOTH/functionDefinitionBOTH.c"/>
+      </eAnnotations>
+      <ownedBehavior xmi:type="uml:FunctionBehavior" xmi:id="_RI5BgauTEd-OKYOerM7ncA" name="acquisitionStatusSL" visibility="private">
+        <eAnnotations xmi:id="_RI5BgquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_RI5Bg6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testfunctionDefinitionBOTH/functionDefinitionBOTH.c"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_RI5BhKuTEd-OKYOerM7ncA" name="Status" type="_RI5BgKuTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_RI5BhquTEd-OKYOerM7ncA" name=" " type="_RI5BhauTEd-OKYOerM7ncA" direction="return"/>
+        <language>C</language>
+        <body>static T_STATUS acquisitionStatusSL&#xD;&#xA;   (&#xD;&#xA;   INT32 *Status&#xD;&#xA;   )&#xD;&#xA;{&#xD;&#xA;   UINT8 buffer[C_TAILLE_BUFFER_MAX];&#xD;&#xA;   T_STATUS resultat;&#xD;&#xA;   INT32 lg;&#xD;&#xA;&#xD;&#xA;   /* mise de l'adresse de commande dans le buffer de communication */&#xD;&#xA;   buffer[C_IDENTIFIANT] = C_ADR_STATUT_SL;&#xD;&#xA;   buffer[C_OCTET1] = 0;&#xD;&#xA;   buffer[C_OCTET2] = 0;&#xD;&#xA;&#xD;&#xA;   /* emission de la requete */&#xD;&#xA;   resultat = communication__emettreCommande (P_LASER,buffer,C_LG_TC_SL);&#xD;&#xA;   if (resultat != SUCCES)&#xD;&#xA;   {&#xD;&#xA;      return resultat;&#xD;&#xA;   }&#xD;&#xA;&#xD;&#xA;   /* Renseignement sur la taille de la trame rponse */&#xD;&#xA;   lg = C_LG_TM_SL;&#xD;&#xA;&#xD;&#xA;   /* attente de la reponse */&#xD;&#xA;   resultat = communication__attendreReponse (P_LASER,buffer,&amp;lg);&#xD;&#xA;   if (resultat != SUCCES)&#xD;&#xA;   {&#xD;&#xA;      return resultat;&#xD;&#xA;   }&#xD;&#xA;&#xD;&#xA;   /* recuperation du resultat */&#xD;&#xA;   *Status = buffer[C_OCTET1];&#xD;&#xA;&#xD;&#xA;   return SUCCES;&#xD;&#xA;}</body>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_RXMjQKuTEd-OKYOerM7ncA" name="functionDefinitionBOTH">
+      <eAnnotations xmi:id="_RXMjQauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_RXMjQquTEd-OKYOerM7ncA" key="H_FILENAME" value="/testfunctionDefinitionBOTH/functionDefinitionBOTH.h"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:DataType" xmi:id="_RI5BgKuTEd-OKYOerM7ncA" name="INT32"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_RI5BhauTEd-OKYOerM7ncA" name="T_STATUS"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

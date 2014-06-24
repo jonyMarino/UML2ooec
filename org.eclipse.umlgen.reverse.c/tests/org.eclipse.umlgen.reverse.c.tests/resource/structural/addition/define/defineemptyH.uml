@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_lOQ1K6uTEd-OKYOerM7ncA" name="aFile">
+      <eAnnotations xmi:id="_lOQ1LKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_lOQ1LauTEd-OKYOerM7ncA" key="H_FILENAME" value="/testdefineemptyH/aFile.h"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_l6hdYauTEd-OKYOerM7ncA" name="MY_DEFINE" visibility="public" isStatic="true" type="_l6hdYKuTEd-OKYOerM7ncA" isReadOnly="true">
+        <eAnnotations xmi:id="_l6hdY6uTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_l6hdZKuTEd-OKYOerM7ncA" key="H_FILENAME" value="/testdefineemptyH/aFile.h"/>
+        </eAnnotations>
+        <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_l6hdYquTEd-OKYOerM7ncA" name="readOnlyValue">
+          <language>C</language>
+          <body></body>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_l6hdYKuTEd-OKYOerM7ncA" name="Macro"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

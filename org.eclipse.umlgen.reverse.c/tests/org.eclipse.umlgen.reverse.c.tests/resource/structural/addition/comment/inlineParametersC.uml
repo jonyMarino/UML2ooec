@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_eu0si6uTEd-OKYOerM7ncA" name="inlineParameters" visibility="private" clientDependency="_fbEtsauTEd-OKYOerM7ncA _fbrKoauTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_eu0sjKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_eu0sjauTEd-OKYOerM7ncA" key="C_FILENAME" value="/testinlineParametersC/inlineParameters.c"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_fctscKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_fctscauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* Mon Commentaire de Classe */&#xA;"/>
+      </eAnnotations>
+      <ownedBehavior xmi:type="uml:FunctionBehavior" xmi:id="_fcaxgKuTEd-OKYOerM7ncA" name="transformeRegTMenTC" visibility="private" specification="_fcH2kquTEd-OKYOerM7ncA">
+        <eAnnotations xmi:id="_fcaxgauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_fcaxgquTEd-OKYOerM7ncA" key="C_FILENAME" value="/testinlineParametersC/inlineParameters.c"/>
+          <details xmi:id="_fcaxg6uTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="686"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_fepmIKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_fepmIauTEd-OKYOerM7ncA" key="C_FILENAME" value="/************************************************************************/&#xA;/* transformeRegTMenTC - ce service interne permet de transformer les bits */&#xA;/* de tÃ©lÃ©mesure en bits de tÃ©lÃ©commande &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;*/&#xA;/*&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;*/&#xA;/* RETURNS : T_STATUS&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;*/&#xA;/*&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;*/&#xA;/************************************************************************/&#xA;"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_fcaxhKuTEd-OKYOerM7ncA" name="TM" type="_fcH2kKuTEd-OKYOerM7ncA">
+          <eAnnotations xmi:id="_fezXIKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+            <details xmi:id="_fezXIauTEd-OKYOerM7ncA" key="C_INLINE_COMMENT_AFTER_DECLARATION" value="/** ParamÃ¨tre de TÃ©lÃ©mesure */&#xA;"/>
+          </eAnnotations>
+        </ownedParameter>
+        <ownedParameter xmi:id="_fcaxhauTEd-OKYOerM7ncA" name="TC" type="_fcH2kKuTEd-OKYOerM7ncA" direction="inout">
+          <eAnnotations xmi:id="_ffGSEKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+            <details xmi:id="_ffGSEauTEd-OKYOerM7ncA" key="C_INLINE_COMMENT_AFTER_DECLARATION" value="/** ParamÃ¨tre de TÃ©lÃ©commande */&#xA;"/>
+          </eAnnotations>
+        </ownedParameter>
+        <ownedParameter xmi:id="_fcaxhquTEd-OKYOerM7ncA" name=" " type="_fcH2kauTEd-OKYOerM7ncA" direction="return"/>
+        <language>C</language>
+        <body>static T_STATUS transformeRegTMenTC&#xD;&#xA;   (&#xD;&#xA;   UINT8 TM, /** ParamÃ¨tre de TÃ©lÃ©mesure */&#xD;&#xA;   UINT8 *TC /** ParamÃ¨tre de TÃ©lÃ©commande */&#xD;&#xA;   )&#xD;&#xA;{&#xD;&#xA;   /* initialisation du registre TC */&#xD;&#xA;   *TC = 0x00;&#xD;&#xA;&#xD;&#xA;   /* Transformation du bit de rÃ©chauffeur activÃ©*/&#xD;&#xA;   if (TM &amp; C_SL_TM_HEATER)&#xD;&#xA;      *TC |= C_SL_HEATER;&#xD;&#xA;   /* Transformation du bit d'accÃ¨s mÃ©moire */&#xD;&#xA;   if (TM &amp; C_SL_TM_MODE)&#xD;&#xA;      *TC |= C_SL_MODE;&#xD;&#xA;   /* Transformation du bit de sÃ©curitÃ© tempÃ©rature des MAO */&#xD;&#xA;   if (TM &amp; C_SL_TM_SECU_MAO)&#xD;&#xA;      *TC |= C_SL_SECU_MAO;&#xD;&#xA;&#xD;&#xA;   /* rÃ©cupÃ©ration de la valeur du bit FORCE_RF_MAOSD */&#xD;&#xA;   if (Val_FORCE_RF_MAOSD)&#xD;&#xA;      *TC |= C_SL_FORCE_RF_MAOSD;&#xD;&#xA;   /* rÃ©cupÃ©ration de la valeur du bit FORCE_RF_MAOC */&#xD;&#xA;   if (Val_FORCE_RF_MAOC)&#xD;&#xA;      *TC |= C_SL_FORCE_RF_MAOC;&#xD;&#xA;   /* rÃ©cupÃ©ration de la valeur du bit de programmation des PLLs */&#xD;&#xA;   if (!ProgrammationPLLAutorisee)&#xD;&#xA;      *TC |= C_SL_INHIB_PLL;&#xD;&#xA;&#xD;&#xA;   return SUCCES;&#xD;&#xA;}</body>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_fcH2kquTEd-OKYOerM7ncA" name="transformeRegTMenTC" visibility="private" isStatic="true" method="_fcaxgKuTEd-OKYOerM7ncA">
+        <eAnnotations xmi:id="_fcH2lauTEd-OKYOerM7ncA" source="Extern">
+          <details xmi:id="_fcH2lquTEd-OKYOerM7ncA" key="Extern" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_fcH2l6uTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_fcH2mKuTEd-OKYOerM7ncA" key="C_FILENAME" value="/testinlineParametersC/inlineParameters.c"/>
+          <details xmi:id="_fcH2mquTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="172"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_fddTUKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_fddTUauTEd-OKYOerM7ncA" key="C_INLINE_COMMENT_BEFORE_DECLARATION" value="/** Signature de mon opÃ©ration **/&#xA;"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_fcH2k6uTEd-OKYOerM7ncA" name="TM" type="_fcH2kKuTEd-OKYOerM7ncA">
+          <eAnnotations xmi:id="_fdw1UKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+            <details xmi:id="_fdw1UauTEd-OKYOerM7ncA" key="C_INLINE_COMMENT_AFTER_DECLARATION" value="/** ParamÃ¨tre de TÃ©lÃ©mesure */&#xA;"/>
+          </eAnnotations>
+        </ownedParameter>
+        <ownedParameter xmi:id="_fcH2lKuTEd-OKYOerM7ncA" name="TC" type="_fcH2kKuTEd-OKYOerM7ncA" direction="inout">
+          <eAnnotations xmi:id="_feDwQKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+            <details xmi:id="_feDwQauTEd-OKYOerM7ncA" key="C_INLINE_COMMENT_AFTER_DECLARATION" value="/** ParamÃ¨tre de TÃ©lÃ©commande */&#xA;"/>
+          </eAnnotations>
+        </ownedParameter>
+        <ownedParameter xmi:id="_fcH2mauTEd-OKYOerM7ncA" name=" " type="_fcH2kauTEd-OKYOerM7ncA" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_fbEtsauTEd-OKYOerM7ncA" name="vxWorks" visibility="private" supplier="_fbEtsKuTEd-OKYOerM7ncA" client="_eu0si6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_fbEtsquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_fbEts6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testinlineParametersC/inlineParameters.c"/>
+        <details xmi:id="_fbEttKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="33"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_fbrKoauTEd-OKYOerM7ncA" name="define" visibility="private" supplier="_fbrKoKuTEd-OKYOerM7ncA" client="_eu0si6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_fbrKoquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_fbrKo6uTEd-OKYOerM7ncA" key="C_FILENAME" value="/testinlineParametersC/inlineParameters.c"/>
+        <details xmi:id="_fbrKpKuTEd-OKYOerM7ncA" key="C_FILE_POSITION_DECLARATION" value="114"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_fdKYYKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_fdKYYauTEd-OKYOerM7ncA" key="C_FILENAME" value="/* Ceci est un commentaire de include pour le define.h */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:DataType" xmi:id="_fcH2kKuTEd-OKYOerM7ncA" name="UINT8"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_fcH2kauTEd-OKYOerM7ncA" name="T_STATUS"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_fbEtsKuTEd-OKYOerM7ncA" name="vxWorks"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_fbrKoKuTEd-OKYOerM7ncA" name="define"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

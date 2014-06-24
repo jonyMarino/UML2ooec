@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Xyd-a6uTEd-OKYOerM7ncA" name="commentInclude" clientDependency="_Ye3wkauTEd-OKYOerM7ncA _YfLSkauTEd-OKYOerM7ncA _YfeNgauTEd-OKYOerM7ncA _YfnXcauTEd-OKYOerM7ncA _Yf65cauTEd-OKYOerM7ncA _YgXlYauTEd-OKYOerM7ncA _YgqgUauTEd-OKYOerM7ncA _Yg9bQauTEd-OKYOerM7ncA _Yhj4MKuTEd-OKYOerM7ncA _Yh2zIauTEd-OKYOerM7ncA _Yh_9EauTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Xyd-bKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Xyd-bauTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_YiTfEKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_YiTfEauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* Mon Commentaire de Classe */&#xA;/* Ce commentaire est un commentaire de Classe */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Ye3wkauTEd-OKYOerM7ncA" name="vxWorks" supplier="_Ye3wkKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_YfBhkKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_YfBhkauTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_YfBhkquTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="84"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_YfLSkauTEd-OKYOerM7ncA" name="define" supplier="_YfLSkKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_YfLSkquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_YfLSk6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_YfLSlKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="165"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_YiwLAKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_YiwLAauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* Ceci est un commentaire de include pour le define.h */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_YfeNgauTEd-OKYOerM7ncA" name="taskLib" supplier="_YfeNgKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_YfeNgquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_YfeNg6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_YfeNhKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="309"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_YjDF8KuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_YjDF8auTEd-OKYOerM7ncA" key="H_FILENAME" value="/* Ceci est un commentaire de include pour le tasklib.h */&#xA;/* La deuxieme ligne permet de tester les retours charriot */&#xA;"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_YfnXcauTEd-OKYOerM7ncA" name="string" supplier="_YfnXcKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_YfnXcquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_YfnXc6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_YfnXdKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="331"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Yf65cauTEd-OKYOerM7ncA" name="laser" supplier="_Yf65cKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Yf65cquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Yf65c6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_Yf65dKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="352"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_YgXlYauTEd-OKYOerM7ncA" name="bsp_RCOMM" supplier="_YgXlYKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_YgXlYquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_YgXlY6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_YgXlZKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="372"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_YgqgUauTEd-OKYOerM7ncA" name="bsp_RMUX" supplier="_YgqgUKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_YgqgUquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_YgqgU6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_YgqgVKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="396"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Yg9bQauTEd-OKYOerM7ncA" name="bsp_RVAL" supplier="_Yg9bQKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Yg9bQquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Yg9bQ6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_Yg9bRKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="419"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Yhj4MKuTEd-OKYOerM7ncA" name="acquisition" supplier="_YhaHMKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Yhj4MauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Yhj4MquTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_Yhj4M6uTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="442"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Yh2zIauTEd-OKYOerM7ncA" name="communication" supplier="_Yh2zIKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Yh2zIquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Yh2zI6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_Yh2zJKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="468"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Yh_9EauTEd-OKYOerM7ncA" name="donnees" supplier="_Yh_9EKuTEd-OKYOerM7ncA" client="_Xyd-a6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Yh_9EquTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Yh_9E6uTEd-OKYOerM7ncA" key="H_FILENAME" value="/testcommentIncludeH/commentInclude.h"/>
+        <details xmi:id="_Yh_9FKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="496"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Ye3wkKuTEd-OKYOerM7ncA" name="vxWorks"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YfLSkKuTEd-OKYOerM7ncA" name="define"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YfeNgKuTEd-OKYOerM7ncA" name="taskLib"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YfnXcKuTEd-OKYOerM7ncA" name="string"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Yf65cKuTEd-OKYOerM7ncA" name="laser"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YgXlYKuTEd-OKYOerM7ncA" name="bsp_RCOMM"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YgqgUKuTEd-OKYOerM7ncA" name="bsp_RMUX"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Yg9bQKuTEd-OKYOerM7ncA" name="bsp_RVAL"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_YhaHMKuTEd-OKYOerM7ncA" name="acquisition"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Yh2zIKuTEd-OKYOerM7ncA" name="communication"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Yh_9EKuTEd-OKYOerM7ncA" name="donnees"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

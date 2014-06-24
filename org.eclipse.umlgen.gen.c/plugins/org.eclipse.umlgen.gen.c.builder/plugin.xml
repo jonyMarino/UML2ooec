@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2014 Obeo and others.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Mikael Barbero (Obeo) - initial API and implementation
+-->
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="org.eclipse.umlgen.gen.c.builder"
+         name="UML2C Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            callOnEmptyDelta="false"
+            hasNature="false"
+            isConfigurable="false">
+         <run
+               class="org.eclipse.umlgen.gen.c.builder.UML2CBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="org.eclipse.umlgen.gen.c.nature"
+         name="UML2C Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.eclipse.umlgen.gen.c.builder.UML2CNature">
+         </run>
+      </runtime>
+   </extension>
+
+</plugin>

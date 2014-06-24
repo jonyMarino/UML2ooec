@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_T2EMsH-REd-6c9ayJWK75w" name="testEmptyActivity">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_T2Go8H-REd-6c9ayJWK75w" name="f">
+    <node xmi:type="uml:OpaqueAction" xmi:id="_T2Go8X-REd-6c9ayJWK75w" name="printf(&quot;A&quot;);..." outgoing="_T2GpDX-REd-6c9ayJWK75w" incoming="_T2GpE3-REd-6c9ayJWK75w">
+      <language>C</language>
+      <body>printf(&quot;A&quot;);&#xA;// Before 1&#xA;int i = 10;</body>
+    </node>
+    <node xmi:type="uml:DecisionNode" xmi:id="_T2Go8n-REd-6c9ayJWK75w" name="if (/*inline 1*/ i &lt; 5)" outgoing="_T2Go_H-REd-6c9ayJWK75w _T2GpBX-REd-6c9ayJWK75w" incoming="_T2GpDX-REd-6c9ayJWK75w">
+      <eAnnotations xmi:id="_T2Go83-REd-6c9ayJWK75w" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_T2Go9H-REd-6c9ayJWK75w" key="COMMENT_BEFORE" value="// Before 2"/>
+        <details xmi:id="_T2Go9X-REd-6c9ayJWK75w" key="COMMENT_INLINE" value="/*inline 1*/"/>
+      </eAnnotations>
+    </node>
+    <node xmi:type="uml:MergeNode" xmi:id="_T2Go9n-REd-6c9ayJWK75w" outgoing="_T2GpEH-REd-6c9ayJWK75w" incoming="_T2GpAn-REd-6c9ayJWK75w _T2GpCn-REd-6c9ayJWK75w"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_T2Go93-REd-6c9ayJWK75w" name="// Inside th..." outgoing="_T2GpAn-REd-6c9ayJWK75w" incoming="_T2Go_H-REd-6c9ayJWK75w">
+      <language>C</language>
+      <body>// Inside then clause&#xA;printf(&quot;C&quot;);</body>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_T2Go-H-REd-6c9ayJWK75w" name="// Inside el..." outgoing="_T2GpCn-REd-6c9ayJWK75w" incoming="_T2GpBX-REd-6c9ayJWK75w">
+      <language>C</language>
+      <body>// Inside else clause&#xA;printf(&quot;D&quot;);</body>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_T2Go-X-REd-6c9ayJWK75w" name="printf(&quot;B&quot;);" outgoing="_T2GpFn-REd-6c9ayJWK75w" incoming="_T2GpEH-REd-6c9ayJWK75w">
+      <language>C</language>
+      <body>printf(&quot;B&quot;);</body>
+    </node>
+    <node xmi:type="uml:InitialNode" xmi:id="_T2Go-n-REd-6c9ayJWK75w" outgoing="_T2GpE3-REd-6c9ayJWK75w"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_T2Go-3-REd-6c9ayJWK75w" incoming="_T2GpFn-REd-6c9ayJWK75w"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2Go_H-REd-6c9ayJWK75w" source="_T2Go8n-REd-6c9ayJWK75w" target="_T2Go93-REd-6c9ayJWK75w">
+      <eAnnotations xmi:id="_T2Go_X-REd-6c9ayJWK75w" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_T2Go_n-REd-6c9ayJWK75w" key="COMMENT_SAME_LINE" value="// Same line 1"/>
+        <details xmi:id="_T2Go_3-REd-6c9ayJWK75w" key="COMMENT_LAST_LINE" value="// Last line of then clause"/>
+      </eAnnotations>
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_T2GpAH-REd-6c9ayJWK75w">
+        <language>C</language>
+        <body>i &lt; 5</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpAX-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2GpAn-REd-6c9ayJWK75w" source="_T2Go93-REd-6c9ayJWK75w" target="_T2Go9n-REd-6c9ayJWK75w">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_T2GpA3-REd-6c9ayJWK75w" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpBH-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2GpBX-REd-6c9ayJWK75w" source="_T2Go8n-REd-6c9ayJWK75w" target="_T2Go-H-REd-6c9ayJWK75w">
+      <eAnnotations xmi:id="_T2GpBn-REd-6c9ayJWK75w" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_T2GpB3-REd-6c9ayJWK75w" key="COMMENT_LAST_LINE" value="// Last line of else clause"/>
+      </eAnnotations>
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_T2GpCH-REd-6c9ayJWK75w">
+        <language>C</language>
+        <body>[else]</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpCX-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2GpCn-REd-6c9ayJWK75w" source="_T2Go-H-REd-6c9ayJWK75w" target="_T2Go9n-REd-6c9ayJWK75w">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_T2GpC3-REd-6c9ayJWK75w" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpDH-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2GpDX-REd-6c9ayJWK75w" source="_T2Go8X-REd-6c9ayJWK75w" target="_T2Go8n-REd-6c9ayJWK75w">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_T2GpDn-REd-6c9ayJWK75w" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpD3-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2GpEH-REd-6c9ayJWK75w" source="_T2Go9n-REd-6c9ayJWK75w" target="_T2Go-X-REd-6c9ayJWK75w">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_T2GpEX-REd-6c9ayJWK75w" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpEn-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2GpE3-REd-6c9ayJWK75w" source="_T2Go-n-REd-6c9ayJWK75w" target="_T2Go8X-REd-6c9ayJWK75w">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_T2GpFH-REd-6c9ayJWK75w" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpFX-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_T2GpFn-REd-6c9ayJWK75w" source="_T2Go-X-REd-6c9ayJWK75w" target="_T2Go-3-REd-6c9ayJWK75w">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_T2GpF3-REd-6c9ayJWK75w" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_T2GpGH-REd-6c9ayJWK75w" value="1"/>
+    </edge>
+  </packagedElement>
+</uml:Model>

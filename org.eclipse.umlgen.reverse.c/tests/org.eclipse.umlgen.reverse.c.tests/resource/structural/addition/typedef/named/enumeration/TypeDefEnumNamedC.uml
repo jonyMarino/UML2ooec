@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_zTNrMI9XEd-dB5Oz1VmnVw" name="namedEnum" visibility="private">
+      <eAnnotations xmi:id="_zTgmII9XEd-dB5Oz1VmnVw" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_zTgmIY9XEd-dB5Oz1VmnVw" key="C_FILENAME" value="/testTypeDefEnumNamedC/namedEnum.c"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_0Pj-sI9XEd-dB5Oz1VmnVw" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_0Pj-sY9XEd-dB5Oz1VmnVw" key="C_FILENAME" value="/*&#xD;&#xA; * file.c&#xD;&#xA; *&#xD;&#xA; *  Created on: 23 juin 2010&#xD;&#xA; *      Author: clecamus&#xD;&#xA; */&#xA;"/>
+      </eAnnotations>
+      <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_0OXr4I9XEd-dB5Oz1VmnVw" name="MICROS" visibility="private">
+        <eAnnotations xmi:id="_0OXr4Y9XEd-dB5Oz1VmnVw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_0OXr4o9XEd-dB5Oz1VmnVw" key="C_FILENAME" value="/testTypeDefEnumNamedC/namedEnum.c"/>
+        </eAnnotations>
+        <ownedLiteral xmi:id="_0Og10I9XEd-dB5Oz1VmnVw" name="AUCUNE"/>
+        <ownedLiteral xmi:id="_0Og10Y9XEd-dB5Oz1VmnVw" name="MICRO_DET">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_0Og10o9XEd-dB5Oz1VmnVw" name="initialisationValue">
+            <language>C</language>
+            <body>1</body>
+          </specification>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="_0Og1049XEd-dB5Oz1VmnVw" name="MICRO_FLUO"/>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_0PHSwI9XEd-dB5Oz1VmnVw" name="LOCAL_MICRO_EN_COURS" visibility="private" redefinedClassifier="_0OXr4I9XEd-dB5Oz1VmnVw">
+        <eAnnotations xmi:id="_0PHSxY9XEd-dB5Oz1VmnVw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_0PHSxo9XEd-dB5Oz1VmnVw" key="C_FILENAME" value="/testTypeDefEnumNamedC/namedEnum.c"/>
+        </eAnnotations>
+        <ownedLiteral xmi:id="_0PHSwY9XEd-dB5Oz1VmnVw" name="AUCUNE"/>
+        <ownedLiteral xmi:id="_0PHSwo9XEd-dB5Oz1VmnVw" name="MICRO_DET">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_0PHSw49XEd-dB5Oz1VmnVw" name="initialisationValue">
+            <language>C</language>
+            <body>1</body>
+          </specification>
+        </ownedLiteral>
+        <ownedLiteral xmi:id="_0PHSxI9XEd-dB5Oz1VmnVw" name="MICRO_FLUO"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

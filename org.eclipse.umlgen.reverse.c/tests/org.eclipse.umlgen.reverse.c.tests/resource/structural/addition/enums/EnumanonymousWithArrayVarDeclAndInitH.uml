@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_TZ9Pm6ufEd-V-ORhC2tX4A" name="anonymousWithArrayVarDeclAndInit">
+      <eAnnotations xmi:id="_TZ9PnKufEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_TZ9PnaufEd-V-ORhC2tX4A" key="H_FILENAME" value="/testEnumanonymousWithArrayVarDeclAndInitH/anonymousWithArrayVarDeclAndInit.h"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_UD-cIKufEd-V-ORhC2tX4A" name="color_var1" visibility="public" type="_UDrhMKufEd-V-ORhC2tX4A">
+        <eAnnotations xmi:id="_UD-cIaufEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_UD-cIqufEd-V-ORhC2tX4A" key="H_FILE_POSITION_DECLARATION" value="33"/>
+          <details xmi:id="_UD-cI6ufEd-V-ORhC2tX4A" key="H_FILENAME" value="/testEnumanonymousWithArrayVarDeclAndInitH/anonymousWithArrayVarDeclAndInit.h"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_UD-cJKufEd-V-ORhC2tX4A" source="Extern">
+          <details xmi:id="_UD-cJaufEd-V-ORhC2tX4A" key="Extern" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_UD-cJqufEd-V-ORhC2tX4A" source="Register">
+          <details xmi:id="_UD-cJ6ufEd-V-ORhC2tX4A" key="Register" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_UD-cKKufEd-V-ORhC2tX4A" source="Volatile">
+          <details xmi:id="_UD-cKaufEd-V-ORhC2tX4A" key="Volatile" value="false"/>
+        </eAnnotations>
+        <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_UD-cLaufEd-V-ORhC2tX4A" name="default">
+          <language>C</language>
+          <body>{red, green}</body>
+        </defaultValue>
+        <qualifier xmi:id="_UD-cK6ufEd-V-ORhC2tX4A" name="size" type="_UD-cKqufEd-V-ORhC2tX4A">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_UD-cLKufEd-V-ORhC2tX4A" value="[2]"/>
+        </qualifier>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_UEINIKufEd-V-ORhC2tX4A" name="color_var2" visibility="public" type="_UDrhMKufEd-V-ORhC2tX4A">
+        <eAnnotations xmi:id="_UEINIaufEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_UEINIqufEd-V-ORhC2tX4A" key="H_FILE_POSITION_DECLARATION" value="63"/>
+          <details xmi:id="_UEINI6ufEd-V-ORhC2tX4A" key="H_FILENAME" value="/testEnumanonymousWithArrayVarDeclAndInitH/anonymousWithArrayVarDeclAndInit.h"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_UEINJKufEd-V-ORhC2tX4A" source="Extern">
+          <details xmi:id="_UEINJaufEd-V-ORhC2tX4A" key="Extern" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_UEINJqufEd-V-ORhC2tX4A" source="Register">
+          <details xmi:id="_UEINJ6ufEd-V-ORhC2tX4A" key="Register" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_UEINKKufEd-V-ORhC2tX4A" source="Volatile">
+          <details xmi:id="_UEINKaufEd-V-ORhC2tX4A" key="Volatile" value="false"/>
+        </eAnnotations>
+        <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_UEINLKufEd-V-ORhC2tX4A" name="default">
+          <language>C</language>
+          <body>{red, green, green, blue, red}</body>
+        </defaultValue>
+        <qualifier xmi:id="_UEINKqufEd-V-ORhC2tX4A" name="size" type="_UD-cKqufEd-V-ORhC2tX4A">
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_UEINK6ufEd-V-ORhC2tX4A" value="[]"/>
+        </qualifier>
+      </ownedAttribute>
+      <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_UDrhMKufEd-V-ORhC2tX4A" name="">
+        <eAnnotations xmi:id="_UDrhMaufEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_UDrhMqufEd-V-ORhC2tX4A" key="H_FILENAME" value="/testEnumanonymousWithArrayVarDeclAndInitH/anonymousWithArrayVarDeclAndInit.h"/>
+        </eAnnotations>
+        <ownedLiteral xmi:id="_UDrhM6ufEd-V-ORhC2tX4A" name="red"/>
+        <ownedLiteral xmi:id="_UDrhNKufEd-V-ORhC2tX4A" name="green"/>
+        <ownedLiteral xmi:id="_UDrhNaufEd-V-ORhC2tX4A" name="blue"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_UD-cKqufEd-V-ORhC2tX4A" name="int"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_L8xL246AEd-7M5MHK5QGeQ" name="simpleParameters" visibility="private">
+      <eAnnotations xmi:id="_L86U8I6AEd-7M5MHK5QGeQ" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_L86U8Y6AEd-7M5MHK5QGeQ" key="C_FILENAME" value="/testsimpleParametersC/simpleParameters.c"/>
+      </eAnnotations>
+      <ownedBehavior xmi:type="uml:FunctionBehavior" xmi:id="_MmVscI6AEd-7M5MHK5QGeQ" name="monOperationC" visibility="private" specification="_Mlv2ko6AEd-7M5MHK5QGeQ">
+        <eAnnotations xmi:id="_MmVscY6AEd-7M5MHK5QGeQ" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_MmVsco6AEd-7M5MHK5QGeQ" key="C_FILENAME" value="/testsimpleParametersC/simpleParameters.c"/>
+          <details xmi:id="_MmVsc46AEd-7M5MHK5QGeQ" key="C_FILE_POSITION_DECLARATION" value="64"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_MmVsdI6AEd-7M5MHK5QGeQ" name="par1" type="_MlmFkI6AEd-7M5MHK5QGeQ"/>
+        <ownedParameter xmi:id="_MmVsdY6AEd-7M5MHK5QGeQ" name="secondPar" type="_Mlv2kI6AEd-7M5MHK5QGeQ"/>
+        <ownedParameter xmi:id="_MmVsdo6AEd-7M5MHK5QGeQ" name="Status" type="_Mlv2kY6AEd-7M5MHK5QGeQ"/>
+        <ownedParameter xmi:id="_MmVsd46AEd-7M5MHK5QGeQ" name=" " type="_MlmFkI6AEd-7M5MHK5QGeQ" direction="return"/>
+        <language>C</language>
+        <body>int monOperationC(int par1, char secondPar, INT32 Status) {&#xD;&#xA;&#x9;   /* mise de l'adresse de commande dans le buffer de communication */&#xD;&#xA;&#x9;   buffer[C_IDENTIFIANT] = C_ADR_STATUT_SL;&#xD;&#xA;&#x9;   buffer[C_OCTET1] = 0;&#xD;&#xA;&#x9;   buffer[C_OCTET2] = 0;&#xD;&#xA;}</body>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_Mlv2ko6AEd-7M5MHK5QGeQ" name="monOperationC" visibility="private" method="_MmVscI6AEd-7M5MHK5QGeQ">
+        <eAnnotations xmi:id="_Mlv2lo6AEd-7M5MHK5QGeQ" source="Extern">
+          <details xmi:id="_Mlv2l46AEd-7M5MHK5QGeQ" key="Extern" value="false"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_Mlv2mI6AEd-7M5MHK5QGeQ" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_Mlv2mY6AEd-7M5MHK5QGeQ" key="C_FILENAME" value="/testsimpleParametersC/simpleParameters.c"/>
+          <details xmi:id="_Mlv2m46AEd-7M5MHK5QGeQ" key="C_FILE_POSITION_DECLARATION" value="2"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_Mlv2k46AEd-7M5MHK5QGeQ" name="par1" type="_MlmFkI6AEd-7M5MHK5QGeQ"/>
+        <ownedParameter xmi:id="_Mlv2lI6AEd-7M5MHK5QGeQ" name="secondPar" type="_Mlv2kI6AEd-7M5MHK5QGeQ"/>
+        <ownedParameter xmi:id="_Mlv2lY6AEd-7M5MHK5QGeQ" name="Status" type="_Mlv2kY6AEd-7M5MHK5QGeQ"/>
+        <ownedParameter xmi:id="_Mlv2mo6AEd-7M5MHK5QGeQ" name=" " type="_MlmFkI6AEd-7M5MHK5QGeQ" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_MlmFkI6AEd-7M5MHK5QGeQ" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Mlv2kI6AEd-7M5MHK5QGeQ" name="char"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_Mlv2kY6AEd-7M5MHK5QGeQ" name="INT32"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

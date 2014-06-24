@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_mfiDO49FEd-gjOqnges3MA" name="anonymous" visibility="private">
+      <eAnnotations xmi:id="_mfiDPI9FEd-gjOqnges3MA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_mfiDPY9FEd-gjOqnges3MA" key="C_FILENAME" value="/testEnumanonymousC/anonymous.c"/>
+      </eAnnotations>
+      <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_nHxHMI9FEd-gjOqnges3MA" name="" visibility="private">
+        <eAnnotations xmi:id="_nH6RII9FEd-gjOqnges3MA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_nH6RIY9FEd-gjOqnges3MA" key="C_FILENAME" value="/testEnumanonymousC/anonymous.c"/>
+        </eAnnotations>
+        <ownedLiteral xmi:id="_nH6RIo9FEd-gjOqnges3MA" name="red"/>
+        <ownedLiteral xmi:id="_nH6RI49FEd-gjOqnges3MA" name="green"/>
+        <ownedLiteral xmi:id="_nH6RJI9FEd-gjOqnges3MA" name="blue"/>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

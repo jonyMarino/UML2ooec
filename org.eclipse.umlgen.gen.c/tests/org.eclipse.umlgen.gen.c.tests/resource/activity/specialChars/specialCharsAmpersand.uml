@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_LCZOAGzBEd-rL99esoZn_A" name="testEmptyActivity">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_LCZ1EGzBEd-rL99esoZn_A" name="f">
+    <node xmi:type="uml:InitialNode" xmi:id="_LCZ1EWzBEd-rL99esoZn_A" outgoing="_LCZ1IGzBEd-rL99esoZn_A"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_LCZ1EmzBEd-rL99esoZn_A" name="int i = 0;" outgoing="_LCZ1HWzBEd-rL99esoZn_A" incoming="_LCZ1IGzBEd-rL99esoZn_A">
+      <language>C</language>
+      <body>int i = 0;</body>
+    </node>
+    <node xmi:type="uml:LoopNode" xmi:id="_LCZ1E2zBEd-rL99esoZn_A" name="while ((i &lt; 100) &amp;&amp; (i &lt; 1000))" outgoing="_LCZ1I2zBEd-rL99esoZn_A" incoming="_LCZ1HWzBEd-rL99esoZn_A" isTestedFirst="true" bodyPart="_LCZ1GmzBEd-rL99esoZn_A" decider="_LCZ1GGzBEd-rL99esoZn_A" test="_LCZ1F2zBEd-rL99esoZn_A">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_LCZ1FGzBEd-rL99esoZn_A" source="_LCZ1GmzBEd-rL99esoZn_A" target="_LCZ1G2zBEd-rL99esoZn_A">
+        <guard xmi:type="uml:LiteralBoolean" xmi:id="_LCZ1FWzBEd-rL99esoZn_A" value="true"/>
+        <weight xmi:type="uml:LiteralInteger" xmi:id="_LCZ1FmzBEd-rL99esoZn_A" value="1"/>
+      </edge>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_LCZ1F2zBEd-rL99esoZn_A" name="(i &lt; 100) &amp;&amp;...">
+        <language>C</language>
+        <outputValue xmi:id="_LCZ1GGzBEd-rL99esoZn_A">
+          <upperBound xmi:type="uml:LiteralNull" xmi:id="_LCZ1GWzBEd-rL99esoZn_A"/>
+        </outputValue>
+        <body>(i &lt; 100) &amp;&amp; (i &lt; 1000)</body>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_LCZ1GmzBEd-rL99esoZn_A" name="printf(&quot;i&quot;);..." outgoing="_LCZ1FGzBEd-rL99esoZn_A">
+        <language>C</language>
+        <body>printf(&quot;i&quot;);&#xA;i++;</body>
+      </node>
+      <node xmi:type="uml:FlowFinalNode" xmi:id="_LCZ1G2zBEd-rL99esoZn_A" name="end of loop" incoming="_LCZ1FGzBEd-rL99esoZn_A"/>
+    </node>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_LCZ1HGzBEd-rL99esoZn_A" incoming="_LCZ1I2zBEd-rL99esoZn_A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_LCZ1HWzBEd-rL99esoZn_A" source="_LCZ1EmzBEd-rL99esoZn_A" target="_LCZ1E2zBEd-rL99esoZn_A">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_LCZ1HmzBEd-rL99esoZn_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_LCZ1H2zBEd-rL99esoZn_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_LCZ1IGzBEd-rL99esoZn_A" source="_LCZ1EWzBEd-rL99esoZn_A" target="_LCZ1EmzBEd-rL99esoZn_A">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_LCZ1IWzBEd-rL99esoZn_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_LCZ1ImzBEd-rL99esoZn_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_LCZ1I2zBEd-rL99esoZn_A" source="_LCZ1E2zBEd-rL99esoZn_A" target="_LCZ1HGzBEd-rL99esoZn_A">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_LCZ1JGzBEd-rL99esoZn_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_LCZ1JWzBEd-rL99esoZn_A" value="1"/>
+    </edge>
+  </packagedElement>
+</uml:Model>

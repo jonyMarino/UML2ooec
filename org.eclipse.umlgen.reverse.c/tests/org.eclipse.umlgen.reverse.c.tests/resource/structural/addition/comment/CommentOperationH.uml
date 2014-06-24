@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Z28Xm6uTEd-OKYOerM7ncA" name="CommentOperation" clientDependency="_ad-hkKuTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_Z28XnKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_Z28XnauTEd-OKYOerM7ncA" key="H_FILENAME" value="/testCommentOperationH/CommentOperation.h"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_afK0YKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_afK0YauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* mon comment de classe dans le fichier H */&#xA;/* suite de mon comment de classe&#xD;&#xA; * hello&#xD;&#xA; */&#xA;"/>
+      </eAnnotations>
+      <ownedOperation xmi:id="_aek-g6uTEd-OKYOerM7ncA" name="monOperation" visibility="public">
+        <eAnnotations xmi:id="_aek-h6uTEd-OKYOerM7ncA" source="Extern">
+          <details xmi:id="_aek-iKuTEd-OKYOerM7ncA" key="Extern" value="true"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_aek-iauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_aek-iquTEd-OKYOerM7ncA" key="H_FILENAME" value="/testCommentOperationH/CommentOperation.h"/>
+          <details xmi:id="_aek-jKuTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="248"/>
+        </eAnnotations>
+        <eAnnotations xmi:id="_afngUKuTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_afngUauTEd-OKYOerM7ncA" key="H_FILENAME" value="/* mon commentaire d'operation */&#xA;"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_aek-hKuTEd-OKYOerM7ncA" name="k" type="_aek-gKuTEd-OKYOerM7ncA"/>
+        <ownedParameter xmi:id="_aek-hauTEd-OKYOerM7ncA" name="l" type="_aek-gauTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_aek-hquTEd-OKYOerM7ncA" name="*m" type="_aek-gquTEd-OKYOerM7ncA" direction="inout"/>
+        <ownedParameter xmi:id="_aek-i6uTEd-OKYOerM7ncA" name=" " type="_aek-gKuTEd-OKYOerM7ncA" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_ad-hkKuTEd-OKYOerM7ncA" name="stdio" supplier="_ad1XoKuTEd-OKYOerM7ncA" client="_Z28Xm6uTEd-OKYOerM7ncA">
+      <eAnnotations xmi:id="_ad-hkauTEd-OKYOerM7ncA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_ad-hkquTEd-OKYOerM7ncA" key="H_FILENAME" value="/testCommentOperationH/CommentOperation.h"/>
+        <details xmi:id="_ad-hk6uTEd-OKYOerM7ncA" key="H_FILE_POSITION_DECLARATION" value="97"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_aek-gKuTEd-OKYOerM7ncA" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_aek-gauTEd-OKYOerM7ncA" name="char"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_aek-gquTEd-OKYOerM7ncA" name="long"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_ad1XoKuTEd-OKYOerM7ncA" name="stdio"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

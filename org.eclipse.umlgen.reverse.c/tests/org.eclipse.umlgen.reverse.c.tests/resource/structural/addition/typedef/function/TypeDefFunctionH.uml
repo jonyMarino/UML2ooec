@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_pylMu6vGEd-EE4akb1Y_tw" name="operation">
+      <eAnnotations xmi:id="_pylMvKvGEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_pylMvavGEd-EE4akb1Y_tw" key="H_FILENAME" value="/testTypeDefFunctionH/operation.h"/>
+      </eAnnotations>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_qccoQKvGEd-EE4akb1Y_tw" name="destructor1">
+        <eAnnotations xmi:id="_qccoQavGEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_qccoQqvGEd-EE4akb1Y_tw" key="H_FILENAME" value="/testTypeDefFunctionH/operation.h"/>
+        </eAnnotations>
+        <ownedOperation xmi:id="_qccoRKvGEd-EE4akb1Y_tw" name="destructor1" visibility="public">
+          <eAnnotations xmi:id="_qccoRqvGEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+            <details xmi:id="_qccoR6vGEd-EE4akb1Y_tw" key="H_FILENAME" value="/testTypeDefFunctionH/operation.h"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_qccoRavGEd-EE4akb1Y_tw" name="" type="_qccoQ6vGEd-EE4akb1Y_tw" direction="inout"/>
+          <ownedParameter xmi:id="_qccoSavGEd-EE4akb1Y_tw" name="" type="_qccoSKvGEd-EE4akb1Y_tw" direction="return"/>
+        </ownedOperation>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_qcmZQKvGEd-EE4akb1Y_tw" name="destructor2">
+        <eAnnotations xmi:id="_qcmZQavGEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_qcmZQqvGEd-EE4akb1Y_tw" key="H_FILE_POSITION_DECLARATION" value="37"/>
+          <details xmi:id="_qcmZQ6vGEd-EE4akb1Y_tw" key="H_FILENAME" value="/testTypeDefFunctionH/operation.h"/>
+        </eAnnotations>
+        <ownedOperation xmi:id="_qcmZRKvGEd-EE4akb1Y_tw" name="destructor2" visibility="public">
+          <eAnnotations xmi:id="_qcmZR6vGEd-EE4akb1Y_tw" source="http://www.eclipse.org/umlgen/reverse/c">
+            <details xmi:id="_qcmZSKvGEd-EE4akb1Y_tw" key="H_FILENAME" value="/testTypeDefFunctionH/operation.h"/>
+          </eAnnotations>
+          <ownedParameter xmi:id="_qcmZRavGEd-EE4akb1Y_tw" name="" type="_qccoQ6vGEd-EE4akb1Y_tw" direction="inout"/>
+          <ownedParameter xmi:id="_qcmZRqvGEd-EE4akb1Y_tw" name="" type="_qccoQ6vGEd-EE4akb1Y_tw" direction="inout"/>
+          <ownedParameter xmi:id="_qcmZSavGEd-EE4akb1Y_tw" name="" type="_qccoQ6vGEd-EE4akb1Y_tw" direction="return"/>
+        </ownedOperation>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_qccoQ6vGEd-EE4akb1Y_tw" name="void"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_qccoSKvGEd-EE4akb1Y_tw" name="int"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

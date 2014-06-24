@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qb8akM37EdqwVrslYOdUDA" name="%name%">
+  <packagedElement xsi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="Use Case View">
+    <packagedElement xsi:type="uml:Package" xmi:id="_Oug3IIBpEduoHLDxP0HEYA" name="Actors"/>
+    <packagedElement xsi:type="uml:Package" xmi:id="_R1l80IBpEduoHLDxP0HEYA" name="Analysis Classes"/>
+    <packagedElement xsi:type="uml:Package" xmi:id="_47DVYIBpEduoHLDxP0HEYA" name="Domain Classes"/>
+    <packagedElement xsi:type="uml:Package" xmi:id="__ftVMIBpEduoHLDxP0HEYA" name="External Entities">
+      <packagedElement xsi:type="uml:Interaction" xmi:id="_xkzEEIBqEduoHLDxP0HEYA" name="External Entities Dynamic Data Flow General view"/>
+    </packagedElement>
+    <packagedElement xsi:type="uml:Interaction" xmi:id="_eruFQIBqEduoHLDxP0HEYA" name="Data Flow General View"/>
+    <packagedElement xsi:type="uml:Class" xmi:id="_gSuC0IBrEduoHLDxP0HEYA" name="MySystem">
+      <nestedClassifier xsi:type="uml:StateMachine" xmi:id="_uFnK8IBrEduoHLDxP0HEYA" name="MySystem Behavioural"/>
+    </packagedElement>
+    <packagedElement xsi:type="uml:UseCase" xmi:id="_GPdf0IBsEduoHLDxP0HEYA" name="AUseCase">
+      <ownedBehavior xsi:type="uml:Interaction" xmi:id="_I859gIBsEduoHLDxP0HEYA" name="ASequenceDiagram"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Package" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+    <packagedElement xsi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts"/>
+    <packagedElement xsi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types"/>
+    <packagedElement xsi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+    <packagedElement xsi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+      <packagedElement xsi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+        <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+        <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+        <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+      </packagedElement>
+      <packagedElement xsi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Package" xmi:id="_9yv5kIBoEduoHLDxP0HEYA" name="Component View">
+    <packagedElement xsi:type="uml:Component" xmi:id="_P8KOQNCzEdukztvu02l7OQ" name="AComponent Diagram by process"/>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Package" xmi:id="_-mdtwNCyEdukztvu02l7OQ" name="Deployment View"/>
+</uml:Model>

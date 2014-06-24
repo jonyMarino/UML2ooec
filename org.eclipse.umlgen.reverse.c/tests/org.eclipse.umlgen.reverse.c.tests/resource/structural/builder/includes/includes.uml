@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_Y00dwZ7iEd-O3ZfZAECNaA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_tXyykJ7iEd-O3ZfZAECNaA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_tXyykZ7iEd-O3ZfZAECNaA" name="acq" clientDependency="_tXyynZ7iEd-O3ZfZAECNaA">
+      <eAnnotations xmi:id="_tXyykp7iEd-O3ZfZAECNaA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_tXyyk57iEd-O3ZfZAECNaA" key="C_FILENAME" value="/test/src/acq.c"/>
+        <details xmi:id="_tXyylJ7iEd-O3ZfZAECNaA" key="H_FILENAME" value="/test/src/acq.h"/>
+        <details xmi:id="_tXyylZ7iEd-O3ZfZAECNaA" key="ifndef condition" value="__ACQ_H__"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_tXyylp7iEd-O3ZfZAECNaA" name="__ACQ_H__" visibility="public" isStatic="true" isReadOnly="true">
+        <eAnnotations xmi:id="_tXyyl57iEd-O3ZfZAECNaA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_tXyymJ7iEd-O3ZfZAECNaA" key="H_FILENAME" value="/test/src/acq.h"/>
+        </eAnnotations>
+        <type xmi:type="uml:PrimitiveType" href="test.uml#_CBLOMJ7fEd-grKgRDjFeDA"/>
+        <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_tXyymZ7iEd-O3ZfZAECNaA" name="readOnlyValue">
+          <language>C</language>
+          <body></body>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_tXyymp7iEd-O3ZfZAECNaA" name="lib">
+      <eAnnotations xmi:id="_tXyym57iEd-O3ZfZAECNaA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_tXyynJ7iEd-O3ZfZAECNaA" key="H_FILENAME" value="/test/src/acq.h"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_tXyynZ7iEd-O3ZfZAECNaA" name="lib" supplier="_tXyymp7iEd-O3ZfZAECNaA" client="_tXyykZ7iEd-O3ZfZAECNaA">
+      <eAnnotations xmi:id="_tXyynp7iEd-O3ZfZAECNaA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_tXyyn57iEd-O3ZfZAECNaA" key="H_FILENAME" value="/test/src/acq.h"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tXyyoJ7iEd-O3ZfZAECNaA" name="ccc">
+      <eAnnotations xmi:id="_tXyyoZ7iEd-O3ZfZAECNaA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_tXyyop7iEd-O3ZfZAECNaA" key="C_FILENAME" value="/test/src/ccc.c"/>
+        <details xmi:id="_tXyyo57iEd-O3ZfZAECNaA" key="H_FILENAME" value="/test/src/ccc.h"/>
+        <details xmi:id="_tXzZoJ7iEd-O3ZfZAECNaA" key="ifndef condition" value="__CCC_H__"/>
+      </eAnnotations>
+      <ownedAttribute xmi:id="_tXzZoZ7iEd-O3ZfZAECNaA" name="__CCC_H__" visibility="public" isStatic="true" isReadOnly="true">
+        <eAnnotations xmi:id="_tXzZop7iEd-O3ZfZAECNaA" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_tXzZo57iEd-O3ZfZAECNaA" key="H_FILENAME" value="/test/src/ccc.h"/>
+        </eAnnotations>
+        <type xmi:type="uml:PrimitiveType" href="test.uml#_CBLOMJ7fEd-grKgRDjFeDA"/>
+        <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="_tXzZpJ7iEd-O3ZfZAECNaA" name="readOnlyValue">
+          <language>C</language>
+          <body></body>
+        </defaultValue>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+</uml:Package>

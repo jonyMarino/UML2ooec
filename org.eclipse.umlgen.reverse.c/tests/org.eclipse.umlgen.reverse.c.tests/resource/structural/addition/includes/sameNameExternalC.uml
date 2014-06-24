@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_3d0U26ueEd-V-ORhC2tX4A" name="sameNameExternal" visibility="private" clientDependency="_4HsXcaueEd-V-ORhC2tX4A _4H1hYaueEd-V-ORhC2tX4A _4IIcUaueEd-V-ORhC2tX4A _4ISNUaueEd-V-ORhC2tX4A _4IlIQaueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_3d0U3KueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_3d0U3aueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testsameNameExternalC/sameNameExternal.c"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_4HsXcaueEd-V-ORhC2tX4A" name="sameNameExternal" visibility="private" supplier="_4HsXcKueEd-V-ORhC2tX4A" client="_3d0U26ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_4HsXcqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_4HsXc6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testsameNameExternalC/sameNameExternal.c"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_4H1hYaueEd-V-ORhC2tX4A" name="AInclude_COMMUNS" visibility="private" supplier="_4H1hYKueEd-V-ORhC2tX4A" client="_3d0U26ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_4H1hYqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_4H1hY6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testsameNameExternalC/sameNameExternal.c"/>
+        <details xmi:id="_4H1hZKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="31"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_4IIcUaueEd-V-ORhC2tX4A" name="AInclude_COM1" visibility="private" supplier="_4IIcUKueEd-V-ORhC2tX4A" client="_3d0U26ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_4IIcUqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_4IIcU6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testsameNameExternalC/sameNameExternal.c"/>
+        <details xmi:id="_4IIcVKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="62"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_4ISNUaueEd-V-ORhC2tX4A" name="AInclude_COM2" visibility="private" supplier="_4ISNUKueEd-V-ORhC2tX4A" client="_3d0U26ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_4ISNUqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_4ISNU6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testsameNameExternalC/sameNameExternal.c"/>
+        <details xmi:id="_4ISNVKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="90"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_4IlIQaueEd-V-ORhC2tX4A" name="AInclude_COM3" visibility="private" supplier="_4IlIQKueEd-V-ORhC2tX4A" client="_3d0U26ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_4IlIQqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_4IlIQ6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testsameNameExternalC/sameNameExternal.c"/>
+        <details xmi:id="_4IlIRKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="118"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_4HsXcKueEd-V-ORhC2tX4A" name="sameNameExternal"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_4H1hYKueEd-V-ORhC2tX4A" name="AInclude_COMMUNS"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_4IIcUKueEd-V-ORhC2tX4A" name="AInclude_COM1"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_4ISNUKueEd-V-ORhC2tX4A" name="AInclude_COM2"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_4IlIQKueEd-V-ORhC2tX4A" name="AInclude_COM3"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

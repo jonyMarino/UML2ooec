@@ -1,0 +1,9 @@
+h1. Welcome to Eclipse UML Generators
+
+UML Generators Project provides components that automatically bridge the gap between UML models and source code. Either by extracting data from UML models (and UML profiles or decoration models) to produce source code or  by reverse-engineering source code to produce UML models.
+
+Code generation uses Acceleo. It is incremental and can be extended thanks to its overriding system.
+
+In most cases, these generators do not need to rely on a profile and use the native structure of UML.
+
+These plugins are released under the EPL Open-Source License.

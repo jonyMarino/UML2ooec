@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_igNFC49bEd-Yh-wzaQ9Ssw" name="pointer" visibility="private">
+      <eAnnotations xmi:id="_igNFDI9bEd-Yh-wzaQ9Ssw" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_igNFDY9bEd-Yh-wzaQ9Ssw" key="C_FILENAME" value="/testTypeDefMultiplePointerC/pointer.c"/>
+      </eAnnotations>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_jIw5AI9bEd-Yh-wzaQ9Ssw" name="pint" visibility="private" redefinedClassifier="_jIw5AY9bEd-Yh-wzaQ9Ssw">
+        <eAnnotations xmi:id="_jIw5Ao9bEd-Yh-wzaQ9Ssw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_jIw5A49bEd-Yh-wzaQ9Ssw" key="C_FILENAME" value="/testTypeDefMultiplePointerC/pointer.c"/>
+        </eAnnotations>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_jJf40I9bEd-Yh-wzaQ9Ssw" name="s32" visibility="private" redefinedClassifier="_jJf40Y9bEd-Yh-wzaQ9Ssw">
+        <eAnnotations xmi:id="_jJf40o9bEd-Yh-wzaQ9Ssw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_jJf4049bEd-Yh-wzaQ9Ssw" key="C_FILENAME" value="/testTypeDefMultiplePointerC/pointer.c"/>
+        </eAnnotations>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jIw5AY9bEd-Yh-wzaQ9Ssw" name="int*"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_jJf40Y9bEd-Yh-wzaQ9Ssw" name="int"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

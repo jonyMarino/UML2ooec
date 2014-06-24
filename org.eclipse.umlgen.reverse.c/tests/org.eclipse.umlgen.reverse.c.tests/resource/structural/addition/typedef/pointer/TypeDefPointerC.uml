@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_ckjl7o9bEd-Yh-wzaQ9Ssw" name="pointer" visibility="private">
+      <eAnnotations xmi:id="_ckjl749bEd-Yh-wzaQ9Ssw" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_ckjl8I9bEd-Yh-wzaQ9Ssw" key="C_FILENAME" value="/testTypeDefPointerC/pointer.c"/>
+      </eAnnotations>
+      <nestedClassifier xmi:type="uml:DataType" xmi:id="_dM0fAI9bEd-Yh-wzaQ9Ssw" name="String" visibility="private" redefinedClassifier="_dM0fAY9bEd-Yh-wzaQ9Ssw">
+        <eAnnotations xmi:id="_dM0fAo9bEd-Yh-wzaQ9Ssw" source="http://www.eclipse.org/umlgen/reverse/c">
+          <details xmi:id="_dM0fA49bEd-Yh-wzaQ9Ssw" key="C_FILENAME" value="/testTypeDefPointerC/pointer.c"/>
+        </eAnnotations>
+      </nestedClassifier>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_dM0fAY9bEd-Yh-wzaQ9Ssw" name="char*"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

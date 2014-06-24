@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_5P5DMG_VEd-625WDPMZw_A" name="testEmptyActivity">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_5Qnb8G_VEd-625WDPMZw_A" name="f">
+    <node xmi:type="uml:DecisionNode" xmi:id="_5Qnb82_VEd-625WDPMZw_A" name="if (b == 0)" outgoing="_5Qnb-G_VEd-625WDPMZw_A _5QncAW_VEd-625WDPMZw_A" incoming="_5QoDBG_VEd-625WDPMZw_A"/>
+    <node xmi:type="uml:MergeNode" xmi:id="_5Qnb9G_VEd-625WDPMZw_A" outgoing="_5QoDAW_VEd-625WDPMZw_A" incoming="_5Qnb-2_VEd-625WDPMZw_A"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_5Qnb9W_VEd-625WDPMZw_A" name="printf(&quot;A&quot;);" outgoing="_5Qnb-2_VEd-625WDPMZw_A" incoming="_5Qnb-G_VEd-625WDPMZw_A">
+      <language>C</language>
+      <body>printf(&quot;A&quot;);</body>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_5Qnb9m_VEd-625WDPMZw_A" name="return;" outgoing="_5Qnb_m_VEd-625WDPMZw_A" incoming="_5QncAW_VEd-625WDPMZw_A">
+      <language>C</language>
+      <body>return;</body>
+    </node>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_LWJ-cHSLEd-0f88igH2QCQ" incoming="_5Qnb_m_VEd-625WDPMZw_A"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_5Qnb92_VEd-625WDPMZw_A" name="printf(&quot;B&quot;);" outgoing="_5QoDB2_VEd-625WDPMZw_A" incoming="_5QoDAW_VEd-625WDPMZw_A">
+      <language>C</language>
+      <body>printf(&quot;B&quot;);</body>
+    </node>
+    <node xmi:type="uml:InitialNode" xmi:id="_5Qnb8W_VEd-625WDPMZw_A" outgoing="_5QoDBG_VEd-625WDPMZw_A"/>
+    <node xmi:type="uml:ActivityFinalNode" xmi:id="_5Qnb8m_VEd-625WDPMZw_A" incoming="_5QoDB2_VEd-625WDPMZw_A"/>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5Qnb-G_VEd-625WDPMZw_A" source="_5Qnb82_VEd-625WDPMZw_A" target="_5Qnb9W_VEd-625WDPMZw_A">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_5Qnb-W_VEd-625WDPMZw_A">
+        <language>C</language>
+        <body>b == 0</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_5Qnb-m_VEd-625WDPMZw_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5Qnb-2_VEd-625WDPMZw_A" source="_5Qnb9W_VEd-625WDPMZw_A" target="_5Qnb9G_VEd-625WDPMZw_A">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_5Qnb_G_VEd-625WDPMZw_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_5Qnb_W_VEd-625WDPMZw_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5Qnb_m_VEd-625WDPMZw_A" source="_5Qnb9m_VEd-625WDPMZw_A" target="_LWJ-cHSLEd-0f88igH2QCQ">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_5Qnb_2_VEd-625WDPMZw_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_5QncAG_VEd-625WDPMZw_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5QncAW_VEd-625WDPMZw_A" source="_5Qnb82_VEd-625WDPMZw_A" target="_5Qnb9m_VEd-625WDPMZw_A">
+      <guard xmi:type="uml:OpaqueExpression" xmi:id="_5QncAm_VEd-625WDPMZw_A">
+        <language>C</language>
+        <body>[else]</body>
+      </guard>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_5QoDAG_VEd-625WDPMZw_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5QoDAW_VEd-625WDPMZw_A" source="_5Qnb9G_VEd-625WDPMZw_A" target="_5Qnb92_VEd-625WDPMZw_A">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_5QoDAm_VEd-625WDPMZw_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_5QoDA2_VEd-625WDPMZw_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5QoDBG_VEd-625WDPMZw_A" source="_5Qnb8W_VEd-625WDPMZw_A" target="_5Qnb82_VEd-625WDPMZw_A">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_5QoDBW_VEd-625WDPMZw_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_5QoDBm_VEd-625WDPMZw_A" value="1"/>
+    </edge>
+    <edge xmi:type="uml:ControlFlow" xmi:id="_5QoDB2_VEd-625WDPMZw_A" source="_5Qnb92_VEd-625WDPMZw_A" target="_5Qnb8m_VEd-625WDPMZw_A">
+      <guard xmi:type="uml:LiteralBoolean" xmi:id="_5QoDCG_VEd-625WDPMZw_A" value="true"/>
+      <weight xmi:type="uml:LiteralInteger" xmi:id="_5QoDCW_VEd-625WDPMZw_A" value="1"/>
+    </edge>
+  </packagedElement>
+</uml:Model>

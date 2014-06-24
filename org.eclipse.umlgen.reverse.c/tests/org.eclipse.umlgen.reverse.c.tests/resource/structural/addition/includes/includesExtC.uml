@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_4UHtsIBoEduoHLDxP0HEYA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_LLvlME0uEd-ONPwW9OyryA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_1dOWG6ueEd-V-ORhC2tX4A" name="file" visibility="private" clientDependency="_2Gy2saueEd-V-ORhC2tX4A _2HFxoaueEd-V-ORhC2tX4A _2HYskaueEd-V-ORhC2tX4A _2HsOkaueEd-V-ORhC2tX4A _2H1YgaueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_1dOWHKueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_1dOWHaueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testincludesExtC/file.c"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_2Gy2saueEd-V-ORhC2tX4A" name="stdio" visibility="private" supplier="_2Gy2sKueEd-V-ORhC2tX4A" client="_1dOWG6ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_2Gy2squeEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_2Gy2s6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testincludesExtC/file.c"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_2HFxoaueEd-V-ORhC2tX4A" name="AInclude_COMMUNS" visibility="private" supplier="_2HFxoKueEd-V-ORhC2tX4A" client="_1dOWG6ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_2HFxoqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_2HFxo6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testincludesExtC/file.c"/>
+        <details xmi:id="_2HFxpKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="20"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_2HYskaueEd-V-ORhC2tX4A" name="AInclude_COM1" visibility="private" supplier="_2HYskKueEd-V-ORhC2tX4A" client="_1dOWG6ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_2HYskqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_2HYsk6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testincludesExtC/file.c"/>
+        <details xmi:id="_2HYslKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="51"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_2HsOkaueEd-V-ORhC2tX4A" name="AInclude_COM2" visibility="private" supplier="_2HsOkKueEd-V-ORhC2tX4A" client="_1dOWG6ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_2HsOkqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_2HsOk6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testincludesExtC/file.c"/>
+        <details xmi:id="_2HsOlKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="79"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_2H1YgaueEd-V-ORhC2tX4A" name="AInclude_COM3" visibility="private" supplier="_2H1YgKueEd-V-ORhC2tX4A" client="_1dOWG6ueEd-V-ORhC2tX4A">
+      <eAnnotations xmi:id="_2H1YgqueEd-V-ORhC2tX4A" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_2H1Yg6ueEd-V-ORhC2tX4A" key="C_FILENAME" value="/testincludesExtC/file.c"/>
+        <details xmi:id="_2H1YhKueEd-V-ORhC2tX4A" key="C_FILE_POSITION_DECLARATION" value="107"/>
+      </eAnnotations>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Utn6QWmtEd-Hi4dLzjZ7BQ" name="Types"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_WDwmwGmtEd-Hi4dLzjZ7BQ" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_2Gy2sKueEd-V-ORhC2tX4A" name="stdio"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_2HFxoKueEd-V-ORhC2tX4A" name="AInclude_COMMUNS"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_2HYskKueEd-V-ORhC2tX4A" name="AInclude_COM1"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_2HsOkKueEd-V-ORhC2tX4A" name="AInclude_COM2"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_2H1YgKueEd-V-ORhC2tX4A" name="AInclude_COM3"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lWUCsNCzEdukztvu02l7OQ" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_sjzkINCzEdukztvu02l7OQ" name="APackageInterface">
+      <ownedOperation xmi:id="_JJX2YNC0Edukztvu02l7OQ" name="Service_1"/>
+      <ownedOperation xmi:id="_KdRHMNC0Edukztvu02l7OQ" name="Servive_2"/>
+      <ownedOperation xmi:id="_MKCyENC0Edukztvu02l7OQ" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_6HfyoNCzEdukztvu02l7OQ" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>

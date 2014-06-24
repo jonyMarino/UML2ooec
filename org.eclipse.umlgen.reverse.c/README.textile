@@ -1,0 +1,10 @@
+h1. Welcome to UML C Reversing from Eclipse UML Generators.
+
+This project provides a C to UML generator to generate UML models from C code.
+
+The master branch supports UML2 V4.x
+
+These plugins are released under the EPL Open-Source License.
+
+UML is the specification from OMG. The current version is 2.x.
+Visit http://www.omg.org/spec/UML/

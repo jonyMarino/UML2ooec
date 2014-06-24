@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_jkX1AG7wEd-88N7m26uLnA" name="Logical View">
+  <packagedElement xmi:type="uml:Package" xmi:id="_qxZoEHJAEd-49p7IoiQ7tA" name="Source Artefacts">
+    <packagedElement xmi:type="uml:Class" xmi:id="_tJdf8G7wEd-88N7m26uLnA" name="file" clientDependency="_AclvsHSSEd-jSqR8VxN_-A">
+      <eAnnotations xmi:id="_umTY8G8SEd-88N7m26uLnA" source="http://www.eclipse.org/umlgen/reverse/c">
+        <details xmi:id="_u6bO0G8SEd-88N7m26uLnA" key="C_FILENAME" value="/testCommentInC/file.c"/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_Uiy64HSQEd-jSqR8VxN_-A" source="http://www.eclipse.org/umlgen/documentation">
+        <details xmi:id="_fFYI0HSQEd-jSqR8VxN_-A" key="documentation" value="/* mon comment de classe dans le fichier C */&#xD;&#xA;/* suite de mon comment de classe&#xD;&#xA; * hello&#xD;&#xA; */"/>
+      </eAnnotations>
+      <ownedBehavior xmi:type="uml:FunctionBehavior" xmi:id="_8-C8kHPeEd-jSqR8VxN_-A" name="maFonction" visibility="private" specification="_meQkkXMUEd-dHq0pUKSRlw">
+        <eAnnotations xmi:id="_7k1MAHSQEd-jSqR8VxN_-A" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_7k1MAXSQEd-jSqR8VxN_-A" key="documentation" value="/* mon commentaire de fonction */"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="__BVC8HPeEd-jSqR8VxN_-A" name="k" type="_vOr4YHMUEd-dHq0pUKSRlw"/>
+        <ownedParameter xmi:id="__BVC8XPeEd-jSqR8VxN_-A" name="l" type="_7CePgHMUEd-dHq0pUKSRlw" direction="inout"/>
+        <ownedParameter xmi:id="__BVC8nPeEd-jSqR8VxN_-A" name="*m" type="_gpxOoHPeEd-jSqR8VxN_-A" direction="inout"/>
+        <ownedParameter xmi:id="__BVC83PeEd-jSqR8VxN_-A" type="_vOr4YHMUEd-dHq0pUKSRlw" direction="return"/>
+        <language>C</language>
+        <body>int maFonction(int k, char *l, long **m) {&#xD;&#xA;&#x9;return 0;&#xD;&#xA;}</body>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_meQkkXMUEd-dHq0pUKSRlw" name="monOperation" visibility="private" method="_8-C8kHPeEd-jSqR8VxN_-A">
+        <eAnnotations xmi:id="_1I0K0HSQEd-jSqR8VxN_-A" source="http://www.eclipse.org/umlgen/documentation">
+          <details xmi:id="_1I0K0XSQEd-jSqR8VxN_-A" key="documentation" value="/* mon commentaire d'operation */"/>
+        </eAnnotations>
+        <ownedParameter xmi:id="_zSj9gHMUEd-dHq0pUKSRlw" name="k" type="_vOr4YHMUEd-dHq0pUKSRlw"/>
+        <ownedParameter xmi:id="_8vjcYHMUEd-dHq0pUKSRlw" name="l" type="_7CePgHMUEd-dHq0pUKSRlw" direction="inout"/>
+        <ownedParameter xmi:id="_kg-wwHPeEd-jSqR8VxN_-A" name="*m" type="_gpxOoHPeEd-jSqR8VxN_-A" direction="inout"/>
+        <ownedParameter xmi:id="_DHYsoXPPEd-jSqR8VxN_-A" type="_vOr4YHMUEd-dHq0pUKSRlw" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_AclvsHSSEd-jSqR8VxN_-A" visibility="private" supplier="_yIeJ0HSREd-jSqR8VxN_-A" client="_tJdf8G7wEd-88N7m26uLnA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qaThQHJBEd-49p7IoiQ7tA" name="Types">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_vOr4YHMUEd-dHq0pUKSRlw" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_7CePgHMUEd-dHq0pUKSRlw" name="char"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_gpxOoHPeEd-jSqR8VxN_-A" name="long"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qaThQXJBEd-49p7IoiQ7tA" name="Libs">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_yIeJ0HSREd-jSqR8VxN_-A" name="hello"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qaThQnJBEd-49p7IoiQ7tA" name="APackage">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_qaThQ3JBEd-49p7IoiQ7tA" name="APackageInterface">
+      <ownedOperation xmi:id="_qaThRHJBEd-49p7IoiQ7tA" name="Service_1"/>
+      <ownedOperation xmi:id="_qaThRXJBEd-49p7IoiQ7tA" name="Servive_2"/>
+      <ownedOperation xmi:id="_qaThRnJBEd-49p7IoiQ7tA" name="Service_n"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_qaThR3JBEd-49p7IoiQ7tA" name="ASequence Diagram by interface service"/>
+  </packagedElement>
+</uml:Package>
