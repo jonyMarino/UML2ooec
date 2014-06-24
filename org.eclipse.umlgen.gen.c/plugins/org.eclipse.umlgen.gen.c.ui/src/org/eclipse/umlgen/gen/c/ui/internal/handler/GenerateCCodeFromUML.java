@@ -9,6 +9,7 @@
  *     Christophe Le Camus (CS-SI) - initial API and implementation
  *     Mikael Barbero (Obeo) 	- evolutions
  *     Sebastien Gabel (CS-SI) - evolutions
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.gen.c.ui.internal.handler;
 
@@ -34,6 +35,8 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.gen.c.files.Generate;
 
@@ -64,13 +67,11 @@ public class GenerateCCodeFromUML extends AbstractHandler {
 				casePackage((Package)selectedObject);
 			} else if (eClass == UMLPackage.Literals.OPAQUE_BEHAVIOR) {
 				caseOpaqueBehavior((OpaqueBehavior)selectedObject);
-			}
-			// FIXME MIGRATION reference to modeler
-			// else if (eClass == DiagramInterchangePackage.Literals.DIAGRAM)
-			// {
-			// caseDiagram((Diagram) selectedObject);
-			// }
-			else {
+			} else if (SynchronizersManager.getSynchronizer() instanceof IDiagramSynchronizer
+					&& eClass == ((IDiagramSynchronizer)SynchronizersManager.getSynchronizer())
+							.getRepresentationKind()) {
+				caseDiagram(selectedObject);
+			} else {
 				throw new ExecutionException("Bad object's class");
 			}
 		} catch (ExecutionException e) {
@@ -84,12 +85,9 @@ public class GenerateCCodeFromUML extends AbstractHandler {
 		// AbstractHandler.execute(ExecutionEvent))
 	}
 
-	// FIXME MIGRATION reference to modeler
-	// private void caseDiagram(Diagram selectedObject) throws
-	// ExecutionException
-	// {
-	// doGenerate(manager.getSourcePackage());
-	// }
+	private void caseDiagram(EObject selectedObject) throws ExecutionException {
+		doGenerate(manager.getSourcePackage());
+	}
 
 	private void caseOpaqueBehavior(OpaqueBehavior selectedObject) throws ExecutionException {
 		caseClass((Class)selectedObject.eContainer());

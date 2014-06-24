@@ -7,16 +7,19 @@
  *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.core.runtime.Path;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
-import org.eclipse.umlgen.reverse.c.util.DiagramUtil;
 
 /**
  * Event related to a deletion of an include declaration.
@@ -35,7 +38,10 @@ public class IncludeRemoved extends IncludeEvent {
 		Dependency usage = unitClass.getClientDependency(usageName);
 		if (usage != null) {
 			if (ModelUtil.isRemovable(usage)) {
-				DiagramUtil.removeGraphicalRepresentation(usage, manager);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer instanceof IDiagramSynchronizer) {
+					((IDiagramSynchronizer)synchronizer).removeRepresentation(usage, manager);
+				}
 				usage.destroy();
 			} else {
 				// decrease the visibility

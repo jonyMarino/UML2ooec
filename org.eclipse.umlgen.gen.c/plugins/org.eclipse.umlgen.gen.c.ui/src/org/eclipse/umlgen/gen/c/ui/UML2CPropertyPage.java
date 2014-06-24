@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.gen.c.ui;
 
@@ -49,7 +50,9 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.eclipse.umlgen.c.common.BundleConstants;
-import org.eclipse.umlgen.c.common.PreferenceStoreManager;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
+import org.eclipse.umlgen.c.common.ui.PreferenceStoreManager;
 import org.eclipse.umlgen.gen.c.ui.internal.bundle.Messages;
 
 /**
@@ -109,8 +112,11 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
 
 	public void setElement(IAdaptable element) {
 		project = (IProject)element.getAdapter(IResource.class);
-		PreferenceStoreManager.setInitialValues(project);
-		PreferenceStoreManager.setDefaultValues(project);
+		IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+		if (synchronizer != null) {
+			synchronizer.setInitialValues(project);
+			synchronizer.setDefaultValues(project);
+		}
 	}
 
 	public IAdaptable getElement() {

@@ -8,6 +8,7 @@
  * Contributors:
  *     Sebastien GABEL (CS) - initial API and implementation
  *     Christophe Le Camus, Sebastien Gabel (CS) - evolutions
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
@@ -65,9 +66,7 @@ public abstract class CommentEvent extends CModelChangedEvent {
 			}
 		}
 
-		return null;
-		// FIXME MIGRATION reference to modeler
-		// return IAnnotationConstants.DOCUMENTATION_KEY;
+		return AnnotationConstants.DOCUMENTATION_KEY;
 	}
 
 	public abstract static class Builder<T extends CommentEvent> extends CModelChangedEvent.Builder<CommentEvent> {

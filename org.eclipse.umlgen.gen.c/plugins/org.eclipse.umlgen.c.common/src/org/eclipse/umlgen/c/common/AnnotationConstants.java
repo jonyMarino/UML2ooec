@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.c.common;
 
@@ -17,6 +18,16 @@ package org.eclipse.umlgen.c.common;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  */
 public final class AnnotationConstants {
+
+	/**
+	 * Key to identify annoation for documentation. This may be intended to be migrated to UML comments.
+	 */
+	public static final String DOCUMENTATION_KEY = "documentation";
+
+	/**
+	 * Key to identify annoation for documentation. This may be intended to be migrated to UML comments.
+	 */
+	public static final String DOCUMENTATION_SOURCE = "http://www.eclipse.org/umlgen/c/documentation";
 
 	/**
 	 * Key to identify annotations for ifndef statements in .h file

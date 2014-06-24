@@ -8,9 +8,11 @@
  * Contributors:
  *     Christophe Le Camus (CS-SI) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - evolutions
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.c.common.util;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +21,7 @@ import org.eclipse.cdt.core.model.CoreModel;
 import org.eclipse.cdt.core.model.ICProject;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -29,10 +32,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.common.util.UML2Util.EObjectMatcher;
 import org.eclipse.uml2.uml.DataType;
@@ -43,7 +42,9 @@ import org.eclipse.uml2.uml.VisibilityKind;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.umlgen.c.common.Activator;
 import org.eclipse.umlgen.c.common.BundleConstants;
-import org.eclipse.umlgen.c.common.PreferenceStoreManager;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
+import org.eclipse.umlgen.c.common.ui.PreferenceStoreManager;
 
 /**
  * The model manager is in charge of loading/unloading synchronized models when it is necessary.
@@ -52,21 +53,13 @@ import org.eclipse.umlgen.c.common.PreferenceStoreManager;
  */
 public class ModelManager {
 
-	private IProject project;
+	protected IProject project;
 
-	private Resource modelResource;
-
-// FIXME MIGRATION reference to modeler
-//	private Resource diResource;
+	protected Resource modelResource;
 
 	private EObject model;
 
-// FIXME MIGRATION reference to modeler
-//	private EObject di;
-
-	private IPartListener editorPartListener;
-
-	private boolean loadedFromModeler = false;
+	protected boolean loadedFromModeler = false;
 
 	private Package srcPackage;
 
@@ -83,78 +76,48 @@ public class ModelManager {
 	public ModelManager(IResource rsc) {
 		// Initialize the preference store, get it and retrieve values
 		project = rsc.getProject();
-		PreferenceStoreManager.setDefaultValues(project);
 
-		editorPartListener = new EditorPartListener();
+		IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+		if (synchronizer != null) {
+			synchronizer.setDefaultValues(project);
+		}
+
+		initializeEditorPartListener();
 
 		initializeModels();
-
-		hookListener();
 	}
 
 	/**
 	 * Disposes encapsuled items of the model manager
 	 */
 	public void dispose() {
-		// save the models in their curretn states
+		// save the models in their current states
 		saveModels();
 
 		// unload models
 		unloadPreviousModels();
 
-		// unregister listener
-		unhookListener();
-
 		project = null;
 
-		editorPartListener = null;
 	}
 
 	/**
-	 * Registers the editor part listener.
+	 * Initialize potential editor part listeners.
 	 */
-	protected void hookListener() {
-		// register a listener into a UI thread
-		Display.getDefault().syncExec(new Runnable() {
-
-			public void run() {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().addPartListener(
-						editorPartListener);
-			}
-		});
-	}
-
-	/**
-	 * Unregisters the editor part listener.
-	 */
-	protected void unhookListener() {
-		// unregister a listener into a UI thread
-		Display.getDefault().syncExec(new Runnable() {
-
-			public void run() {
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().removePartListener(
-						editorPartListener);
-			}
-		});
+	protected void initializeEditorPartListener() {
 	}
 
 	protected void initializeModels() {
-		IPreferenceStore store = PreferenceStoreManager.getPreferenceStore(project);
-		String modelPath = store.getString(BundleConstants.UML_MODEL_PATH);
-		String diagramPath = store.getString(BundleConstants.UMLDI_MODEL_PATH);
-
-		// gets URIs
-		URI modelURI = URI.createURI(modelPath);
-		URI diagramURI = URI.createURI(diagramPath);
-
-		// gets resources
-		ResourceSet rscSet = getResourceSet(diagramURI);
+		URI modelURI = getModelUri();
+		ResourceSet rscSet = getResourceSet(modelURI);
 		modelResource = rscSet.getResource(modelURI, true);
 		model = modelResource.getContents().get(0);
+	}
 
-		// FIXME MIGRATION reference to modeler
-//		diResource = rscSet.getResource(diagramURI, true);
-//		di = diResource.getContents().get(0);
+	private URI getModelUri() {
+		IPreferenceStore store = PreferenceStoreManager.getPreferenceStore(project);
+		String modelPath = store.getString(BundleConstants.UML_MODEL_PATH);
+		return URI.createURI(modelPath);
 	}
 
 	/**
@@ -165,8 +128,6 @@ public class ModelManager {
 		typesPackage = null;
 		libsPackage = null;
 		model = null;
-		// FIXME MIGRATION reference to modeler
-//		di = null;
 
 		if (!loadedFromModeler) {
 			// resources are unloaded
@@ -174,11 +135,6 @@ public class ModelManager {
 				modelResource.unload();
 				modelResource = null;
 			}
-			// FIXME MIGRATION reference to modeler
-//			if (diResource != null) {
-//				diResource.unload();
-//				diResource = null;
-//			}
 		}
 	}
 
@@ -188,19 +144,27 @@ public class ModelManager {
 	public void saveModels() {
 		Map<String, String> options = new HashMap<String, String>();
 		try {
-			options.put(XMLResource.OPTION_ENCODING,
-					project.getDefaultCharset(true));
-			// FIXME MIGRATION reference to modeler
-//			if (diResource != null) {
-//				diResource.save(options);
-//			}
-			if (modelResource != null) {
-				modelResource.save(options);
-			}
+			options.put(XMLResource.OPTION_ENCODING, project.getDefaultCharset(true));
+			saveModels(options);
 		} catch (Exception e) {
 			IStatus status = null;
-			status = new Status(IStatus.ERROR, Activator.getBundleId(), IStatus.OK, org.eclipse.umlgen.c.common.Messages.ModelManager_0 + e.getMessage(), e);
-			Activator.getDefault().getLog().log(status); 
+			status = new Status(IStatus.ERROR, Activator.getBundleId(), IStatus.OK,
+					org.eclipse.umlgen.c.common.Messages.ModelManager_0 + e.getMessage(), e);
+			Activator.log(status);
+		}
+	}
+
+	/**
+	 * Saves models loaded into the resource set (UML and UMLDI).
+	 *
+	 * @param options
+	 *            The options to save models.
+	 * @throws CoreException
+	 * @throws IOException
+	 */
+	protected void saveModels(Map<String, String> options) throws CoreException, IOException {
+		if (modelResource != null) {
+			modelResource.save(options);
 		}
 	}
 
@@ -212,18 +176,6 @@ public class ModelManager {
 	public Model getUMLModel() {
 		return (Model)model;
 	}
-
-	// FIXME MIGRATION reference to modeler
-	// /**
-	// * Gets the <b>Diagrams</b> model object.
-	// *
-	// * @return The Diagrams element representing the root of the graphical
-	// model.
-	// */
-	// public Diagrams getDiagramsModel()
-	// {
-	// return (Diagrams) di;
-	// }
 
 	/**
 	 * Gets the current {@link IProject} on which we are working.
@@ -251,75 +203,16 @@ public class ModelManager {
 	}
 
 	/**
-	 * @return the diResource
-	 */
-	public Resource getDiResource() {
-	// FIXME MIGRATION reference to modeler
-	//	return diResource;
-		return null;
-	}
-
-	/**
 	 * Gets the resource set accordingly to the reference URI passed into parameter.
 	 *
-	 * @param diagramURI
+	 * @param modelURI
 	 *            The reference URI for which the resource set must be found.
 	 * @return the resource set on which the diagram model is already loaded, otherwise a new default resource
 	 *         set is instantiated.
 	 */
-	protected ResourceSet getResourceSet(URI diagramURI) {
-		// FIXME MIGRATION reference to modeler
-		// Modeler activeModeler = findModeler(diagramURI);
-		// if (activeModeler != null)
-		// {
-		// loadedFromModeler = true;
-		// return activeModeler.getResourceSet();
-		// }
-		// else
-		// {
+	protected ResourceSet getResourceSet(URI modelURI) {
 		return new ResourceSetImpl();
-		// }
 	}
-
-	// FIXME MIGRATION reference to modeler
-	// /**
-	// * Finds the UML modeler among all already opened.
-	// *
-	// * @param diagramURI The diagram reference URI for which the corresponding
-	// modeler must be found.
-	// * @return the right UML modeler if found, <code>null</code> otherwise.
-	// */
-	// private Modeler findModeler(URI diagramURI)
-	// {
-	// String fileToFind = diagramURI.toPlatformString(true);
-	// for (IWorkbenchWindow window :
-	// PlatformUI.getWorkbench().getWorkbenchWindows())
-	// {
-	// IWorkbenchPage activePage = window.getActivePage();
-	// if (activePage != null)
-	// {
-	// for (IEditorReference ref : activePage.getEditorReferences())
-	// {
-	// IEditorPart editorPart = ref.getEditor(false);
-	// if (editorPart instanceof Modeler)
-	// {
-	// Modeler modeler = (Modeler) editorPart;
-	// if (modeler.getEditorInput() instanceof IFileEditorInput)
-	// {
-	// IFileEditorInput editorInput = (IFileEditorInput)
-	// editorPart.getEditorInput();
-	// String input = editorInput.getFile().getFullPath().toString();
-	// if (fileToFind.equals(input))
-	// {
-	// return modeler;
-	// }
-	// }
-	// }
-	// }
-	// }
-	// }
-	// return null;
-	// }
 
 	/**
 	 * Finds a package into the current loaded UML model. Inspects the preference store and browse the loaded
@@ -478,89 +371,4 @@ public class ModelManager {
 		}
 	}
 
-	public class EditorPartListener implements IPartListener {
-
-		public void partActivated(IWorkbenchPart part) {
-			// Nothing to do in this method
-		}
-
-		public void partBroughtToTop(IWorkbenchPart part) {
-			// Nothing to do in this method
-		}
-
-		public void partDeactivated(IWorkbenchPart part) {
-			// Nothing to do in this method
-		}
-
-		/**
-		 * @see org.eclipse.ui.IPartListener#partClosed(org.eclipse.ui.IWorkbenchPart)
-		 */
-		public void partClosed(IWorkbenchPart part) {
-			// FIXME MIGRATION reference to modeler
-			// if (part instanceof Modeler)
-			// {
-			// Modeler modeler = (Modeler) part;
-			//
-			// IPreferenceStore store =
-			// PreferenceStoreManager.getPreferenceStore(project);
-			// String modelPath =
-			// store.getString(BundleConstants.UML_MODEL_PATH);
-			// String diagramPath =
-			// store.getString(BundleConstants.UMLDI_MODEL_PATH);
-			//
-			// // gets URIs
-			// URI modelURI = URI.createURI(modelPath);
-			// URI diagramURI = URI.createURI(diagramPath);
-			//
-			// Resource model = modeler.getResourceSet().getResource(modelURI,
-			// false);
-			// Resource diagram =
-			// modeler.getResourceSet().getResource(diagramURI, false);
-			//
-			// if (model == modelResource && diagram == diResource)
-			// {
-			// // means that the two resources are contained inside the resource
-			// set of the modeler
-			// unloadPreviousModels();
-			//
-			// initializeModels();
-			// }
-			// }
-		}
-
-		/**
-		 * @see org.eclipse.ui.IPartListener#partOpened(org.eclipse.ui.IWorkbenchPart)
-		 */
-		public void partOpened(IWorkbenchPart part) {
-			// FIXME MIGRATION reference to modeler
-			// if (part instanceof Modeler)
-			// {
-			// Modeler modeler = (Modeler) part;
-			// IPreferenceStore store =
-			// PreferenceStoreManager.getPreferenceStore(project);
-			// String modelPath =
-			// store.getString(BundleConstants.UML_MODEL_PATH);
-			// String diagramPath =
-			// store.getString(BundleConstants.UMLDI_MODEL_PATH);
-			//
-			// // gets URIs
-			// URI modelURI = URI.createURI(modelPath);
-			// URI diagramURI = URI.createURI(diagramPath);
-			//
-			// Resource model = modeler.getResourceSet().getResource(modelURI,
-			// false);
-			// Resource diagram =
-			// modeler.getResourceSet().getResource(diagramURI, false);
-			//
-			// if (model != null && diagram != null)
-			// {
-			// // means that the two resources are contained inside the resource
-			// set of the modeler
-			// unloadPreviousModels();
-			//
-			// initializeModels();
-			// }
-			// }
-		}
-	}
 }

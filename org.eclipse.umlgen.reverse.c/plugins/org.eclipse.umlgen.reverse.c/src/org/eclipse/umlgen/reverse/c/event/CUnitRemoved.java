@@ -8,16 +8,19 @@
  * Contributors:
  *     Christophe Le Camus (CS-SI) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - evolutions
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.VisibilityKind;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.c.common.util.AnnotationUtil;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
-import org.eclipse.umlgen.reverse.c.util.DiagramUtil;
 
 public class CUnitRemoved extends CUnitEvent {
 
@@ -42,12 +45,15 @@ public class CUnitRemoved extends CUnitEvent {
 			} else if (getTranslationUnit().isSourceUnit()) {
 				// delete all public model objects from this class
 				ModelUtil
-						.deleteAllVisibleObjects(matchingClassifier, VisibilityKind.PRIVATE_LITERAL, manager);
+				.deleteAllVisibleObjects(matchingClassifier, VisibilityKind.PRIVATE_LITERAL, manager);
 			}
 
 			/* only if no details persists then we can delete the class */
 			if (ModelUtil.isRemovable(matchingClassifier)) {
-				DiagramUtil.removeGraphicalRepresentation(matchingClassifier, manager);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer instanceof IDiagramSynchronizer) {
+					((IDiagramSynchronizer)synchronizer).removeRepresentation(matchingClassifier, manager);
+				}
 				matchingClassifier.destroy();
 			}
 		}

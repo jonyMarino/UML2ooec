@@ -8,6 +8,7 @@
  * Contributors:
  *     Christophe Le Camus (CS-SI) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - evolutions
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
@@ -21,6 +22,7 @@ import org.eclipse.cdt.core.dom.ast.IASTPreprocessorStatement;
 import org.eclipse.cdt.core.dom.ast.IASTSimpleDeclaration;
 import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DirectedRelationship;
@@ -30,6 +32,7 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.umlgen.c.common.AnnotationConstants;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 
@@ -145,16 +148,12 @@ public class CommentRemoved extends CommentEvent {
 		}
 
 		if (element != null) {
-			// FIXME MIGRATION reference to modeler
-			// EAnnotation annotation =
-			// element.getEAnnotation(IAnnotationConstants.DOCUMENTATION_SOURCE);
-			// if (annotation != null)
-			// {
-			// if (annotation.getDetails().get(detailsEntry) != null)
-			// {
-			// annotation.getDetails().removeKey(detailsEntry);
-			// }
-			// }
+			EAnnotation annotation = element.getEAnnotation(AnnotationConstants.DOCUMENTATION_SOURCE);
+			if (annotation != null) {
+				if (annotation.getDetails().get(detailsEntry) != null) {
+					annotation.getDetails().removeKey(detailsEntry);
+				}
+			}
 		}
 	}
 

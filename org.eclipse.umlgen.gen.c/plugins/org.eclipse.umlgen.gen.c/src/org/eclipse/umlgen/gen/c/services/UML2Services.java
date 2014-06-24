@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.umlgen.c.common.BundleConstants;
-import org.eclipse.umlgen.c.common.PreferenceStoreManager;
+import org.eclipse.umlgen.c.common.ui.PreferenceStoreManager;
 
 public class UML2Services {
 

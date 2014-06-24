@@ -7,14 +7,17 @@
  *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
-import org.eclipse.umlgen.reverse.c.util.DiagramUtil;
 
 /**
  * Event related to deletion of an array.
@@ -33,7 +36,10 @@ public class TypeDefArrayRemoved extends TypeDefArrayEvent {
 		Classifier localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
 		if (localType != null) {
 			if (ModelUtil.isRemovable(localType)) {
-				DiagramUtil.removeGraphicalRepresentation(localType, manager);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer instanceof IDiagramSynchronizer) {
+					((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
+				}
 				localType.destroy();
 			} else {
 				ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);

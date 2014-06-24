@@ -7,12 +7,14 @@
  *
  * Contributors:
  *      Stephane Thibaudeau (Obeo) - initial API and implementation
+ *      Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.activity.comments;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.OpaqueAction;
+import org.eclipse.umlgen.c.common.AnnotationConstants;
 import org.eclipse.umlgen.c.common.BundleConstants;
 import org.eclipse.umlgen.reverse.c.activity.beans.CommentInfo;
 import org.eclipse.umlgen.reverse.c.activity.util.UMLActivityFactory;
@@ -59,26 +61,19 @@ public class CommentBuilder {
 	}
 
 	private EAnnotation createCommentAnnotation(CommentInfo commentInfo) {
-		return null;
-		// FIXME MIGRATION reference to modeler
-		// EAnnotation ann =
-		// factory.createEAnnotation(IAnnotationConstants.DOCUMENTATION_SOURCE);
-		// if (commentInfo.hasBefore())
-		// {
-		// ann.getDetails().put(KEY_BEFORE, commentInfo.getBefore());
-		// }
-		// if (commentInfo.hasSameLine())
-		// {
-		// ann.getDetails().put(KEY_SAME_LINE, commentInfo.getSameLine());
-		// }
-		// if (commentInfo.hasInline())
-		// {
-		// ann.getDetails().put(KEY_INLINE, commentInfo.getInline());
-		// }
-		// if (commentInfo.hasLastLine())
-		// {
-		// ann.getDetails().put(KEY_LAST_LINE, commentInfo.getLastLine());
-		// }
-		// return ann;
+		EAnnotation ann = factory.createEAnnotation(AnnotationConstants.DOCUMENTATION_SOURCE);
+		if (commentInfo.hasBefore()) {
+			ann.getDetails().put(KEY_BEFORE, commentInfo.getBefore());
+		}
+		if (commentInfo.hasSameLine()) {
+			ann.getDetails().put(KEY_SAME_LINE, commentInfo.getSameLine());
+		}
+		if (commentInfo.hasInline()) {
+			ann.getDetails().put(KEY_INLINE, commentInfo.getInline());
+		}
+		if (commentInfo.hasLastLine()) {
+			ann.getDetails().put(KEY_LAST_LINE, commentInfo.getLastLine());
+		}
+		return ann;
 	}
 }

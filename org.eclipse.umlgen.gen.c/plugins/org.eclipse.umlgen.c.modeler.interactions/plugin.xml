@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2014 Obeo and others.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Cedric Notot (Obeo) - initial API and implementation
+-->
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="templates" name="Templates" schema="schema/templates.exsd"/>
+   <extension
+         point="org.eclipse.umlgen.c.modeler.interactions.templates">
+      <template
+            id="org.eclipse.umlgen.c.modeler.interactions.template"
+            model="templates/%name%.uml">
+      </template>
+   </extension>
+   <extension
+         point="org.eclipse.umlgen.c.common.synchronizers">
+      <synchronizer
+            extension="org.eclipse.umlgen.c.modeler.interactions.model.ModelSynchronizer"
+            ranking="10">
+      </synchronizer>
+   </extension>
+
+</plugin>

@@ -9,6 +9,7 @@
  * 	   Mikael BARBERO (Obeo) - initial API and implementation
  *     Christophe LE CAMUS (CS-SI) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - initialize default values to preference store value.
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.ui.internal.handler;
 
@@ -23,7 +24,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.umlgen.c.common.BundleConstants;
-import org.eclipse.umlgen.c.common.PreferenceStoreManager;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
+import org.eclipse.umlgen.c.common.ui.PreferenceStoreManager;
 import org.eclipse.umlgen.gen.c.builder.UML2CBuilder;
 import org.eclipse.umlgen.gen.c.builder.UML2CBundleConstant;
 import org.eclipse.umlgen.reverse.c.StructuralBuilder;
@@ -61,7 +64,10 @@ public class AddC2UMLSyncNature extends AbstractHandler {
 			if (result > -1) {
 				// set initial values into the preference store related to the
 				// project.
-				PreferenceStoreManager.setInitialValues(project);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer != null) {
+					synchronizer.setInitialValues(project);
+				}
 
 				if (result == 0) {
 					// a synchronization from C sources has been asked (default
@@ -113,8 +119,14 @@ public class AddC2UMLSyncNature extends AbstractHandler {
 		ProjectUtil.addNature(project, BundleConstants.NATURE_ID);
 		ProjectUtil.addNature(project, UML2CBundleConstant.NATURE_ID);
 
-		// create the required UML and UMLDI models from templates
-		IFile modelFile = C2UMLSyncNature.createUMLanUMLDIFromTemplates(project);
+		IFile modelFile = null;
+
+		// create the required UML from template
+		IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+		if (synchronizer != null) {
+			modelFile = synchronizer.createModel(project);
+		}
+
 		if (modelFile != null && modelFile.exists()) {
 			// Temporally removing UML2C builder to avoid workspace building
 			// after each reverse during the structural

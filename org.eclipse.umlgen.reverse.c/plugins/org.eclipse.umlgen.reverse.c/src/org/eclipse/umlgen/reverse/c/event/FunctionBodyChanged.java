@@ -8,15 +8,18 @@
  * Contributors:
  *     Christophe Le Camus (CS-SI) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - evolutions
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.reverse.c.internal.bundle.Activator;
+import org.eclipse.umlgen.reverse.c.util.EMFMarkerUtil;
 
 /**
  * Event related to changes performed on a function body.
@@ -41,18 +44,18 @@ public class FunctionBodyChanged extends FunctionBodyEvent {
 					String oldBody = getOldBody();
 					String newBoby = cleanInvalidXmlChars(getBody());
 					if (!oldBody.equals(newBoby)) {
-						// FIXME MIGRATION reference to facilities
-						// EMFMarkerUtil.removeMarkerFor(function);
+						EMFMarkerUtil.removeMarkerFor(function);
 
 						// removes the former function body
 						function.getBodies().remove(oldBody);
 						// sets the new function body
 						function.getBodies().add(newBoby);
 
-						// FIXME MIGRATION reference to facilities
-						// EMFMarkerUtil.addMarkerFor(function,
-						// "Function behavior body has changed. Existing Activity diagrams need to be reversed.",
-						// IMarker.SEVERITY_WARNING);
+						EMFMarkerUtil
+								.addMarkerFor(
+										function,
+										"Function behavior body has changed. Existing Activity diagrams need to be reversed.",
+										IMarker.SEVERITY_WARNING);
 					}
 				} catch (Exception e) {
 					Activator.log(e);

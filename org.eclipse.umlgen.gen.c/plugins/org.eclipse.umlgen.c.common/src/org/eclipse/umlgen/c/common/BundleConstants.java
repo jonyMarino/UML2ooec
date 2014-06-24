@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Christophe Le Camus (CS-SI) - initial API and implementation
  *     Mikael Barbero (Obeo) - evolutions
@@ -26,8 +26,6 @@ public final class BundleConstants {
 	public static final String C2UML_BUILDER_ID = "org.eclipse.umlgen.reverse.c.builder";
 
 	public static final String UML2C_BUILDER_ID = "org.eclipse.umlgen.gen.c.builder";
-
-	public static final String TEMPLATE_ID = "org.eclipse.umlgen.reverse.c.ui.template";
 
 	public static final String UML_EXTENSION = "uml";
 
@@ -61,32 +59,22 @@ public final class BundleConstants {
 	public static final String SYNC_SOURCE_VALUE = "source";
 
 	/**
-	 * Key to use to retrieve value of the UML model path stored inside the
-	 * preference store
+	 * Key to use to retrieve value of the UML model path stored inside the preference store
 	 */
 	public static final String UML_MODEL_PATH = "UMLModelPath";
 
 	/**
-	 * Key to use to retrieve value of the UML model path stored inside the
-	 * preference store
-	 */
-	public static final String UMLDI_MODEL_PATH = "UMLDIModelPath";
-
-	/**
-	 * Key to use to retrieve value of the 'src' package name where source code
-	 * should be generated.
+	 * Key to use to retrieve value of the 'src' package name where source code should be generated.
 	 */
 	public static final String SRC_PCK_NAME = "srcPackageName";
 
 	/**
-	 * Key to use to retrieve value of the 'type' package name where types
-	 * should be defined.
+	 * Key to use to retrieve value of the 'type' package name where types should be defined.
 	 */
 	public static final String TYPE_PCK_NAME = "typePackageName";
 
 	/**
-	 * Key to use to retrieve value of the 'type' package name where external
-	 * modules should be placed.
+	 * Key to use to retrieve value of the 'type' package name where external modules should be placed.
 	 */
 	public static final String EXT_PCK_NAME = "extPackageName";
 

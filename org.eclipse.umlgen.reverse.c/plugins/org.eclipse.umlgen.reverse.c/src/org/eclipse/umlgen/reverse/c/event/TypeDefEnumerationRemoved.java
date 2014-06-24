@@ -4,20 +4,23 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  * 	   Mikael BARBERO (Obeo) - initial API and implementation
  * 	   Christophe LE CAMUS (CS-SI) - Major evolution
  *     Sebastien Gabel (CS-SI) - Refactoring
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
-import org.eclipse.umlgen.reverse.c.util.DiagramUtil;
 
 public class TypeDefEnumerationRemoved extends TypeDefEnumerationEvent {
 	/**
@@ -25,25 +28,26 @@ public class TypeDefEnumerationRemoved extends TypeDefEnumerationEvent {
 	 */
 	@Override
 	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(
-				manager.getSourcePackage(), getUnitName());
-		Enumeration myEnumeration = ModelUtil.findEnumerationInClassifier(
-				matchingClassifier, getCurrentName());
+		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+				getUnitName());
+		Enumeration myEnumeration = ModelUtil.findEnumerationInClassifier(matchingClassifier,
+				getCurrentName());
 		if (myEnumeration != null) {
 			if (ModelUtil.isRemovable(myEnumeration)) {
-				DiagramUtil.removeGraphicalRepresentation(myEnumeration,
-						manager);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer instanceof IDiagramSynchronizer) {
+					((IDiagramSynchronizer)synchronizer).removeRepresentation(myEnumeration, manager);
+				}
 				myEnumeration.destroy();
 			} else {
-				ModelUtil.setVisibility(myEnumeration, getTranslationUnit(),
-						EventType.REMOVE);
+				ModelUtil.setVisibility(myEnumeration, getTranslationUnit(), EventType.REMOVE);
 			}
 		}
 	}
 
 	/**
 	 * Gets the right builder
-	 * 
+	 *
 	 * @return the builder for this event
 	 */
 	public static Builder<TypeDefEnumerationRemoved> builder() {

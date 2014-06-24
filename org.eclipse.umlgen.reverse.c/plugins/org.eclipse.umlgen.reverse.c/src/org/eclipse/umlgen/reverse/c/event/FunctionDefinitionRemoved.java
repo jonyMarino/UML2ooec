@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
@@ -14,10 +15,12 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.reverse.c.internal.beans.FunctionParameter;
-import org.eclipse.umlgen.reverse.c.util.DiagramUtil;
 
 /**
  * Removes a {@link OpaqueBehavior} from a given {@link Class}.
@@ -36,7 +39,10 @@ public class FunctionDefinitionRemoved extends FunctionDeclarationEvent {
 		if (function != null) {
 			if (ModelUtil.isRemovable(function)) {
 				function.destroy();
-				DiagramUtil.removeGraphicalRepresentation(function, manager);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer instanceof IDiagramSynchronizer) {
+					((IDiagramSynchronizer)synchronizer).removeRepresentation(function, manager);
+				}
 
 				// deduce if the parameter types can be deleted from the model
 				for (FunctionParameter aParameter : getParameters()) {

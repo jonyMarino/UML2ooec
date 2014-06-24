@@ -8,26 +8,19 @@
  * Contributors:
  *     Mikael Barbero (Obeo) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - Bug fix on deconfigure project
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.resource;
 
-import org.eclipse.cdt.core.model.CoreModel;
 import org.eclipse.cdt.core.model.ICProject;
-import org.eclipse.cdt.core.settings.model.ICConfigurationDescription;
-import org.eclipse.cdt.core.settings.model.ICProjectDescription;
-import org.eclipse.cdt.core.settings.model.ICSourceEntry;
-import org.eclipse.cdt.core.settings.model.util.CDataUtil;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 import org.eclipse.umlgen.c.common.BundleConstants;
-import org.eclipse.umlgen.reverse.c.internal.bundle.Activator;
 import org.eclipse.umlgen.reverse.c.internal.bundle.Messages;
 
 /**
@@ -38,14 +31,6 @@ import org.eclipse.umlgen.reverse.c.internal.bundle.Messages;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  */
 public class C2UMLSyncNature implements IProjectNature {
-	/** Represents the name template variable */
-	private static final String NAME = "name"; //$NON-NLS-1$
-
-	/** Represents the escaped name template variable (aka the encoded name) */
-	private static final String ESCAPED_NAME = "escapedName"; //$NON-NLS-1$
-
-	/** Represents the charset template variable */
-	private static final String CHARSET = "charset"; //$NON-NLS-1$
 
 	/** The project for which nature are added/removed */
 	private IProject project;
@@ -75,31 +60,6 @@ public class C2UMLSyncNature implements IProjectNature {
 	public void setProject(IProject value) {
 		project = value;
 	}
-
-	// FIXME MIGRATION reference to modeler
-	// /**
-	// * Updates the template
-	// *
-	// * @param template the template to update
-	// * @return true if the template was successfully created
-	// */
-	// private static boolean updateTemplate(Template template, IFolder project,
-	// String name)
-	// {
-	// try
-	// {
-	// template.setDestination((IContainer) project);
-	// template.addVariable(NAME, name);
-	// template.addVariable(ESCAPED_NAME, URI.encodeFragment(name, false));
-	// template.generate(new NullProgressMonitor());
-	// }
-	// catch (CoreException ce)
-	// {
-	// Activator.log(ce);
-	// return false;
-	// }
-	// return true;
-	// }
 
 	/**
 	 * Opens a selection dialog to choose an existing UML model to reverse. Before returning the resource, the
@@ -132,70 +92,6 @@ public class C2UMLSyncNature implements IProjectNature {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Creates a couple of UML/UMLDI models to start reversing the source code.
-	 *
-	 * @return The UML model as reference
-	 * @throws CoreException
-	 *             If something fails during the creation operation.
-	 */
-	public static IFile createUMLanUMLDIFromTemplates(IProject project) throws CoreException {
-		IFolder modelFolder = project.getFolder(BundleConstants.MODELS_FOLDER);
-		if (!modelFolder.isAccessible()) {
-			modelFolder.create(false, true, null);
-		}
-
-		if (ProjectUtil.hasNature(project, BundleConstants.NATURE_ID)) {
-			ICProjectDescription description = CoreModel.getDefault().createProjectDescription(project, true);
-			ICConfigurationDescription defaultConfiguration = description.getActiveConfiguration();
-
-			try {
-				ICSourceEntry[] newEntries = CDataUtil.setExcluded(modelFolder.getFullPath(),
-						modelFolder instanceof IFolder, true, defaultConfiguration.getSourceEntries());
-				defaultConfiguration.setSourceEntries(newEntries);
-				description.setActiveConfiguration(defaultConfiguration);
-				CoreModel.getDefault().setProjectDescription(project, description);
-			} catch (CoreException e) {
-				Activator.log(e);
-			}
-		}
-
-		String modelFileName = project.getFullPath().addFileExtension(BundleConstants.UML_EXTENSION)
-				.lastSegment();
-		IFile modelFile = modelFolder.getFile(modelFileName);
-		if (modelFile.exists()) {
-			boolean result = MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), Messages
-					.getString("C2UMLSyncNature.dialog.title"), //$NON-NLS-1$
-					Messages.getString("C2UMLSyncNature.dialog.question")); //$NON-NLS-1$
-			if (!result) {
-				return null;
-			}
-		} else {
-			// FIXME MIGRATION reference to modeler
-			// Template template =
-			// TemplatesManager.getInstance().find(BundleConstants.TEMPLATE_ID).getTemplateModel();
-			// template.setDestination((IContainer) modelFolder);
-			// template.addVariable(NAME, project.getName());
-			// template.addVariable(ESCAPED_NAME,
-			// URI.encodeFragment(project.getName(), false));
-			// template.addVariable(CHARSET, project.getDefaultCharset(true));
-			// template.generate(new NullProgressMonitor());
-			// Template templateDi =
-			// TemplatesManager.getInstance().find(BundleConstants.TEMPLATE_ID).getTemplateDI();
-			// updateTemplate(templateDi, modelFolder, project.getName());
-		}
-		String diagramFileName = project.getFullPath().addFileExtension(BundleConstants.UML_EXTENSION)
-				.lastSegment();
-		IFile diagramFile = modelFolder.getFile(diagramFileName);
-		if (!diagramFile.exists()) {
-			// FIXME MIGRATION reference to modeler
-			// Template templateDi =
-			// TemplatesManager.getInstance().find(BundleConstants.TEMPLATE_ID).getTemplateDI();
-			// updateTemplate(templateDi, modelFolder, project.getName());
-		}
-		return modelFile;
 	}
 
 	public static boolean isC2UMLSynchProject(ICProject cProject) {

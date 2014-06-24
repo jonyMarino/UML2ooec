@@ -4,18 +4,21 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- * 	   Christophe Le Camus (CS-SI) - initial API and implementation 
+ * 	   Christophe Le Camus (CS-SI) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - evolutions
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
-import org.eclipse.umlgen.reverse.c.util.DiagramUtil;
 
 public class TypeDefRemoved extends TypeDefEvent {
 	/**
@@ -23,24 +26,25 @@ public class TypeDefRemoved extends TypeDefEvent {
 	 */
 	@Override
 	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(
-				manager.getSourcePackage(), getUnitName());
-		Classifier localType = ModelUtil.findDataTypeInClassifier(
-				matchingClassifier, getCurrentName());
+		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+				getUnitName());
+		Classifier localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
 		if (localType != null) {
 			if (ModelUtil.isRemovable(localType)) {
-				DiagramUtil.removeGraphicalRepresentation(localType, manager);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer instanceof IDiagramSynchronizer) {
+					((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
+				}
 				localType.destroy();
 			} else {
-				ModelUtil.setVisibility(localType, getTranslationUnit(),
-						EventType.REMOVE);
+				ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);
 			}
 		}
 	}
 
 	/**
 	 * Gets the right builder
-	 * 
+	 *
 	 * @return the builder for this event
 	 */
 	public static Builder<TypeDefRemoved> builder() {

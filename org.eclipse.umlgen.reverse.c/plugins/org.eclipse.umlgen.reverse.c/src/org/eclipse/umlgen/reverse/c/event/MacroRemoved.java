@@ -7,15 +7,18 @@
  *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
-import org.eclipse.umlgen.reverse.c.util.DiagramUtil;
 
 /**
  * Event related to a deletion of a macro.
@@ -35,7 +38,10 @@ public class MacroRemoved extends MacroEvent {
 
 		if (attribute != null) {
 			if (ModelUtil.isRemovable(attribute)) {
-				DiagramUtil.removeGraphicalRepresentation(attribute, manager);
+				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+				if (synchronizer instanceof IDiagramSynchronizer) {
+					((IDiagramSynchronizer)synchronizer).removeRepresentation(attribute, manager);
+				}
 				attribute.destroy();
 			} else {
 				ModelUtil.setVisibility(attribute, getTranslationUnit(), EventType.REMOVE);

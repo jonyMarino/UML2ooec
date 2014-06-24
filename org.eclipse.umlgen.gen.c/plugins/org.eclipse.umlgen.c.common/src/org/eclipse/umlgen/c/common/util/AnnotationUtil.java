@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     Sebastien GABEL (CS-SI) - initial API and implementation
+ *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.c.common.util;
 
@@ -68,10 +69,7 @@ public final class AnnotationUtil {
 	 * @return The new documentation annotation
 	 */
 	public static EAnnotation getDocumentationAnnotation(Element element) {
-		// FIXME MIGRATION reference to modeler
-		// return UML2Util.getEAnnotation(element,
-		// IAnnotationConstants.DOCUMENTATION_SOURCE, true);
-		return null;
+		return UML2Util.getEAnnotation(element, AnnotationConstants.DOCUMENTATION_SOURCE, true);
 	}
 
 	public static void removeEAnnotations(Element element, ITranslationUnit tu) {

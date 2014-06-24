@@ -8,6 +8,7 @@
 
   Contributors:
   	Fabien Toral (CS-SI) - Initial API and implementation
+  	Cedric Notot (Obeo) - evolutions to cut off from diagram part
 -->
 <?eclipse version="3.4"?>
 <plugin>
@@ -49,17 +50,17 @@
                                 <or>
                                    <test
                                          forcePluginActivation="true"
-                                         property="org.eclipse.umlgen.gen.c.ui.objectType"
+                                         property="org.eclipse.umlgen.c.common.objectType"
                                          value="org.eclipse.uml2.uml.Class">
                                    </test>
                                    <test
                                          forcePluginActivation="true"
-                                         property="org.eclipse.umlgen.gen.c.ui.objectType"
+                                         property="org.eclipse.umlgen.c.common.objectType"
                                          value="org.eclipse.uml2.uml.Interface">
                                    </test>
                                    <test
                                          forcePluginActivation="true"
-                                         property="org.eclipse.umlgen.gen.c.ui.objectType"
+                                         property="org.eclipse.umlgen.c.common.objectType"
                                          value="org.eclipse.uml2.uml.Package">
                                    </test>
                                 </or>
@@ -68,16 +69,6 @@
                    </visibleWhen>
          </command>
       </menuContribution>
-   </extension>
-      <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="org.eclipse.umlgen.gen.c.ui.internal.tester.ObjectTypePropertyTester"
-            id="org.eclipse.umlgen.gen.c.ui.objectTypePropertyTester"
-            namespace="org.eclipse.umlgen.gen.c.ui"
-            properties="objectType"
-            type="org.eclipse.emf.ecore.EObject">
-      </propertyTester>
    </extension>
    <extension
          point="org.eclipse.ui.propertyPages">

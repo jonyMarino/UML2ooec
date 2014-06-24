@@ -16,7 +16,6 @@ import static com.google.common.collect.Lists.newArrayList;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.cdt.core.dom.ast.IASTCompositeTypeSpecifier;
 import org.eclipse.cdt.core.dom.ast.IASTDeclaration;
@@ -124,7 +123,7 @@ public class StructuralBuilder {
 			dialog.run(true, true, new IRunnableWithProgress() {
 
 				public void run(final IProgressMonitor monitor) throws InvocationTargetException,
-				InterruptedException {
+						InterruptedException {
 					monitor.beginTask(
 							"Reversing code contained in project " + resource.getProject().getName() + ".", nbWorks); //$NON-NLS-1$
 
@@ -174,7 +173,7 @@ public class StructuralBuilder {
 	}
 
 	public void build(ITranslationUnit translationUnit, boolean fullBuild) throws CoreException,
-	CModelException {
+			CModelException {
 		Activator.log("Reversing file : " + translationUnit.getPath(), IStatus.INFO);
 
 		if (!fullBuild) {
@@ -186,7 +185,6 @@ public class StructuralBuilder {
 
 		// needed for Binding Resolver
 		declarations = filter(newArrayList(declarationsArray), new SameFileLocation(ast));
-		declarations = Collections.EMPTY_LIST;
 
 		IResource cRsc = translationUnit.getResource();
 		if (cRsc != null) {
@@ -194,7 +192,7 @@ public class StructuralBuilder {
 
 			CModelChangedEvent event = CUnitAdded.builder().translationUnit(translationUnit).currentName(
 					translationUnit.getElementName()).setModelMananager(
-							umlModelChangeListener.getModelManager()).build();
+					umlModelChangeListener.getModelManager()).build();
 
 			umlModelChangeListener.notifyChanges(event, false);
 
@@ -386,10 +384,10 @@ public class StructuralBuilder {
 				umlModelChangeListener.notifyChanges(event, false);
 			} else {
 				Activator
-						.log("Undefined declaration : "
-								+ coreElement.getElementName()
-								+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
-								IStatus.WARNING);
+				.log("Undefined declaration : "
+						+ coreElement.getElementName()
+						+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
+						IStatus.WARNING);
 			}
 		}
 	}
@@ -435,10 +433,10 @@ public class StructuralBuilder {
 				}
 			} else {
 				Activator
-						.log("Undefined Structure : "
-								+ coreElement.getElementName()
-								+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
-								IStatus.WARNING);
+				.log("Undefined Structure : "
+						+ coreElement.getElementName()
+						+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
+						IStatus.WARNING);
 			}
 		}
 	}
@@ -466,10 +464,10 @@ public class StructuralBuilder {
 				}
 			} else {
 				Activator
-						.log("Undefined Enumeration : "
-								+ coreElement.getElementName()
-								+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
-								IStatus.WARNING);
+				.log("Undefined Enumeration : "
+						+ coreElement.getElementName()
+						+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
+						IStatus.WARNING);
 			}
 		}
 	}
@@ -506,10 +504,10 @@ public class StructuralBuilder {
 				umlModelChangeListener.notifyChanges(event, false);
 			} else {
 				Activator
-						.log("Undefined TypedDef : "
-								+ coreElement.getElementName()
-								+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
-								IStatus.ERROR);
+				.log("Undefined TypedDef : "
+						+ coreElement.getElementName()
+						+ ". The Type is defined outside and the Declaration is not found even in includes dependencies. Module is not already defined.",
+						IStatus.ERROR);
 			}
 		}
 	}

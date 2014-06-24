@@ -7,6 +7,7 @@
  *
  * Contributors:
  *      Mikael Barbero (Obeo) - initial API and implementation
+ *      Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.structural.test.utils;
 
@@ -55,8 +56,9 @@ import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.umlgen.c.common.BundleConstants;
+import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
+import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
 import org.eclipse.umlgen.reverse.c.internal.bundle.Activator;
-import org.eclipse.umlgen.reverse.c.resource.C2UMLSyncNature;
 import org.eclipse.umlgen.reverse.c.resource.ProjectUtil;
 import org.junit.After;
 import org.junit.Before;
@@ -326,7 +328,10 @@ public class AbstractTest {
 		ProjectUtil.addNature(projectHandle, BundleConstants.NATURE_ID);
 		TestUtils.addBuilders(projectHandle);
 
-		C2UMLSyncNature.createUMLanUMLDIFromTemplates(projectHandle);
+		IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+		if (synchronizer != null) {
+			synchronizer.createModel(projectHandle);
+		}
 
 		monitor.done();
 		return TestUtils.root.getProject(name);
