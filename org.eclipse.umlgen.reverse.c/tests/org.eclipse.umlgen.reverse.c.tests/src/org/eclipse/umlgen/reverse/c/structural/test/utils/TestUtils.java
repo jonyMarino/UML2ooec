@@ -50,6 +50,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.umlgen.c.common.BundleConstants;
 
 public class TestUtils {
 
@@ -129,7 +130,7 @@ public class TestUtils {
 	}
 
 	public static Model getActual(ResourceSet rs, IProject project) {
-		IFile umlFile = project.getFolder("Model").getFile(project.getName() + ".uml");
+		IFile umlFile = project.getFolder(BundleConstants.MODELS_FOLDER).getFile(project.getName() + ".uml");
 		URI umlResourceURI = URI.createPlatformResourceURI(umlFile.getFullPath().toString(), true);
 		Resource umlResource = rs.getResource(umlResourceURI, true);
 		Model umlModel = (Model)umlResource.getContents().get(0);
