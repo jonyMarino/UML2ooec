@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
+ *     Sylvain Jouanneau (CNES) - bug 440109
 [/comment]
 
 [module thread('http://www.eclipse.org/uml2/5.0.0/UML')]
@@ -92,6 +93,17 @@ public void init() {
 
 	// [/protected] 
 }
+[if (aClass.isAperiodic() or aClass.isSporadic())]
+
+[if (getProperty('gen.annotations') = 'true')]
+@ignore
+[/if]
+public void catchCommunicationException(String service, ArgsBuffer params) {
+	// [protected ('for method '.concat(genName()).concat('.catchCommunicationException(String,Argsbuffer):'))]
+	//TODO Fill Method
+	// [/protected] 
+}
+[/if]
 [/template]
 
 [template public genThreadAnnotations(aClass : Class)]

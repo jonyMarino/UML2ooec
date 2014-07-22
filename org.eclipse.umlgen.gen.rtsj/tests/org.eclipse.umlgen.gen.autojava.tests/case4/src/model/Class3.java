@@ -26,7 +26,7 @@ import model.*;
  */
 
 @Sporadic(period = 1000, phase = 0, priority = 20, deadline = 0, wcet = 0, bcet = 0, messages = 10)
-public class Class3  implements InterfaceAsynchronous {
+public class Class3  implements InterfaceAsynchronous, CommunicationExceptionInterface {
 	
 	
 	
@@ -107,12 +107,20 @@ public class Class3  implements InterfaceAsynchronous {
 		// End of user code 
 	}
 	
+	@ignore
+	public void catchCommunicationException(String service, ArgsBuffer params) {
+		// Start of user code for method Class3.catchCommunicationException(String,Argsbuffer):
+		//TODO Fill Method
+		// End of user code 
+	}
+	
+	
 	
 	/**  CONNECTORS.  ***/
 	protected Class3_monPort1_ProviderAsync monPort1;
 	
 	public void initPortsGenerator(String componentInstance, CommunicationLayer communicationLayer) {
-		monPort1 = new Class3_monPort1_ProviderAsync(this, componentInstance + ":monPort1", 0, thread, pbuffer, communicationLayer);
+		monPort1 = new Class3_monPort1_ProviderAsync(this, componentInstance + ":monPort1", 0, thread, pbuffer, communicationLayer, this);
 	}
 	
 	

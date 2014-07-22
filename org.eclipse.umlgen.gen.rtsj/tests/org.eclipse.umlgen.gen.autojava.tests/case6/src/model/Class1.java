@@ -26,7 +26,7 @@ import model.*;
  */
 
 @Sporadic(period = 1000, phase = 0, priority = 30, deadline = 0, wcet = 0, bcet = 0, messages = 10)
-public class Class1   {
+public class Class1  implements CommunicationExceptionInterface {
 	
 	
 	
@@ -106,6 +106,14 @@ public class Class1   {
 	
 		// End of user code 
 	}
+	
+	@ignore
+	public void catchCommunicationException(String service, ArgsBuffer params) {
+		// Start of user code for method Class1.catchCommunicationException(String,Argsbuffer):
+		//TODO Fill Method
+		// End of user code 
+	}
+	
 	
 	
 	/**  CONNECTORS.  ***/

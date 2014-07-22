@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
+ *     Sylvain Jouanneau (CNES) - bug 440109
 [/comment]
 
 [module port('http://www.eclipse.org/uml2/5.0.0/UML')]
@@ -111,7 +112,7 @@ protected fr.CNES and others.autojava.communication.StaticMemoryBuffer asyncBuff
 [/if]
 [/template]
 
-[template protected genPortParameters(aPort : Port, aCompInstanceName : String) post(trim())]
+[template public genPortParameters(aPort : Port, aCompInstanceName : String) post(trim())]
 [if (aPort.isUserSync() or aPort.isReceiver())]
 	([aPort.genIdent(aCompInstanceName)/], communicationLayer)
 [elseif(aPort.isProviderSync())]
@@ -119,7 +120,7 @@ protected fr.CNES and others.autojava.communication.StaticMemoryBuffer asyncBuff
 [elseif(aPort.isUserASync() or aPort.isEmitter())]
 	([aPort.genIdent(aCompInstanceName)/], [aCompInstanceName/], communicationLayer)
 [elseif(aPort.isProviderASync())]
-	(this, [aPort.genIdent(aCompInstanceName)/], [aPort.getMBuffer()/], thread, pbuffer, communicationLayer)
+	(this, [aPort.genIdent(aCompInstanceName)/], [aPort.getMBuffer()/], thread, pbuffer, communicationLayer, this)
 [else]
 	()
 [/if]	

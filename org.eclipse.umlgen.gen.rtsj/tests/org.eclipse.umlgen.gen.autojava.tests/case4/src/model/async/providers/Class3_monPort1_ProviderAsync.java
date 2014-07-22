@@ -23,8 +23,9 @@ public class Class3_monPort1_ProviderAsync implements PortProviderAsync {
 	InterfaceAsynchronous_monService1_Params monService1Params = new InterfaceAsynchronous_monService1_Params(true);
 	InterfaceAsynchronous_monService2_Params monService2Params = new InterfaceAsynchronous_monService2_Params(true);
 	CommunicationLayer communicationLayer;
+	CommunicationExceptionInterface exceptionCatcher;
 
-	public Class3_monPort1_ProviderAsync(InterfaceAsynchronous provider, String ident, int size, Object thread, PortBuffer pbuff, CommunicationLayer communicationLayer) {
+	public Class3_monPort1_ProviderAsync(InterfaceAsynchronous provider, String ident, int size, Object thread, PortBuffer pbuff, CommunicationLayer communicationLayer, CommunicationExceptionInterface exceptionCatcher) {
 		this.provider = provider;
 		this.ident = ident;
 		communicationLayer.registerAsynchronousProviderPort(ident, this);
@@ -33,6 +34,7 @@ public class Class3_monPort1_ProviderAsync implements PortProviderAsync {
 		this.thread = thread;
 		this.pbuff = pbuff;
 		this.communicationLayer = communicationLayer;
+		this.exceptionCatcher = exceptionCatcher;
 	}
 
 	public boolean empty() { 
@@ -59,15 +61,17 @@ public class Class3_monPort1_ProviderAsync implements PortProviderAsync {
 
 	public void store(String service, ArgsBuffer params, int priority) {
 		synchronized (thread) {
-			if (mbuffer.full() || !argsBuffer.check(params.getUsed())) {
-				System.out.println("!! Configuration Error for port Class3_monPort1_ProviderAsync : mBuffer full=" + full() + "; argsBuffer size=" + argsBuffer.getSize() + "; message size=" + params.getUsed() + " !!");
+			if (pbuff.full() || mbuffer.full() || !argsBuffer.check(params.getUsed())) {
+				exceptionCatcher.catchCommunicationException(service, params);
 			}
-			if (pbuff.empty()) {
-				thread.notify();
+			else {
+				if (pbuff.empty()) {
+					thread.notify();
+				}
+				pbuff.put(this, priority);
+				int offset = mbuffer.put(service, priority, params.getUsed());
+				argsBuffer.copy(params, offset);
 			}
-			pbuff.put(this, priority);
-			int offset = mbuffer.put(service, priority, params.getUsed());
-			argsBuffer.copy(params, offset);
 		}
 	}
 }

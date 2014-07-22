@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
+ *     Sylvain Jouanneau (CNES) - bug 440109
 [/comment]
 
 [module classFile('http://www.eclipse.org/umlgen/dsl/asl','http://www.eclipse.org/umlgen/dsl/eth','http://www.eclipse.org/uml2/5.0.0/UML')]
@@ -254,8 +255,8 @@ PortBuffer pbuffer = new PortBuffer([aClass.getPortBuffer()/]);
 [/if]
 [/template]
 
-[template protected genInterfaceRealization(aClass : Class) post (trim())]
-[if (aClass.getInterfacesRealization()->notEmpty())]implements [aClass.getInterfacesRealization().genName()->sep(', ')/][/if][if(aClass.isAperiodic())][if (aClass.getInterfacesRealization()->notEmpty())], [else]implements [/if]Runnable[/if]
+[template public genInterfaceRealization(aClass : Class) post (trim())]
+[if (aClass.getInterfacesRealization()->notEmpty())]implements [aClass.getInterfacesRealization().genName()->sep(', ')/][/if][if(aClass.isAperiodic() or aClass.isSporadic())][if (aClass.getInterfacesRealization()->notEmpty())], [else]implements [/if]CommunicationExceptionInterface[if (aClass.isAperiodic())], Runnable[/if][/if]
 [/template]
 
 [template protected genEthernetComImports(aClass : Class)]
