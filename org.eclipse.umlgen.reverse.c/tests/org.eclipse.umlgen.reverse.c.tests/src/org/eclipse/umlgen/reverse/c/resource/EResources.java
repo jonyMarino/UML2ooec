@@ -114,7 +114,7 @@ public final class EResources {
 				.createFileURI("resource.orderedxmi"), copyRoot); //$NON-NLS-1$
 		resource.getDefaultSaveOptions().put(XMLResource.OPTION_ENCODING,
 				System.getProperty(EResources.FILE_ENCODING));
-		resource.getDefaultSaveOptions().put(XMLResource.OPTION_SKIP_ESCAPE, Boolean.TRUE);
+		// resource.getDefaultSaveOptions().put(XMLResource.OPTION_SKIP_ESCAPE, Boolean.TRUE);
 
 		final StringWriter writer = new StringWriter();
 		resource.save(writer, null);
