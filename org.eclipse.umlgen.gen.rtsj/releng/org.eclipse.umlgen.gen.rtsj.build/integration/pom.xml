@@ -20,13 +20,6 @@
   <packaging>pom</packaging>
   <name>Build of Eclipse UML2 to RTSJ Generator</name>
   
-  <parent>
-        <groupId>org.eclipse.umlgen</groupId>
-        <artifactId>org.eclipse.umlgen.parent</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-        <relativePath>../../../../releng/org.eclipse.umlgen.parent</relativePath>
-  </parent>
-  
   <modules>
 	<module>../../../plugins/org.eclipse.umlgen.dsl.asl</module>
 	<module>../../../plugins/org.eclipse.umlgen.dsl.asl.edit</module>
@@ -39,6 +32,9 @@
 	<module>../../../plugins/org.eclipse.umlgen.gen.autojava.thirdparty</module>
 	<module>../../../doc/org.eclipse.umlgen.gen.autojava.doc</module>
 	<module>../../../features/org.eclipse.umlgen.gen.autojava.feature</module>
+    <module>../../../plugins/org.eclipse.umlgen.gen.rtsj</module>
+    <module>../../../plugins/org.eclipse.umlgen.gen.rtsj.launcher</module>
+    <module>../../../features/org.eclipse.umlgen.gen.rtsj.feature</module>
 	<module>../../org.eclipse.umlgen.gen.rtsj.repository</module>
 	<module>../../../libraries/org.eclipse.umlgen.rtsj.framework</module>
 	<module>../../../libraries/org.eclipse.umlgen.rtsj.annotations</module>

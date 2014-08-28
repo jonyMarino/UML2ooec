@@ -20,19 +20,12 @@
   <packaging>pom</packaging>
   <name>Build of Eclipse UML2 to RTSJ Generator</name>
   
-  <parent>
-        <groupId>org.eclipse.umlgen</groupId>
-        <artifactId>org.eclipse.umlgen.parent</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-        <relativePath>../../../releng/org.eclipse.umlgen.parent</relativePath>
-  </parent>
-  
   <modules>
         <module>../../../releng/org.eclipse.umlgen.target</module>
+        <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
         <module>integration</module>
-    </modules>
-    
-    <!-- <profiles>
+  </modules>
+  <!-- <profiles>
         <profile>
             <id>luna</id>
             <modules>
@@ -40,6 +33,6 @@
                 <module>integration</module>
             </modules>
         </profile>
-    </profiles> -->
+  </profiles> -->
 
 </project>

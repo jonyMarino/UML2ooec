@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <description url="http://www.eclipse.org/umlgen">
-      Eclipse UML Generators
+      Eclipse UML Generators (Incubation)
    </description>
    <bundle id="org.eclipse.umlgen.rtsj.annotations" version="0.0.0">
-      <category name="umlgen frameworks"/>
+      <category name="umlgen"/>
    </bundle>
    <bundle id="org.eclipse.umlgen.rtsj.framework" version="0.0.0">
-      <category name="umlgen frameworks"/>
+      <category name="umlgen"/>
    </bundle>
     <bundle id="org.eclipse.umlgen.rtsj.annotations.source" version="0.0.0">
-      <category name="umlgen frameworks sdk"/>
+      <category name="umlgen.sdk"/>
    </bundle>
    <bundle id="org.eclipse.umlgen.rtsj.framework.source" version="0.0.0">
-      <category name="umlgen frameworks sdk"/>
+      <category name="umlgen.sdk"/>
    </bundle>
-   <category-def name="umlgen frameworks" label="Eclipse UML Generators Frameworks">
+   <category-def name="umlgen" label="Eclipse UML Generators Frameworks">
       <description>
          The Eclipse UML Generators Frameworks
       </description>
    </category-def>
-   <category-def name="umlgen frameworks sdk" label="Eclipse UML Generators Frameworks SDK">
+   <category-def name="umlgen.sdk" label="Eclipse UML Generators Frameworks SDK">
       <description>
          The Eclipse UML Generators Frameworks SDK
       </description>
