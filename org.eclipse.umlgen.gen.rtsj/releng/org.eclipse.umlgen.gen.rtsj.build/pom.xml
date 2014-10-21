@@ -16,7 +16,7 @@
   
   <groupId>org.eclipse.umlgen</groupId>
   <artifactId>org.eclipse.umlgen.gen.rtsj.build</artifactId>
-  <version>0.9.0.qualifier</version>
+  <version>0.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Build of Eclipse UML2 to RTSJ Generator</name>
   
@@ -32,6 +32,9 @@
 	<module>../../plugins/org.eclipse.umlgen.gen.autojava.thirdparty</module>
 	<module>../../features/org.eclipse.umlgen.gen.autojava.feature</module>
 	<module>../org.eclipse.umlgen.gen.rtsj.repository</module>
+	<module>../../libraries/org.eclipse.umlgen.rtsj.framework</module>
+	<module>../../libraries/org.eclipse.umlgen.rtsj.annotations</module>
+	<module>../org.eclipse.umlgen.rtsj.frameworks.repository</module>
   </modules>
 
 </project>

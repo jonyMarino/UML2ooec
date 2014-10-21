@@ -18,12 +18,12 @@
   <parent>
     <groupId>org.eclipse.umlgen</groupId>
     <artifactId>org.eclipse.umlgen.parent</artifactId>
-    <version>0.9.0.qualifier</version>
+    <version>0.9.0-SNAPSHOT</version>
     <relativePath>../../../releng/org.eclipse.umlgen.parent</relativePath>
   </parent>
 
   <artifactId>org.eclipse.umlgen.reverse.c.ui</artifactId>
-  <version>0.9.0.qualifier</version>
+  <version>0.9.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 
   <name>Eclipse C to UML2 Generator UI</name>
