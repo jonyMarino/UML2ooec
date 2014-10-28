@@ -26,12 +26,8 @@ public class TestSimple extends AbstractTest {
     }
 
     @Test
-    public void testNoControlStructure() {
-        testUmlActivityFile("simple/testNoControlStructure.uml");
-    }
-
-    @Test
     public void testSingleIf() {
         testUmlActivityFile("simple/testSingleIf.uml");
     }
+
 }

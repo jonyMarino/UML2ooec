@@ -16,8 +16,6 @@ Contributors:
  <anchor id="org.eclipse.umlgen.gen.java.doc.features.anchor"/>
  <topic href="pages/whatsnew/index.html" label="What&apos;s new">
  </topic>
- <topic label="Legal" href="pages/legal.html">
- </topic>
  <anchor id="org.eclipse.umlgen.gen.java.doc.anchor"/>
  <enablement>
   <test property="org.eclipse.core.runtime.isBundleInstalled" args="org.eclipse.umlgen.gen.java.ui"/>

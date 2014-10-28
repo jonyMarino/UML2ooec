@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2014 CNES and others.
+ * Copyright (c) 2007, 2014 Topcased and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     Cedric Notot (Obeo) - initial API and implementation
+ *     Topcased contributors and others - initial API and implementation
  *******************************************************************************/
 package org.eclipse.umlgen.gen.autojava.launcher.properties;
 
@@ -38,8 +38,6 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 /**
  * Class that is used to add a property page to configurate the code generation.
- *
- * @author Cédric Notot (Obeo)
  */
 public class Uml2AutoJavaComponentProperties extends PropertyPage {
 
@@ -151,7 +149,7 @@ public class Uml2AutoJavaComponentProperties extends PropertyPage {
                 if (modelPath.removeFirstSegments(workspacePath.segmentCount()).getDevice() != null) {
                     s = modelPath.removeFirstSegments(workspacePath.segmentCount()).toString().substring(
                             modelPath.removeFirstSegments(workspacePath.segmentCount()).getDevice()
-                                    .toString().length());
+                            .toString().length());
                 } else {
                     s = modelPath.removeFirstSegments(workspacePath.segmentCount()).toString();
                 }
@@ -187,7 +185,7 @@ public class Uml2AutoJavaComponentProperties extends PropertyPage {
             if (modelPath.removeFirstSegments(workspacePath.segmentCount()).getDevice() != null) {
                 s = modelPath.removeFirstSegments(workspacePath.segmentCount()).toString().substring(
                         modelPath.removeFirstSegments(workspacePath.segmentCount()).getDevice().toString()
-                                .length());
+                        .length());
             } else {
                 s = modelPath.removeFirstSegments(workspacePath.segmentCount()).toString();
             }
@@ -247,7 +245,7 @@ public class Uml2AutoJavaComponentProperties extends PropertyPage {
         if (modelPath.removeFirstSegments(workspacePath.segmentCount()).getDevice() != null) {
             s = modelPath.removeFirstSegments(workspacePath.segmentCount()).toString().substring(
                     modelPath.removeFirstSegments(workspacePath.segmentCount()).getDevice().toString()
-                            .length());
+                    .length());
         } else {
             s = modelPath.removeFirstSegments(workspacePath.segmentCount()).toString();
         }
@@ -312,8 +310,6 @@ public class Uml2AutoJavaComponentProperties extends PropertyPage {
 
     /**
      * Mouse listener for the "browse" button. It only open an Eclipse dialog for selecting the output folder.
-     *
-     * @author aRamphul Modified by Nathalie Lepine (Obeo) to adapt for UML to RTSJ
      */
     private class BrowseOutputFolderButtonListener implements MouseListener {
 

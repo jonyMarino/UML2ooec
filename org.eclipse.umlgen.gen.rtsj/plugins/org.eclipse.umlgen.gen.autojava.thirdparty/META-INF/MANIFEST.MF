@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.umlgen.gen.autojava.thirdparty;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Require-Bundle: org.eclipse.emf.ecore
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: %providerName

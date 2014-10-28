@@ -27,7 +27,6 @@
         
         <!-- Add the generators to build -->
         <module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build/integration</module>
-        <module>../../org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.gen.rtsj.build/integration</module>
         
         <module>../org.eclipse.umlgen.repository</module>
    </modules>
