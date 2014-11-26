@@ -20,6 +20,8 @@
   <name>Eclipse UML Generators Build</name>
   
   <modules>
+  	<module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
+  	<module>../../org.eclipse.umlgen/features/org.eclipse.umlgen.common.feature</module>
 	<!-- Add the generators to build -->
 	<module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build</module>
 	<module>../../org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.gen.rtsj.build</module>

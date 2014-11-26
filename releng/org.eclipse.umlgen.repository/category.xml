@@ -3,6 +3,9 @@
    <description url="http://www.eclipse.org/umlgen">
    		Eclipse UML Generators
    </description>
+   <feature id="org.eclipse.umlgen.common.feature" version="0.0.0">
+      <category name="umlgen"/>
+   </feature>
    <feature id="org.eclipse.umlgen.gen.java.feature" version="0.0.0">
       <category name="umlgen"/>
    </feature>
