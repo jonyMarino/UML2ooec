@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <description url="http://www.eclipse.org/umlgen">
-   		Eclipse UML Generators
+      Eclipse UML Generators
    </description>
    <feature id="org.eclipse.umlgen.common.feature" version="0.0.0">
       <category name="umlgen"/>
@@ -10,6 +10,9 @@
       <category name="umlgen"/>
    </feature>
    <feature id="org.eclipse.umlgen.gen.java.ui.feature" version="0.0.0">
+      <category name="umlgen"/>
+   </feature>
+   <feature url="features/org.eclipse.umlgen.gen.autojava.feature_0.9.0.qualifier.jar" id="org.eclipse.umlgen.gen.autojava.feature" version="0.9.0.qualifier">
       <category name="umlgen"/>
    </feature>
    <category-def name="umlgen" label="Eclipse UML Generators">
