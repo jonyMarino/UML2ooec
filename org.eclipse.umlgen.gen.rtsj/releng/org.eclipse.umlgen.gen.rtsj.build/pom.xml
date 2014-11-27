@@ -30,6 +30,7 @@
     <module>../../plugins/org.eclipse.umlgen.gen.autojava</module>
 	<module>../../plugins/org.eclipse.umlgen.gen.autojava.launcher</module>
 	<module>../../plugins/org.eclipse.umlgen.gen.autojava.thirdparty</module>
+	<module>../../doc/org.eclipse.umlgen.gen.autojava.doc</module>
 	<module>../../features/org.eclipse.umlgen.gen.autojava.feature</module>
 	<module>../org.eclipse.umlgen.gen.rtsj.repository</module>
 	<module>../../libraries/org.eclipse.umlgen.rtsj.framework</module>
