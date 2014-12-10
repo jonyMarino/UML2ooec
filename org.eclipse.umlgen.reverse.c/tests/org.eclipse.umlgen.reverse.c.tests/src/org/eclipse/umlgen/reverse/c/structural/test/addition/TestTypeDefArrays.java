@@ -24,42 +24,42 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestTypeDefArrays extends AbstractTest {
-	@Test
-	public void testTypeDefArraysInC() throws CoreException, InterruptedException {
+    @Test
+    public void testTypeDefArraysInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testarrayC", new NullProgressMonitor());
+        IProject project = createIProject("testarrayC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("array.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("array.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/array/array.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/array/array.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/array/arrayC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/array/arrayC.uml");
+    }
 
-	@Test
-	public void testTypeDefArraysInH() throws CoreException, InterruptedException {
+    @Test
+    public void testTypeDefArraysInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testarrayH", new NullProgressMonitor());
+        IProject project = createIProject("testarrayH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("array.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("array.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/array/array.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/array/array.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/array/arrayH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/array/arrayH.uml");
+    }
 
 }

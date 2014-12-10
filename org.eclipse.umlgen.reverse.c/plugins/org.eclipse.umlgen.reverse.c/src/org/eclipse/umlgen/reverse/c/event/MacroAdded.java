@@ -28,48 +28,51 @@ import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class MacroAdded extends MacroEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges()
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		Type myType = ModelUtil.getType(manager, matchingClassifier, BundleConstants.MACRO_TYPE);
-		Property attribute = matchingClassifier.getAttribute(getCurrentName(), myType);
-		if (attribute == null) {
-			if (matchingClassifier instanceof Class) {
-				attribute = ((Class)matchingClassifier).createOwnedAttribute(getCurrentName(), myType);
-			}
-			if (matchingClassifier instanceof Interface) {
-				attribute = ((Interface)matchingClassifier).createOwnedAttribute(getCurrentName(), myType);
-			}
-		}
+public class MacroAdded extends AbstractMacroEvent {
 
-		LiteralString literalString = (LiteralString)attribute.createDefaultValue(
-				BundleConstants.READONLY_VALUE, null, UMLPackage.Literals.LITERAL_STRING);
-		literalString.setValue(cleanInvalidXmlChars(getExpansion()));
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        Type myType = ModelUtil.getType(manager, matchingClassifier, BundleConstants.MACRO_TYPE);
+        Property attribute = matchingClassifier.getAttribute(getCurrentName(), myType);
+        if (attribute == null) {
+            if (matchingClassifier instanceof Class) {
+                attribute = ((Class)matchingClassifier).createOwnedAttribute(getCurrentName(), myType);
+            }
+            if (matchingClassifier instanceof Interface) {
+                attribute = ((Interface)matchingClassifier).createOwnedAttribute(getCurrentName(), myType);
+            }
+        }
 
-		ModelUtil.setVisibility(attribute, getTranslationUnit(), EventType.ADD);
-	}
+        LiteralString literalString = (LiteralString)attribute.createDefaultValue(
+                BundleConstants.READONLY_VALUE, null, UMLPackage.Literals.LITERAL_STRING);
+        literalString.setValue(cleanInvalidXmlChars(getExpansion()));
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<MacroAdded> builder() {
-		return new Builder<MacroAdded>() {
-			private MacroAdded event = new MacroAdded();
+        ModelUtil.setVisibility(attribute, getTranslationUnit(), EventType.ADD);
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.MacroBuilder#getEvent()
-			 */
-			@Override
-			protected MacroAdded getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<MacroAdded> builder() {
+        return new AbstractBuilder<MacroAdded>() {
+            private MacroAdded event = new MacroAdded();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.MacroBuilder#getEvent()
+             */
+            @Override
+            protected MacroAdded getEvent() {
+                return event;
+            }
+        };
+    }
 }

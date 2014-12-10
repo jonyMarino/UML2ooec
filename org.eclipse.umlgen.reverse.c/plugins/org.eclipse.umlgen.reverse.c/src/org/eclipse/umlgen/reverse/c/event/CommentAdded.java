@@ -45,148 +45,157 @@ import org.eclipse.umlgen.reverse.c.util.ASTUtil;
  *
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class CommentAdded extends CommentEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		IASTNode parent = getParent();
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		Element element = null;
+public class CommentAdded extends AbstractCommentEvent {
 
-		if (parent instanceof IASTTranslationUnit) {
-			element = matchingClassifier;
-		} else if (parent instanceof IASTFunctionDefinition) {
-			String name = ((IASTFunctionDefinition)parent).getDeclarator().getName().toString();
-			element = matchingClassifier.getOwnedMember(name, false, UMLPackage.Literals.OPAQUE_BEHAVIOR);
-		} else if (parent instanceof IASTFunctionDeclarator) {
-			String name = ((IASTFunctionDeclarator)parent).getName().toString();
-			element = matchingClassifier.getOwnedMember(name, false, UMLPackage.Literals.OPERATION);
-		} else if (parent instanceof IASTSimpleDeclaration) {
-			IASTSimpleDeclaration simpleDeclaration = (IASTSimpleDeclaration)parent;
-			IASTDeclSpecifier specifier = simpleDeclaration.getDeclSpecifier();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        IASTNode parent = getParent();
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        Element element = null;
 
-			String name = null;
-			if (specifier instanceof IASTEnumerationSpecifier) {
-				name = ModelUtil.computeAnonymousTypeName(getUnitName(),
-						name = ((IASTEnumerationSpecifier)specifier).getName().toString(), parent);
-			} else if (specifier instanceof IASTCompositeTypeSpecifier) {
-				name = ModelUtil.computeAnonymousTypeName(getUnitName(),
-						((IASTCompositeTypeSpecifier)specifier).getName().toString(), parent);
-			} else if (specifier instanceof IASTElaboratedTypeSpecifier) {
-				name = ((IASTElaboratedTypeSpecifier)specifier).getName().toString();
-			} else if (simpleDeclaration.getDeclarators().length > 0) {
-				IASTDeclarator declarator = simpleDeclaration.getDeclarators()[0];
-				if (declarator instanceof IASTFunctionDeclarator) {
-					// case for function pointer and operation decl
-					IASTDeclarator nestedDeclarator = declarator.getNestedDeclarator();
-					name = nestedDeclarator != null && nestedDeclarator.getName() != null ? nestedDeclarator
-							.getName().toString() : declarator.getName().toString();
-				} else {
-					name = ASTUtil.computeName(declarator);
-				}
-			}
+        if (parent instanceof IASTTranslationUnit) {
+            element = matchingClassifier;
+        } else if (parent instanceof IASTFunctionDefinition) {
+            String name = ((IASTFunctionDefinition)parent).getDeclarator().getName().toString();
+            element = matchingClassifier.getOwnedMember(name, false, UMLPackage.Literals.OPAQUE_BEHAVIOR);
+        } else if (parent instanceof IASTFunctionDeclarator) {
+            String name = ((IASTFunctionDeclarator)parent).getName().toString();
+            element = matchingClassifier.getOwnedMember(name, false, UMLPackage.Literals.OPERATION);
+        } else if (parent instanceof IASTSimpleDeclaration) {
+            IASTSimpleDeclaration simpleDeclaration = (IASTSimpleDeclaration)parent;
+            IASTDeclSpecifier specifier = simpleDeclaration.getDeclSpecifier();
 
-			// expect a data type (struct, enum, typedef)
-			element = matchingClassifier.getOwnedMember(name, false, UMLPackage.Literals.DATA_TYPE);
+            String name = null;
+            if (specifier instanceof IASTEnumerationSpecifier) {
+                name = ModelUtil.computeAnonymousTypeName(getUnitName(),
+                        ((IASTEnumerationSpecifier)specifier).getName().toString(), parent);
+            } else if (specifier instanceof IASTCompositeTypeSpecifier) {
+                name = ModelUtil.computeAnonymousTypeName(getUnitName(),
+                        ((IASTCompositeTypeSpecifier)specifier).getName().toString(), parent);
+            } else if (specifier instanceof IASTElaboratedTypeSpecifier) {
+                name = ((IASTElaboratedTypeSpecifier)specifier).getName().toString();
+            } else if (simpleDeclaration.getDeclarators().length > 0) {
+                IASTDeclarator declarator = simpleDeclaration.getDeclarators()[0];
+                if (declarator instanceof IASTFunctionDeclarator) {
+                    // case for function pointer and operation decl
+                    IASTDeclarator nestedDeclarator = declarator.getNestedDeclarator();
+                    // CHECKSTYLE:OFF
+                    name = nestedDeclarator != null && nestedDeclarator.getName() != null ? nestedDeclarator
+                            .getName().toString() : declarator.getName().toString();
+                            // CHECKSTYLE:ON
+                } else {
+                    name = ASTUtil.computeName(declarator);
+                }
+            }
 
-			if (element == null) {
-				// expect a property or an operation
-				element = matchingClassifier.getFeature(name);
-			}
-		} else if (parent instanceof IASTParameterDeclaration) {
-			IASTNode functionOrOperation = parent.getParent();
-			IASTParameterDeclaration myParameter = (IASTParameterDeclaration)parent;
-			if (functionOrOperation instanceof IASTFunctionDeclarator) {
-				// this is the method
-				IASTFunctionDeclarator declarator = (IASTFunctionDeclarator)functionOrOperation;
-				if (declarator.getParent() instanceof IASTFunctionDefinition) {
-					IASTFunctionDefinition function = (IASTFunctionDefinition)declarator.getParent();
-					Operation fct = (Operation)((Class)matchingClassifier).getOperation(function
-							.getDeclarator().getName().toString(), null, null);
-					// The comment may concern a function that is declared in
-					// the .h but not added in this to the model
-					if (fct != null) {
-						for (Parameter parameter : fct.getOwnedParameters()) {
-							if (parameter.getName().equals(myParameter.getDeclarator().getName().toString())) {
-								element = parameter;
-								break;
-							}
-						}
-					}
-				} else {
-					// the declaration of an operation
-					for (Element ownedElement : matchingClassifier.getOwnedElements()) {
-						if (ownedElement instanceof Operation) {
-							if (((Operation)ownedElement).getName().equals(declarator.getName().toString())) {
-								for (Parameter parameter : ((Operation)ownedElement).getOwnedParameters()) {
-									if (parameter.getName().equals(
-											myParameter.getDeclarator().getName().toString())) {
-										element = parameter;
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		} else if (parent instanceof IASTPreprocessorIncludeStatement) {
-			String elementName = ((IASTPreprocessorIncludeStatement)parent).getName().toString();
-			elementName = elementName.substring(0, elementName.length() - 2);
-			EList<DirectedRelationship> list = matchingClassifier.getSourceDirectedRelationships();
-			for (DirectedRelationship usage : list) {
-				for (Element anElement : usage.getTargets()) {
-					if (anElement instanceof Classifier) {
-						if (((Classifier)anElement).getName().compareTo(elementName) == 0) {
-							element = usage;
-							break;
-						}
-					}
-				}
-			}
-		} else if (parent instanceof IASTPreprocessorMacroDefinition) {
-			String elementName = ((IASTPreprocessorMacroDefinition)parent).getName().toString();
-			element = matchingClassifier.getFeature(elementName);
-		} else if (parent instanceof IASTEnumerationSpecifier) {
-			element = matchingClassifier.getOwnedMember(((IASTEnumerationSpecifier)parent).getName()
-					.toString(), false, UMLPackage.Literals.ENUMERATION);
-		} else if (parent instanceof IASTEnumerator) {
-			IASTEnumerationSpecifier enumSpec = (IASTEnumerationSpecifier)parent.getParent();
-			String enumName = ModelUtil.computeAnonymousTypeName(matchingClassifier.getName(), enumSpec
-					.getName().toString(), enumSpec);
-			Enumeration enumeration = ModelUtil.findEnumerationInClassifier(matchingClassifier, enumName);
-			element = enumeration
-					.getOwnedLiteral(((IASTEnumerator)parent).getName().toString(), false, false);
-		} else if (parent instanceof IASTArrayDeclarator) {
-			element = matchingClassifier.getAttribute(((IASTArrayDeclarator)parent).getName().toString(),
-					null, false, UMLPackage.Literals.PROPERTY);
-		}
+            // expect a data type (struct, enum, typedef)
+            element = matchingClassifier.getOwnedMember(name, false, UMLPackage.Literals.DATA_TYPE);
 
-		if (element != null) {
-			EAnnotation documentationEAnnotation = AnnotationUtil.getDocumentationAnnotation(element);
-			documentationEAnnotation.getDetails().put(getKey(), cleanInvalidXmlChars(getBody()));
-		}
-	}
+            if (element == null) {
+                // expect a property or an operation
+                element = matchingClassifier.getFeature(name);
+            }
+        } else if (parent instanceof IASTParameterDeclaration) {
+            IASTNode functionOrOperation = parent.getParent();
+            IASTParameterDeclaration myParameter = (IASTParameterDeclaration)parent;
+            if (functionOrOperation instanceof IASTFunctionDeclarator) {
+                // this is the method
+                IASTFunctionDeclarator declarator = (IASTFunctionDeclarator)functionOrOperation;
+                if (declarator.getParent() instanceof IASTFunctionDefinition) {
+                    IASTFunctionDefinition function = (IASTFunctionDefinition)declarator.getParent();
+                    Operation fct = (Operation)((Class)matchingClassifier).getOperation(function
+                            .getDeclarator().getName().toString(), null, null);
+                    // The comment may concern a function that is declared in
+                    // the .h but not added in this to the model
+                    // CHECKSTYLE:OFF
+                    if (fct != null) {
+                        for (Parameter parameter : fct.getOwnedParameters()) {
+                            if (parameter.getName().equals(myParameter.getDeclarator().getName().toString())) {
+                                element = parameter;
+                                break;
+                            }
+                        }
+                    }
+                    // CHECKSTYLE:ON
+                } else {
+                    // the declaration of an operation
+                    for (Element ownedElement : matchingClassifier.getOwnedElements()) {
+                        // CHECKSTYLE:OFF
+                        if (ownedElement instanceof Operation) {
+                            if (((Operation)ownedElement).getName().equals(declarator.getName().toString())) {
+                                for (Parameter parameter : ((Operation)ownedElement).getOwnedParameters()) {
+                                    if (parameter.getName().equals(
+                                            myParameter.getDeclarator().getName().toString())) {
+                                        element = parameter;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        // CHECKSTYLE:ON
+                    }
+                }
+            }
+        } else if (parent instanceof IASTPreprocessorIncludeStatement) {
+            String elementName = ((IASTPreprocessorIncludeStatement)parent).getName().toString();
+            elementName = elementName.substring(0, elementName.length() - 2);
+            EList<DirectedRelationship> list = matchingClassifier.getSourceDirectedRelationships();
+            for (DirectedRelationship usage : list) {
+                for (Element anElement : usage.getTargets()) {
+                    if (anElement instanceof Classifier) {
+                        if (((Classifier)anElement).getName().compareTo(elementName) == 0) {
+                            element = usage;
+                            break;
+                        }
+                    }
+                }
+            }
+        } else if (parent instanceof IASTPreprocessorMacroDefinition) {
+            String elementName = ((IASTPreprocessorMacroDefinition)parent).getName().toString();
+            element = matchingClassifier.getFeature(elementName);
+        } else if (parent instanceof IASTEnumerationSpecifier) {
+            element = matchingClassifier.getOwnedMember(((IASTEnumerationSpecifier)parent).getName()
+                    .toString(), false, UMLPackage.Literals.ENUMERATION);
+        } else if (parent instanceof IASTEnumerator) {
+            IASTEnumerationSpecifier enumSpec = (IASTEnumerationSpecifier)parent.getParent();
+            String enumName = ModelUtil.computeAnonymousTypeName(matchingClassifier.getName(), enumSpec
+                    .getName().toString(), enumSpec);
+            Enumeration enumeration = ModelUtil.findEnumerationInClassifier(matchingClassifier, enumName);
+            element = enumeration
+                    .getOwnedLiteral(((IASTEnumerator)parent).getName().toString(), false, false);
+        } else if (parent instanceof IASTArrayDeclarator) {
+            element = matchingClassifier.getAttribute(((IASTArrayDeclarator)parent).getName().toString(),
+                    null, false, UMLPackage.Literals.PROPERTY);
+        }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<CommentAdded> builder() {
-		return new Builder<CommentAdded>() {
-			private CommentAdded event = new CommentAdded();
+        if (element != null) {
+            EAnnotation documentationEAnnotation = AnnotationUtil.getDocumentationAnnotation(element);
+            documentationEAnnotation.getDetails().put(getKey(), cleanInvalidXmlChars(getBody()));
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.CommentEvent.Builder#getEvent()
-			 */
-			@Override
-			protected CommentAdded getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<CommentAdded> builder() {
+        return new AbstractBuilder<CommentAdded>() {
+            private CommentAdded event = new CommentAdded();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractCommentEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected CommentAdded getEvent() {
+                return event;
+            }
+        };
+    }
 }

@@ -15,18 +15,18 @@ import org.junit.Test;
 
 public class TestCUnit extends AbstractTest {
 
-	@Test
-	public void cEmpty() {
-		testStructuralCFile("empty", "empty", "emptyC");
-	}
+    @Test
+    public void cEmpty() {
+        testStructuralCFile("empty", "empty", "emptyC");
+    }
 
-	@Test
-	public void hEmpty() {
-		testStructuralHFile("empty", "empty", "emptyH");
-	}
+    @Test
+    public void hEmpty() {
+        testStructuralHFile("empty", "empty", "emptyH");
+    }
 
-	@Test
-	public void cAndHEmpty() {
-		testStructuralFiles("empty", "empty", "emptyHandC");
-	}
+    @Test
+    public void cAndHEmpty() {
+        testStructuralFiles("empty", "empty", "emptyHandC");
+    }
 }

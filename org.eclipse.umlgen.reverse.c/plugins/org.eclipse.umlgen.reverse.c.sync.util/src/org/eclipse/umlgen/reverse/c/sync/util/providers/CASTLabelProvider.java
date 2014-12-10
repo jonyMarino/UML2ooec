@@ -26,36 +26,36 @@ import org.eclipse.swt.graphics.Image;
 @SuppressWarnings("restriction")
 public class CASTLabelProvider extends LabelProvider {
 
-	@Override
-	public String getText(Object element) {
-		if (element instanceof String) {
-			return (String)element;
-		}
+    @Override
+    public String getText(Object element) {
+        if (element instanceof String) {
+            return (String)element;
+        }
 
-		StringBuilder ret = new StringBuilder();
+        StringBuilder ret = new StringBuilder();
 
-		IASTNode node = (IASTNode)element;
-		if (node instanceof IASTName) {
-			ret.append("\"").append(node.toString()).append("\" ");
-		}
-		ret.append("[" + node.getPropertyInParent().getName() + "] ");
+        IASTNode node = (IASTNode)element;
+        if (node instanceof IASTName) {
+            ret.append("\"").append(node.toString()).append("\" ");
+        }
+        ret.append("[" + node.getPropertyInParent().getName() + "] ");
 
-		Iterable<String> ifacesName = transform(Arrays.asList(node.getClass().getInterfaces()),
-				new Function<Class, String>() {
-					public String apply(Class from) {
-						return from.getSimpleName();
-					}
-				});
-		ret.append(on(", ").join(ifacesName));
+        Iterable<String> ifacesName = transform(Arrays.asList(node.getClass().getInterfaces()),
+                new Function<Class, String>() {
+                    public String apply(Class from) {
+                        return from.getSimpleName();
+                    }
+                });
+        ret.append(on(", ").join(ifacesName));
 
-		return ret.toString();
-	}
+        return ret.toString();
+    }
 
-	@Override
-	public Image getImage(Object element) {
-		if (element instanceof String) {
-			return null;
-		}
-		return CPluginImages.get(CPluginImages.IMG_OBJS_FUNCTION);
-	}
+    @Override
+    public Image getImage(Object element) {
+        if (element instanceof String) {
+            return null;
+        }
+        return CPluginImages.get(CPluginImages.IMG_OBJS_FUNCTION);
+    }
 }

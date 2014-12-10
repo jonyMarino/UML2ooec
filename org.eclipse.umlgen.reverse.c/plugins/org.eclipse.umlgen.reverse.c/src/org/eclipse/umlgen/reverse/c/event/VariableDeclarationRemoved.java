@@ -23,55 +23,58 @@ import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
 
 /**
- * Removes a variable declaration<br>
+ * Removes a variable declaration.<br>
  */
-public class VariableDeclarationRemoved extends VariableDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		DataType myType = manager.findDataType(getCurrentTypeName());
-		Property attribute = matchingClassifier.getAttribute(getCurrentName(), myType);
-		if (attribute != null) {
-			if (ModelUtil.isRemovable(attribute)) {
-				// the attribute is first desctroyed
-				attribute.destroy();
+public class VariableDeclarationRemoved extends AbstractVariableDeclarationEvent {
 
-				// diagrams are updated consequently
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(attribute, manager);
-				}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        DataType myType = manager.findDataType(getCurrentTypeName());
+        Property attribute = matchingClassifier.getAttribute(getCurrentName(), myType);
+        if (attribute != null) {
+            if (ModelUtil.isRemovable(attribute)) {
+                // the attribute is first desctroyed
+                attribute.destroy();
 
-				// type is deleted if not more used elsewhere
-				if (ModelUtil.isNotReferencedAnymore(myType)) {
-					ModelUtil.destroy(myType);
-				}
-			} else {
-				ModelUtil.setVisibility(attribute, getTranslationUnit(), EventType.REMOVE);
-			}
-		}
-	}
+                // diagrams are updated consequently
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(attribute, manager);
+                }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<VariableDeclarationRemoved> builder() {
-		return new Builder<VariableDeclarationRemoved>() {
-			private VariableDeclarationRemoved event = new VariableDeclarationRemoved();
+                // type is deleted if not more used elsewhere
+                if (ModelUtil.isNotReferencedAnymore(myType)) {
+                    ModelUtil.destroy(myType);
+                }
+            } else {
+                ModelUtil.setVisibility(attribute, getTranslationUnit(), EventType.REMOVE);
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.VariableDeclarationEvent.Builder#getEvent()
-			 */
-			@Override
-			protected VariableDeclarationRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<VariableDeclarationRemoved> builder() {
+        return new AbstractBuilder<VariableDeclarationRemoved>() {
+            private VariableDeclarationRemoved event = new VariableDeclarationRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractVariableDeclarationEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected VariableDeclarationRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

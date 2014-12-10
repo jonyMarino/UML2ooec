@@ -30,123 +30,124 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends Plugin {
 
-	/** The Constant PLUGIN_ID. */
-	public static final String PLUGIN_ID = "org.eclipse.umlgen.c.common";
+    /** The Constant PLUGIN_ID. */
+    public static final String PLUGIN_ID = "org.eclipse.umlgen.c.common";
 
-	/**
-	 * The plugin context
-	 */
-	private static BundleContext context;
+    /**
+     * The plugin context.
+     */
+    private static BundleContext context;
 
-	/**
-	 * Shared plugin instance
-	 */
-	private static Activator plugin;
+    /**
+     * Shared plugin instance.
+     */
+    private static Activator plugin;
 
-	/**
-	 * Listener registry for the synchronizers extension
-	 */
-	private SynchronizerListener registryListener = new SynchronizerListener();
+    /**
+     * Listener registry for the synchronizers extension.
+     */
+    private SynchronizerListener registryListener = new SynchronizerListener();
 
-	/**
-	 * Return the plugin context.
-	 *
-	 * @return the plugin context
-	 */
-	static BundleContext getContext() {
-		return context;
-	}
+    /**
+     * Return the plugin context.
+     *
+     * @return the plugin context
+     */
+    static BundleContext getContext() {
+        return context;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
-		plugin = this;
-		super.start(bundleContext);
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void start(BundleContext bundleContext) throws Exception {
+        Activator.context = bundleContext;
+        plugin = this;
+        super.start(bundleContext);
 
-		IExtensionRegistry registry = Platform.getExtensionRegistry();
-		registry.addListener(registryListener, SynchronizerListener.SYNCHRONIZER_EXTENSION_POINT);
-		registryListener.parseInitialContributions();
-	}
+        IExtensionRegistry registry = Platform.getExtensionRegistry();
+        registry.addListener(registryListener, SynchronizerListener.SYNCHRONIZER_EXTENSION_POINT);
+        registryListener.parseInitialContributions();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	@Override
-	public void stop(BundleContext bundleContext) throws Exception {
-		super.stop(bundleContext);
-		Activator.context = null;
-		plugin = null;
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void stop(BundleContext bundleContext) throws Exception {
+        super.stop(bundleContext);
+        Activator.context = null;
+        plugin = null;
 
-		final IExtensionRegistry registry = Platform.getExtensionRegistry();
-		registry.removeListener(registryListener);
-		SynchronizerRegistry.clearRegistry();
-	}
+        final IExtensionRegistry registry = Platform.getExtensionRegistry();
+        registry.removeListener(registryListener);
+        SynchronizerRegistry.clearRegistry();
+    }
 
-	/**
-	 * Get the plugin bundle symbolic name.
-	 *
-	 * @return the plugin name
-	 */
-	public static String getBundleId() {
-		return context.getBundle().getSymbolicName();
-	}
+    /**
+     * Get the plugin bundle symbolic name.
+     *
+     * @return the plugin name
+     */
+    public static String getBundleId() {
+        return context.getBundle().getSymbolicName();
+    }
 
-	/**
-	 * Returns the shared instance.
-	 *
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
-	}
+    /**
+     * Returns the shared instance.
+     *
+     * @return the shared instance
+     */
+    public static Activator getDefault() {
+        return plugin;
+    }
 
-	/**
-	 * Log an exception into the Eclipse log file <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param e
-	 *            the exception to log
-	 * @generated
-	 */
-	public static void log(Throwable e) {
-		if (e instanceof InvocationTargetException) {
-			e = ((InvocationTargetException)e).getTargetException();
-		}
+    /**
+     * Log an exception into the Eclipse log file <!-- begin-user-doc --> <!-- end-user-doc -->.
+     *
+     * @param e
+     *            the exception to log
+     * @generated
+     */
+    public static void log(Throwable e) {
+        Throwable e2 = e;
+        if (e2 instanceof InvocationTargetException) {
+            e2 = ((InvocationTargetException)e2).getTargetException();
+        }
 
-		IStatus status = null;
-		if (e instanceof CoreException) {
-			status = ((CoreException)e).getStatus();
-		} else {
-			status = new Status(IStatus.ERROR, getId(), IStatus.OK, "Error", e);
-		}
+        IStatus status = null;
+        if (e2 instanceof CoreException) {
+            status = ((CoreException)e).getStatus();
+        } else {
+            status = new Status(IStatus.ERROR, getId(), IStatus.OK, "Error", e);
+        }
 
-		log(status);
-	}
+        log(status);
+    }
 
-	/**
-	 * Log an IStatus <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @param status
-	 *            the status to log
-	 * @generated
-	 */
-	public static void log(IStatus status) {
-		getDefault().getLog().log(status);
-	}
+    /**
+     * Log an IStatus <!-- begin-user-doc --> <!-- end-user-doc -->.
+     *
+     * @param status
+     *            the status to log
+     * @generated
+     */
+    public static void log(IStatus status) {
+        getDefault().getLog().log(status);
+    }
 
-	/**
-	 * Get the ID of this bundle.
-	 * 
-	 * @return id.
-	 */
-	public static String getId() {
-		return PLUGIN_ID;
-	}
+    /**
+     * Get the ID of this bundle.
+     *
+     * @return id.
+     */
+    public static String getId() {
+        return PLUGIN_ID;
+    }
 
 }

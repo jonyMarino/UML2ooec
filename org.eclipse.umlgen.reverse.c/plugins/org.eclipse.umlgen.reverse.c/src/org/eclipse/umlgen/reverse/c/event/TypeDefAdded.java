@@ -16,24 +16,24 @@ package org.eclipse.umlgen.reverse.c.event;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefAdded extends TypeDefEvent {
+public class TypeDefAdded extends AbstractTypeDefEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefAdded> builder() {
-		return new Builder<TypeDefAdded>() {
-			private TypeDefAdded event = new TypeDefAdded();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefAdded> builder() {
+        return new AbstractBuilder<TypeDefAdded>() {
+            private TypeDefAdded event = new TypeDefAdded();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.TypeDefBuilder#getEvent()
-			 */
-			@Override
-			protected TypeDefAdded getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.TypeDefBuilder#getEvent()
+             */
+            @Override
+            protected TypeDefAdded getEvent() {
+                return event;
+            }
+        };
+    }
 }

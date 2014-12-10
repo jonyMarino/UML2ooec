@@ -13,31 +13,36 @@ package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.umlgen.c.common.util.ModelManager;
 
-public class CommentModified extends CommentEvent {
+/**
+ * Event related to modification of a comment.
+ */
+public class CommentModified extends AbstractCommentEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<CommentModified> builder() {
-		return new Builder<CommentModified>() {
-			private CommentModified event = new CommentModified();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<CommentModified> builder() {
+        return new AbstractBuilder<CommentModified>() {
+            private CommentModified event = new CommentModified();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.CommentEvent.Builder#getEvent()
-			 */
-			@Override
-			protected CommentModified getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractCommentEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected CommentModified getEvent() {
+                return event;
+            }
+        };
+    }
 }

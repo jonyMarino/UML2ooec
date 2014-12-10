@@ -18,16 +18,36 @@ import org.eclipse.umlgen.reverse.c.activity.beans.ActivityNodesPins;
 import org.eclipse.umlgen.reverse.c.activity.comments.CommentBuilder;
 import org.eclipse.umlgen.reverse.c.activity.util.UMLActivityFactory;
 
+/** Common statement builder. */
 public class CommonStatementBuilder extends AbstractBuilder {
 
-	public CommonStatementBuilder(UMLActivityBuilder activityBuilder, UMLActivityFactory factory,
-			CommentBuilder commentBuilder) {
-		super(activityBuilder, factory, commentBuilder);
-	}
+    /**
+     * Constructor.
+     *
+     * @param activityBuilder
+     *            The activity builder.
+     * @param factory
+     *            The factory.
+     * @param commentBuilder
+     *            The comment builder.
+     */
+    public CommonStatementBuilder(UMLActivityBuilder activityBuilder, UMLActivityFactory factory,
+            CommentBuilder commentBuilder) {
+        super(activityBuilder, factory, commentBuilder);
+    }
 
-	public ActivityNodesPins buildCommonStatement(IASTStatement stmt, ActivityContext currentContext) {
-		OpaqueAction opaqueAction = factory.createOpaqueAction(stmt.getRawSignature(), currentContext);
-		commentBuilder.buildComment(opaqueAction, getCommentInfo(stmt));
-		return new ActivityNodesPins(opaqueAction, opaqueAction);
-	}
+    /**
+     * This builds activity nodes pins from the given statement and activity context.
+     *
+     * @param stmt
+     *            The current statement.
+     * @param currentContext
+     *            The activity context.
+     * @return Activity nodes pins.
+     */
+    public ActivityNodesPins buildCommonStatement(IASTStatement stmt, ActivityContext currentContext) {
+        OpaqueAction opaqueAction = factory.createOpaqueAction(stmt.getRawSignature(), currentContext);
+        commentBuilder.buildComment(opaqueAction, getCommentInfo(stmt));
+        return new ActivityNodesPins(opaqueAction, opaqueAction);
+    }
 }

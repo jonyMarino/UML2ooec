@@ -15,9 +15,9 @@ import org.junit.Test;
 
 public class TestContinue extends AbstractTest {
 
-	@Test
-	public void testContinueInForAndIfNested() {
-		testUmlActivityFile("continueStatement/continueInForAndIfNested.uml");
-	}
+    @Test
+    public void testContinueInForAndIfNested() {
+        testUmlActivityFile("continueStatement/continueInForAndIfNested.uml");
+    }
 
 }

@@ -18,31 +18,34 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class MacroRenamed extends MacroEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges()
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be implemented
-	}
+public class MacroRenamed extends AbstractMacroEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<MacroRenamed> builder() {
-		return new Builder<MacroRenamed>() {
-			private MacroRenamed event = new MacroRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be implemented
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.MacroEvent.Builder#getEvent()
-			 */
-			@Override
-			protected MacroRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<MacroRenamed> builder() {
+        return new AbstractBuilder<MacroRenamed>() {
+            private MacroRenamed event = new MacroRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractMacroEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected MacroRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

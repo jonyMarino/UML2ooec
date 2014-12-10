@@ -26,85 +26,87 @@ import org.eclipse.core.runtime.Platform;
  * order to define the subclassing manager behavior.<br>
  */
 public abstract class AbstractExtensionManager implements IRegistryChangeListener {
-	/**
-	 * The manager extension point id.
-	 */
-	private String extensionPointId;
+    /**
+     * The manager extension point id.
+     */
+    private String extensionPointId;
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param extensionPointId
-	 *            the unique id of the managed extension point (e.g.,
-	 *            <code>"org.eclipse.core.resources.builders"</code>)
-	 */
-	protected AbstractExtensionManager(String extensionPointId) {
-		if (extensionPointId == null || extensionPointId.length() == 0) {
-			throw new IllegalArgumentException("extensionPointId cannot be null or empty.");
-		}
+    /**
+     * Constructor.
+     * 
+     * @param extensionPointId
+     *            the unique id of the managed extension point (e.g.,
+     *            <code>"org.eclipse.core.resources.builders"</code>)
+     */
+    protected AbstractExtensionManager(String extensionPointId) {
+        if (extensionPointId == null || extensionPointId.length() == 0) {
+            throw new IllegalArgumentException("extensionPointId cannot be null or empty.");
+        }
 
-		this.extensionPointId = extensionPointId;
-		Platform.getExtensionRegistry().addRegistryChangeListener(this);
-	}
+        this.extensionPointId = extensionPointId;
+        Platform.getExtensionRegistry().addRegistryChangeListener(this);
+    }
 
-	/**
-	 * Disposes this manager.
-	 */
-	public void dispose() {
-		Platform.getExtensionRegistry().removeRegistryChangeListener(this);
-	}
+    /**
+     * Disposes this manager.
+     */
+    public void dispose() {
+        Platform.getExtensionRegistry().removeRegistryChangeListener(this);
+    }
 
-	/**
-	 * Adds the given extension to this manager.
-	 * 
-	 * @param extension
-	 *            a registered extension
-	 */
-	protected abstract void addExtension(IExtension extension);
+    /**
+     * Adds the given extension to this manager.
+     * 
+     * @param extension
+     *            a registered extension
+     */
+    protected abstract void addExtension(IExtension extension);
 
-	/**
-	 * Removes the given extension from this manager.
-	 * 
-	 * @param extension
-	 *            a unregistered extension
-	 */
-	protected abstract void removeExtension(IExtension extension);
+    /**
+     * Removes the given extension from this manager.
+     * 
+     * @param extension
+     *            a unregistered extension
+     */
+    protected abstract void removeExtension(IExtension extension);
 
-	/**
-	 * @see org.eclipse.core.runtime.IRegistryChangeListener#registryChanged(org.eclipse.core.runtime.IRegistryChangeEvent)
-	 */
-	public void registryChanged(IRegistryChangeEvent event) {
-		if (!Platform.isRunning()) {
-			return;
-		}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.runtime.IRegistryChangeListener#registryChanged(org.eclipse.core.runtime.IRegistryChangeEvent)
+     */
+    public void registryChanged(IRegistryChangeEvent event) {
+        if (!Platform.isRunning()) {
+            return;
+        }
 
-		// Retrieve any changes relating to the extension point id dealed by
-		// this manager
-		IExtensionDelta[] delta = event.getExtensionDeltas(extensionPointId);
-		for (IExtensionDelta element : delta) {
-			switch (element.getKind()) {
-				case IExtensionDelta.ADDED:
-					addExtension(element.getExtension());
-					break;
-				case IExtensionDelta.REMOVED:
-					removeExtension(element.getExtension());
-					break;
-				default:
-					break;
-			}
-		}
-	}
+        // Retrieve any changes relating to the extension point id dealed by
+        // this manager
+        IExtensionDelta[] delta = event.getExtensionDeltas(extensionPointId);
+        for (IExtensionDelta element : delta) {
+            switch (element.getKind()) {
+                case IExtensionDelta.ADDED:
+                    addExtension(element.getExtension());
+                    break;
+                case IExtensionDelta.REMOVED:
+                    removeExtension(element.getExtension());
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
-	/**
-	 * Reads the extension registry and add all the registered extensions for the managed extension point.
-	 */
-	protected void readRegistry() {
-		IExtensionPoint point = Platform.getExtensionRegistry().getExtensionPoint(extensionPointId);
-		IExtension[] extensions = point.getExtensions();
+    /**
+     * Reads the extension registry and add all the registered extensions for the managed extension point.
+     */
+    protected void readRegistry() {
+        IExtensionPoint point = Platform.getExtensionRegistry().getExtensionPoint(extensionPointId);
+        IExtension[] extensions = point.getExtensions();
 
-		for (IExtension extension : extensions) {
-			addExtension(extension);
-		}
+        for (IExtension extension : extensions) {
+            addExtension(extension);
+        }
 
-	}
+    }
 }

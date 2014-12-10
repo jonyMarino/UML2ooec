@@ -64,194 +64,194 @@ import org.junit.ComparisonFailure;
 
 public class TestUtils {
 
-	private static IScannerInfo scanInfo = new ScannerInfo();
+    private static IScannerInfo scanInfo = new ScannerInfo();
 
-	private static IParserLogService logService = new NullLogService();
+    private static IParserLogService logService = new NullLogService();
 
-	public static Model getUMLModel(ResourceSet rs, String path) {
-		URL modelURL = getResource(path);
-		Resource modelResource = rs.getResource(URI.createURI(modelURL.getFile()), true);
-		InputStream inputStream = null;
-		Model ret = null;
-		try {
-			inputStream = modelURL.openStream();
+    public static Model getUMLModel(ResourceSet rs, String path) {
+        URL modelURL = getResource(path);
+        Resource modelResource = rs.getResource(URI.createURI(modelURL.getFile()), true);
+        InputStream inputStream = null;
+        Model ret = null;
+        try {
+            inputStream = modelURL.openStream();
 
-			List<EObject> contents = modelResource.getContents();
+            List<EObject> contents = modelResource.getContents();
 
-			if (contents.size() > 0) {
-				EObject content0 = contents.get(0);
-				if (content0 instanceof Model) {
-					ret = (Model)content0;
-				} else {
-					throw new IllegalArgumentException("first element of the resource is not a UML Model");
-				}
-			} else {
-				throw new IllegalArgumentException("no content in the given resource");
-			}
-		} catch (IOException e) {
-			throw new IllegalArgumentException("error while opening the model stream", e);
-		} finally {
-			if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException e) {
-					throw new IllegalArgumentException("error while closing the model stream", e);
-				}
-			}
-		}
+            if (contents.size() > 0) {
+                EObject content0 = contents.get(0);
+                if (content0 instanceof Model) {
+                    ret = (Model)content0;
+                } else {
+                    throw new IllegalArgumentException("first element of the resource is not a UML Model");
+                }
+            } else {
+                throw new IllegalArgumentException("no content in the given resource");
+            }
+        } catch (IOException e) {
+            throw new IllegalArgumentException("error while opening the model stream", e);
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    throw new IllegalArgumentException("error while closing the model stream", e);
+                }
+            }
+        }
 
-		return ret;
-	}
+        return ret;
+    }
 
-	@SuppressWarnings("restriction")
-	public static IASTTranslationUnit getTranslationUnit(String cFilePath) {
-		URL tuURL = getResource(cFilePath);
-		ILanguage lang = GCCLanguage.getDefault();
-		InputStream inputStream = null;
-		IASTTranslationUnit ast = null;
-		try {
-			inputStream = tuURL.openStream();
-			ast = lang.getASTTranslationUnit(new CodeReader(tuURL.toURI().getPath(), inputStream), scanInfo,
-					NullCodeReaderFactory.getInstance(), EmptyCIndex.INSTANCE, logService);
-		} catch (CoreException e) {
-			throw new IllegalStateException("something goes wrong with CoreModel", e);
-		} catch (IOException e) {
-			throw new IllegalStateException("can not open input stream of TU", e);
-		} catch (URISyntaxException e) {
-			throw new IllegalStateException("can not convert FilePath into URI", e);
-		} finally {
-			if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException e) {
-					throw new IllegalStateException("can not close input stream of TU", e);
-				}
-			}
-		}
+    @SuppressWarnings("restriction")
+    public static IASTTranslationUnit getTranslationUnit(String cFilePath) {
+        URL tuURL = getResource(cFilePath);
+        ILanguage lang = GCCLanguage.getDefault();
+        InputStream inputStream = null;
+        IASTTranslationUnit ast = null;
+        try {
+            inputStream = tuURL.openStream();
+            ast = lang.getASTTranslationUnit(new CodeReader(tuURL.toURI().getPath(), inputStream), scanInfo,
+                    NullCodeReaderFactory.getInstance(), EmptyCIndex.INSTANCE, logService);
+        } catch (CoreException e) {
+            throw new IllegalStateException("something goes wrong with CoreModel", e);
+        } catch (IOException e) {
+            throw new IllegalStateException("can not open input stream of TU", e);
+        } catch (URISyntaxException e) {
+            throw new IllegalStateException("can not convert FilePath into URI", e);
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    throw new IllegalStateException("can not close input stream of TU", e);
+                }
+            }
+        }
 
-		return ast;
-	}
+        return ast;
+    }
 
-	public static void assertEquals(EObject expected, EObject actual) {
-		// FIXME MIGRATION reference to EMF Compare 1.x (to migrate to 2.x)
+    public static void assertEquals(EObject expected, EObject actual) {
+        // FIXME MIGRATION reference to EMF Compare 1.x (to migrate to 2.x)
 
-		// Configure EMF Compare
-		IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.NEVER);
-		IComparisonFactory comparisonFactory = new DefaultComparisonFactory(
-				new DefaultEqualityHelperFactory());
-		IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
-		matchEngineFactory.setRanking(20);
-		IMatchEngine.Factory.Registry matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
-		matchEngineRegistry.add(matchEngineFactory);
-		EMFCompare comparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry)
-				.build();
+        // Configure EMF Compare
+        IEObjectMatcher matcher = DefaultMatchEngine.createDefaultEObjectMatcher(UseIdentifiers.NEVER);
+        IComparisonFactory comparisonFactory = new DefaultComparisonFactory(
+                new DefaultEqualityHelperFactory());
+        IMatchEngine.Factory matchEngineFactory = new MatchEngineFactoryImpl(matcher, comparisonFactory);
+        matchEngineFactory.setRanking(20);
+        IMatchEngine.Factory.Registry matchEngineRegistry = new MatchEngineFactoryRegistryImpl();
+        matchEngineRegistry.add(matchEngineFactory);
+        EMFCompare comparator = EMFCompare.builder().setMatchEngineFactoryRegistry(matchEngineRegistry)
+                .build();
 
-		// Compare the two models
-		IComparisonScope scope = EMFCompare.createDefaultScope(expected, actual);
+        // Compare the two models
+        IComparisonScope scope = EMFCompare.createDefaultScope(expected, actual);
 
-		Comparison comparison = comparator.compare(scope);
+        Comparison comparison = comparator.compare(scope);
 
-		Function<Match, EList<Diff>> matchToDiffs = new Function<Match, EList<Diff>>() {
+        Function<Match, EList<Diff>> matchToDiffs = new Function<Match, EList<Diff>>() {
 
-			public EList<Diff> apply(Match arg0) {
-				return arg0.getDifferences();
-			}
-		};
-		List<Diff> diffs = newArrayList(concat(transform(comparison.getMatches(), matchToDiffs)));
+            public EList<Diff> apply(Match arg0) {
+                return arg0.getDifferences();
+            }
+        };
+        List<Diff> diffs = newArrayList(concat(transform(comparison.getMatches(), matchToDiffs)));
 
-		if (diffs.size() > 0) {
-			StringBuilder sb = new StringBuilder("Models do not match\n");
-			for (Diff de : comparison.getDifferences()) {
-				sb.append(toString(de));
-			}
-			try {
-				throw new ComparisonFailure(sb.toString(), EResources.serialize(expected), EResources
-						.serialize(actual));
-			} catch (IOException e) {
-				throw new AssertionError(sb.toString());
-			}
-		}
-	}
+        if (diffs.size() > 0) {
+            StringBuilder sb = new StringBuilder("Models do not match\n");
+            for (Diff de : comparison.getDifferences()) {
+                sb.append(toString(de));
+            }
+            try {
+                throw new ComparisonFailure(sb.toString(), EResources.serialize(expected), EResources
+                        .serialize(actual));
+            } catch (IOException e) {
+                throw new AssertionError(sb.toString());
+            }
+        }
+    }
 
-	/**
-	 * Returns the first function in the {@link IASTTranslationUnit}.
-	 *
-	 * @param unit
-	 * @return
-	 */
-	public static IASTFunctionDefinition getFirstFunctionInUnit(IASTTranslationUnit unit) {
-		IASTDeclaration[] declarations = unit.getDeclarations(true);
-		IASTFunctionDefinition ret = null;
+    /**
+     * Returns the first function in the {@link IASTTranslationUnit}.
+     *
+     * @param unit
+     * @return
+     */
+    public static IASTFunctionDefinition getFirstFunctionInUnit(IASTTranslationUnit unit) {
+        IASTDeclaration[] declarations = unit.getDeclarations(true);
+        IASTFunctionDefinition ret = null;
 
-		for (IASTDeclaration declaration : declarations) {
-			if (declaration instanceof IASTFunctionDefinition) {
-				ret = (IASTFunctionDefinition)declaration;
-				break;
-			}
-		}
+        for (IASTDeclaration declaration : declarations) {
+            if (declaration instanceof IASTFunctionDefinition) {
+                ret = (IASTFunctionDefinition)declaration;
+                break;
+            }
+        }
 
-		return ret;
-	}
+        return ret;
+    }
 
-	public static Model createOutputModel(ResourceSet rs, Model testModel) {
-		Model outputModel = UMLFactory.eINSTANCE.createModel();
-		outputModel.setName(testModel.getName());
-		Resource actualResource = rs.createResource(URI.createURI("actual.uml"));
-		actualResource.getContents().add(outputModel);
-		return outputModel;
-	}
+    public static Model createOutputModel(ResourceSet rs, Model testModel) {
+        Model outputModel = UMLFactory.eINSTANCE.createModel();
+        outputModel.setName(testModel.getName());
+        Resource actualResource = rs.createResource(URI.createURI("actual.uml"));
+        actualResource.getContents().add(outputModel);
+        return outputModel;
+    }
 
-	public static void saveGeneratedModel(Model model, ResourceSet resourceSet, String filename) {
-		saveModel(model, resourceSet, "resource/" + getSuffixedFilename(filename, "_actual"));
-	}
+    public static void saveGeneratedModel(Model model, ResourceSet resourceSet, String filename) {
+        saveModel(model, resourceSet, "resource/" + getSuffixedFilename(filename, "_actual"));
+    }
 
-	public static String getSuffixedFilename(String filename, String suffix) {
-		int dotPos = filename.lastIndexOf(".");
-		return filename.substring(0, dotPos) + suffix + filename.substring(dotPos);
-	}
+    public static String getSuffixedFilename(String filename, String suffix) {
+        int dotPos = filename.lastIndexOf(".");
+        return filename.substring(0, dotPos) + suffix + filename.substring(dotPos);
+    }
 
-	public static void saveModel(Model model, ResourceSet resourceSet, String filename) {
-		Resource resource = resourceSet.createResource(URI.createFileURI(filename));
-		resource.getContents().add(model);
-		try {
-			resource.save(null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    public static void saveModel(Model model, ResourceSet resourceSet, String filename) {
+        Resource resource = resourceSet.createResource(URI.createFileURI(filename));
+        resource.getContents().add(model);
+        try {
+            resource.save(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-	// FIXME MIGRATION reference to EMF Compare 1.x (to migrate to 2.x)
-	private static StringBuilder toString(Diff de) {
-		return toString(de, 0);
-	}
+    // FIXME MIGRATION reference to EMF Compare 1.x (to migrate to 2.x)
+    private static StringBuilder toString(Diff de) {
+        return toString(de, 0);
+    }
 
-	private static StringBuilder toString(Diff de, int depth) {
-		StringBuilder sb = new StringBuilder();
+    private static StringBuilder toString(Diff de, int depth) {
+        StringBuilder sb = new StringBuilder();
 
-		for (int i = 0; i <= depth; i++) {
-			sb.append("  ");
-		}
-		sb.append(de.toString()).append("\n");
+        for (int i = 0; i <= depth; i++) {
+            sb.append("  ");
+        }
+        sb.append(de.toString()).append("\n");
 
-		for (Diff subDiff : getSubDiffs(de)) {
-			sb.append(toString(subDiff, depth + 1));
-		}
-		return sb;
-	}
+        for (Diff subDiff : getSubDiffs(de)) {
+            sb.append(toString(subDiff, depth + 1));
+        }
+        return sb;
+    }
 
-	private static List<Diff> getSubDiffs(Diff diff) {
-		List<Diff> ret = new ArrayList<Diff>();
-		Iterator<Match> subMatches = diff.getMatch().getSubmatches().iterator();
-		while (subMatches.hasNext()) {
-			Match match = (Match)subMatches.next();
-			ret.addAll(match.getDifferences());
-		}
-		return ret;
-	}
+    private static List<Diff> getSubDiffs(Diff diff) {
+        List<Diff> ret = new ArrayList<Diff>();
+        Iterator<Match> subMatches = diff.getMatch().getSubmatches().iterator();
+        while (subMatches.hasNext()) {
+            Match match = (Match)subMatches.next();
+            ret.addAll(match.getDifferences());
+        }
+        return ret;
+    }
 
-	private static URL getResource(String resourceName) {
-		URL url = TestUtils.class.getClassLoader().getResource(resourceName);
-		checkArgument(url != null, "resource %s not found.", resourceName);
-		return url;
-	}
+    private static URL getResource(String resourceName) {
+        URL url = TestUtils.class.getClassLoader().getResource(resourceName);
+        checkArgument(url != null, "resource %s not found.", resourceName);
+        return url;
+    }
 }

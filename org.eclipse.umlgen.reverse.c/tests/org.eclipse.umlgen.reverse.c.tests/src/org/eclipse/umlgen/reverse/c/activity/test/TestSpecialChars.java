@@ -14,8 +14,8 @@ import org.eclipse.umlgen.reverse.c.activity.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestSpecialChars extends AbstractTest {
-	@Test
-	public void testSpecialChars() {
-		testCFile("specialChars/specialCharsAmpersand.c", false);
-	}
+    @Test
+    public void testSpecialChars() {
+        testCFile("specialChars/specialCharsAmpersand.c", false);
+    }
 }

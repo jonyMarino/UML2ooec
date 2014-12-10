@@ -19,43 +19,48 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefArrayAdded extends TypeDefArrayEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges()
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// call to super
-		super.notifyChanges(manager);
+public class TypeDefArrayAdded extends AbstractTypeDefArrayEvent {
 
-		// handle dimension
-		StringExpression expr = myTypeDef.getNameExpression() == null ? myTypeDef.createNameExpression(
-				"dimension", null) : myTypeDef.getNameExpression();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractTypeDefEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // call to super
+        super.notifyChanges(manager);
 
-				// Updates the value in all cases.
-				StringBuilder sb = new StringBuilder();
-				for (String dim : getDimensions()) {
-					sb = sb.append("[" + dim + "]");
-				}
-				expr.setSymbol(sb.toString());
-	}
+        // handle dimension
+        // CHECKSTYLE:OFF
+        StringExpression expr = myTypeDef.getNameExpression() == null ? myTypeDef.createNameExpression(
+                "dimension", null) : myTypeDef.getNameExpression();
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefArrayAdded> builder() {
-		return new Builder<TypeDefArrayAdded>() {
-			private TypeDefArrayAdded event = new TypeDefArrayAdded();
+                // Updates the value in all cases.
+                StringBuilder sb = new StringBuilder();
+                for (String dim : getDimensions()) {
+                    sb = sb.append("[" + dim + "]");
+                }
+                expr.setSymbol(sb.toString());
+        // CHECKSTYLE:ON
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.TypeDefArrayEvent.Builder#getEvent()
-			 */
-			@Override
-			protected TypeDefArrayAdded getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefArrayAdded> builder() {
+        return new AbstractBuilder<TypeDefArrayAdded>() {
+            private TypeDefArrayAdded event = new TypeDefArrayAdded();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractTypeDefArrayEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected TypeDefArrayAdded getEvent() {
+                return event;
+            }
+        };
+    }
 }

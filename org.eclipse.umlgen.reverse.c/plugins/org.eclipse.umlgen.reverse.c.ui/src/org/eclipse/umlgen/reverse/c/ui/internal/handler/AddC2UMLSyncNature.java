@@ -46,98 +46,100 @@ import org.eclipse.umlgen.reverse.c.ui.internal.widgets.QuestionDialog;
  */
 public class AddC2UMLSyncNature extends AbstractHandler {
 
-	/**
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		try {
-			IStructuredSelection selection = (IStructuredSelection)HandlerUtil
-					.getCurrentSelectionChecked(event);
-			IProject project = (IProject)selection.getFirstElement();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+     */
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        try {
+            IStructuredSelection selection = (IStructuredSelection)HandlerUtil
+                    .getCurrentSelectionChecked(event);
+            IProject project = (IProject)selection.getFirstElement();
 
-			IPreferenceStore store = PreferenceStoreManager.getPreferenceStore(project);
-			QuestionDialog dialog = new QuestionDialog(
-					Display.getCurrent().getActiveShell(),
-					Messages.getString("AddC2UMLSyncNature.dialogTitle"), Messages.getString("AddC2UMLSyncNature.dialogBody"), //$NON-NLS-1$ //$NON-NLS-2$
-					store);
-			int result = dialog.open();
-			if (result > -1) {
-				// set initial values into the preference store related to the
-				// project.
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer != null) {
-					synchronizer.setInitialValues(project);
-				}
+            IPreferenceStore store = PreferenceStoreManager.getPreferenceStore(project);
+            QuestionDialog dialog = new QuestionDialog(
+                    Display.getCurrent().getActiveShell(),
+                    Messages.getString("AddC2UMLSyncNature.dialogTitle"), Messages.getString("AddC2UMLSyncNature.dialogBody"), //$NON-NLS-1$ //$NON-NLS-2$
+                    store);
+            int result = dialog.open();
+            if (result > -1) {
+                // set initial values into the preference store related to the
+                // project.
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer != null) {
+                    synchronizer.setInitialValues(project);
+                }
 
-				if (result == 0) {
-					// a synchronization from C sources has been asked (default
-					// behavior)
-					syncFromSources(project);
-				} else if (result == 1) {
-					// a synchronization from an existing UML model has been
-					// asked
-					syncFromModel(project);
-				}
-			}
-		} catch (CoreException e) {
-			throw new ExecutionException(e.getMessage(), e);
-		}
-		return null; // *MUST* be null (cf.
-		// AbstractHandler.execute(ExecutionEvent))
-	}
+                if (result == 0) {
+                    // a synchronization from C sources has been asked (default
+                    // behavior)
+                    syncFromSources(project);
+                } else if (result == 1) {
+                    // a synchronization from an existing UML model has been
+                    // asked
+                    syncFromModel(project);
+                }
+            }
+        } catch (CoreException e) {
+            throw new ExecutionException(e.getMessage(), e);
+        }
+        return null; // *MUST* be null (cf.
+        // AbstractHandler.execute(ExecutionEvent))
+    }
 
-	/**
-	 * Start a synchronization from an existing UML model.
-	 *
-	 * @param project
-	 *            The project in which sources must be located, analyzed and reversed.
-	 * @throws CoreException
-	 *             If something failed during this operation.
-	 */
-	private void syncFromModel(IProject project) throws CoreException {
-		IFile modelFile = C2UMLSyncNature.selectExistingUMLModel(project);
-		if (modelFile != null) {
-			// add the nature to the .project file of the current project
-			ProjectUtil.addNature(project, BundleConstants.NATURE_ID);
-			ProjectUtil.addNature(project, UML2CBundleConstant.NATURE_ID);
+    /**
+     * Start a synchronization from an existing UML model.
+     *
+     * @param project
+     *            The project in which sources must be located, analyzed and reversed.
+     * @throws CoreException
+     *             If something failed during this operation.
+     */
+    private void syncFromModel(IProject project) throws CoreException {
+        IFile modelFile = C2UMLSyncNature.selectExistingUMLModel(project);
+        if (modelFile != null) {
+            // add the nature to the .project file of the current project
+            ProjectUtil.addNature(project, BundleConstants.NATURE_ID);
+            ProjectUtil.addNature(project, UML2CBundleConstant.NATURE_ID);
 
-			UML2CBuilder builder = new UML2CBuilder();
-			builder.build(modelFile);
-		}
-	}
+            UML2CBuilder builder = new UML2CBuilder();
+            builder.build(modelFile);
+        }
+    }
 
-	/**
-	 * Start a synchronization from a source folder containing a set of C and H files.
-	 *
-	 * @param project
-	 *            The project in which sources must be located, analyzed and reversed.
-	 * @throws CoreException
-	 *             If something failed during this operation.
-	 */
-	private void syncFromSources(IProject project) throws CoreException {
-		// add the nature to the .project file of the current project
-		ProjectUtil.addNature(project, BundleConstants.NATURE_ID);
-		ProjectUtil.addNature(project, UML2CBundleConstant.NATURE_ID);
+    /**
+     * Start a synchronization from a source folder containing a set of C and H files.
+     *
+     * @param project
+     *            The project in which sources must be located, analyzed and reversed.
+     * @throws CoreException
+     *             If something failed during this operation.
+     */
+    private void syncFromSources(IProject project) throws CoreException {
+        // add the nature to the .project file of the current project
+        ProjectUtil.addNature(project, BundleConstants.NATURE_ID);
+        ProjectUtil.addNature(project, UML2CBundleConstant.NATURE_ID);
 
-		IFile modelFile = null;
+        IFile modelFile = null;
 
-		// create the required UML from template
-		IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-		if (synchronizer != null) {
-			modelFile = synchronizer.createModel(project);
-		}
+        // create the required UML from template
+        IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+        if (synchronizer != null) {
+            modelFile = synchronizer.createModel(project);
+        }
 
-		if (modelFile != null && modelFile.exists()) {
-			// Temporally removing UML2C builder to avoid workspace building
-			// after each reverse during the structural
-			// build
-			ProjectUtil.removeFromBuildSpec(project, BundleConstants.UML2C_BUILDER_ID);
-			// Instantiate the builder
-			StructuralBuilder sb = new StructuralBuilder(modelFile);
-			sb.build();
-			sb.dispose();
-			ProjectUtil.addToBuildSpec(project, BundleConstants.UML2C_BUILDER_ID);
-		}
+        if (modelFile != null && modelFile.exists()) {
+            // Temporally removing UML2C builder to avoid workspace building
+            // after each reverse during the structural
+            // build
+            ProjectUtil.removeFromBuildSpec(project, BundleConstants.UML2C_BUILDER_ID);
+            // Instantiate the builder
+            StructuralBuilder sb = new StructuralBuilder(modelFile);
+            sb.build();
+            sb.dispose();
+            ProjectUtil.addToBuildSpec(project, BundleConstants.UML2C_BUILDER_ID);
+        }
 
-	}
+    }
 }

@@ -18,31 +18,34 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefFunctionDeclarationRenamed extends TypeDefFunctionDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be implemented
-	}
+public class TypeDefFunctionDeclarationRenamed extends AbstractTypeDefFunctionDeclarationEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefFunctionDeclarationRenamed> builder() {
-		return new Builder<TypeDefFunctionDeclarationRenamed>() {
-			private TypeDefFunctionDeclarationRenamed event = new TypeDefFunctionDeclarationRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be implemented
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.TypeDefFunctionDeclarationEvent#getEvent()
-			 */
-			@Override
-			protected TypeDefFunctionDeclarationRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefFunctionDeclarationRenamed> builder() {
+        return new AbstractBuilder<TypeDefFunctionDeclarationRenamed>() {
+            private TypeDefFunctionDeclarationRenamed event = new TypeDefFunctionDeclarationRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.AbstractTypeDefFunctionDeclarationEvent#getEvent()
+             */
+            @Override
+            protected TypeDefFunctionDeclarationRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

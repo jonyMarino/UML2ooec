@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
  *     Mikael Barbero (Obeo) - evolutions
@@ -14,89 +14,95 @@ package org.eclipse.umlgen.reverse.c.listener;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.umlgen.c.common.util.ModelManager;
+// CHECKSTYLE:OFF
 import org.eclipse.umlgen.reverse.c.StructuralBuilder;
-import org.eclipse.umlgen.reverse.c.event.CModelChangedEvent;
+//CHECKSTYLE:ON
+import org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent;
 
+/** A UML model change listener. */
 public class UMLModelChangeListener implements ICModelChangeListener {
-	/** The associated model manager **/
-	private ModelManager manager;
 
-	/**
-	 * Constructor
-	 */
-	public UMLModelChangeListener() {
-		// do nothing
-	}
+    /** The associated model manager. **/
+    private ModelManager manager;
 
-	/**
-	 * Constructor invoked since {@link StructuralBuilder} class.
-	 * 
-	 * @param rsc
-	 *            A workspace resource
-	 */
-	public UMLModelChangeListener(IResource rsc) {
-		manager = getModelManager(rsc);
-	}
+    /**
+     * Constructor.
+     */
+    public UMLModelChangeListener() {
+        // do nothing
+    }
 
-	/**
-	 * Disposes the model manager
-	 */
-	public void dispose() {
-		if (manager != null) {
-			manager.dispose();
-			manager = null;
-		}
-	}
+    /**
+     * Constructor invoked since {@link StructuralBuilder} class.
+     *
+     * @param rsc
+     *            A workspace resource
+     */
+    public UMLModelChangeListener(IResource rsc) {
+        manager = getModelManager(rsc);
+    }
 
-	/**
-	 * Gets the model manager according to the resource sent in parameter
-	 * 
-	 * @param rsc
-	 * @return
-	 */
-	private ModelManager getModelManager(IResource rsc) {
-		if (manager == null) {
-			manager = createModelManager(rsc);
-		} else if (!manager.getProject().equals(rsc.getProject())) {
-			manager.dispose();
-			manager = createModelManager(rsc);
-		}
-		return manager;
-	}
+    /**
+     * Disposes the model manager.
+     */
+    public void dispose() {
+        if (manager != null) {
+            manager.dispose();
+            manager = null;
+        }
+    }
 
-	/**
-	 * Creates a new model manager based on a resource
-	 * 
-	 * @param rsc
-	 *            The workspace resource
-	 * @return The newly resource manager
-	 */
-	private ModelManager createModelManager(IResource rsc) {
-		return new ModelManager(rsc);
-	}
+    /**
+     * Gets the model manager according to the resource sent in parameter.
+     *
+     * @param rsc
+     *            The eclipse resource.
+     * @return The model manager.
+     */
+    private ModelManager getModelManager(IResource rsc) {
+        if (manager == null) {
+            manager = createModelManager(rsc);
+        } else if (!manager.getProject().equals(rsc.getProject())) {
+            manager.dispose();
+            manager = createModelManager(rsc);
+        }
+        return manager;
+    }
 
-	/**
-	 * Gets the model manager
-	 * 
-	 * @return the instantiated model manager
-	 */
-	public ModelManager getModelManager() {
-		return manager;
-	}
+    /**
+     * Creates a new model manager based on a resource.
+     *
+     * @param rsc
+     *            The workspace resource
+     * @return The newly resource manager
+     */
+    private ModelManager createModelManager(IResource rsc) {
+        return new ModelManager(rsc);
+    }
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.listener.ICModelChangeListener#notifyChanges(org.eclipse.umlgen.reverse.c.event.CModelChangedEvent,
-	 *      boolean)
-	 */
-	public void notifyChanges(final CModelChangedEvent event, boolean needSave) {
-		if (event != null) {
-			ModelManager manager = getModelManager(event.getTranslationUnit()
-					.getResource());
-			event.notifyChanges(manager);
-			if (needSave) {
-				manager.saveModels();
-			}
-		}
-	}
+    /**
+     * Gets the model manager.
+     *
+     * @return the instantiated model manager
+     */
+    public ModelManager getModelManager() {
+        return manager;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.listener.ICModelChangeListener#notifyChanges(org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent,
+     *      boolean)
+     */
+    public void notifyChanges(final AbstractCModelChangedEvent event, boolean needSave) {
+        if (event != null) {
+            ModelManager mgr = getModelManager(event.getTranslationUnit().getResource());
+            event.notifyChanges(mgr);
+            if (needSave) {
+                mgr.saveModels();
+            }
+        }
+    }
 
 }

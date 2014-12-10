@@ -24,156 +24,156 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestFunctionsParameters extends AbstractTest {
-	@Test
-	public void testwithoutParameterInC() throws CoreException, InterruptedException {
+    @Test
+    public void testwithoutParameterInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testwithoutParameterC", new NullProgressMonitor());
+        IProject project = createIProject("testwithoutParameterC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("withoutParameter.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("withoutParameter.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/withoutParameter.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/withoutParameter.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/withoutParameterC.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/withoutParameterC.uml");
+    }
 
-	@Test
-	public void testwithoutParameterInH() throws CoreException, InterruptedException {
+    @Test
+    public void testwithoutParameterInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testwithoutParameterH", new NullProgressMonitor());
+        IProject project = createIProject("testwithoutParameterH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("withoutParameter.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("withoutParameter.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/withoutParameter.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/withoutParameter.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/withoutParameterH.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/withoutParameterH.uml");
+    }
 
-	@Test
-	public void testwithoutReturnTypeInC() throws CoreException, InterruptedException {
+    @Test
+    public void testwithoutReturnTypeInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testwithoutReturnTypeC", new NullProgressMonitor());
+        IProject project = createIProject("testwithoutReturnTypeC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("withoutReturnType.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("withoutReturnType.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/withoutReturnType.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/withoutReturnType.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/withoutReturnTypeC.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/withoutReturnTypeC.uml");
+    }
 
-	@Test
-	public void testwithoutReturnTypeInH() throws CoreException, InterruptedException {
+    @Test
+    public void testwithoutReturnTypeInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testwithoutReturnTypeH", new NullProgressMonitor());
+        IProject project = createIProject("testwithoutReturnTypeH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("withoutReturnType.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("withoutReturnType.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/withoutReturnType.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/withoutReturnType.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/withoutReturnTypeH.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/withoutReturnTypeH.uml");
+    }
 
-	@Test
-	public void testsimpleParametersInC() throws CoreException, InterruptedException {
+    @Test
+    public void testsimpleParametersInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testsimpleParametersC", new NullProgressMonitor());
+        IProject project = createIProject("testsimpleParametersC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("simpleParameters.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("simpleParameters.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/simpleParameters.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/simpleParameters.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/simpleParametersC.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/simpleParametersC.uml");
+    }
 
-	@Test
-	public void testsimpleParametersInH() throws CoreException, InterruptedException {
+    @Test
+    public void testsimpleParametersInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testsimpleParametersH", new NullProgressMonitor());
+        IProject project = createIProject("testsimpleParametersH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("simpleParameters.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("simpleParameters.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/simpleParameters.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/simpleParameters.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/simpleParametersH.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/simpleParametersH.uml");
+    }
 
-	@Test
-	public void testmultipleReferencesCInC() throws CoreException, InterruptedException {
+    @Test
+    public void testmultipleReferencesCInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testmultipleReferencesC", new NullProgressMonitor());
+        IProject project = createIProject("testmultipleReferencesC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("multipleReferences.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("multipleReferences.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/multipleReferences.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/multipleReferences.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/multipleReferencesC.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/multipleReferencesC.uml");
+    }
 
-	@Test
-	public void testmultipleReferencesCInH() throws CoreException, InterruptedException {
+    @Test
+    public void testmultipleReferencesCInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testmultipleReferencesH", new NullProgressMonitor());
+        IProject project = createIProject("testmultipleReferencesH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("multipleReferences.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("multipleReferences.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/multipleReferences.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/multipleReferences.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/multipleReferencesH.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/multipleReferencesH.uml");
+    }
 
 }

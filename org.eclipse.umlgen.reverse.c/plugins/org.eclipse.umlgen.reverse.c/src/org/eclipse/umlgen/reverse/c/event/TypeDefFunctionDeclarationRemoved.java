@@ -25,45 +25,48 @@ import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefFunctionDeclarationRemoved extends TypeDefFunctionDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		Classifier localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
-		if (localType != null) {
-			if (ModelUtil.isRemovable(localType)) {
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
-				}
-				localType.destroy();
-			} else {
-				ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);
-			}
-		}
-	}
+public class TypeDefFunctionDeclarationRemoved extends AbstractTypeDefFunctionDeclarationEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefFunctionDeclarationRemoved> builder() {
-		return new Builder<TypeDefFunctionDeclarationRemoved>() {
-			private TypeDefFunctionDeclarationRemoved event = new TypeDefFunctionDeclarationRemoved();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        Classifier localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
+        if (localType != null) {
+            if (ModelUtil.isRemovable(localType)) {
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
+                }
+                localType.destroy();
+            } else {
+                ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.TypeDefFunctionDeclarationEvent#getEvent()
-			 */
-			@Override
-			protected TypeDefFunctionDeclarationRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefFunctionDeclarationRemoved> builder() {
+        return new AbstractBuilder<TypeDefFunctionDeclarationRemoved>() {
+            private TypeDefFunctionDeclarationRemoved event = new TypeDefFunctionDeclarationRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.AbstractTypeDefFunctionDeclarationEvent#getEvent()
+             */
+            @Override
+            protected TypeDefFunctionDeclarationRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 
 }

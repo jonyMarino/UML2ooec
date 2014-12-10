@@ -22,42 +22,42 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestCommentInline extends AbstractTest {
-	@Test
-	public void testinlineParametersInC() throws CoreException, InterruptedException {
+    @Test
+    public void testinlineParametersInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testinlineParametersC", new NullProgressMonitor());
+        IProject project = createIProject("/testinlineParametersC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("inlineParameters.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("inlineParameters.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/inlineParameters.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/inlineParameters.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/inlineParametersC.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/inlineParametersC.uml");
+    }
 
-	@Test
-	public void testinlineParametersInH() throws CoreException, InterruptedException {
+    @Test
+    public void testinlineParametersInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testinlineParametersH", new NullProgressMonitor());
+        IProject project = createIProject("/testinlineParametersH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("inlineParameters.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("inlineParameters.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/inlineParameters.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/inlineParameters.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/inlineParametersH.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/inlineParametersH.uml");
+    }
 
 }

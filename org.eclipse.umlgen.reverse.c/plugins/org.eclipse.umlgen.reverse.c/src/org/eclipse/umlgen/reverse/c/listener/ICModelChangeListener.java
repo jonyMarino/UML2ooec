@@ -11,8 +11,18 @@
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.listener;
 
-import org.eclipse.umlgen.reverse.c.event.CModelChangedEvent;
+import org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent;
 
+/** A model change listener. */
 public interface ICModelChangeListener {
-	void notifyChanges(CModelChangedEvent event, boolean needSave);
+
+    /**
+     * This notifies changes from the given event.
+     * 
+     * @param event
+     *            the event.
+     * @param needSave
+     *            True if it is required to save.
+     */
+    void notifyChanges(AbstractCModelChangedEvent event, boolean needSave);
 }

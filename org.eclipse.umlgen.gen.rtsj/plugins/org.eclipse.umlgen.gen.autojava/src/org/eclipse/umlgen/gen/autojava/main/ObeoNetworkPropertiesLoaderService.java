@@ -17,16 +17,22 @@ import org.eclipse.acceleo.engine.service.properties.AbstractAcceleoPropertiesLo
 
 public class ObeoNetworkPropertiesLoaderService extends AbstractAcceleoPropertiesLoaderService {
 
-	public ObeoNetworkPropertiesLoaderService(AcceleoService acceleoService) {
-		this.acceleoService = acceleoService;
-	}
+    /**
+     * Constructor.
+     *
+     * @param acceleoService
+     *            The Acceleo service to load.
+     */
+    public ObeoNetworkPropertiesLoaderService(AcceleoService acceleoService) {
+        this.acceleoService = acceleoService;
+    }
 
-	@Override
-	protected Properties alternatePropertiesLoading(String filepath) {
-		/*
-		 * We are out of Eclipse so let's try to load the file from its path as if it was the absolute path of
-		 * a file on the file system.
-		 */
-		return this.loadProperties(filepath);
-	}
+    @Override
+    protected Properties alternatePropertiesLoading(String filepath) {
+        /*
+         * We are out of Eclipse so let's try to load the file from its path as if it was the absolute path of
+         * a file on the file system.
+         */
+        return this.loadProperties(filepath);
+    }
 }

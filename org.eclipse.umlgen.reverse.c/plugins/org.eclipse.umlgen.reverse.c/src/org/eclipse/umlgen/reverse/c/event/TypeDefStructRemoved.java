@@ -27,46 +27,48 @@ import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefStructRemoved extends TypeDefStructEvent {
+public class TypeDefStructRemoved extends AbstractTypeDefStructEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		DataType localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        DataType localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
 
-		if (localType != null) {
-			if (ModelUtil.isRemovable(localType)) {
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
-				}
-				localType.destroy();
-			} else {
-				ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);
-			}
-		}
-	}
+        if (localType != null) {
+            if (ModelUtil.isRemovable(localType)) {
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
+                }
+                localType.destroy();
+            } else {
+                ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);
+            }
+        }
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefStructRemoved> builder() {
-		return new Builder<TypeDefStructRemoved>() {
-			private TypeDefStructRemoved event = new TypeDefStructRemoved();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefStructRemoved> builder() {
+        return new AbstractBuilder<TypeDefStructRemoved>() {
+            private TypeDefStructRemoved event = new TypeDefStructRemoved();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.TypeDefStructEvent#getEvent()
-			 */
-			@Override
-			protected TypeDefStructRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.AbstractTypeDefStructEvent#getEvent()
+             */
+            @Override
+            protected TypeDefStructRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

@@ -36,119 +36,118 @@ import org.eclipse.umlgen.reverse.c.internal.beans.FunctionParameter;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefFunctionDeclarationAdded extends TypeDefFunctionDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		DataType existingType = manager.findDataType(getCurrentName());
-		DataType myfonctionType = ModelUtil.findDataTypeRedefinitionInClassifier(matchingClassifier,
-				getCurrentName());
-		if (myfonctionType == null) {
-			if (matchingClassifier instanceof Class) {
-				myfonctionType = (DataType)((Class)matchingClassifier).createNestedClassifier(
-						getCurrentName(), UMLPackage.Literals.DATA_TYPE);
-			} else if (matchingClassifier instanceof Interface) {
-				myfonctionType = (DataType)((Interface)matchingClassifier).createNestedClassifier(
-						getCurrentName(), UMLPackage.Literals.DATA_TYPE);
-			}
-		}
+public class TypeDefFunctionDeclarationAdded extends AbstractTypeDefFunctionDeclarationEvent {
 
-		if (existingType != null && existingType != myfonctionType) {
-			ModelUtil.redefineType(existingType, myfonctionType);
-			existingType.destroy();
-		}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        DataType existingType = manager.findDataType(getCurrentName());
+        DataType myfonctionType = ModelUtil.findDataTypeRedefinitionInClassifier(matchingClassifier,
+                getCurrentName());
+        if (myfonctionType == null) {
+            if (matchingClassifier instanceof Class) {
+                myfonctionType = (DataType)((Class)matchingClassifier).createNestedClassifier(
+                        getCurrentName(), UMLPackage.Literals.DATA_TYPE);
+            } else if (matchingClassifier instanceof Interface) {
+                myfonctionType = (DataType)((Interface)matchingClassifier).createNestedClassifier(
+                        getCurrentName(), UMLPackage.Literals.DATA_TYPE);
+            }
+        }
 
-		EList<Type> typesList = new BasicEList<Type>();
-		EList<String> namesList = new BasicEList<String>();
-		initializeParameters(manager, matchingClassifier, namesList, typesList);
+        if (existingType != null && existingType != myfonctionType) {
+            ModelUtil.redefineType(existingType, myfonctionType);
+            existingType.destroy();
+        }
 
-		if (myfonctionType.getOperation(getCurrentName(), null, null) == null) {
-			Operation operation = myfonctionType.createOwnedOperation(getCurrentName(), namesList, typesList);
-			ModelUtil.setVisibility(operation, getTranslationUnit(), EventType.ADD);
+        EList<Type> typesList = new BasicEList<Type>();
+        EList<String> namesList = new BasicEList<String>();
+        initializeParameters(manager, matchingClassifier, namesList, typesList);
 
-			// Modify parameters
-			modifyParameters(operation, getParameters());
+        if (myfonctionType.getOperation(getCurrentName(), null, null) == null) {
+            Operation operation = myfonctionType.createOwnedOperation(getCurrentName(), namesList, typesList);
+            ModelUtil.setVisibility(operation, getTranslationUnit(), EventType.ADD);
 
-			// Process the return type
-			Type myType = manager.getDataType(getReturnType());
-			operation.createReturnResult(null, myType);
-		}
+            // Modify parameters
+            modifyParameters(operation, getParameters());
 
-		ModelUtil.setVisibility(myfonctionType, getTranslationUnit(), EventType.ADD);
-	}
+            // Process the return type
+            Type myType = manager.getDataType(getReturnType());
+            operation.createReturnResult(null, myType);
+        }
 
-	/**
-	 * Initializes the list or parameters.
-	 *
-	 * @param manager
-	 *            The current model manager
-	 * @param matchingClassifier
-	 *            The classifier in which the function is declarated
-	 * @param names
-	 *            The ordered list of parameter names
-	 * @param types
-	 *            The ordered list of UML parameter types
-	 */
-	private void initializeParameters(ModelManager manager, Classifier matchingClassifier,
-			EList<String> names, EList<Type> types) {
-		for (FunctionParameter aParameter : getParameters()) {
-			names.add(aParameter.getName());
-			Type realType = manager.getDataType(aParameter.getType());
-			aParameter.setUMLType(realType);
-			types.add(realType);
-		}
-	}
+        ModelUtil.setVisibility(myfonctionType, getTranslationUnit(), EventType.ADD);
+    }
 
-	/**
-	 * Modifies the list of parameters for a given operation.
-	 *
-	 * @param function
-	 *            The function behvior
-	 * @param names
-	 *            The list of parameter names
-	 * @param types
-	 *            The list of identifed (and known) types
-	 * @param directions
-	 *            The list of the direction of each parameter (in, in/out, out)
-	 */
-	private void modifyParameters(Operation operation, List<FunctionParameter> parameters) {
-		for (FunctionParameter aParam : parameters) {
-			Parameter parameter = operation.getOwnedParameter(aParam.getName(), aParam.getUMLType());
+    /**
+     * Initializes the list or parameters.
+     *
+     * @param manager
+     *            The current model manager
+     * @param matchingClassifier
+     *            The classifier in which the function is declarated
+     * @param names
+     *            The ordered list of parameter names
+     * @param types
+     *            The ordered list of UML parameter types
+     */
+    private void initializeParameters(ModelManager manager, Classifier matchingClassifier,
+            EList<String> names, EList<Type> types) {
+        for (FunctionParameter aParameter : getParameters()) {
+            names.add(aParameter.getName());
+            Type realType = manager.getDataType(aParameter.getType());
+            aParameter.setUMLType(realType);
+            types.add(realType);
+        }
+    }
 
-			if (!aParam.isConst() && aParam.isPointer()) {
-				parameter.setDirection(ParameterDirectionKind.INOUT_LITERAL);
-			} else {
-				parameter.setDirection(ParameterDirectionKind.IN_LITERAL);
-			}
-			if (aParam.getInitilizer() != null) {
-				OpaqueExpression defaultExpression = (OpaqueExpression)parameter.createDefaultValue(
-						"default", null, UMLPackage.Literals.OPAQUE_EXPRESSION);
-				defaultExpression.getLanguages().add(BundleConstants.C_LANGUAGE);
-				defaultExpression.getBodies().add(aParam.getInitilizer());
-			}
-		}
-	}
+    /**
+     * Modifies the list of parameters for a given operation.
+     *
+     * @param operation
+     *            The operation.
+     * @param parameters
+     *            The list of paramters to modify.
+     */
+    private void modifyParameters(Operation operation, List<FunctionParameter> parameters) {
+        for (FunctionParameter aParam : parameters) {
+            Parameter parameter = operation.getOwnedParameter(aParam.getName(), aParam.getUMLType());
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefFunctionDeclarationAdded> builder() {
-		return new Builder<TypeDefFunctionDeclarationAdded>() {
-			private TypeDefFunctionDeclarationAdded event = new TypeDefFunctionDeclarationAdded();
+            if (!aParam.isConst() && aParam.isPointer()) {
+                parameter.setDirection(ParameterDirectionKind.INOUT_LITERAL);
+            } else {
+                parameter.setDirection(ParameterDirectionKind.IN_LITERAL);
+            }
+            if (aParam.getInitializer() != null) {
+                OpaqueExpression defaultExpression = (OpaqueExpression)parameter.createDefaultValue(
+                        "default", null, UMLPackage.Literals.OPAQUE_EXPRESSION);
+                defaultExpression.getLanguages().add(BundleConstants.C_LANGUAGE);
+                defaultExpression.getBodies().add(aParam.getInitializer());
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.TypeDefFunctionDeclarationEvent#getEvent()
-			 */
-			@Override
-			protected TypeDefFunctionDeclarationAdded getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefFunctionDeclarationAdded> builder() {
+        return new AbstractBuilder<TypeDefFunctionDeclarationAdded>() {
+            private TypeDefFunctionDeclarationAdded event = new TypeDefFunctionDeclarationAdded();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.AbstractTypeDefFunctionDeclarationEvent#getEvent()
+             */
+            @Override
+            protected TypeDefFunctionDeclarationAdded getEvent() {
+                return event;
+            }
+        };
+    }
 }

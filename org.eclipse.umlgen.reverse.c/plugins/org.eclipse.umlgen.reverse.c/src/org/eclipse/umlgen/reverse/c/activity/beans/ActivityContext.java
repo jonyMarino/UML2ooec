@@ -17,34 +17,64 @@ import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.StructuredActivityNode;
 
+/**
+ * An activity context.
+ */
 public class ActivityContext {
-	private List<ActivityNode> nodes;
 
-	private List<ActivityEdge> edges;
+    /** The list of nodes. */
+    private List<ActivityNode> nodes;
 
-	public ActivityContext(Activity activity) {
-		nodes = activity.getNodes();
-		edges = activity.getEdges();
-	}
+    /** The list of edges. */
+    private List<ActivityEdge> edges;
 
-	public ActivityContext(StructuredActivityNode node) {
-		nodes = node.getNodes();
-		edges = node.getEdges();
-	}
+    /**
+     * Constructor.
+     *
+     * @param activity
+     *            The activity.
+     */
+    public ActivityContext(Activity activity) {
+        nodes = activity.getNodes();
+        edges = activity.getEdges();
+    }
 
-	public List<ActivityNode> getNodes() {
-		return nodes;
-	}
+    /**
+     * Constructor.
+     *
+     * @param node
+     *            The structured activity node.
+     */
+    public ActivityContext(StructuredActivityNode node) {
+        nodes = node.getNodes();
+        edges = node.getEdges();
+    }
 
-	public void addNode(ActivityNode node) {
-		getNodes().add(node);
-	}
+    public List<ActivityNode> getNodes() {
+        return nodes;
+    }
 
-	public List<ActivityEdge> getEdges() {
-		return edges;
-	}
+    /**
+     * Add a node to the list of nodes.
+     *
+     * @param node
+     *            The node to add.
+     */
+    public void addNode(ActivityNode node) {
+        getNodes().add(node);
+    }
 
-	public void addEdge(ActivityEdge edge) {
-		getEdges().add(edge);
-	}
+    public List<ActivityEdge> getEdges() {
+        return edges;
+    }
+
+    /**
+     * Add an edge to the list of edges.
+     *
+     * @param edge
+     *            The edge to add.
+     */
+    public void addEdge(ActivityEdge edge) {
+        getEdges().add(edge);
+    }
 }

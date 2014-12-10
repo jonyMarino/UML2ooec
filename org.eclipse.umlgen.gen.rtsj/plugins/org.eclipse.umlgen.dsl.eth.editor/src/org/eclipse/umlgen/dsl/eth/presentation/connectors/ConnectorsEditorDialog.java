@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -53,351 +53,342 @@ import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.uml2.uml.Connector;
 
 /**
- * Specific dialog to select the connectors to reference from the related
- * ethernet configuration.
- * 
+ * Specific dialog to select the connectors to reference from the related ethernet configuration.
+ *
  * @author cnotot
- * 
  */
 public class ConnectorsEditorDialog extends FeatureEditorDialog {
 
-	private IItemPropertyDescriptor propertyDescriptor;
+    /** The property descriptor. */
+    private IItemPropertyDescriptor propertyDescriptor;
 
-	public ConnectorsEditorDialog(Shell parent, ILabelProvider labelProvider,
-			Object object, EClassifier eClassifier, List<?> currentValues,
-			String displayName, List<?> choiceOfValues, boolean multiLine,
-			boolean sortChoices, boolean unique,
-			IItemPropertyDescriptor propertyDescriptor) {
-		super(parent, labelProvider, object, eClassifier, currentValues,
-				displayName, choiceOfValues, multiLine, sortChoices, unique);
-		this.propertyDescriptor = propertyDescriptor;
-	}
+    // CHECKSTYLE:OFF
 
-	@Override
-	protected Control createDialogArea(Composite parent) {
-		Composite contents = new Composite(parent, SWT.NONE);
-		{
-			GridLayout layout = new GridLayout();
-			layout.marginHeight = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
-			layout.marginWidth = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
-			layout.verticalSpacing = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
-			layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
-			contents.setLayout(layout);
-			contents.setLayoutData(new GridData(GridData.FILL_BOTH));
-			applyDialogFont(contents);
-		}
+    public ConnectorsEditorDialog(Shell parent, ILabelProvider labelProvider, Object object,
+            EClassifier eClassifier, List<?> currentValues, String displayName, List<?> choiceOfValues,
+            boolean multiLine, boolean sortChoices, boolean unique, IItemPropertyDescriptor propertyDescriptor) {
+        super(parent, labelProvider, object, eClassifier, currentValues, displayName, choiceOfValues,
+                multiLine, sortChoices, unique);
+        this.propertyDescriptor = propertyDescriptor;
+    }
 
-		GridLayout contentsGridLayout = (GridLayout) contents.getLayout();
-		contentsGridLayout.numColumns = 3;
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+     */
+    @Override
+    protected Control createDialogArea(Composite parent) {
+        Composite contents = new Composite(parent, SWT.NONE);
+        {
+            GridLayout layout = new GridLayout();
+            layout.marginHeight = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_MARGIN);
+            layout.marginWidth = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_MARGIN);
+            layout.verticalSpacing = convertVerticalDLUsToPixels(IDialogConstants.VERTICAL_SPACING);
+            layout.horizontalSpacing = convertHorizontalDLUsToPixels(IDialogConstants.HORIZONTAL_SPACING);
+            contents.setLayout(layout);
+            contents.setLayoutData(new GridData(GridData.FILL_BOTH));
+            applyDialogFont(contents);
+        }
 
-		GridData contentsGridData = (GridData) contents.getLayoutData();
-		contentsGridData.horizontalAlignment = SWT.FILL;
-		contentsGridData.verticalAlignment = SWT.FILL;
+        GridLayout contentsGridLayout = (GridLayout)contents.getLayout();
+        contentsGridLayout.numColumns = 3;
 
-		Text patternText = null;
+        GridData contentsGridData = (GridData)contents.getLayoutData();
+        contentsGridData.horizontalAlignment = SWT.FILL;
+        contentsGridData.verticalAlignment = SWT.FILL;
 
-		if (choiceOfValues != null) {
-			Group filterGroupComposite = new Group(contents, SWT.NONE);
-			filterGroupComposite.setText(EMFEditUIPlugin.INSTANCE
-					.getString("_UI_Choices_pattern_group"));
-			filterGroupComposite.setLayout(new GridLayout(2, false));
-			filterGroupComposite.setLayoutData(new GridData(SWT.FILL,
-					SWT.DEFAULT, true, false, 3, 1));
+        Text patternText = null;
 
-			Label label = new Label(filterGroupComposite, SWT.NONE);
-			label.setText(EMFEditUIPlugin.INSTANCE
-					.getString("_UI_Choices_pattern_label"));
+        if (choiceOfValues != null) {
+            Group filterGroupComposite = new Group(contents, SWT.NONE);
+            filterGroupComposite.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Choices_pattern_group"));
+            filterGroupComposite.setLayout(new GridLayout(2, false));
+            filterGroupComposite.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, true, false, 3, 1));
 
-			patternText = new Text(filterGroupComposite, SWT.BORDER);
-			patternText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		}
+            Label label = new Label(filterGroupComposite, SWT.NONE);
+            label.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Choices_pattern_label"));
 
-		Composite choiceComposite = new Composite(contents, SWT.NONE);
-		{
-			GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-			data.horizontalAlignment = SWT.END;
-			choiceComposite.setLayoutData(data);
+            patternText = new Text(filterGroupComposite, SWT.BORDER);
+            patternText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        }
 
-			GridLayout layout = new GridLayout();
-			data.horizontalAlignment = SWT.FILL;
-			layout.marginHeight = 0;
-			layout.marginWidth = 0;
-			layout.numColumns = 1;
-			choiceComposite.setLayout(layout);
+        Composite choiceComposite = new Composite(contents, SWT.NONE);
+        {
+            GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+            data.horizontalAlignment = SWT.END;
+            choiceComposite.setLayoutData(data);
 
-		}
+            GridLayout layout = new GridLayout();
+            data.horizontalAlignment = SWT.FILL;
+            layout.marginHeight = 0;
+            layout.marginWidth = 0;
+            layout.numColumns = 1;
+            choiceComposite.setLayout(layout);
 
-		Label choiceLabel = new Label(choiceComposite, SWT.NONE);
-		choiceLabel.setText(choiceOfValues == null ? EMFEditUIPlugin.INSTANCE
-				.getString("_UI_Value_label") : EMFEditUIPlugin.INSTANCE
-				.getString("_UI_Choices_label"));
-		GridData choiceLabelGridData = new GridData();
-		choiceLabelGridData.verticalAlignment = SWT.FILL;
-		choiceLabelGridData.horizontalAlignment = SWT.FILL;
-		choiceLabel.setLayoutData(choiceLabelGridData);
+        }
 
-		final Tree choiceTable = choiceOfValues == null ? null : new Tree(
-				choiceComposite, SWT.MULTI | SWT.BORDER);
-		if (choiceTable != null) {
-			GridData choiceTableGridData = new GridData();
-			choiceTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
-			choiceTableGridData.heightHint = Display.getCurrent().getBounds().height / 3;
-			choiceTableGridData.verticalAlignment = SWT.FILL;
-			choiceTableGridData.horizontalAlignment = SWT.FILL;
-			choiceTableGridData.grabExcessHorizontalSpace = true;
-			choiceTableGridData.grabExcessVerticalSpace = true;
-			choiceTable.setLayoutData(choiceTableGridData);
-		}
+        Label choiceLabel = new Label(choiceComposite, SWT.NONE);
+        choiceLabel.setText(choiceOfValues == null ? EMFEditUIPlugin.INSTANCE.getString("_UI_Value_label")
+                : EMFEditUIPlugin.INSTANCE.getString("_UI_Choices_label"));
+        GridData choiceLabelGridData = new GridData();
+        choiceLabelGridData.verticalAlignment = SWT.FILL;
+        choiceLabelGridData.horizontalAlignment = SWT.FILL;
+        choiceLabel.setLayoutData(choiceLabelGridData);
 
-		final TreeViewer choiceTreeViewer = choiceOfValues == null ? null
-				: new TreeViewer(choiceTable);
-		if (choiceOfValues != null) {
-			choiceTreeViewer
-					.setContentProvider(new ConnectorsChoiceAdapterFactoryContentProvider(
-							new TreeItemProviderAdapterFactory(), values
-									.getChildren()));
-			choiceTreeViewer
-					.setLabelProvider(new ConnectorsChoiceLabelProvider(
-							propertyDescriptor.getLabelProvider(object)));
-			final PatternFilter filter = new PatternFilter() {
-				@Override
-				protected boolean isParentMatch(Viewer viewer, Object element) {
-					return viewer instanceof AbstractTreeViewer
-							&& super.isParentMatch(viewer, element);
-				}
-			};
-			choiceTreeViewer.addFilter(filter);
-			choiceTreeViewer.setComparator(new ViewerComparator());
-			assert patternText != null;
-			patternText.addModifyListener(new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
-					filter.setPattern(((Text) e.widget).getText());
-					choiceTreeViewer.refresh();
-				}
-			});
-			choiceTreeViewer.setInput(new ItemProvider(choiceOfValues));
+        final Tree choiceTable = choiceOfValues == null ? null : new Tree(choiceComposite, SWT.MULTI
+                | SWT.BORDER);
+        if (choiceTable != null) {
+            GridData choiceTableGridData = new GridData();
+            choiceTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
+            choiceTableGridData.heightHint = Display.getCurrent().getBounds().height / 3;
+            choiceTableGridData.verticalAlignment = SWT.FILL;
+            choiceTableGridData.horizontalAlignment = SWT.FILL;
+            choiceTableGridData.grabExcessHorizontalSpace = true;
+            choiceTableGridData.grabExcessVerticalSpace = true;
+            choiceTable.setLayoutData(choiceTableGridData);
+        }
 
-		}
+        final TreeViewer choiceTreeViewer = choiceOfValues == null ? null : new TreeViewer(choiceTable);
+        if (choiceOfValues != null) {
+            choiceTreeViewer.setContentProvider(new ConnectorsChoiceAdapterFactoryContentProvider(
+                    new TreeItemProviderAdapterFactory(), values.getChildren()));
+            choiceTreeViewer.setLabelProvider(new ConnectorsChoiceLabelProvider(propertyDescriptor
+                    .getLabelProvider(object)));
+            final PatternFilter filter = new PatternFilter() {
+                @Override
+                protected boolean isParentMatch(Viewer viewer, Object element) {
+                    return viewer instanceof AbstractTreeViewer && super.isParentMatch(viewer, element);
+                }
+            };
+            choiceTreeViewer.addFilter(filter);
+            choiceTreeViewer.setComparator(new ViewerComparator());
+            assert patternText != null;
+            patternText.addModifyListener(new ModifyListener() {
+                public void modifyText(ModifyEvent e) {
+                    filter.setPattern(((Text)e.widget).getText());
+                    choiceTreeViewer.refresh();
+                }
+            });
+            choiceTreeViewer.setInput(new ItemProvider(choiceOfValues));
 
-		// We use multi even for a single line because we want to respond to the
-		// enter key.
-		//
-		int style = multiLine ? SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
-				| SWT.BORDER : SWT.MULTI | SWT.BORDER;
-		final Text choiceText = choiceOfValues == null ? new Text(
-				choiceComposite, style) : null;
-		if (choiceText != null) {
-			GridData choiceTextGridData = new GridData();
-			choiceTextGridData.widthHint = Display.getCurrent().getBounds().width / 5;
-			choiceTextGridData.verticalAlignment = SWT.BEGINNING;
-			choiceTextGridData.horizontalAlignment = SWT.FILL;
-			choiceTextGridData.grabExcessHorizontalSpace = true;
-			if (multiLine) {
-				choiceTextGridData.verticalAlignment = SWT.FILL;
-				choiceTextGridData.grabExcessVerticalSpace = true;
-			}
-			choiceText.setLayoutData(choiceTextGridData);
-		}
+        }
 
-		Composite controlButtons = new Composite(contents, SWT.NONE);
-		GridData controlButtonsGridData = new GridData();
-		controlButtonsGridData.verticalAlignment = SWT.FILL;
-		controlButtonsGridData.horizontalAlignment = SWT.FILL;
-		controlButtons.setLayoutData(controlButtonsGridData);
+        // We use multi even for a single line because we want to respond to the
+        // enter key.
+        //
+        int style = multiLine ? SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER : SWT.MULTI | SWT.BORDER;
+        final Text choiceText = choiceOfValues == null ? new Text(choiceComposite, style) : null;
+        if (choiceText != null) {
+            GridData choiceTextGridData = new GridData();
+            choiceTextGridData.widthHint = Display.getCurrent().getBounds().width / 5;
+            choiceTextGridData.verticalAlignment = SWT.BEGINNING;
+            choiceTextGridData.horizontalAlignment = SWT.FILL;
+            choiceTextGridData.grabExcessHorizontalSpace = true;
+            if (multiLine) {
+                choiceTextGridData.verticalAlignment = SWT.FILL;
+                choiceTextGridData.grabExcessVerticalSpace = true;
+            }
+            choiceText.setLayoutData(choiceTextGridData);
+        }
 
-		GridLayout controlsButtonGridLayout = new GridLayout();
-		controlButtons.setLayout(controlsButtonGridLayout);
+        Composite controlButtons = new Composite(contents, SWT.NONE);
+        GridData controlButtonsGridData = new GridData();
+        controlButtonsGridData.verticalAlignment = SWT.FILL;
+        controlButtonsGridData.horizontalAlignment = SWT.FILL;
+        controlButtons.setLayoutData(controlButtonsGridData);
 
-		new Label(controlButtons, SWT.NONE);
+        GridLayout controlsButtonGridLayout = new GridLayout();
+        controlButtons.setLayout(controlsButtonGridLayout);
 
-		final Button addButton = new Button(controlButtons, SWT.PUSH);
-		addButton.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Add_label"));
-		GridData addButtonGridData = new GridData();
-		addButtonGridData.verticalAlignment = SWT.FILL;
-		addButtonGridData.horizontalAlignment = SWT.FILL;
-		addButton.setLayoutData(addButtonGridData);
+        new Label(controlButtons, SWT.NONE);
 
-		final Button removeButton = new Button(controlButtons, SWT.PUSH);
-		removeButton.setText(EMFEditUIPlugin.INSTANCE
-				.getString("_UI_Remove_label"));
-		GridData removeButtonGridData = new GridData();
-		removeButtonGridData.verticalAlignment = SWT.FILL;
-		removeButtonGridData.horizontalAlignment = SWT.FILL;
-		removeButton.setLayoutData(removeButtonGridData);
+        final Button addButton = new Button(controlButtons, SWT.PUSH);
+        addButton.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Add_label"));
+        GridData addButtonGridData = new GridData();
+        addButtonGridData.verticalAlignment = SWT.FILL;
+        addButtonGridData.horizontalAlignment = SWT.FILL;
+        addButton.setLayoutData(addButtonGridData);
 
-		Label spaceLabel = new Label(controlButtons, SWT.NONE);
-		GridData spaceLabelGridData = new GridData();
-		spaceLabelGridData.verticalSpan = 2;
-		spaceLabel.setLayoutData(spaceLabelGridData);
+        final Button removeButton = new Button(controlButtons, SWT.PUSH);
+        removeButton.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Remove_label"));
+        GridData removeButtonGridData = new GridData();
+        removeButtonGridData.verticalAlignment = SWT.FILL;
+        removeButtonGridData.horizontalAlignment = SWT.FILL;
+        removeButton.setLayoutData(removeButtonGridData);
 
-		Composite featureComposite = new Composite(contents, SWT.NONE);
-		{
-			GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-			data.horizontalAlignment = SWT.END;
-			featureComposite.setLayoutData(data);
+        Label spaceLabel = new Label(controlButtons, SWT.NONE);
+        GridData spaceLabelGridData = new GridData();
+        spaceLabelGridData.verticalSpan = 2;
+        spaceLabel.setLayoutData(spaceLabelGridData);
 
-			GridLayout layout = new GridLayout();
-			data.horizontalAlignment = SWT.FILL;
-			layout.marginHeight = 0;
-			layout.marginWidth = 0;
-			layout.numColumns = 1;
-			featureComposite.setLayout(layout);
-		}
+        Composite featureComposite = new Composite(contents, SWT.NONE);
+        {
+            GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+            data.horizontalAlignment = SWT.END;
+            featureComposite.setLayoutData(data);
 
-		Label featureLabel = new Label(featureComposite, SWT.NONE);
-		featureLabel.setText(EMFEditUIPlugin.INSTANCE
-				.getString("_UI_Feature_label"));
-		GridData featureLabelGridData = new GridData();
-		featureLabelGridData.horizontalSpan = 2;
-		featureLabelGridData.horizontalAlignment = SWT.FILL;
-		featureLabelGridData.verticalAlignment = SWT.FILL;
-		featureLabel.setLayoutData(featureLabelGridData);
+            GridLayout layout = new GridLayout();
+            data.horizontalAlignment = SWT.FILL;
+            layout.marginHeight = 0;
+            layout.marginWidth = 0;
+            layout.numColumns = 1;
+            featureComposite.setLayout(layout);
+        }
 
-		final Tree featureTable = new Tree(featureComposite, SWT.MULTI
-				| SWT.BORDER);
-		GridData featureTableGridData = new GridData();
-		featureTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
-		featureTableGridData.heightHint = Display.getCurrent().getBounds().height / 3;
-		featureTableGridData.verticalAlignment = SWT.FILL;
-		featureTableGridData.horizontalAlignment = SWT.FILL;
-		featureTableGridData.grabExcessHorizontalSpace = true;
-		featureTableGridData.grabExcessVerticalSpace = true;
-		featureTable.setLayoutData(featureTableGridData);
+        Label featureLabel = new Label(featureComposite, SWT.NONE);
+        featureLabel.setText(EMFEditUIPlugin.INSTANCE.getString("_UI_Feature_label"));
+        GridData featureLabelGridData = new GridData();
+        featureLabelGridData.horizontalSpan = 2;
+        featureLabelGridData.horizontalAlignment = SWT.FILL;
+        featureLabelGridData.verticalAlignment = SWT.FILL;
+        featureLabel.setLayoutData(featureLabelGridData);
 
-		final TreeViewer featureTableViewer = new TreeViewer(featureTable);
-		featureTableViewer.setContentProvider(contentProvider);
-		featureTableViewer.setLabelProvider(labelProvider);
-		featureTableViewer.setComparator(new ViewerComparator());
-		featureTableViewer.setInput(values);
-		if (!values.getChildren().isEmpty()) {
-			featureTableViewer.setSelection(new StructuredSelection(values
-					.getChildren().get(0)));
-		}
+        final Tree featureTable = new Tree(featureComposite, SWT.MULTI | SWT.BORDER);
+        GridData featureTableGridData = new GridData();
+        featureTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
+        featureTableGridData.heightHint = Display.getCurrent().getBounds().height / 3;
+        featureTableGridData.verticalAlignment = SWT.FILL;
+        featureTableGridData.horizontalAlignment = SWT.FILL;
+        featureTableGridData.grabExcessHorizontalSpace = true;
+        featureTableGridData.grabExcessVerticalSpace = true;
+        featureTable.setLayoutData(featureTableGridData);
 
-		if (choiceTreeViewer != null) {
-			choiceTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
-				public void doubleClick(DoubleClickEvent event) {
-					if (addButton.isEnabled()) {
-						addButton.notifyListeners(SWT.Selection, null);
-					}
-				}
-			});
+        final TreeViewer featureTableViewer = new TreeViewer(featureTable);
+        featureTableViewer.setContentProvider(contentProvider);
+        featureTableViewer.setLabelProvider(labelProvider);
+        featureTableViewer.setComparator(new ViewerComparator());
+        featureTableViewer.setInput(values);
+        if (!values.getChildren().isEmpty()) {
+            featureTableViewer.setSelection(new StructuredSelection(values.getChildren().get(0)));
+        }
 
-			featureTableViewer
-					.addDoubleClickListener(new IDoubleClickListener() {
-						public void doubleClick(DoubleClickEvent event) {
-							if (removeButton.isEnabled()) {
-								removeButton.notifyListeners(SWT.Selection,
-										null);
-							}
-						}
-					});
-		}
+        if (choiceTreeViewer != null) {
+            choiceTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
+                public void doubleClick(DoubleClickEvent event) {
+                    if (addButton.isEnabled()) {
+                        addButton.notifyListeners(SWT.Selection, null);
+                    }
+                }
+            });
 
-		if (choiceText != null) {
-			choiceText.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent event) {
-					if (!multiLine
-							&& (event.character == '\r' || event.character == '\n')) {
-						try {
-							Object value = EcoreUtil.createFromString(
-									(EDataType) eClassifier,
-									choiceText.getText());
-							values.getChildren().add(value);
-							choiceText.setText("");
-							featureTableViewer
-									.setSelection(new StructuredSelection(value));
-							event.doit = false;
-						} catch (RuntimeException exception) {
-							// Ignore
-						}
-					} else if (event.character == '\33') {
-						choiceText.setText("");
-						event.doit = false;
-					}
-				}
-			});
-		}
+            featureTableViewer.addDoubleClickListener(new IDoubleClickListener() {
+                public void doubleClick(DoubleClickEvent event) {
+                    if (removeButton.isEnabled()) {
+                        removeButton.notifyListeners(SWT.Selection, null);
+                    }
+                }
+            });
+        }
 
-		addButton.addSelectionListener(new SelectionAdapter() {
-			// event is null when choiceTableViewer is double clicked
-			@Override
-			public void widgetSelected(SelectionEvent event) {
-				if (choiceTreeViewer != null) {
-					IStructuredSelection selection = (IStructuredSelection) choiceTreeViewer
-							.getSelection();
-					for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-						Object value = i.next();
-						if (isCandidateValue(value)) {
-							values.getChildren().add(value);
-						}
-					}
-					featureTableViewer.setSelection(selection);
-				} else if (choiceText != null) {
-					try {
-						Object value = EcoreUtil.createFromString(
-								(EDataType) eClassifier, choiceText.getText());
-						if (isCandidateValue(value)) {
-							values.getChildren().add(value);
-							choiceText.setText("");
-						}
-						featureTableViewer
-								.setSelection(new StructuredSelection(value));
-					} catch (RuntimeException exception) {
-						// Ignore
-					}
-				}
-				choiceTreeViewer.refresh();
-			}
-		});
+        if (choiceText != null) {
+            choiceText.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent event) {
+                    if (!multiLine && (event.character == '\r' || event.character == '\n')) {
+                        try {
+                            Object value = EcoreUtil.createFromString((EDataType)eClassifier, choiceText
+                                    .getText());
+                            values.getChildren().add(value);
+                            choiceText.setText("");
+                            featureTableViewer.setSelection(new StructuredSelection(value));
+                            event.doit = false;
+                        } catch (RuntimeException exception) {
+                            // Ignore
+                        }
+                    } else if (event.character == '\33') {
+                        choiceText.setText("");
+                        event.doit = false;
+                    }
+                }
+            });
+        }
 
-		removeButton.addSelectionListener(new SelectionAdapter() {
-			// event is null when featureTableViewer is double clicked
-			@Override
-			public void widgetSelected(SelectionEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) featureTableViewer
-						.getSelection();
-				Object firstValue = null;
-				for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-					Object value = i.next();
-					if (firstValue == null) {
-						firstValue = value;
-					}
-					values.getChildren().remove(value);
-				}
+        addButton.addSelectionListener(new SelectionAdapter() {
+            // event is null when choiceTableViewer is double clicked
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                if (choiceTreeViewer != null) {
+                    IStructuredSelection selection = (IStructuredSelection)choiceTreeViewer.getSelection();
+                    for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+                        Object value = i.next();
+                        if (isCandidateValue(value)) {
+                            values.getChildren().add(value);
+                        }
+                    }
+                    featureTableViewer.setSelection(selection);
+                } else if (choiceText != null) {
+                    try {
+                        Object value = EcoreUtil.createFromString((EDataType)eClassifier, choiceText
+                                .getText());
+                        if (isCandidateValue(value)) {
+                            values.getChildren().add(value);
+                            choiceText.setText("");
+                        }
+                        featureTableViewer.setSelection(new StructuredSelection(value));
+                    } catch (RuntimeException exception) {
+                        // Ignore
+                    }
+                }
+                choiceTreeViewer.refresh();
+            }
+        });
 
-				if (!values.getChildren().isEmpty()) {
-					featureTableViewer.setSelection(new StructuredSelection(
-							values.getChildren().get(0)));
-				}
+        removeButton.addSelectionListener(new SelectionAdapter() {
+            // event is null when featureTableViewer is double clicked
+            @Override
+            public void widgetSelected(SelectionEvent event) {
+                IStructuredSelection selection = (IStructuredSelection)featureTableViewer.getSelection();
+                Object firstValue = null;
+                for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+                    Object value = i.next();
+                    if (firstValue == null) {
+                        firstValue = value;
+                    }
+                    values.getChildren().remove(value);
+                }
 
-				if (choiceTreeViewer != null) {
-					choiceTreeViewer.setSelection(selection);
-				} else if (choiceText != null) {
-					if (firstValue != null) {
-						String value = EcoreUtil.convertToString(
-								(EDataType) eClassifier, firstValue);
-						choiceText.setText(value);
-					}
-				}
-				choiceTreeViewer.refresh();
-			}
-		});
+                if (!values.getChildren().isEmpty()) {
+                    featureTableViewer.setSelection(new StructuredSelection(values.getChildren().get(0)));
+                }
 
-		return contents;
-	}
+                if (choiceTreeViewer != null) {
+                    choiceTreeViewer.setSelection(selection);
+                } else if (choiceText != null) {
+                    if (firstValue != null) {
+                        String value = EcoreUtil.convertToString((EDataType)eClassifier, firstValue);
+                        choiceText.setText(value);
+                    }
+                }
+                choiceTreeViewer.refresh();
+            }
+        });
 
-	private boolean isCandidateValue(Object value) {
-		return (!unique || !values.getChildren().contains(value))
-				&& value instanceof Connector;
-	}
-	
-	@Override
-	protected void okPressed() {
-		super.okPressed();
-		
-	}
-	
+        return contents;
+    }
+
+    // CHECKSTYLE:ON
+
+    /**
+     * This checks if the given object is a good candidate to be displayed.
+     *
+     * @param value
+     *            The object.
+     * @return Trus if yes.
+     */
+    private boolean isCandidateValue(Object value) {
+        return (!unique || !values.getChildren().contains(value)) && value instanceof Connector;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog#okPressed()
+     */
+    @Override
+    protected void okPressed() {
+        super.okPressed();
+
+    }
 
 }

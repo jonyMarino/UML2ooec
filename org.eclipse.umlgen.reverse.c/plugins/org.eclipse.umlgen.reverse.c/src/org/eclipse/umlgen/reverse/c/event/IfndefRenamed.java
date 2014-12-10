@@ -17,30 +17,33 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  *
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class IfndefRenamed extends IfndefEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-	}
+public class IfndefRenamed extends AbstractIfndefEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<IfndefRenamed> builder() {
-		return new Builder<IfndefRenamed>() {
-			private IfndefRenamed event = new IfndefRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.IfndefBuilder#getEvent()
-			 */
-			@Override
-			protected IfndefRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<IfndefRenamed> builder() {
+        return new AbstractBuilder<IfndefRenamed>() {
+            private IfndefRenamed event = new IfndefRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.IfndefBuilder#getEvent()
+             */
+            @Override
+            protected IfndefRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

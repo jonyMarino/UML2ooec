@@ -25,117 +25,117 @@ import org.junit.Test;
 
 public class TestTypeDef2 extends AbstractTest {
 
-	@Test
-	public void testMultipleSimpleInC() throws CoreException, InterruptedException {
+    @Test
+    public void testMultipleSimpleInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefMultipleSimpleC", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefMultipleSimpleC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("simple.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("simple.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/multiple/simple.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/multiple/simple.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleSimpleC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleSimpleC.uml");
+    }
 
-	@Test
-	public void testMultipleSimpleInH() throws CoreException, InterruptedException {
+    @Test
+    public void testMultipleSimpleInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefMultipleSimpleH", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefMultipleSimpleH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("simple.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("simple.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/multiple/simple.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/multiple/simple.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleSimpleH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleSimpleH.uml");
+    }
 
-	@Test
-	public void testMultipleArrayInC() throws CoreException, InterruptedException {
+    @Test
+    public void testMultipleArrayInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefMultipleArrayC", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefMultipleArrayC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("array.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("array.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/multiple/array.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/multiple/array.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleArrayC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleArrayC.uml");
+    }
 
-	@Test
-	public void testMultipleArrayInH() throws CoreException, InterruptedException {
+    @Test
+    public void testMultipleArrayInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefMultipleArrayH", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefMultipleArrayH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("array.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("array.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/multiple/array.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/multiple/array.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleArrayH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultipleArrayH.uml");
+    }
 
-	@Test
-	public void testMultiplePointerInC() throws CoreException, InterruptedException {
+    @Test
+    public void testMultiplePointerInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefMultiplePointerC", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefMultiplePointerC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("pointer.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("pointer.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/multiple/pointer.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/multiple/pointer.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultiplePointerC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultiplePointerC.uml");
+    }
 
-	@Test
-	public void testMultiplePointerInH() throws CoreException, InterruptedException {
+    @Test
+    public void testMultiplePointerInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefMultiplePointerH", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefMultiplePointerH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("pointer.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("pointer.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/multiple/pointer.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/multiple/pointer.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultiplePointerH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/multiple/TypeDefMultiplePointerH.uml");
+    }
 }

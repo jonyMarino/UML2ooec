@@ -15,9 +15,9 @@ import org.junit.Test;
 
 public class TestSpecialChars extends AbstractTest {
 
-	@Test
-	public void testSpecialCharsAmpersand() {
-		testUmlActivityFile("specialChars/specialCharsAmpersand.uml");
-	}
+    @Test
+    public void testSpecialCharsAmpersand() {
+        testUmlActivityFile("specialChars/specialCharsAmpersand.uml");
+    }
 
 }

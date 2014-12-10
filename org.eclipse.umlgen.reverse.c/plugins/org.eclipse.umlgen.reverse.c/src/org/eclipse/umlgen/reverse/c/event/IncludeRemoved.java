@@ -27,48 +27,51 @@ import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class IncludeRemoved extends IncludeEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier unitClass = ModelUtil.findClassifierInPackage(manager.getSourcePackage(), getUnitName());
-		String usageName = new Path(getCurrentName()).removeFileExtension().toString();
-		Dependency usage = unitClass.getClientDependency(usageName);
-		if (usage != null) {
-			if (ModelUtil.isRemovable(usage)) {
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(usage, manager);
-				}
-				usage.destroy();
-			} else {
-				// decrease the visibility
-				ModelUtil.setVisibility(usage, getTranslationUnit(), EventType.REMOVE);
-			}
-			if (ModelUtil.isNotReferencedAnymore(usage.getSupplier(usage.getName()))) {
-				usage.getSupplier(usage.getName()).destroy();
-			}
-		}
-	}
+public class IncludeRemoved extends AbstractIncludeEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<IncludeRemoved> builder() {
-		return new Builder<IncludeRemoved>() {
-			private IncludeRemoved event = new IncludeRemoved();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier unitClass = ModelUtil.findClassifierInPackage(manager.getSourcePackage(), getUnitName());
+        String usageName = new Path(getCurrentName()).removeFileExtension().toString();
+        Dependency usage = unitClass.getClientDependency(usageName);
+        if (usage != null) {
+            if (ModelUtil.isRemovable(usage)) {
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(usage, manager);
+                }
+                usage.destroy();
+            } else {
+                // decrease the visibility
+                ModelUtil.setVisibility(usage, getTranslationUnit(), EventType.REMOVE);
+            }
+            if (ModelUtil.isNotReferencedAnymore(usage.getSupplier(usage.getName()))) {
+                usage.getSupplier(usage.getName()).destroy();
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.IncludeBuilder#getEvent()
-			 */
-			@Override
-			protected IncludeRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<IncludeRemoved> builder() {
+        return new AbstractBuilder<IncludeRemoved>() {
+            private IncludeRemoved event = new IncludeRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.IncludeBuilder#getEvent()
+             */
+            @Override
+            protected IncludeRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

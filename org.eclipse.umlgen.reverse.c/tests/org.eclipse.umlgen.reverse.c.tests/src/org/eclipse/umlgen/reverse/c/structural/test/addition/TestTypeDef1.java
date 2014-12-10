@@ -25,80 +25,80 @@ import org.junit.Test;
 
 public class TestTypeDef1 extends AbstractTest {
 
-	@Test
-	public void testSimpleAliasInC() throws CoreException, InterruptedException {
+    @Test
+    public void testSimpleAliasInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testaliasBuiltinTypeC", new NullProgressMonitor());
+        IProject project = createIProject("testaliasBuiltinTypeC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("aliasBuiltin.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("aliasBuiltin.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/alias/aliasBuiltinType.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/alias/aliasBuiltinType.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/alias/aliasBuiltinTypeC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/alias/aliasBuiltinTypeC.uml");
+    }
 
-	@Test
-	public void testSimpleAliasInH() throws CoreException, InterruptedException {
+    @Test
+    public void testSimpleAliasInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testaliasBuiltinTypeH", new NullProgressMonitor());
+        IProject project = createIProject("testaliasBuiltinTypeH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("aliasBuiltin.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("aliasBuiltin.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/alias/aliasBuiltinType.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/alias/aliasBuiltinType.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/alias/aliasBuiltinTypeH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/alias/aliasBuiltinTypeH.uml");
+    }
 
-	@Test
-	public void testPointerInC() throws CoreException, InterruptedException {
+    @Test
+    public void testPointerInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefPointerC", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefPointerC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("pointer.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("pointer.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/pointer/pointer.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/pointer/pointer.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/pointer/TypeDefPointerC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/pointer/TypeDefPointerC.uml");
+    }
 
-	@Test
-	public void testPointerInH() throws CoreException, InterruptedException {
+    @Test
+    public void testPointerInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefPointerH", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefPointerH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("pointer.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("pointer.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/pointer/pointer.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/pointer/pointer.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/pointer/TypeDefPointerH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/pointer/TypeDefPointerH.uml");
+    }
 
 }

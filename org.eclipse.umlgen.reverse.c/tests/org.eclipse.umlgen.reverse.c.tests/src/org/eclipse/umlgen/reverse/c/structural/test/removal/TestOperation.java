@@ -24,46 +24,46 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestOperation extends AbstractTest {
-	@Test
-	public void testOperationInC() throws CoreException, InterruptedException {
+    @Test
+    public void testOperationInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testRemovalOfOperationC", new NullProgressMonitor());
+        IProject project = createIProject("testRemovalOfOperationC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("operation.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("operation.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/operation.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/operation.c"));
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/removal/operation/RemovalOfOperationC.uml");
-	}
+        testModel(project, "/resource/structural/removal/operation/RemovalOfOperationC.uml");
+    }
 
-	@Test
-	public void testOperationInH() throws CoreException, InterruptedException {
+    @Test
+    public void testOperationInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testRemovalOfOperationH", new NullProgressMonitor());
+        IProject project = createIProject("testRemovalOfOperationH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("operation.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("operation.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/operation.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/operation.h"));
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/removal/operation/RemovalOfOperationH.uml");
-	}
+        testModel(project, "/resource/structural/removal/operation/RemovalOfOperationH.uml");
+    }
 
 }

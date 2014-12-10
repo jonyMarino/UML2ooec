@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
  *******************************************************************************/
@@ -14,85 +14,77 @@ import org.eclipse.uml2.uml.Type;
 
 /**
  * Represents a function parameters. This beans is built from information provided by the CDT.<br>
- * 
+ *
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  */
-public final class FunctionParameter
-{
+public final class FunctionParameter {
+    /** The name. */
     private String name;
 
+    /** The type. */
     private String type;
 
-    private String initilizer;
+    /** The initializer. */
+    private String initializer;
 
+    /** The flag const. */
     private boolean isConst;
 
+    /** The flag read only. */
     private boolean isReadOnly;
-    
+
+    /** The UML type. */
     private Type umlType;
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getType()
-    {
+    public String getType() {
         return type;
     }
 
-    public void setType(String type)
-    {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public String getInitilizer()
-    {
-        return initilizer;
+    public String getInitializer() {
+        return initializer;
     }
 
-    public void setInitilizer(String initilizer)
-    {
-        this.initilizer = initilizer;
+    public void setInitializer(String initilizer) {
+        this.initializer = initilizer;
     }
 
-    public boolean isConst()
-    {
+    public boolean isConst() {
         return isConst;
     }
 
-    public void setConst(boolean isConst)
-    {
-        this.isConst = isConst;
+    public void setConst(boolean pIsConst) {
+        this.isConst = pIsConst;
     }
 
-    public boolean isReadOnly()
-    {
+    public boolean isReadOnly() {
         return isReadOnly;
     }
 
-    public void setReadOnly(boolean isReadOnly)
-    {
-        this.isReadOnly = isReadOnly;
+    public void setReadOnly(boolean pIsReadOnly) {
+        this.isReadOnly = pIsReadOnly;
     }
 
-    public Type getUMLType()
-    {
+    public Type getUMLType() {
         return umlType;
     }
 
-    public void setUMLType(Type umlType)
-    {
-        this.umlType = umlType;
+    public void setUMLType(Type pUmlType) {
+        this.umlType = pUmlType;
     }
-    
-    public boolean isPointer()
-    {
+
+    public boolean isPointer() {
         return getType().endsWith("*");
     }
 

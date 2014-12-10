@@ -40,92 +40,165 @@ import org.eclipse.umlgen.c.common.interactions.extension.IDiagramSynchronizer;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.gen.c.files.Generate;
 
+/**
+ * This generates C code from elements of a UML model.
+ */
 public class GenerateCCodeFromUML extends AbstractHandler {
 
-	private ModelManager manager;
+    /** A model manager. */
+    private ModelManager manager;
 
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		try {
-			IStructuredSelection selection = (IStructuredSelection)HandlerUtil
-					.getCurrentSelectionChecked(event);
-			EObject selectedObject = (EObject)selection.getFirstElement();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+     */
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        try {
+            IStructuredSelection selection = (IStructuredSelection)HandlerUtil
+                    .getCurrentSelectionChecked(event);
+            EObject selectedObject = (EObject)selection.getFirstElement();
 
-			IResource model = ResourcesPlugin.getWorkspace().getRoot().findMember(
-					selectedObject.eResource().getURI().toPlatformString(true));
-			manager = new ModelManager(model);
+            IResource model = ResourcesPlugin.getWorkspace().getRoot().findMember(
+                    selectedObject.eResource().getURI().toPlatformString(true));
+            manager = new ModelManager(model);
 
-			EClass eClass = selectedObject.eClass();
-			if (eClass == UMLPackage.Literals.ACTIVITY) {
-				caseActivity((Activity)selectedObject);
-			} else if (eClass == UMLPackage.Literals.OPERATION) {
-				caseOperation((Operation)selectedObject);
-			} else if (eClass == UMLPackage.Literals.CLASS) {
-				caseClass((Class)selectedObject);
-			} else if (eClass == UMLPackage.Literals.INTERFACE) {
-				caseClass((Interface)selectedObject);
-			} else if (eClass == UMLPackage.Literals.PACKAGE) {
-				casePackage((Package)selectedObject);
-			} else if (eClass == UMLPackage.Literals.OPAQUE_BEHAVIOR) {
-				caseOpaqueBehavior((OpaqueBehavior)selectedObject);
-			} else if (SynchronizersManager.getSynchronizer() instanceof IDiagramSynchronizer
-					&& eClass == ((IDiagramSynchronizer)SynchronizersManager.getSynchronizer())
-							.getRepresentationKind()) {
-				caseDiagram(selectedObject);
-			} else {
-				throw new ExecutionException("Bad object's class");
-			}
-		} catch (ExecutionException e) {
-			throw e;
-		} finally {
-			manager.dispose();
-			manager = null;
-		}
+            EClass eClass = selectedObject.eClass();
+            if (eClass == UMLPackage.Literals.ACTIVITY) {
+                caseActivity((Activity)selectedObject);
+            } else if (eClass == UMLPackage.Literals.OPERATION) {
+                caseOperation((Operation)selectedObject);
+            } else if (eClass == UMLPackage.Literals.CLASS) {
+                caseClass((Class)selectedObject);
+            } else if (eClass == UMLPackage.Literals.INTERFACE) {
+                caseClass((Interface)selectedObject);
+            } else if (eClass == UMLPackage.Literals.PACKAGE) {
+                casePackage((Package)selectedObject);
+            } else if (eClass == UMLPackage.Literals.OPAQUE_BEHAVIOR) {
+                caseOpaqueBehavior((OpaqueBehavior)selectedObject);
+            } else if (SynchronizersManager.getSynchronizer() instanceof IDiagramSynchronizer
+                    && eClass == ((IDiagramSynchronizer)SynchronizersManager.getSynchronizer())
+                            .getRepresentationKind()) {
+                caseDiagram(selectedObject);
+            } else {
+                throw new ExecutionException("Bad object's class");
+            }
+        } catch (ExecutionException e) {
+            throw e;
+        } finally {
+            manager.dispose();
+            manager = null;
+        }
 
-		return null; // *MUST* be null (cf.
-		// AbstractHandler.execute(ExecutionEvent))
-	}
+        return null; // *MUST* be null (cf.
+        // AbstractHandler.execute(ExecutionEvent))
+    }
 
-	private void caseDiagram(EObject selectedObject) throws ExecutionException {
-		doGenerate(manager.getSourcePackage());
-	}
+    /**
+     * This generates from a given UML diagram.
+     *
+     * @param selectedObject
+     *            The UML diagram.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void caseDiagram(EObject selectedObject) throws ExecutionException {
+        doGenerate(manager.getSourcePackage());
+    }
 
-	private void caseOpaqueBehavior(OpaqueBehavior selectedObject) throws ExecutionException {
-		caseClass((Class)selectedObject.eContainer());
-	}
+    /**
+     * This generates from a given UML opaque behavior.
+     *
+     * @param selectedObject
+     *            The UML opaque behavior.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void caseOpaqueBehavior(OpaqueBehavior selectedObject) throws ExecutionException {
+        caseClass((Class)selectedObject.eContainer());
+    }
 
-	private void casePackage(Package selectedObject) throws ExecutionException {
-		doGenerate(selectedObject);
-	}
+    /**
+     * This generates from a given UML package.
+     *
+     * @param selectedObject
+     *            The UML package.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void casePackage(Package selectedObject) throws ExecutionException {
+        doGenerate(selectedObject);
+    }
 
-	private void doGenerate(EObject eObject) throws ExecutionException {
-		try {
-			Generate gen = new Generate(eObject, ResourcesPlugin.getWorkspace().getRoot().getLocation()
-					.toFile(), Collections.emptyList());
-			gen.doGenerate(new BasicMonitor());
-		} catch (IOException e) {
-			throw new ExecutionException(e.getMessage(), e);
-		}
-		try {
-			manager.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
-		} catch (CoreException e) {
-			// it's ok to silently give up this exception
-		}
-	}
+    /**
+     * This generates from the given model object.
+     * 
+     * @param eObject
+     *            The model object.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void doGenerate(EObject eObject) throws ExecutionException {
+        try {
+            Generate gen = new Generate(eObject, ResourcesPlugin.getWorkspace().getRoot().getLocation()
+                    .toFile(), Collections.emptyList());
+            gen.doGenerate(new BasicMonitor());
+        } catch (IOException e) {
+            throw new ExecutionException(e.getMessage(), e);
+        }
+        try {
+            manager.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+        } catch (CoreException e) {
+            // it's ok to silently give up this exception
+        }
+    }
 
-	private void caseClass(Class selectedObject) throws ExecutionException {
-		doGenerate(selectedObject);
-	}
+    /**
+     * This generates from a given UML class.
+     *
+     * @param selectedObject
+     *            The UML class.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void caseClass(Class selectedObject) throws ExecutionException {
+        doGenerate(selectedObject);
+    }
 
-	private void caseClass(Interface selectedObject) throws ExecutionException {
-		doGenerate(selectedObject);
-	}
+    /**
+     * This generates from a given UML interface.
+     *
+     * @param selectedObject
+     *            The UML interface.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void caseClass(Interface selectedObject) throws ExecutionException {
+        doGenerate(selectedObject);
+    }
 
-	private void caseOperation(Operation selectedObject) throws ExecutionException {
-		caseClass((Class)selectedObject.eContainer());
-	}
+    /**
+     * This generates from a given UML operation.
+     *
+     * @param selectedObject
+     *            The UML operation.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void caseOperation(Operation selectedObject) throws ExecutionException {
+        caseClass((Class)selectedObject.eContainer());
+    }
 
-	private void caseActivity(Activity selectedObject) throws ExecutionException {
-		caseClass((Class)selectedObject.eContainer().eContainer());
-	}
+    /**
+     * This generates from a given UML activity.
+     *
+     * @param selectedObject
+     *            The UML activity.
+     * @throws ExecutionException
+     *             exception.
+     */
+    private void caseActivity(Activity selectedObject) throws ExecutionException {
+        caseClass((Class)selectedObject.eContainer().eContainer());
+    }
 
 }

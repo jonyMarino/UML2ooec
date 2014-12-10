@@ -20,37 +20,39 @@ import org.eclipse.umlgen.c.common.util.ModelUtil;
  *
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class IfndefAdded extends IfndefEvent {
+public class IfndefAdded extends AbstractIfndefEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// Check the Class is already created in the UML model and create it if
-		// needed
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		AnnotationUtil.setIfndefConditionDetailEntry(matchingClassifier, getCondition());
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // Check the Class is already created in the UML model and create it if
+        // needed
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        AnnotationUtil.setIfndefConditionDetailEntry(matchingClassifier, getCondition());
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<IfndefAdded> builder() {
-		return new Builder<IfndefAdded>() {
-			private IfndefAdded event = new IfndefAdded();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<IfndefAdded> builder() {
+        return new AbstractBuilder<IfndefAdded>() {
+            private IfndefAdded event = new IfndefAdded();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.IfndefBuilder#getEvent()
-			 */
-			@Override
-			protected IfndefAdded getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.IfndefBuilder#getEvent()
+             */
+            @Override
+            protected IfndefAdded getEvent() {
+                return event;
+            }
+        };
+    }
 
 }

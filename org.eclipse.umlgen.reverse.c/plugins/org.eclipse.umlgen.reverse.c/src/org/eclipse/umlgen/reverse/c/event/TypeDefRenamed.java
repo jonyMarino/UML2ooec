@@ -13,36 +13,39 @@ package org.eclipse.umlgen.reverse.c.event;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 
 /**
- * Event related to addition of a type definition.
+ * Event related to renaming of a type definition.
  *
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefRenamed extends TypeDefEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be implemented
-	}
+public class TypeDefRenamed extends AbstractTypeDefEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefRenamed> builder() {
-		return new Builder<TypeDefRenamed>() {
-			private TypeDefRenamed event = new TypeDefRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractTypeDefEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be implemented
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.TypeDefEvent.Builder#getEvent()
-			 */
-			@Override
-			protected TypeDefRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefRenamed> builder() {
+        return new AbstractBuilder<TypeDefRenamed>() {
+            private TypeDefRenamed event = new TypeDefRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractTypeDefEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected TypeDefRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

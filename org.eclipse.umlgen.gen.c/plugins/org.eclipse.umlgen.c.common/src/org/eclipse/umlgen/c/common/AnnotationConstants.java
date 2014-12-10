@@ -19,74 +19,78 @@ package org.eclipse.umlgen.c.common;
  */
 public final class AnnotationConstants {
 
-	/**
-	 * Key to identify annoation for documentation. This may be intended to be migrated to UML comments.
-	 */
-	public static final String DOCUMENTATION_KEY = "documentation";
+    /**
+     * Key to identify annoation for documentation. This may be intended to be migrated to UML comments.
+     */
+    public static final String DOCUMENTATION_KEY = "documentation";
 
-	/**
-	 * Key to identify annoation for documentation. This may be intended to be migrated to UML comments.
-	 */
-	public static final String DOCUMENTATION_SOURCE = "http://www.eclipse.org/umlgen/c/documentation";
+    /**
+     * Key to identify annoation for documentation. This may be intended to be migrated to UML comments.
+     */
+    public static final String DOCUMENTATION_SOURCE = "http://www.eclipse.org/umlgen/c/documentation";
 
-	/**
-	 * Key to identify annotations for ifndef statements in .h file
-	 */
-	public static final String REVERSE_PROCESS = "http://www.eclipse.org/umlgen/annotation/c";
+    /**
+     * Key to identify annotations for ifndef statements in .h file.
+     */
+    public static final String REVERSE_PROCESS = "http://www.eclipse.org/umlgen/annotation/c";
 
-	/**
-	 * Key to identify the project charset.
-	 */
-	public static final String PROJECT_CHARSET = "PROJECT_CHARSET";
+    /**
+     * Key to identify the project charset.
+     */
+    public static final String PROJECT_CHARSET = "PROJECT_CHARSET";
 
-	/**
-	 * Key to identify annotations for ifndef statements in .h file
-	 */
-	public static final String IFNDEF_CONDITION = "IFNDEF";
+    /**
+     * Key to identify annotations for ifndef statements in .h file.
+     */
+    public static final String IFNDEF_CONDITION = "IFNDEF";
 
-	/**
-	 * Key to identy details entry of the C filename of an UML!Class
-	 */
-	public static final String C_FILENAME = "C_FILENAME";
+    /**
+     * Key to identy details entry of the C filename of an UML!Class.
+     */
+    public static final String C_FILENAME = "C_FILENAME";
 
-	/**
-	 * Key to identy details entry of the H filename of an UML!Class
-	 */
-	public static final String H_FILENAME = "H_FILENAME";
+    /**
+     * Key to identy details entry of the H filename of an UML!Class.
+     */
+    public static final String H_FILENAME = "H_FILENAME";
 
-	/**
-	 * Key to identy details entry for a standard include (enclosed in angle brackets).
-	 */
-	public static final String STD_LIBRARY = "STD_LIBRARY";
+    /**
+     * Key to identy details entry for a standard include (enclosed in angle brackets).
+     */
+    public static final String STD_LIBRARY = "STD_LIBRARY";
 
-	/**
-	 * Key to identify an Volatile Variable
-	 */
-	public static final String VOLATILE = "VOLATILE";
+    /**
+     * Key to identify an Volatile Variable.
+     */
+    public static final String VOLATILE = "VOLATILE";
 
-	/**
-	 * Key to identify a Register Variable
-	 */
-	public static final String REGISTER = "REGISTER";
+    /**
+     * Key to identify a Register Variable.
+     */
+    public static final String REGISTER = "REGISTER";
 
-	/**
-	 * Key to identify an inline comment in C source file before its parent
-	 */
-	public static final String C_INLINE_BEFORE = "C_INLINE_COMMENT_BEFORE_DECLARATION";
+    /**
+     * Key to identify an inline comment in C source file before its parent.
+     */
+    public static final String C_INLINE_BEFORE = "C_INLINE_COMMENT_BEFORE_DECLARATION";
 
-	/**
-	 * Key to identify an inline comment in C source file after its parent
-	 */
-	public static final String C_INLINE_AFTER = "C_INLINE_COMMENT_AFTER_DECLARATION";
+    /**
+     * Key to identify an inline comment in C source file after its parent.
+     */
+    public static final String C_INLINE_AFTER = "C_INLINE_COMMENT_AFTER_DECLARATION";
 
-	/**
-	 * Key to identify an inline comment in C source file before its parent
-	 */
-	public static final String H_INLINE_BEFORE = "H_INLINE_COMMENT_BEFORE_DECLARATION";
+    /**
+     * Key to identify an inline comment in C source file before its parent.
+     */
+    public static final String H_INLINE_BEFORE = "H_INLINE_COMMENT_BEFORE_DECLARATION";
 
-	/**
-	 * Key to identify an inline comment in C source file after its parent
-	 */
-	public static final String H_INLINE_AFTER = "H_INLINE_COMMENT_AFTER_DECLARATION";
+    /**
+     * Key to identify an inline comment in C source file after its parent.
+     */
+    public static final String H_INLINE_AFTER = "H_INLINE_COMMENT_AFTER_DECLARATION";
+
+    /** Default constructor. */
+    private AnnotationConstants() {
+    }
 
 }

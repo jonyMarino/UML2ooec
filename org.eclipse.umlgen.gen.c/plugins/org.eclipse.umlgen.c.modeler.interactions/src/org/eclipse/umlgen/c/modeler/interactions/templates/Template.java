@@ -34,245 +34,303 @@ import org.eclipse.umlgen.c.modeler.interactions.Activator;
  * creation : 6 sept. 2004
  */
 public class Template {
-	private File _source;
 
-	private IContainer _destination;
+    /** Buffer size. */
+    private static final int BUFFER_SIZE = 1024;
 
-	private Map<String, String> _variables;
+    /** The eclipse file containing the model template. */
+    private File source;
 
-	private StringBuffer _errors;
+    /** The eclipse container where the result of the template will be generated. */
+    private IContainer destination;
 
-	/**
-	 * Constructor
-	 *
-	 * @param src
-	 *            the template source file
-	 */
-	public Template(File src) {
-		_source = src;
-	}
+    /** A set of variables indexed by key. */
+    private Map<String, String> variables;
 
-	/**
-	 * Set the destination directory of the template
-	 *
-	 * @param container
-	 *            the destination container
-	 */
-	public void setDestination(IContainer container) {
-		_destination = container;
-	}
+    /** Errors in a string buffer. */
+    private StringBuffer errors;
 
-	/**
-	 * Set the list of parameters and its values
-	 *
-	 * @param variables
-	 *            the map of parameters (key="Parameter name String", value="Parameter value String")
-	 */
-	public void setVariables(Map<String, String> variables) {
-		_variables = variables;
-	}
+    /**
+     * Constructor.
+     *
+     * @param src
+     *            the template source file
+     */
+    public Template(File src) {
+        source = src;
+    }
 
-	/**
-	 * Set the value of a parameter
-	 *
-	 * @param key
-	 *            the parameter name
-	 * @param value
-	 *            the parameter value
-	 */
-	public void addVariable(String key, String value) {
-		if (_variables == null) {
-			_variables = new HashMap<String, String>();
-		}
+    /**
+     * Set the destination directory of the template.
+     *
+     * @param container
+     *            the destination container
+     */
+    public void setDestination(IContainer container) {
+        destination = container;
+    }
 
-		_variables.put(key, value);
-	}
+    /**
+     * Set the list of parameters and its values.
+     *
+     * @param variables
+     *            the map of parameters (key="Parameter name String", value="Parameter value String")
+     */
+    public void setVariables(Map<String, String> variables) {
+        this.variables = variables;
+    }
 
-	protected boolean _checkTemplate() {
-		boolean valid = true;
-		_errors = new StringBuffer();
+    /**
+     * Set the value of a parameter.
+     *
+     * @param key
+     *            the parameter name
+     * @param value
+     *            the parameter value
+     */
+    public void addVariable(String key, String value) {
+        if (variables == null) {
+            variables = new HashMap<String, String>();
+        }
 
-		if (_source == null || !_source.exists()) {
-			_errors.append("The template source does not exist.\n");
-			valid = false;
-		}
+        variables.put(key, value);
+    }
 
-		if (_destination == null || !_destination.exists()) {
-			_errors.append("The destination folder does not exist.\n");
-		}
+    /**
+     * This checks if the generation is possible.
+     * 
+     * @return True if it is.
+     */
+    protected boolean checkTemplate() {
+        boolean valid = true;
+        errors = new StringBuffer();
 
-		return valid;
-	}
+        if (source == null || !source.exists()) {
+            errors.append("The template source does not exist.\n");
+            valid = false;
+        }
 
-	private IContainer _generateFiles(File src, IContainer dest, IProgressMonitor monitor)
-			throws CoreException {
-		File[] members = src.listFiles();
-		for (File member : members) {
-			if (member.isDirectory()) {
-				String folderName = getProcessedString(member.getName());
-				IFolder dstContainer = dest.getFolder(new Path(folderName));
+        if (destination == null || !destination.exists()) {
+            errors.append("The destination folder does not exist.\n");
+        }
 
-				if (!dstContainer.exists()) {
-					dstContainer.create(true, true, monitor);
-				}
-				_generateFiles(member, dstContainer, monitor);
-			} else {
-				_copyFile(member, dest, monitor);
-			}
-		}
+        return valid;
+    }
 
-		return dest;
-	}
+    /**
+     * This generates the files from the input eclipse file, to the given destination.
+     * 
+     * @param src
+     *            the input eclipse file location.
+     * @param dest
+     *            the eclipse container destination location.
+     * @param monitor
+     *            A progress monitor.
+     * @return The destination location.
+     * @throws CoreException
+     *             exception.
+     */
+    private IContainer generateFiles(File src, IContainer dest, IProgressMonitor monitor)
+            throws CoreException {
+        File[] members = src.listFiles();
+        for (File member : members) {
+            if (member.isDirectory()) {
+                String folderName = getProcessedString(member.getName());
+                IFolder dstContainer = dest.getFolder(new Path(folderName));
 
-	private IFile _copyFile(File file, IContainer dest, IProgressMonitor monitor) throws CoreException {
-		String targetFileName = getProcessedString(file.getName());
+                if (!dstContainer.exists()) {
+                    dstContainer.create(true, true, monitor);
+                }
+                generateFiles(member, dstContainer, monitor);
+            } else {
+                copyFile(member, dest, monitor);
+            }
+        }
 
-		monitor.subTask(targetFileName);
-		IFile dstFile = dest.getFile(new Path(targetFileName));
+        return dest;
+    }
 
-		InputStream stream = null;
-		try {
-			stream = _getProcessedStream(file, dest.getDefaultCharset());
-			if (dstFile.exists()) {
-				dstFile.setContents(stream, true, true, monitor);
-			} else {
-				dstFile.create(stream, true, monitor);
-			}
+    /**
+     * This copies the given eclipse file into the destination eclipse container.
+     * 
+     * @param file
+     *            The input eclipse file.
+     * @param dest
+     *            The target eclipse container.
+     * @param monitor
+     *            A progress monitor.
+     * @return The destination container.
+     * @throws CoreException
+     *             exception.
+     */
+    private IFile copyFile(File file, IContainer dest, IProgressMonitor monitor) throws CoreException {
+        String targetFileName = getProcessedString(file.getName());
 
-		} catch (IOException ioe) {
-			Activator.log(ioe);
-			try {
-				if (stream != null) {
-					stream.close();
-				}
-			} catch (IOException ioe2) {
-				Activator.log(ioe2);
-			}
-		}
+        monitor.subTask(targetFileName);
+        IFile dstFile = dest.getFile(new Path(targetFileName));
 
-		return dstFile;
-	}
+        InputStream stream = null;
+        try {
+            stream = getProcessedStream(file, dest.getDefaultCharset());
+            if (dstFile.exists()) {
+                dstFile.setContents(stream, true, true, monitor);
+            } else {
+                dstFile.create(stream, true, monitor);
+            }
 
-	private InputStream _getProcessedStream(File file, String charset) throws IOException {
-		FileInputStream stream = new FileInputStream(file);
+        } catch (IOException ioe) {
+            Activator.log(ioe);
+            try {
+                if (stream != null) {
+                    stream.close();
+                }
+            } catch (IOException ioe2) {
+                Activator.log(ioe2);
+            }
+        }
 
-		InputStreamReader reader = new InputStreamReader(stream);
-		int bufsize = 1024;
-		char[] cbuffer = new char[bufsize];
-		int read = 0;
-		StringBuffer keyBuffer = new StringBuffer();
-		StringBuffer outBuffer = new StringBuffer();
+        return dstFile;
+    }
 
-		boolean replacementMode = false;
-		boolean escape = false;
-		while (read != -1) {
-			read = reader.read(cbuffer);
-			for (int i = 0; i < read; i++) {
-				char c = cbuffer[i];
+    /**
+     * This creates an input stream from the given eclipse file.
+     * 
+     * @param file
+     *            The input file.
+     * @param charset
+     *            The charset to use.
+     * @return The input stream.
+     * @throws IOException
+     *             exception.
+     */
+    private InputStream getProcessedStream(File file, String charset) throws IOException {
+        FileInputStream stream = new FileInputStream(file);
 
-				if (escape) {
-					if (c != '%') {
-						outBuffer.append('\\');
-					}
+        InputStreamReader reader = new InputStreamReader(stream);
+        int bufsize = BUFFER_SIZE;
+        char[] cbuffer = new char[bufsize];
+        int read = 0;
+        StringBuffer keyBuffer = new StringBuffer();
+        StringBuffer outBuffer = new StringBuffer();
 
-					outBuffer.append(c);
-					escape = false;
-					continue;
-				}
+        boolean replacementMode = false;
+        boolean escape = false;
+        while (read != -1) {
+            read = reader.read(cbuffer);
+            for (int i = 0; i < read; i++) {
+                char c = cbuffer[i];
 
-				if (c == '%') {
-					if (replacementMode) {
-						replacementMode = false;
-						String key = keyBuffer.toString();
-						String value = _getVariable(key);
-						outBuffer.append(value);
-						keyBuffer.delete(0, keyBuffer.length());
-					} else {
-						replacementMode = true;
-					}
-				} else {
-					if (c == '\\') {
-						escape = true;
-						continue;
-					}
+                if (escape) {
+                    if (c != '%') {
+                        outBuffer.append('\\');
+                    }
 
-					if (replacementMode) {
-						keyBuffer.append(c);
-					} else {
-						outBuffer.append(c);
-					}
-				}
-			}
-		}
-		stream.close();
-		return new ByteArrayInputStream(outBuffer.toString().getBytes(charset));
-	}
+                    outBuffer.append(c);
+                    escape = false;
+                    continue;
+                }
 
-	/**
-	 * Process the given String through the parameter map
-	 *
-	 * @param source
-	 *            the source String
-	 * @return the processed string
-	 */
-	public String getProcessedString(String source) {
-		if (source.indexOf('%') == -1) {
-			return source;
-		}
-		int loc = -1;
-		StringBuffer buffer = new StringBuffer();
-		boolean replacementMode = false;
-		for (int i = 0; i < source.length(); i++) {
-			char c = source.charAt(i);
-			if (c == '%') {
-				if (replacementMode) {
-					String key = source.substring(loc, i);
-					String value = _getVariable(key);
-					buffer.append(value);
-					replacementMode = false;
-				} else {
-					replacementMode = true;
-					loc = i + 1;
-					continue;
-				}
-			} else if (!replacementMode) {
-				buffer.append(c);
-			}
-		}
-		return buffer.toString();
-	}
+                if (c == '%') {
+                    if (replacementMode) {
+                        replacementMode = false;
+                        String key = keyBuffer.toString();
+                        String value = getVariable(key);
+                        outBuffer.append(value);
+                        keyBuffer.delete(0, keyBuffer.length());
+                    } else {
+                        replacementMode = true;
+                    }
+                } else {
+                    if (c == '\\') {
+                        escape = true;
+                        continue;
+                    }
 
-	private String _getVariable(String key) {
-		if (_variables != null && _variables.get(key) != null) {
-			return _variables.get(key);
-		}
+                    if (replacementMode) {
+                        keyBuffer.append(c);
+                    } else {
+                        outBuffer.append(c);
+                    }
+                }
+            }
+        }
+        stream.close();
+        return new ByteArrayInputStream(outBuffer.toString().getBytes(charset));
+    }
 
-		return key;
-	}
+    /**
+     * Process the given String through the parameter map.
+     *
+     * @param src
+     *            the source String
+     * @return the processed string
+     */
+    public String getProcessedString(String src) {
+        if (src.indexOf('%') == -1) {
+            return src;
+        }
+        int loc = -1;
+        StringBuffer buffer = new StringBuffer();
+        boolean replacementMode = false;
+        for (int i = 0; i < src.length(); i++) {
+            char c = src.charAt(i);
+            if (c == '%') {
+                if (replacementMode) {
+                    String key = src.substring(loc, i);
+                    String value = getVariable(key);
+                    buffer.append(value);
+                    replacementMode = false;
+                } else {
+                    replacementMode = true;
+                    loc = i + 1;
+                    continue;
+                }
+            } else if (!replacementMode) {
+                buffer.append(c);
+            }
+        }
+        return buffer.toString();
+    }
 
-	/**
-	 * Generates files as part of the template execution. The default implementation uses template location as
-	 * a root of the file templates. The files found in the location are processed in the following way: Files
-	 * and folders are copied directly into the target folder with the conditional generation and variable
-	 * replacement for files. Variable replacement also includes file names.
-	 *
-	 * @param monitor
-	 *            progress monitor to use to indicate generation progress
-	 * @return the processed resource
-	 * @throws CoreException
-	 */
-	public IResource generate(IProgressMonitor monitor) throws CoreException {
-		monitor.setTaskName("Template Generation Process");
-		IResource dest = null;
+    /**
+     * Get the variable from the given key.
+     * 
+     * @param key
+     *            The key
+     * @return The variable.
+     */
+    private String getVariable(String key) {
+        if (variables != null && variables.get(key) != null) {
+            return variables.get(key);
+        }
 
-		if (_source.isDirectory()) {
-			dest = _generateFiles(_source, _destination, monitor);
-		} else {
-			dest = _copyFile(_source, _destination, monitor);
-		}
-		monitor.subTask(""); //$NON-NLS-1$
-		monitor.worked(1);
+        return key;
+    }
 
-		return dest;
-	}
+    /**
+     * Generates files as part of the template execution. The default implementation uses template location as
+     * a root of the file templates. The files found in the location are processed in the following way: Files
+     * and folders are copied directly into the target folder with the conditional generation and variable
+     * replacement for files. Variable replacement also includes file names.
+     *
+     * @param monitor
+     *            progress monitor to use to indicate generation progress
+     * @return the processed resource
+     * @throws CoreException
+     *             exception.
+     */
+    public IResource generate(IProgressMonitor monitor) throws CoreException {
+        monitor.setTaskName("Template Generation Process");
+        IResource dest = null;
+
+        if (source.isDirectory()) {
+            dest = generateFiles(source, destination, monitor);
+        } else {
+            dest = copyFile(source, destination, monitor);
+        }
+        monitor.subTask(""); //$NON-NLS-1$
+        monitor.worked(1);
+
+        return dest;
+    }
 }

@@ -13,32 +13,37 @@ package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.umlgen.c.common.util.ModelManager;
 
-public class CUnitRenamed extends CUnitEvent {
+/**
+ * Event related to renaming of a C unit.
+ */
+public class CUnitRenamed extends AbstractCUnitEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be implemented
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be implemented
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<CUnitRenamed> builder() {
-		return new Builder<CUnitRenamed>() {
-			private CUnitRenamed event = new CUnitRenamed();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<CUnitRenamed> builder() {
+        return new AbstractBuilder<CUnitRenamed>() {
+            private CUnitRenamed event = new CUnitRenamed();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.CUnitEvent.Builder#getEvent()
-			 */
-			@Override
-			protected CUnitRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractCUnitEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected CUnitRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

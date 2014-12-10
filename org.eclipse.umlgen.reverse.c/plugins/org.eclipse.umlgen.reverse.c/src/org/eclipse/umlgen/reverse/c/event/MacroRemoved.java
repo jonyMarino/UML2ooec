@@ -26,45 +26,48 @@ import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class MacroRemoved extends MacroEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges()
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		Property attribute = matchingClassifier.getAttribute(getCurrentName(), null);
+public class MacroRemoved extends AbstractMacroEvent {
 
-		if (attribute != null) {
-			if (ModelUtil.isRemovable(attribute)) {
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(attribute, manager);
-				}
-				attribute.destroy();
-			} else {
-				ModelUtil.setVisibility(attribute, getTranslationUnit(), EventType.REMOVE);
-			}
-		}
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        Property attribute = matchingClassifier.getAttribute(getCurrentName(), null);
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<MacroRemoved> builder() {
-		return new Builder<MacroRemoved>() {
-			private MacroRemoved event = new MacroRemoved();
+        if (attribute != null) {
+            if (ModelUtil.isRemovable(attribute)) {
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(attribute, manager);
+                }
+                attribute.destroy();
+            } else {
+                ModelUtil.setVisibility(attribute, getTranslationUnit(), EventType.REMOVE);
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.MacroBuilder#getEvent()
-			 */
-			@Override
-			protected MacroRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<MacroRemoved> builder() {
+        return new AbstractBuilder<MacroRemoved>() {
+            private MacroRemoved event = new MacroRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.MacroBuilder#getEvent()
+             */
+            @Override
+            protected MacroRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

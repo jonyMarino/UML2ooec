@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -17,33 +17,38 @@ import org.eclipse.umlgen.dsl.asl.provider.AslEditPlugin;
 import org.eclipse.umlgen.dsl.asl.provider.custom.util.AslUtil;
 
 /**
- * Specific item provider to manage unresolved proxies decoration on decoration
- * objects.
- * 
+ * Specific item provider to manage unresolved proxies decoration on decoration objects.
+ *
  * @author cnotot
- * 
  */
 public class CustomDecorationItemProvider extends ItemProviderAdapter {
 
-	public CustomDecorationItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+    /**
+     * Constructor.
+     *
+     * @param adapterFactory
+     *            The adapter factory.
+     */
+    public CustomDecorationItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
+    }
 
-	/**
-	 * It returns the given <code>image</code> decorated with a decorator (red
-	 * cross) if the given <code>object</code> references an unresolved proxy.
-	 * 
-	 * @param object the current object.
-	 * @param image The image related to the given object.
-	 * @return The new decorated image.
-	 */
-	public Object getImage(Object object, Object image) {
-		if (AslUtil.containsBrokenLink((Decoration) object)) {
-			return AslUtil.getBrokenDecorator(object, image,
-					AslEditPlugin.INSTANCE.getPluginResourceLocator());
-		} else {
-			return image;
-		}
-	}
+    /**
+     * It returns the given <code>image</code> decorated with a decorator (red cross) if the given
+     * <code>object</code> references an unresolved proxy.
+     *
+     * @param object
+     *            the current object.
+     * @param image
+     *            The image related to the given object.
+     * @return The new decorated image.
+     */
+    public Object getImage(Object object, Object image) {
+        if (AslUtil.containsBrokenLink((Decoration)object)) {
+            return AslUtil.getBrokenDecorator(image, AslEditPlugin.INSTANCE.getPluginResourceLocator());
+        } else {
+            return image;
+        }
+    }
 
 }

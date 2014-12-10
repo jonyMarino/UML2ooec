@@ -21,16 +21,27 @@ import org.eclipse.umlgen.gen.autojava.main.Uml2autojava;
 /**
  * UML to Autojava components code generation.
  */
-public class GenOnlyComponents extends GenAutoJavaComponents {
+public class GenOnlyComponents extends AbstractGenAutoJavaComponents {
 
-	@Override
-	protected Uml2autojava getGenerator(URI modelURI, String sDecorators, File target) throws IOException {
-		return new ComponentsOnly(modelURI, target, Collections.EMPTY_LIST, sDecorators);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.gen.autojava.launcher.popupMenus.AbstractGenAutoJavaComponents#getGenerator(org.eclipse.emf.common.util.URI,
+     *      java.lang.String, java.io.File)
+     */
+    @Override
+    protected Uml2autojava getGenerator(URI modelURI, String sDecorators, File target) throws IOException {
+        return new ComponentsOnly(modelURI, target, Collections.emptyList(), sDecorators);
+    }
 
-	@Override
-	protected String getModuleQualifiedName() {
-		return "org.eclipse.umlgen.gen.autojava.main.ComponentsOnly";
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.gen.autojava.launcher.popupMenus.AbstractGenAutoJavaComponents#getModuleQualifiedName()
+     */
+    @Override
+    protected String getModuleQualifiedName() {
+        return "org.eclipse.umlgen.gen.autojava.main.ComponentsOnly";
+    }
 
 }

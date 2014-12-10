@@ -23,112 +23,117 @@ import org.eclipse.umlgen.c.modeler.interactions.Activator;
 /**
  * Class that stores the templates registered with the <i>templates</i> extension point.
  */
-public class TemplatesManager extends AbstractExtensionManager {
+public final class TemplatesManager extends AbstractExtensionManager {
 
-	/* ========================= */
-	/* Extension point constants */
-	/* ========================= */
+    /* ========================= */
+    /* Extension point constants */
+    /* ========================= */
 
-	private static final String TEMPLATES_EXTENSION_POINT = "templates";
+    /** The extension point id. */
+    private static final String TEMPLATES_EXTENSION_POINT = "templates";
 
-	/** the shared instance */
-	private static TemplatesManager manager;
+    /** the shared instance. */
+    private static TemplatesManager manager;
 
-	/**
-	 * A set that will only ever contain TemplateDescriptors.
-	 */
-	private SortedSet<TemplateDescriptor> templates = new TreeSet<TemplateDescriptor>(
-			new Comparator<TemplateDescriptor>() {
-				public int compare(TemplateDescriptor o1, TemplateDescriptor o2) {
-					String id1 = o1.getId();
-					String id2 = o2.getId();
+    /**
+     * A set that will only ever contain TemplateDescriptors.
+     */
+    private SortedSet<TemplateDescriptor> templates = new TreeSet<TemplateDescriptor>(
+            new Comparator<TemplateDescriptor>() {
+                public int compare(TemplateDescriptor o1, TemplateDescriptor o2) {
+                    String id1 = o1.getId();
+                    String id2 = o2.getId();
 
-					return id1.compareTo(id2);
-				}
-			});
+                    return id1.compareTo(id2);
+                }
+            });
 
-	/**
-	 * Basic constructor
-	 */
-	private TemplatesManager() {
-		super(Activator.getId() + "." + TEMPLATES_EXTENSION_POINT);
+    /**
+     * Basic constructor.
+     */
+    private TemplatesManager() {
+        super(Activator.getId() + "." + TEMPLATES_EXTENSION_POINT);
 
-		readRegistry();
-	}
+        readRegistry();
+    }
 
-	/**
-	 * Get the shared instance.
-	 *
-	 * @return the diagrams manager
-	 */
-	public static TemplatesManager getInstance() {
-		if (manager == null) {
-			manager = new TemplatesManager();
-		}
+    /**
+     * Get the shared instance.
+     *
+     * @return the diagrams manager
+     */
+    public static TemplatesManager getInstance() {
+        if (manager == null) {
+            manager = new TemplatesManager();
+        }
 
-		return manager;
-	}
+        return manager;
+    }
 
-	/**
-	 * Find a descriptor in the registry.
-	 *
-	 * @param id
-	 *            the searched template id
-	 * @return the template or <code>null</code> if not found
-	 */
-	public TemplateDescriptor find(String id) {
-		Iterator<TemplateDescriptor> itr = templates.iterator();
-		while (itr.hasNext()) {
-			TemplateDescriptor desc = itr.next();
-			if (id.equals(desc.getId())) {
-				return desc;
-			}
-		}
-		return null;
-	}
+    /**
+     * Find a descriptor in the registry.
+     *
+     * @param id
+     *            the searched template id
+     * @return the template or <code>null</code> if not found
+     */
+    public TemplateDescriptor find(String id) {
+        Iterator<TemplateDescriptor> itr = templates.iterator();
+        while (itr.hasNext()) {
+            TemplateDescriptor desc = itr.next();
+            if (id.equals(desc.getId())) {
+                return desc;
+            }
+        }
+        return null;
+    }
 
-	/**
-	 * Get an enumeration of template descriptors.
-	 *
-	 * @return The registered templates
-	 */
-	public TemplateDescriptor[] getTemplates() {
-		return templates.toArray(new TemplateDescriptor[templates.size()]);
-	}
+    /**
+     * Get an enumeration of template descriptors.
+     *
+     * @return The registered templates
+     */
+    public TemplateDescriptor[] getTemplates() {
+        return templates.toArray(new TemplateDescriptor[templates.size()]);
+    }
 
-	/**
-	 * @see org.topcased.facilities.extensions.AbstractExtensionManager#addExtension(org.eclipse.core.runtime.IExtension)
-	 */
-	@Override
-	protected void addExtension(IExtension extension) {
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.c.modeler.interactions.templates.AbstractExtensionManager#addExtension(org.eclipse.core.runtime.IExtension)
+     */
+    @Override
+    protected void addExtension(IExtension extension) {
 
-		IConfigurationElement[] elements = extension.getConfigurationElements();
-		for (IConfigurationElement confElt : elements) {
-			try {
-				if (TemplateDescriptor.TAG_TEMPLATE.equals(confElt.getName())) {
-					TemplateDescriptor descriptor = new TemplateDescriptor(confElt);
-					templates.add(descriptor);
-				}
-			} catch (CoreException ce) {
-				Activator.log(ce);
-			}
-		}
-	}
+        IConfigurationElement[] elements = extension.getConfigurationElements();
+        for (IConfigurationElement confElt : elements) {
+            try {
+                if (TemplateDescriptor.TAG_TEMPLATE.equals(confElt.getName())) {
+                    TemplateDescriptor descriptor = new TemplateDescriptor(confElt);
+                    templates.add(descriptor);
+                }
+            } catch (CoreException ce) {
+                Activator.log(ce);
+            }
+        }
+    }
 
-	/**
-	 * @see org.topcased.facilities.extensions.AbstractExtensionManager#removeExtension(org.eclipse.core.runtime.IExtension)
-	 */
-	@Override
-	protected void removeExtension(IExtension extension) {
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.c.modeler.interactions.templates.AbstractExtensionManager#removeExtension(org.eclipse.core.runtime.IExtension)
+     */
+    @Override
+    protected void removeExtension(IExtension extension) {
 
-		IConfigurationElement[] elements = extension.getConfigurationElements();
-		for (IConfigurationElement confElt : elements) {
-			if (TemplateDescriptor.TAG_TEMPLATE.equals(confElt.getName())) {
-				String id = confElt.getAttribute(TemplateDescriptor.ATT_ID);
-				TemplateDescriptor descriptor = find(id);
-				templates.remove(descriptor);
-			}
-		}
-	}
+        IConfigurationElement[] elements = extension.getConfigurationElements();
+        for (IConfigurationElement confElt : elements) {
+            if (TemplateDescriptor.TAG_TEMPLATE.equals(confElt.getName())) {
+                String id = confElt.getAttribute(TemplateDescriptor.ATT_ID);
+                TemplateDescriptor descriptor = find(id);
+                templates.remove(descriptor);
+            }
+        }
+    }
 
 }

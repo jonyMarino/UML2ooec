@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -20,26 +20,37 @@ import org.eclipse.umlgen.dsl.eth.presentation.connectors.ConnectorsPropertyDesc
 
 /**
  * Specific property source to rout to its own descriptor with a specific editing dialog.
- * @author cnotot
  *
+ * @author cnotot
  */
 public class CustomEthPropertySource extends CustomAslPropertySource {
 
-	public CustomEthPropertySource(Object object,
-			IItemPropertySource itemPropertySource) {
-		super(object, itemPropertySource);
-		// TODO Auto-generated constructor stub
-	}
-	
-	@Override
-	protected IPropertyDescriptor createPropertyDescriptor(
-			IItemPropertyDescriptor itemPropertyDescriptor) {
-		if (itemPropertyDescriptor.getFeature(null).equals(EthPackage.Literals.ETHERNET_CONF__CONNECTORS)){
-			return new ConnectorsPropertyDescriptor(object, itemPropertyDescriptor);
-		} else if (itemPropertyDescriptor.getFeature(null).equals(EthPackage.Literals.CONTAINER__COMPONENTS)) {
-			return new ComponentsPropertyDescriptor(object, itemPropertyDescriptor);
-		}
-		return super.createPropertyDescriptor(itemPropertyDescriptor);
-	}
+    /**
+     * Constructor.
+     *
+     * @param object
+     *            The related object.
+     * @param itemPropertySource
+     *            The item property source.
+     */
+    public CustomEthPropertySource(Object object, IItemPropertySource itemPropertySource) {
+        super(object, itemPropertySource);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.dsl.asl.presentation.custom.CustomAslPropertySource#createPropertyDescriptor(org.eclipse.emf.edit.provider.IItemPropertyDescriptor)
+     */
+    @Override
+    protected IPropertyDescriptor createPropertyDescriptor(IItemPropertyDescriptor itemPropertyDescriptor) {
+        IPropertyDescriptor result = super.createPropertyDescriptor(itemPropertyDescriptor);
+        if (itemPropertyDescriptor.getFeature(null).equals(EthPackage.Literals.ETHERNET_CONF__CONNECTORS)) {
+            result = new ConnectorsPropertyDescriptor(object, itemPropertyDescriptor);
+        } else if (itemPropertyDescriptor.getFeature(null).equals(EthPackage.Literals.CONTAINER__COMPONENTS)) {
+            result = new ComponentsPropertyDescriptor(object, itemPropertyDescriptor);
+        }
+        return result;
+    }
 
 }

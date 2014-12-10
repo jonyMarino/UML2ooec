@@ -15,23 +15,23 @@ import org.junit.Test;
 
 public class TestDoWhile extends AbstractTest {
 
-	@Test
-	public void testEmpty() {
-		testUmlActivityFile("doWhileLoop/empty.uml");
-	}
+    @Test
+    public void testEmpty() {
+        testUmlActivityFile("doWhileLoop/empty.uml");
+    }
 
-	@Test
-	public void testIfAsFirst() {
-		testUmlActivityFile("doWhileLoop/ifAsFirst.uml");
-	}
+    @Test
+    public void testIfAsFirst() {
+        testUmlActivityFile("doWhileLoop/ifAsFirst.uml");
+    }
 
-	@Test
-	public void testStandard() {
-		testUmlActivityFile("doWhileLoop/standard.uml");
-	}
+    @Test
+    public void testStandard() {
+        testUmlActivityFile("doWhileLoop/standard.uml");
+    }
 
-	@Test
-	public void testNested() {
-		testUmlActivityFile("doWhileLoop/nested.uml");
-	}
+    @Test
+    public void testNested() {
+        testUmlActivityFile("doWhileLoop/nested.uml");
+    }
 }

@@ -25,44 +25,44 @@ import org.junit.Test;
 
 public class TestStorageClassExtern4 extends AbstractTest {
 
-	@Test
-	public void testStorageClassExtern4InC() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern4InC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern4C", new NullProgressMonitor());
+        IProject project = createIProject("/testextern4C", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern4.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern4.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern4.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern4.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern4C.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern4C.uml");
 
-	}
+    }
 
-	@Test
-	public void testStorageClassExtern4InH() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern4InH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern4H", new NullProgressMonitor());
+        IProject project = createIProject("/testextern4H", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern4.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern4.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern4.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern4.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern4H.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern4H.uml");
 
-	}
+    }
 
 }

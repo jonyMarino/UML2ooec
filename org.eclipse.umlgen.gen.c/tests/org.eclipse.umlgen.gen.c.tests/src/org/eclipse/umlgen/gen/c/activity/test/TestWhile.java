@@ -15,28 +15,28 @@ import org.junit.Test;
 
 public class TestWhile extends AbstractTest {
 
-	@Test
-	public void testEmpty() {
-		testUmlActivityFile("whileLoop/empty.uml");
-	}
+    @Test
+    public void testEmpty() {
+        testUmlActivityFile("whileLoop/empty.uml");
+    }
 
-	@Test
-	public void testIfAsFirst() {
-		testUmlActivityFile("whileLoop/ifAsFirst.uml");
-	}
+    @Test
+    public void testIfAsFirst() {
+        testUmlActivityFile("whileLoop/ifAsFirst.uml");
+    }
 
-	@Test
-	public void testStandard() {
-		testUmlActivityFile("whileLoop/standard.uml");
-	}
+    @Test
+    public void testStandard() {
+        testUmlActivityFile("whileLoop/standard.uml");
+    }
 
-	@Test
-	public void testNested() {
-		testUmlActivityFile("whileLoop/nested.uml");
-	}
+    @Test
+    public void testNested() {
+        testUmlActivityFile("whileLoop/nested.uml");
+    }
 
-	@Test
-	public void testWithoutBody() {
-		testUmlActivityFile("whileLoop/withoutBody.uml");
-	}
+    @Test
+    public void testWithoutBody() {
+        testUmlActivityFile("whileLoop/withoutBody.uml");
+    }
 }

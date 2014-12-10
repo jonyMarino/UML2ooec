@@ -24,42 +24,42 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestTypeDefFunction extends AbstractTest {
-	@Test
-	public void testTypeDefFunctionInC() throws CoreException, InterruptedException {
+    @Test
+    public void testTypeDefFunctionInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefFunctionC", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefFunctionC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("operation.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("operation.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/function/operation.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/function/operation.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/function/TypeDefFunctionC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/function/TypeDefFunctionC.uml");
+    }
 
-	@Test
-	public void testTypeDefFunctionInH() throws CoreException, InterruptedException {
+    @Test
+    public void testTypeDefFunctionInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefFunctionH", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefFunctionH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("operation.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("operation.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/function/operation.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/function/operation.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/function/TypeDefFunctionH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/function/TypeDefFunctionH.uml");
+    }
 
 }

@@ -22,176 +22,176 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestComment extends AbstractTest {
-	@Test
-	public void testCommentInC() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testcommentClasseC", new NullProgressMonitor());
+        IProject project = createIProject("/testcommentClasseC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("commentClasse.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("commentClasse.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/commentClasse.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/commentClasse.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/commentClasseC.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/commentClasseC.uml");
+    }
 
-	@Test
-	public void testCommentInH() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testcommentClasseH", new NullProgressMonitor());
+        IProject project = createIProject("/testcommentClasseH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("commentClasse.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("commentClasse.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/commentClasse.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/commentClasse.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/commentClasseH.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/commentClasseH.uml");
+    }
 
-	@Test
-	public void testCommentIncludeInC() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentIncludeInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testcommentIncludeC", new NullProgressMonitor());
+        IProject project = createIProject("/testcommentIncludeC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("commentInclude.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("commentInclude.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/commentInclude.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/commentInclude.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/commentIncludeC.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/commentIncludeC.uml");
+    }
 
-	@Test
-	public void testCommentIncludeInH() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentIncludeInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testcommentIncludeH", new NullProgressMonitor());
+        IProject project = createIProject("/testcommentIncludeH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("commentInclude.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("commentInclude.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/commentInclude.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/commentInclude.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/commentIncludeH.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/commentIncludeH.uml");
+    }
 
-	@Test
-	public void testCommentOperationInC() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentOperationInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testCommentOperationC", new NullProgressMonitor());
+        IProject project = createIProject("/testCommentOperationC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("CommentOperation.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("CommentOperation.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/CommentOperation.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/CommentOperation.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/CommentOperationC.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/CommentOperationC.uml");
+    }
 
-	@Test
-	public void testCommentOperationInH() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentOperationInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testCommentOperationH", new NullProgressMonitor());
+        IProject project = createIProject("/testCommentOperationH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("CommentOperation.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("CommentOperation.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/comment/CommentOperation.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/comment/CommentOperation.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/comment/CommentOperationH.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/CommentOperationH.uml");
+    }
 
-	@Test
-	public void testCommentDuplicataClasseInAll() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentDuplicataClasseInAll() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testcommentDuplicataClassE", new NullProgressMonitor());
+        IProject project = createIProject("/testcommentDuplicataClassE", new NullProgressMonitor());
 
-		IFile iFileC = createIFile(project, new Path("commentDuplicataClass.c"), new NullProgressMonitor());
-		IFile iFileH = createIFile(project, new Path("commentDuplicataClass.h"), new NullProgressMonitor());
+        IFile iFileC = createIFile(project, new Path("commentDuplicataClass.c"), new NullProgressMonitor());
+        IFile iFileH = createIFile(project, new Path("commentDuplicataClass.h"), new NullProgressMonitor());
 
-		TextEditor editorC = openEditor(iFileC);
-		TextEditor editorH = openEditor(iFileH);
+        TextEditor editorC = openEditor(iFileC);
+        TextEditor editorH = openEditor(iFileH);
 
-		setEditorContent(editorC, " ");
+        setEditorContent(editorC, " ");
 
-		setEditorContent(editorC,
-				getResourceInputStream("/resource/structural/addition/comment/commentDuplicataClass.c"));
+        setEditorContent(editorC,
+                getResourceInputStream("/resource/structural/addition/comment/commentDuplicataClass.c"));
 
-		closeEditor(editorC, true);
+        closeEditor(editorC, true);
 
-		setEditorContent(editorH, " ");
+        setEditorContent(editorH, " ");
 
-		setEditorContent(editorH,
-				getResourceInputStream("/resource/structural/addition/comment/commentDuplicataClass.h"));
+        setEditorContent(editorH,
+                getResourceInputStream("/resource/structural/addition/comment/commentDuplicataClass.h"));
 
-		closeEditor(editorH, true);
+        closeEditor(editorH, true);
 
-		testModel(project, "/resource/structural/addition/comment/commentDuplicataClassE.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/commentDuplicataClassE.uml");
+    }
 
-	@Test
-	public void testCommentDuplicataOperationInAll() throws CoreException, InterruptedException {
+    @Test
+    public void testCommentDuplicataOperationInAll() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testcommentDuplicataOperationN", new NullProgressMonitor());
+        IProject project = createIProject("/testcommentDuplicataOperationN", new NullProgressMonitor());
 
-		IFile iFileC = createIFile(project, new Path("commentDuplicataOperation.c"),
-				new NullProgressMonitor());
-		IFile iFileH = createIFile(project, new Path("commentDuplicataOperation.h"),
-				new NullProgressMonitor());
+        IFile iFileC = createIFile(project, new Path("commentDuplicataOperation.c"),
+                new NullProgressMonitor());
+        IFile iFileH = createIFile(project, new Path("commentDuplicataOperation.h"),
+                new NullProgressMonitor());
 
-		TextEditor editorC = openEditor(iFileC);
-		TextEditor editorH = openEditor(iFileH);
+        TextEditor editorC = openEditor(iFileC);
+        TextEditor editorH = openEditor(iFileH);
 
-		setEditorContent(editorC, " ");
+        setEditorContent(editorC, " ");
 
-		setEditorContent(editorC,
-				getResourceInputStream("/resource/structural/addition/comment/commentDuplicataOperation.c"));
+        setEditorContent(editorC,
+                getResourceInputStream("/resource/structural/addition/comment/commentDuplicataOperation.c"));
 
-		closeEditor(editorC, true);
+        closeEditor(editorC, true);
 
-		setEditorContent(editorH, " ");
+        setEditorContent(editorH, " ");
 
-		setEditorContent(editorH,
-				getResourceInputStream("/resource/structural/addition/comment/commentDuplicataOperation.h"));
+        setEditorContent(editorH,
+                getResourceInputStream("/resource/structural/addition/comment/commentDuplicataOperation.h"));
 
-		closeEditor(editorH, true);
+        closeEditor(editorH, true);
 
-		testModel(project, "/resource/structural/addition/comment/commentDuplicataOperationN.uml");
-	}
+        testModel(project, "/resource/structural/addition/comment/commentDuplicataOperationN.uml");
+    }
 
 }

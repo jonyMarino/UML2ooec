@@ -21,40 +21,42 @@ import org.eclipse.umlgen.c.common.util.ModelUtil;
  *
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class IfndefRemoved extends IfndefEvent {
+public class IfndefRemoved extends AbstractIfndefEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		EAnnotation annot = matchingClassifier.getEAnnotation(AnnotationConstants.REVERSE_PROCESS);
-		if (annot != null) {
-			annot.getDetails().removeKey(AnnotationConstants.IFNDEF_CONDITION);
-			if (annot.getDetails().isEmpty()) {
-				matchingClassifier.getEAnnotations().remove(annot);
-			}
-		}
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        EAnnotation annot = matchingClassifier.getEAnnotation(AnnotationConstants.REVERSE_PROCESS);
+        if (annot != null) {
+            annot.getDetails().removeKey(AnnotationConstants.IFNDEF_CONDITION);
+            if (annot.getDetails().isEmpty()) {
+                matchingClassifier.getEAnnotations().remove(annot);
+            }
+        }
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<IfndefRemoved> builder() {
-		return new Builder<IfndefRemoved>() {
-			private IfndefRemoved event = new IfndefRemoved();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<IfndefRemoved> builder() {
+        return new AbstractBuilder<IfndefRemoved>() {
+            private IfndefRemoved event = new IfndefRemoved();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.IfndefBuilder#getEvent()
-			 */
-			@Override
-			protected IfndefRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.IfndefBuilder#getEvent()
+             */
+            @Override
+            protected IfndefRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

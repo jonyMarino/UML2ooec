@@ -13,31 +13,36 @@ package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.umlgen.c.common.util.ModelManager;
 
-public class EnumerationRenamed extends EnumerationEvent {
+/**
+ * Event related to renaming of an enumeration.
+ */
+public class EnumerationRenamed extends AbstractEnumerationEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<EnumerationRenamed> builder() {
-		return new Builder<EnumerationRenamed>() {
-			private EnumerationRenamed event = new EnumerationRenamed();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<EnumerationRenamed> builder() {
+        return new AbstractBuilder<EnumerationRenamed>() {
+            private EnumerationRenamed event = new EnumerationRenamed();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.EnumerationEvent.Builder#getEvent()
-			 */
-			@Override
-			protected EnumerationRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractEnumerationEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected EnumerationRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

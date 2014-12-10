@@ -28,112 +28,301 @@ import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.cdt.core.model.ITypeDef;
 import org.eclipse.cdt.core.model.IVariable;
 import org.eclipse.cdt.core.model.IVariableDeclaration;
-import org.eclipse.umlgen.reverse.c.event.CModelChangedEvent;
+import org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent;
 
+/** File reconciler. */
 public interface IFileReconciler {
 
-	/**
-	 * Handles removing of <b>variable declaration and definition</b> constructions.
-	 */
-	CModelChangedEvent addElement(IASTSimpleDeclaration element, IVariableDeclaration variableDecl);
+    /**
+     * Handles adding of <b>variable declaration</b> constructions.
+     *
+     * @param element
+     *            The AST declaration
+     * @param variableDecl
+     *            The variable declaration
+     * @return The event
+     */
+    AbstractCModelChangedEvent addElement(IASTSimpleDeclaration element, IVariableDeclaration variableDecl);
 
-	CModelChangedEvent addElement(IASTSimpleDeclaration element, IVariable variable);
+    /**
+     * Handles adding of <b>variable</b> constructions.
+     *
+     * @param element
+     *            The AST declaration
+     * @param variable
+     *            The variable declaration
+     * @return The event
+     */
+    AbstractCModelChangedEvent addElement(IASTSimpleDeclaration element, IVariable variable);
 
-	/**
-	 * Handles adding of <b>enum</b> constructions. Note : no range needs to be provided !
-	 */
-	CModelChangedEvent addElement(IASTEnumerationSpecifier specifier, IEnumeration enumeration);
+    /**
+     * Handles adding of <b>enum</b> constructions. Note : no range needs to be provided !
+     *
+     * @param specifier
+     *            The AST specifier
+     * @param enumeration
+     *            The enumeration
+     * @return The event
+     */
+    AbstractCModelChangedEvent addElement(IASTEnumerationSpecifier specifier, IEnumeration enumeration);
 
-	/**
-	 * Handles adding of <b>struct</b> constructions. Note : no range needs to be provided !
-	 */
-	CModelChangedEvent addElement(IASTCompositeTypeSpecifier specifier, IStructure structure);
+    /**
+     * Handles adding of <b>struct</b> constructions. Note : no range needs to be provided !
+     *
+     * @param specifier
+     *            The AST specifier
+     * @param structure
+     *            The structure
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTCompositeTypeSpecifier specifier, IStructure structure);
 
-	/**
-	 * Handles adding of <b>typedef enum</b> constructions.
-	 */
-	CModelChangedEvent addElement(IASTEnumerationSpecifier enumerationSpecifier, ITypeDef type);
+    /**
+     * Handles adding of <b>typedef enum</b> constructions.
+     *
+     * @param enumerationSpecifier
+     *            The AST specifier.
+     * @param type
+     *            The type definition.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTEnumerationSpecifier enumerationSpecifier, ITypeDef type);
 
-	/**
-	 * Handles adding of <b>typedef struct</b> constructions.
-	 */
-	CModelChangedEvent addElement(IASTCompositeTypeSpecifier specifier, ITypeDef type);
+    /**
+     * Handles adding of <b>typedef struct</b> constructions.
+     *
+     * @param specifier
+     *            The AST specifier
+     * @param type
+     *            The type definition.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTCompositeTypeSpecifier specifier, ITypeDef type);
 
-	CModelChangedEvent addElement(IASTElaboratedTypeSpecifier specifier, ITypeDef typeDef);
+    /**
+     * Handles adding of <b>typedef struct</b> constructions.
+     *
+     * @param specifier
+     *            The AST specifier
+     * @param typeDef
+     *            The type definition.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTElaboratedTypeSpecifier specifier, ITypeDef typeDef);
 
-	CModelChangedEvent addElement(IASTDeclarator iDeclarator, ITypeDef typeDef);
+    /**
+     * Handles adding of <b>typedef struct</b> constructions.
+     *
+     * @param iDeclarator
+     *            The AST declarator.
+     * @param typeDef
+     *            The type definition.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTDeclarator iDeclarator, ITypeDef typeDef);
 
-	/**
-	 * Handles adding of <b>operation declaration and definition</b> constructions.
-	 */
-	CModelChangedEvent addElement(IASTFunctionDeclarator functionDecl, IFunctionDeclaration element);
+    /**
+     * Handles adding of <b>operation declaration</b> constructions.
+     *
+     * @param functionDecl
+     *            The AST function declarator.
+     * @param element
+     *            The operation declaration.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTFunctionDeclarator functionDecl, IFunctionDeclaration element);
 
-	CModelChangedEvent addElement(IASTFunctionDefinition functionDef, IFunction element);
+    /**
+     * Handles adding of <b>operation definition</b> constructions.
+     *
+     * @param functionDef
+     *            The AST function declarator.
+     * @param element
+     *            The operation definition.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTFunctionDefinition functionDef, IFunction element);
 
-	/**
-	 * Handles adding of <b>macro</b> statements.
-	 */
-	CModelChangedEvent addElement(IASTPreprocessorMacroDefinition astMacro, ITranslationUnit unit);
+    /**
+     * Handles adding of <b>macro</b> statements.
+     *
+     * @param astMacro
+     *            The AST macro definition.
+     * @param unit
+     *            The translation unit.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTPreprocessorMacroDefinition astMacro, ITranslationUnit unit);
 
-	/**
-	 * Handles adding of <b>include</b> and <b>ifndef</b> statements.
-	 */
-	CModelChangedEvent addElement(IASTPreprocessorIncludeStatement include, ITranslationUnit unit);
+    /**
+     * Handles adding of <b>include</b> statements.
+     *
+     * @param include
+     *            The AST include statement.
+     * @param unit
+     *            The include statement.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTPreprocessorIncludeStatement include, ITranslationUnit unit);
 
-	CModelChangedEvent addElement(IASTPreprocessorIfndefStatement statementAdded, ITranslationUnit unit);
+    /**
+     * Handles adding of <b>ifndef</b> statements.
+     *
+     * @param statementAdded
+     *            The AST ifndef statement
+     * @param unit
+     *            the ifndef statement.
+     * @return The event.
+     */
+    AbstractCModelChangedEvent addElement(IASTPreprocessorIfndefStatement statementAdded,
+            ITranslationUnit unit);
 
-	// **************//
-	// REMOVE //
-	// *************//
+    // **************//
+    // REMOVE //
+    // *************//
 
-	/**
-	 * Handles removing of <b>variable declaration and definition</b> constructions.
-	 */
-	CModelChangedEvent removeElement(IASTSimpleDeclaration element, IVariableDeclaration variableDecl);
+    /**
+     * Handles removing of <b>variable declaration</b> constructions.
+     *
+     * @param element
+     *            The AST declaration
+     * @param variableDecl
+     *            the variable declaration
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTSimpleDeclaration element, IVariableDeclaration variableDecl);
 
-	CModelChangedEvent removeElement(IASTSimpleDeclaration element, IVariable variable);
+    /**
+     * Handles removing of <b>variable definition</b> constructions.
+     *
+     * @param element
+     *            The AST declaration
+     * @param variable
+     *            The variable declaration
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTSimpleDeclaration element, IVariable variable);
 
-	/**
-	 * Handles removing of <b>enum</b> constructionss.
-	 */
-	CModelChangedEvent removeElement(IASTEnumerationSpecifier element, IEnumeration enumeration);
+    /**
+     * Handles removing of <b>enum</b> constructions.
+     *
+     * @param element
+     *            The AST specifier.
+     * @param enumeration
+     *            The enumeration
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTEnumerationSpecifier element, IEnumeration enumeration);
 
-	/**
-	 * Handles removing of <b>struct</b> constructions.
-	 */
-	CModelChangedEvent removeElement(IASTCompositeTypeSpecifier specifier, IStructure structure);
+    /**
+     * Handles removing of <b>structure</b> constructions.
+     *
+     * @param specifier
+     *            The AST specifier
+     * @param structure
+     *            the structure
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTCompositeTypeSpecifier specifier, IStructure structure);
 
-	/**
-	 * Handles removing of <b>typedef enum</b> constructions.
-	 */
-	CModelChangedEvent removeElement(IASTEnumerationSpecifier enumerationSpecifier, ITypeDef type);
+    /**
+     * Handles removing of <b>typedef enum</b> constructions.
+     *
+     * @param enumerationSpecifier
+     *            The AST specifier
+     * @param type
+     *            the typdef enum
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTEnumerationSpecifier enumerationSpecifier, ITypeDef type);
 
-	/**
-	 * Handles removing of <b>typedef struct</b> constructions.
-	 */
-	CModelChangedEvent removeElement(IASTCompositeTypeSpecifier specifier, ITypeDef type);
+    /**
+     * Handles removing of <b>typedef struct</b> constructions.
+     *
+     * @param specifier
+     *            The AST specifier
+     * @param type
+     *            The typdedef struct
+     * @return the event
+     */
+    AbstractCModelChangedEvent removeElement(IASTCompositeTypeSpecifier specifier, ITypeDef type);
 
-	CModelChangedEvent removeElement(IASTElaboratedTypeSpecifier specifier, ITypeDef typeDef);
+    /**
+     * Handles removing of <b>typedef struct</b> constructions.
+     *
+     * @param specifier
+     *            The AST specifier
+     * @param typeDef
+     *            the typedef struct
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTElaboratedTypeSpecifier specifier, ITypeDef typeDef);
 
-	CModelChangedEvent removeElement(IASTDeclarator iDeclarator, ITypeDef typeDef);
+    /**
+     * Handles removing of <b>typedef struct</b> constructions.
+     *
+     * @param iDeclarator
+     *            The AST declarator.
+     * @param typeDef
+     *            The type def struct.
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTDeclarator iDeclarator, ITypeDef typeDef);
 
-	/**
-	 * Handles adding of <b>operation declaration and definition</b> constructions.
-	 */
-	CModelChangedEvent removeElement(IASTFunctionDeclarator functionDecl, IFunctionDeclaration element);
+    /**
+     * Handles adding of <b>operation declaration</b> constructions.
+     *
+     * @param functionDecl
+     *            The AST function declaration
+     * @param element
+     *            The operation declaration.
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTFunctionDeclarator functionDecl, IFunctionDeclaration element);
 
-	CModelChangedEvent removeElement(IASTFunctionDefinition functionDef, IFunction element);
+    /**
+     * Handles adding of <b>operation definition</b> constructions.
+     *
+     * @param functionDef
+     *            The AST function definition.
+     * @param element
+     *            The operation definition.
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTFunctionDefinition functionDef, IFunction element);
 
-	/**
-	 * Handles removing of <b>macro</b> statements.
-	 */
-	CModelChangedEvent removeElement(IASTPreprocessorMacroDefinition astMacro, ITranslationUnit unit);
+    /**
+     * Handles removing of <b>macro</b> statements.
+     *
+     * @param astMacro
+     *            The AST macro definition
+     * @param unit
+     *            The macro statement
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTPreprocessorMacroDefinition astMacro, ITranslationUnit unit);
 
-	/**
-	 * Handles removing of <b>include</b> and <b>ifndef</b> statement.
-	 */
-	CModelChangedEvent removeElement(IASTPreprocessorIncludeStatement include, ITranslationUnit unit);
+    /**
+     * Handles removing of <b>include</b> statement.
+     *
+     * @param include
+     *            The AST include statement
+     * @param unit
+     *            The include statement
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTPreprocessorIncludeStatement include, ITranslationUnit unit);
 
-	CModelChangedEvent removeElement(IASTPreprocessorIfndefStatement statementAdded, ITranslationUnit unit);
+    /**
+     * Handles removing of <b>ifndef</b> statement.
+     *
+     * @param statementAdded
+     *            The AST ifndef statement
+     * @param unit
+     *            The idndef statement
+     * @return The event
+     */
+    AbstractCModelChangedEvent removeElement(IASTPreprocessorIfndefStatement statementAdded,
+            ITranslationUnit unit);
 
 }

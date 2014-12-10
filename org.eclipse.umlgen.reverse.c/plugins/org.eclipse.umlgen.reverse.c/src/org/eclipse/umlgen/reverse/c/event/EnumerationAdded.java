@@ -23,68 +23,74 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
 
-public class EnumerationAdded extends EnumerationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		Enumeration myEnumeration = ModelUtil.findEnumerationInClassifier(matchingClassifier,
-				getCurrentName());
+/**
+ * Event related to addition of an enumeration.
+ */
+public class EnumerationAdded extends AbstractEnumerationEvent {
 
-		if (myEnumeration == null) {
-			if (matchingClassifier instanceof Class) {
-				myEnumeration = (Enumeration)((Class)matchingClassifier).getNestedClassifier(
-						getCurrentName(), false, UMLPackage.Literals.ENUMERATION, true);
-			} else if (matchingClassifier instanceof Interface) {
-				myEnumeration = (Enumeration)((Interface)matchingClassifier).getNestedClassifier(
-						getCurrentName(), false, UMLPackage.Literals.ENUMERATION, true);
-			}
-		} else {
-			/* On supprime tous les attributs avant de les reconstruire */
-			myEnumeration.getOwnedLiterals().clear();
-		}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        Enumeration myEnumeration = ModelUtil.findEnumerationInClassifier(matchingClassifier,
+                getCurrentName());
 
-		createEnumerators(myEnumeration);
+        if (myEnumeration == null) {
+            if (matchingClassifier instanceof Class) {
+                myEnumeration = (Enumeration)((Class)matchingClassifier).getNestedClassifier(
+                        getCurrentName(), false, UMLPackage.Literals.ENUMERATION, true);
+            } else if (matchingClassifier instanceof Interface) {
+                myEnumeration = (Enumeration)((Interface)matchingClassifier).getNestedClassifier(
+                        getCurrentName(), false, UMLPackage.Literals.ENUMERATION, true);
+            }
+        } else {
+            /* On supprime tous les attributs avant de les reconstruire */
+            myEnumeration.getOwnedLiterals().clear();
+        }
 
-		ModelUtil.setVisibility(myEnumeration, getTranslationUnit(), EventType.ADD);
-	}
+        createEnumerators(myEnumeration);
 
-	/**
-	 * Creates the enumerators (content of the enumeration).
-	 *
-	 * @param enumeration
-	 *            The enumeration
-	 */
-	private void createEnumerators(Enumeration enumeration) {
-		for (IASTEnumerator enumerator : getEnumerators()) {
-			EnumerationLiteral literal = enumeration.createOwnedLiteral(enumerator.getName().toString());
-			if (enumerator.getValue() != null) {
-				LiteralString defaultExpression = (LiteralString)literal.createSpecification(
-						"initialisationValue", null, UMLPackage.Literals.LITERAL_STRING);
-				defaultExpression.setValue(enumerator.getValue().getRawSignature());
-			}
-		}
-	}
+        ModelUtil.setVisibility(myEnumeration, getTranslationUnit(), EventType.ADD);
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<EnumerationAdded> builder() {
-		return new Builder<EnumerationAdded>() {
-			private EnumerationAdded event = new EnumerationAdded();
+    /**
+     * Creates the enumerators (content of the enumeration).
+     *
+     * @param enumeration
+     *            The enumeration
+     */
+    private void createEnumerators(Enumeration enumeration) {
+        for (IASTEnumerator enumerator : getEnumerators()) {
+            EnumerationLiteral literal = enumeration.createOwnedLiteral(enumerator.getName().toString());
+            if (enumerator.getValue() != null) {
+                LiteralString defaultExpression = (LiteralString)literal.createSpecification(
+                        "initialisationValue", null, UMLPackage.Literals.LITERAL_STRING);
+                defaultExpression.setValue(enumerator.getValue().getRawSignature());
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.EnumerationEvent.Builder#getEvent()
-			 */
-			@Override
-			protected EnumerationAdded getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<EnumerationAdded> builder() {
+        return new AbstractBuilder<EnumerationAdded>() {
+            private EnumerationAdded event = new EnumerationAdded();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractEnumerationEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected EnumerationAdded getEvent() {
+                return event;
+            }
+        };
+    }
 }

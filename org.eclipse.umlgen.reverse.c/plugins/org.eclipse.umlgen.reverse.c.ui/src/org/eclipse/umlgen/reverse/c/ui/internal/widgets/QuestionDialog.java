@@ -25,49 +25,47 @@ import org.eclipse.umlgen.reverse.c.ui.internal.bundle.Messages;
  */
 public class QuestionDialog extends MessageDialog {
 
-	private IPreferenceStore store;
+    /** The preference store. */
+    private IPreferenceStore store;
 
-	/**
-	 * Constructor
-	 *
-	 * @param parentShell
-	 *            The parent shell
-	 * @param dialogTitle
-	 *            The dialog title
-	 * @param message
-	 *            The body of this dialog
-	 * @param pref
-	 *            The preference store on which values will be stored
-	 * @param keyPref
-	 *            The preference key
-	 */
-	public QuestionDialog(Shell parentShell, String dialogTitle, String message, IPreferenceStore pref) {
-		super(parentShell, dialogTitle, null, message, MessageDialog.QUESTION, new String[] {
-				Messages.getString("QuestionDialog.source"), Messages.getString("QuestionDialog.model") }, 0); //$NON-NLS-1$ //$NON-NLS-2$
-		store = pref;
-	}
+    /**
+     * Constructor.
+     *
+     * @param parentShell
+     *            The parent shell
+     * @param dialogTitle
+     *            The dialog title
+     * @param message
+     *            The body of this dialog
+     * @param pref
+     *            The preference store on which values will be stored
+     */
+    public QuestionDialog(Shell parentShell, String dialogTitle, String message, IPreferenceStore pref) {
+        super(parentShell, dialogTitle, null, message, MessageDialog.QUESTION, new String[] {
+                Messages.getString("QuestionDialog.source"), Messages.getString("QuestionDialog.model"), }, 0); //$NON-NLS-1$ //$NON-NLS-2$
+        store = pref;
+    }
 
-	/**
-	 * @see org.eclipse.jface.dialogs.MessageDialog#buttonPressed(int)
-	 */
-	@Override
-	protected void buttonPressed(int buttonId) {
-		if (store != null) {
-			// set synchronization mode default value
-			store.setDefault(BundleConstants.SYNC_AT_STARTING, BundleConstants.SYNC_SOURCE_VALUE); // O = from
-																									// sources
-																									// ;
-																									// 1 =
-																									// from
-																									// UML
-																									// model
-			// set the value chosen by the user
-			store.setValue(BundleConstants.SYNC_AT_STARTING,
-					buttonId == Window.OK ? BundleConstants.SYNC_SOURCE_VALUE
-							: BundleConstants.SYNC_MODEL_VALUE);
-		}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.jface.dialogs.MessageDialog#buttonPressed(int)
+     */
+    @Override
+    protected void buttonPressed(int buttonId) {
+        if (store != null) {
+            // set synchronization mode default value
+            store.setDefault(BundleConstants.SYNC_AT_STARTING, BundleConstants.SYNC_SOURCE_VALUE);
+            // O = from sources ; 1 = from UML model
+            // set the value chosen by the user
+            // CHECKSTYLE:OFF
+            store.setValue(BundleConstants.SYNC_AT_STARTING,
+                    buttonId == Window.OK ? BundleConstants.SYNC_SOURCE_VALUE
+                            : BundleConstants.SYNC_MODEL_VALUE);
+            // CHECKSTYLE:ON
+        }
 
-		super.buttonPressed(buttonId);
-	}
+        super.buttonPressed(buttonId);
+    }
 
 }

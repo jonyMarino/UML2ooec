@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -19,34 +19,51 @@ import org.eclipse.umlgen.dsl.asl.provider.custom.util.AslUtil;
 
 /**
  * Label provider to display a specific text when the related object is an unresolved proxy.
- * @author cnotot
  *
+ * @author cnotot
  */
 public class ValuesLabelProvider extends LabelProvider {
-	
-	private LabelProvider itemLabelProvider;
-	
-	public ValuesLabelProvider(LabelProvider itemLabelProvider) {
-		super();
-		this.itemLabelProvider = itemLabelProvider;
-	}
-	
-	@Override
-	public String getText(Object object) {
-		if (object instanceof EObject && AslUtil.isBrokenLink((EObject)object)){
-			return "<deleted>";
-		}
-		return itemLabelProvider.getText(object);
-	}
 
-	@Override
-	public Image getImage(Object object) {
-		Object result = itemLabelProvider.getImage(object);
-		if (object instanceof EObject && AslUtil.isBrokenLink((EObject)object)){
-			result = AslUtil.getBrokenDecorator(object, result, AslEditPlugin.INSTANCE.getPluginResourceLocator());
-		}
-		
-		return ExtendedImageRegistry.getInstance().getImage(result);	
-	}
-	
+    /** The item label provider. */
+    private LabelProvider itemLabelProvider;
+
+    /**
+     * Constructor.
+     *
+     * @param itemLabelProvider
+     *            The item label provider.
+     */
+    public ValuesLabelProvider(LabelProvider itemLabelProvider) {
+        super();
+        this.itemLabelProvider = itemLabelProvider;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+     */
+    @Override
+    public String getText(Object object) {
+        if (object instanceof EObject && AslUtil.isBrokenLink((EObject)object)) {
+            return "<deleted>";
+        }
+        return itemLabelProvider.getText(object);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.jface.viewers.LabelProvider#getImage(java.lang.Object)
+     */
+    @Override
+    public Image getImage(Object object) {
+        Object result = itemLabelProvider.getImage(object);
+        if (object instanceof EObject && AslUtil.isBrokenLink((EObject)object)) {
+            result = AslUtil.getBrokenDecorator(result, AslEditPlugin.INSTANCE.getPluginResourceLocator());
+        }
+
+        return ExtendedImageRegistry.getInstance().getImage(result);
+    }
+
 }

@@ -31,90 +31,94 @@ import org.eclipse.umlgen.c.common.BundleConstants;
  */
 public final class PreferenceStoreManager {
 
-	private static final String LOGICAL_VIEW = "Logical View"; //$NON-NLS-1$
+    /** Separator constant. */
+    private static final String SEPARATOR = "::";
 
-	/**
-	 * Constructor
-	 */
-	private PreferenceStoreManager() {
-		// avoid to be instantiated.
-	}
+    /** Logical View constant. */
+    private static final String LOGICAL_VIEW = "Logical View"; //$NON-NLS-1$
 
-	/**
-	 * Sets the default values into the preference store when the C2UML property page is called.
-	 *
-	 * @param project
-	 *            The selected IProject corresponding to the C Project
-	 */
-	public static void setDefaultValues(IProject project) {
-		IPreferenceStore store = getPreferenceStore(project);
-		IFolder modelFolder = project.getFolder(BundleConstants.MODELS_FOLDER);
-		IFile modelFile = modelFolder.getFile(project.getFullPath().addFileExtension(
-				BundleConstants.UML_EXTENSION));
+    /**
+     * Default Constructor.
+     */
+    private PreferenceStoreManager() {
+        // avoid to be instantiated.
+    }
 
-		// handle default synchronized model paths
-		URI uri = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
-		store.setDefault(BundleConstants.UML_MODEL_PATH, uri.toString());
+    /**
+     * Sets the default values into the preference store when the C2UML property page is called.
+     *
+     * @param project
+     *            The selected IProject corresponding to the C Project
+     */
+    public static void setDefaultValues(IProject project) {
+        IPreferenceStore store = getPreferenceStore(project);
+        IFolder modelFolder = project.getFolder(BundleConstants.MODELS_FOLDER);
+        IFile modelFile = modelFolder.getFile(project.getFullPath().addFileExtension(
+                BundleConstants.UML_EXTENSION));
 
-		// handle default configuration settings
-		String srcQualifiedName = project.getName()
-				+ "::" + LOGICAL_VIEW + "::" + BundleConstants.SOURCE_PACKAGE_NAME; //$NON-NLS-1$ //$NON-NLS-2$
-		store.setDefault(BundleConstants.SRC_PCK_NAME, srcQualifiedName);
+        // handle default synchronized model paths
+        URI uri = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+        store.setDefault(BundleConstants.UML_MODEL_PATH, uri.toString());
 
-		String typeQualifiedName = project.getName()
-				+ "::" + LOGICAL_VIEW + "::" + BundleConstants.TYPE_PACKAGE_NAME; //$NON-NLS-1$ //$NON-NLS-2$
-		store.setDefault(BundleConstants.TYPE_PCK_NAME, typeQualifiedName);
+        // handle default configuration settings
+        String srcQualifiedName = project.getName() + SEPARATOR + LOGICAL_VIEW + SEPARATOR
+                + BundleConstants.SOURCE_PACKAGE_NAME;
+        store.setDefault(BundleConstants.SRC_PCK_NAME, srcQualifiedName);
 
-		String extQualifiedName = project.getName()
-				+ "::" + LOGICAL_VIEW + "::" + BundleConstants.LIB_PACKAGE_NAME; //$NON-NLS-1$ //$NON-NLS-2$
-		store.setDefault(BundleConstants.EXT_PCK_NAME, extQualifiedName);
-	}
+        String typeQualifiedName = project.getName() + SEPARATOR + LOGICAL_VIEW + SEPARATOR
+                + BundleConstants.TYPE_PACKAGE_NAME;
+        store.setDefault(BundleConstants.TYPE_PCK_NAME, typeQualifiedName);
 
-	/**
-	 * Sets the initial values when the C nature is added to the project.
-	 *
-	 * @param project
-	 *            The selected IProject corresponding to the C Project
-	 */
-	public static void setInitialValues(IProject project) {
-		IPreferenceStore store = getPreferenceStore(project);
-		IFolder modelFolder = project.getFolder(BundleConstants.MODELS_FOLDER);
-		IFile modelFile = modelFolder.getFile(project.getFullPath().addFileExtension(
-				BundleConstants.UML_EXTENSION));
+        String extQualifiedName = project.getName() + SEPARATOR + LOGICAL_VIEW + SEPARATOR
+                + BundleConstants.LIB_PACKAGE_NAME;
+        store.setDefault(BundleConstants.EXT_PCK_NAME, extQualifiedName);
+    }
 
-		// handle default synchronized model paths
-		URI uri = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
-		store.setValue(BundleConstants.UML_MODEL_PATH, uri.toString());
+    /**
+     * Sets the initial values when the C nature is added to the project.
+     *
+     * @param project
+     *            The selected IProject corresponding to the C Project
+     */
+    public static void setInitialValues(IProject project) {
+        IPreferenceStore store = getPreferenceStore(project);
+        IFolder modelFolder = project.getFolder(BundleConstants.MODELS_FOLDER);
+        IFile modelFile = modelFolder.getFile(project.getFullPath().addFileExtension(
+                BundleConstants.UML_EXTENSION));
 
-		// handle default configuration settings
-		String srcQualifiedName = project.getName()
-				+ "::" + LOGICAL_VIEW + "::" + BundleConstants.SOURCE_PACKAGE_NAME; //$NON-NLS-1$ //$NON-NLS-2$
-		store.setValue(BundleConstants.SRC_PCK_NAME, srcQualifiedName);
+        // handle default synchronized model paths
+        URI uri = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+        store.setValue(BundleConstants.UML_MODEL_PATH, uri.toString());
 
-		String typeQualifiedName = project.getName()
-				+ "::" + LOGICAL_VIEW + "::" + BundleConstants.TYPE_PACKAGE_NAME; //$NON-NLS-1$ //$NON-NLS-2$
-		store.setValue(BundleConstants.TYPE_PCK_NAME, typeQualifiedName);
+        // handle default configuration settings
+        String srcQualifiedName = project.getName() + SEPARATOR + LOGICAL_VIEW + SEPARATOR
+                + BundleConstants.SOURCE_PACKAGE_NAME;
+        store.setValue(BundleConstants.SRC_PCK_NAME, srcQualifiedName);
 
-		String extQualifiedName = project.getName()
-				+ "::" + LOGICAL_VIEW + "::" + BundleConstants.LIB_PACKAGE_NAME; //$NON-NLS-1$ //$NON-NLS-2$
-		store.setValue(BundleConstants.EXT_PCK_NAME, extQualifiedName);
-	}
+        String typeQualifiedName = project.getName() + SEPARATOR + LOGICAL_VIEW + SEPARATOR
+                + BundleConstants.TYPE_PACKAGE_NAME;
+        store.setValue(BundleConstants.TYPE_PCK_NAME, typeQualifiedName);
 
-	/**
-	 * Gets the project or instance preference store.
-	 *
-	 * @param project
-	 *            the IProject in which UML and UMLDI template files are created.
-	 * @return the project scope preference store or the instance scope
-	 */
-	public static IPreferenceStore getPreferenceStore(IProject project) {
-		IPersistentPreferenceStore store;
-		if (project != null) {
-			store = new ScopedPreferenceStore(new ProjectScope(project), Activator.getBundleId());
-		} else {
-			store = new ScopedPreferenceStore(InstanceScope.INSTANCE, Activator.getBundleId());
-		}
-		return store;
-	}
+        String extQualifiedName = project.getName() + SEPARATOR + LOGICAL_VIEW + SEPARATOR
+                + BundleConstants.LIB_PACKAGE_NAME;
+        store.setValue(BundleConstants.EXT_PCK_NAME, extQualifiedName);
+    }
+
+    /**
+     * Gets the project or instance preference store.
+     *
+     * @param project
+     *            the IProject in which UML and UMLDI template files are created.
+     * @return the project scope preference store or the instance scope
+     */
+    public static IPreferenceStore getPreferenceStore(IProject project) {
+        IPersistentPreferenceStore store;
+        if (project != null) {
+            store = new ScopedPreferenceStore(new ProjectScope(project), Activator.getBundleId());
+        } else {
+            store = new ScopedPreferenceStore(InstanceScope.INSTANCE, Activator.getBundleId());
+        }
+        return store;
+    }
 
 }

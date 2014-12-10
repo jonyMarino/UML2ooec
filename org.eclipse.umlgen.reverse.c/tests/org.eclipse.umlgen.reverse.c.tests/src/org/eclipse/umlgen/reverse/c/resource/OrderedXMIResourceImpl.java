@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 public class OrderedXMIResourceImpl extends XMIResourceImpl {
 
-	public OrderedXMIResourceImpl(URI uri) {
-		super(uri);
-	}
+    public OrderedXMIResourceImpl(URI uri) {
+        super(uri);
+    }
 
-	@Override
-	protected XMLSave createXMLSave() {
-		return new OrderedXMISaveImpl(createXMLHelper());
-	}
+    @Override
+    protected XMLSave createXMLSave() {
+        return new OrderedXMISaveImpl(createXMLHelper());
+    }
 }

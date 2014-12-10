@@ -4,9 +4,9 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- *     Christophe Le Camus (CS-SI) - initial API and implementation 
+ *     Christophe Le Camus (CS-SI) - initial API and implementation
  *     Sebastien Gabel (CS-SI) - initial API and implementation
  *******************************************************************************/
 package org.eclipse.umlgen.reverse.c.event;
@@ -25,71 +25,72 @@ import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
 import org.eclipse.umlgen.reverse.c.util.ASTUtil;
 
-public class StructAdded extends StructEvent {
+/**
+ * Event related to an add of a structure.
+ */
+public class StructAdded extends AbstractStructEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(
-				manager.getSourcePackage(), getUnitName());
-		DataType myTypeDef = ModelUtil.findDataTypeInClassifier(
-				matchingClassifier, getCurrentName());
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        DataType myTypeDef = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
 
-		if (myTypeDef == null) {
-			if (matchingClassifier instanceof Class) {
-				myTypeDef = (DataType) ((Class) matchingClassifier)
-						.getNestedClassifier(getCurrentName(), false,
-								UMLPackage.Literals.DATA_TYPE, true);
-			} else if (matchingClassifier instanceof Interface) {
-				myTypeDef = (DataType) ((Interface) matchingClassifier)
-						.getNestedClassifier(getCurrentName(), false,
-								UMLPackage.Literals.DATA_TYPE, true);
-			}
+        if (myTypeDef == null) {
+            if (matchingClassifier instanceof Class) {
+                myTypeDef = (DataType)((Class)matchingClassifier).getNestedClassifier(getCurrentName(),
+                        false, UMLPackage.Literals.DATA_TYPE, true);
+            } else if (matchingClassifier instanceof Interface) {
+                myTypeDef = (DataType)((Interface)matchingClassifier).getNestedClassifier(getCurrentName(),
+                        false, UMLPackage.Literals.DATA_TYPE, true);
+            }
 
-		} else {
-			/* On supprime tous les attributs avant de les reconstruire */
-			myTypeDef.getOwnedAttributes().clear();
-		}
+        } else {
+            /* On supprime tous les attributs avant de les reconstruire */
+            myTypeDef.getOwnedAttributes().clear();
+        }
 
-		for (IASTDeclaration declaration : getDeclarations()) {
-			String typeName = "";
-			String attributeName = "";
+        for (IASTDeclaration declaration : getDeclarations()) {
+            String typeName = "";
+            String attributeName = "";
 
-			if (declaration instanceof IASTSimpleDeclaration) {
-				IASTSimpleDeclaration simpleDecl = (IASTSimpleDeclaration) declaration;
-				attributeName = ASTUtil
-						.computeName(simpleDecl.getDeclarators()[0]);
-				typeName = ASTUtil.computeType(simpleDecl);
-			}
+            if (declaration instanceof IASTSimpleDeclaration) {
+                IASTSimpleDeclaration simpleDecl = (IASTSimpleDeclaration)declaration;
+                attributeName = ASTUtil.computeName(simpleDecl.getDeclarators()[0]);
+                typeName = ASTUtil.computeType(simpleDecl);
+            }
 
-			Type myType = manager.getDataType(typeName);
-			if (matchingClassifier.getAttribute(getCurrentName(), myType) == null) {
-				myTypeDef.createOwnedAttribute(attributeName, myType);
-			}
-		}
+            Type myType = manager.getDataType(typeName);
+            if (matchingClassifier.getAttribute(getCurrentName(), myType) == null) {
+                myTypeDef.createOwnedAttribute(attributeName, myType);
+            }
+        }
 
-		ModelUtil.setVisibility(myTypeDef, getTranslationUnit(), EventType.ADD);
-		UML2Util.getEAnnotation(myTypeDef, "STRUCT", true);
-	}
+        ModelUtil.setVisibility(myTypeDef, getTranslationUnit(), EventType.ADD);
+        UML2Util.getEAnnotation(myTypeDef, "STRUCT", true);
+    }
 
-	/**
-	 * Gets the right builder
-	 * 
-	 * @return the builder for this event
-	 */
-	public static Builder<StructAdded> builder() {
-		return new Builder<StructAdded>() {
-			private final StructAdded event = new StructAdded();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<StructAdded> builder() {
+        return new AbstractBuilder<StructAdded>() {
+            private final StructAdded event = new StructAdded();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.StructEvent#getEvent()
-			 */
-			@Override
-			protected StructAdded getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.AbstractStructEvent#getEvent()
+             */
+            @Override
+            protected StructAdded getEvent() {
+                return event;
+            }
+        };
+    }
 }

@@ -17,37 +17,56 @@ package org.eclipse.umlgen.reverse.c.event;
  */
 public abstract class AbstractTypedEvent extends AbstractNamedEvent {
 
-	private String previousTypeName;
+    /** The previous type name. */
+    private String previousTypeName;
 
-	private String currentTypeName;
+    /** The current type name. */
+    private String currentTypeName;
 
-	public String getCurrentTypeName() {
-		return this.currentTypeName;
-	}
+    public String getCurrentTypeName() {
+        return this.currentTypeName;
+    }
 
-	public String getPreviousTypeName() {
-		return this.previousTypeName;
-	}
+    public String getPreviousTypeName() {
+        return this.previousTypeName;
+    }
 
-	protected void setCurrentType(String currentTypeName) {
-		this.currentTypeName = currentTypeName;
-	}
+    protected void setCurrentType(String pCurrentTypeName) {
+        this.currentTypeName = pCurrentTypeName;
+    }
 
-	protected void setPreviousType(String setPreviousTypeName) {
-		this.previousTypeName = setPreviousTypeName;
-	}
+    protected void setPreviousType(String setPreviousTypeName) {
+        this.previousTypeName = setPreviousTypeName;
+    }
 
-	public static abstract class Builder<T extends AbstractTypedEvent> extends AbstractNamedEvent.Builder<T> {
+    /**
+     * Generic behavior for builders from events.
+     */
+    public abstract static class AbstractBuilder<T extends AbstractTypedEvent> extends AbstractNamedEvent.AbstractBuilder<T> {
 
-		public Builder<T> currentType(String currentTypeName) {
-			getEvent().setCurrentType(currentTypeName);
-			return this;
-		}
+        /**
+         * This sets the given type name as the current one, on the event.
+         *
+         * @param currentTypeName
+         *            The current type name.
+         * @return self
+         */
+        public AbstractBuilder<T> currentType(String currentTypeName) {
+            getEvent().setCurrentType(currentTypeName);
+            return this;
+        }
 
-		public Builder<T> previousType(String previousTypeName) {
-			getEvent().setCurrentType(previousTypeName);
-			return this;
-		}
-	}
+        /**
+         * This sets the given type name as the previous one, on the event.
+         *
+         * @param previousTypeName
+         *            The previous type name.
+         * @return self
+         */
+        public AbstractBuilder<T> previousType(String previousTypeName) {
+            getEvent().setCurrentType(previousTypeName);
+            return this;
+        }
+    }
 
 }

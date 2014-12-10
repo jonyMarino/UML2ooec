@@ -18,32 +18,34 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class TypeDefArrayRenamed extends TypeDefArrayEvent {
+public class TypeDefArrayRenamed extends AbstractTypeDefArrayEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be implemented
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractTypeDefEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be implemented
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefArrayRenamed> builder() {
-		return new Builder<TypeDefArrayRenamed>() {
-			private TypeDefArrayRenamed event = new TypeDefArrayRenamed();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefArrayRenamed> builder() {
+        return new AbstractBuilder<TypeDefArrayRenamed>() {
+            private TypeDefArrayRenamed event = new TypeDefArrayRenamed();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.TypeDefArrayEvent.Builder#getEvent()
-			 */
-			@Override
-			protected TypeDefArrayRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractTypeDefArrayEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected TypeDefArrayRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

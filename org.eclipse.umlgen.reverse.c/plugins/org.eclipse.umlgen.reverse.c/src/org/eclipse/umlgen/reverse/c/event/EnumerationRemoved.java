@@ -21,50 +21,51 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
 
-public class EnumerationRemoved extends EnumerationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		Enumeration myEnumeration = ModelUtil.findEnumerationInClassifier(matchingClassifier,
-				getCurrentName());
-		if (myEnumeration != null) {
-			if (ModelUtil.isRemovable(myEnumeration)) {
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(myEnumeration, manager);
-				}
-				myEnumeration.destroy();
-			} else {
-				ModelUtil.setVisibility(myEnumeration, getTranslationUnit(), EventType.REMOVE);
-			}
-		}
-	}
+/**
+ * Event related to addition of an enumeration.
+ */
+public class EnumerationRemoved extends AbstractEnumerationEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<EnumerationRemoved> builder() {
-		return new Builder<EnumerationRemoved>() {
-			private EnumerationRemoved event = new EnumerationRemoved();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        Enumeration myEnumeration = ModelUtil.findEnumerationInClassifier(matchingClassifier,
+                getCurrentName());
+        if (myEnumeration != null) {
+            if (ModelUtil.isRemovable(myEnumeration)) {
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(myEnumeration, manager);
+                }
+                myEnumeration.destroy();
+            } else {
+                ModelUtil.setVisibility(myEnumeration, getTranslationUnit(), EventType.REMOVE);
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.EnumerationEvent.Builder#getEvent()
-			 */
-			@Override
-			protected EnumerationRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<EnumerationRemoved> builder() {
+        return new AbstractBuilder<EnumerationRemoved>() {
+            private EnumerationRemoved event = new EnumerationRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractEnumerationEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected EnumerationRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

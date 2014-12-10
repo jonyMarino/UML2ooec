@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -26,87 +26,110 @@ import org.eclipse.umlgen.dsl.eth.presentation.util.Requestor;
 
 /**
  * Specific content provider to display the choice of values amongst connectors.
- * 
+ *
  * @author cnotot
- * 
  */
-public class ConnectorsChoiceAdapterFactoryContentProvider extends
-		AdapterFactoryContentProvider {
+public class ConnectorsChoiceAdapterFactoryContentProvider extends AdapterFactoryContentProvider {
 
-	/** The selected values/connectors */
-	private List<?> values;
+    /** The selected values/connectors. */
+    private List<?> values;
 
-	public ConnectorsChoiceAdapterFactoryContentProvider(
-			AdapterFactory adapterFactory, List<?> values) {
-		super(adapterFactory);
-		this.values = values;
-	}
+    /**
+     * Constructor.
+     *
+     * @param adapterFactory
+     *            The adapter factory.
+     * @param values
+     *            The values.
+     */
+    public ConnectorsChoiceAdapterFactoryContentProvider(AdapterFactory adapterFactory, List<?> values) {
+        super(adapterFactory);
+        this.values = values;
+    }
 
-	@Override
-	public Object[] getElements(Object object) {
-		List<EObject> result = new ArrayList<EObject>();
-		Object[] objects = super.getElements(object);
-		for (int i = 0; i < objects.length; i++) {
-			if (objects[i] instanceof Namespace
-					&& ((Namespace) objects[i]).eContainer() instanceof Model
-					&& getChildren(objects[i]).length > 0) {
-				result.add((EObject) objects[i]);
-			}
-		}
-		return result.toArray();
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getElements(java.lang.Object)
+     */
+    @Override
+    public Object[] getElements(Object object) {
+        List<EObject> result = new ArrayList<EObject>();
+        Object[] objects = super.getElements(object);
+        for (Object object2 : objects) {
+            if (object2 instanceof Namespace && ((Namespace)object2).eContainer() instanceof Model
+                    && getChildren(object2).length > 0) {
+                result.add((EObject)object2);
+            }
+        }
+        return result.toArray();
+    }
 
-	@Override
-	public Object[] getChildren(Object object) {
-		final List<EObject> result = new ArrayList<EObject>();
-		if (isComponent(object)) {
-			result.addAll(getOutgoingConnectors((org.eclipse.uml2.uml.Class) object));
-		} else if (object instanceof Namespace) {
-			final ItemProvider input = (ItemProvider) viewer.getInput();
-			for (Object obj : input.getChildren()) {
-				if (obj instanceof Namespace
-						&& ((EObject) obj).eContainer() == object
-						&& hasChildren(obj)) {
-					result.add((EObject) obj);
-				}
-			}
-		}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getChildren(java.lang.Object)
+     */
+    @Override
+    public Object[] getChildren(Object object) {
+        final List<EObject> result = new ArrayList<EObject>();
+        if (isComponent(object)) {
+            result.addAll(getOutgoingConnectors((org.eclipse.uml2.uml.Class)object));
+        } else if (object instanceof Namespace) {
+            final ItemProvider input = (ItemProvider)viewer.getInput();
+            for (Object obj : input.getChildren()) {
+                if (obj instanceof Namespace && ((EObject)obj).eContainer() == object && hasChildren(obj)) {
+                    result.add((EObject)obj);
+                }
+            }
+        }
 
-		return result.toArray();
-	}
+        return result.toArray();
+    }
 
-	/**
-	 * From the given class/component, get the non selected outgoing connectors.
-	 * 
-	 * @param component
-	 *            The given class
-	 * @return The list of outgoing connectors.
-	 */
-	private List<Connector> getOutgoingConnectors(
-			org.eclipse.uml2.uml.Class component) {
-		final List<Connector> result = new ArrayList<Connector>();
-		final Iterator<Port> ports = component.getOwnedPorts().iterator();
-		while (ports.hasNext()) {
-			final Port port = ports.next();
-			if (port.getType() == null && port.getEnds().size() > 0) {
-				for (Connector connector : Requestor.getConnectors(port)) {
-					if (!values.contains(connector)) {
-						result.add(connector);
-					}
-				}
-			}
-		}
-		return result;
-	}
+    /**
+     * From the given class/component, get the non selected outgoing connectors.
+     *
+     * @param component
+     *            The given class
+     * @return The list of outgoing connectors.
+     */
+    private List<Connector> getOutgoingConnectors(org.eclipse.uml2.uml.Class component) {
+        final List<Connector> result = new ArrayList<Connector>();
+        final Iterator<Port> ports = component.getOwnedPorts().iterator();
+        while (ports.hasNext()) {
+            final Port port = ports.next();
+            if (port.getType() == null && port.getEnds().size() > 0) {
+                for (Connector connector : Requestor.getConnectors(port)) {
+                    if (!values.contains(connector)) {
+                        result.add(connector);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
-	@Override
-	public boolean hasChildren(Object object) {
-		return getChildren(object).length > 0;
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#hasChildren(java.lang.Object)
+     */
+    @Override
+    public boolean hasChildren(Object object) {
+        return getChildren(object).length > 0;
+    }
 
-	public boolean isComponent(Object obj) {
-		return obj instanceof org.eclipse.uml2.uml.Class
-				&& ((org.eclipse.uml2.uml.Class) obj).getOwnedPorts().size() > 0;
-	}
+    /**
+     * This checks if the given object is a component.
+     *
+     * @param obj
+     *            the object to check.
+     * @return True if yes.
+     */
+    public boolean isComponent(Object obj) {
+        return obj instanceof org.eclipse.uml2.uml.Class
+                && ((org.eclipse.uml2.uml.Class)obj).getOwnedPorts().size() > 0;
+    }
 
 }

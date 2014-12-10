@@ -25,132 +25,132 @@ import org.junit.Test;
 
 public class TestStorageClassExtern5to6AndRegister1 extends AbstractTest {
 
-	/***********************************************/
+    /***********************************************/
 
-	@Test
-	public void testStorageClassExtern5InC() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern5InC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern5C", new NullProgressMonitor());
+        IProject project = createIProject("/testextern5C", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern5.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern5.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern5.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern5.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern5C.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern5C.uml");
 
-	}
+    }
 
-	@Test
-	public void testStorageClassExtern5InH() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern5InH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern5H", new NullProgressMonitor());
+        IProject project = createIProject("/testextern5H", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern5.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern5.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern5.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern5.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern5H.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern5H.uml");
 
-	}
+    }
 
-	/***********************************************/
+    /***********************************************/
 
-	@Test
-	public void testStorageClassExtern6InC() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern6InC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern6C", new NullProgressMonitor());
+        IProject project = createIProject("/testextern6C", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern6.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern6.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern6.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern6.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern6C.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern6C.uml");
 
-	}
+    }
 
-	@Test
-	public void testStorageClassExtern6InH() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern6InH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern6H", new NullProgressMonitor());
+        IProject project = createIProject("/testextern6H", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern6.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern6.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern6.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern6.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern6H.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern6H.uml");
 
-	}
+    }
 
-	/***********************************************/
+    /***********************************************/
 
-	@Test
-	public void testStorageClassRegister1InC() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassRegister1InC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testregister1C", new NullProgressMonitor());
+        IProject project = createIProject("/testregister1C", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("register1.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("register1.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/register1.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/register1.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/register1C.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/register1C.uml");
 
-	}
+    }
 
-	@Test
-	public void testStorageClassRegister1InH() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassRegister1InH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testregister1H", new NullProgressMonitor());
+        IProject project = createIProject("/testregister1H", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("register1.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("register1.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/register1.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/register1.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/register1H.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/register1H.uml");
 
-	}
+    }
 
-	/***********************************************/
+    /***********************************************/
 
 }

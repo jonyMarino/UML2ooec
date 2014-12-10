@@ -19,31 +19,115 @@ import org.eclipse.cdt.core.model.ICElement;
 import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.cdt.core.model.IWorkingCopy;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.umlgen.reverse.c.event.CModelChangedEvent;
+import org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent;
 import org.eclipse.umlgen.reverse.c.listener.ICModelChangeListener;
 
+/** A reconciler interface. */
 public interface IReconciler {
 
-	void removedElement(IASTTranslationUnit originalTranslationUnit, IASTTranslationUnit newTranslationUnit,
-			ITranslationUnit workingcopy, ICElement coreElement) throws CoreException;
+    /**
+     * Notify from a removed element.
+     *
+     * @param originalTranslationUnit
+     *            The original translation unit.
+     * @param newTranslationUnit
+     *            The new translation unit.
+     * @param workingcopy
+     *            The working copy.
+     * @param coreElement
+     *            The core element
+     * @throws CoreException
+     *             exception
+     */
+    void removedElement(IASTTranslationUnit originalTranslationUnit, IASTTranslationUnit newTranslationUnit,
+            ITranslationUnit workingcopy, ICElement coreElement) throws CoreException;
 
-	void addedElement(IASTTranslationUnit originalTranslationUnit, IASTTranslationUnit newTranslationUnit,
-			ITranslationUnit workingcopy, ICElement coreElement) throws CoreException;
+    /**
+     * Notify from an added element.
+     *
+     * @param originalTranslationUnit
+     *            The original translation unit.
+     * @param newTranslationUnit
+     *            The new translation unit.
+     * @param workingcopy
+     *            The working copy.
+     * @param coreElement
+     *            The core element
+     * @throws CoreException
+     *             exception
+     */
+    void addedElement(IASTTranslationUnit originalTranslationUnit, IASTTranslationUnit newTranslationUnit,
+            ITranslationUnit workingcopy, ICElement coreElement) throws CoreException;
 
-	void removedElement(ITranslationUnit originalUnit, IWorkingCopy workingUnit, ICElement element)
-			throws CoreException;
+    /**
+     * Notify from a removed element.
+     *
+     * @param originalUnit
+     *            The original unit.
+     * @param workingUnit
+     *            The working unit.
+     * @param element
+     *            The core element.
+     * @throws CoreException
+     *             exception
+     */
+    void removedElement(ITranslationUnit originalUnit, IWorkingCopy workingUnit, ICElement element)
+            throws CoreException;
 
-	void addedElement(ITranslationUnit originalUnit, IWorkingCopy workingUnit, ICElement element)
-			throws CoreException;
+    /**
+     * Notify from an added element.
+     *
+     * @param originalUnit
+     *            The original unit.
+     * @param workingUnit
+     *            The working unit.
+     * @param element
+     *            The core element.
+     * @throws CoreException
+     *             exception
+     */
+    void addedElement(ITranslationUnit originalUnit, IWorkingCopy workingUnit, ICElement element)
+            throws CoreException;
 
-	void removeModelChangeListener(ICModelChangeListener modelChangeListener);
+    /**
+     * Remove the model change listener.
+     *
+     * @param modelChangeListener
+     *            the listener to remove.
+     */
+    void removeModelChangeListener(ICModelChangeListener modelChangeListener);
 
-	void addModelChangeListener(ICModelChangeListener modelChangeListener);
+    /**
+     * Add a model change listener.
+     *
+     * @param modelChangeListener
+     *            The listener to add.
+     */
+    void addModelChangeListener(ICModelChangeListener modelChangeListener);
 
-	List<ICModelChangeListener> getModelChangeListeners();
+    /**
+     * Return the model change listeners.
+     *
+     * @return The listeners
+     */
+    List<ICModelChangeListener> getModelChangeListeners();
 
-	void addAllModelChangeListeners(List<ICModelChangeListener> listeners);
+    /**
+     * Add the given model change listeners.
+     *
+     * @param listeners
+     *            The listeners to add.
+     */
+    void addAllModelChangeListeners(List<ICModelChangeListener> listeners);
 
-	void notifyListeners(CModelChangedEvent event, boolean needSave);
+    /**
+     * Notify listeners from the given event.
+     *
+     * @param event
+     *            the event.
+     * @param needSave
+     *            This indicates if the model has to be saved.
+     */
+    void notifyListeners(AbstractCModelChangedEvent event, boolean needSave);
 
 }

@@ -15,8 +15,8 @@ import org.junit.Test;
 
 public class TestContinue extends AbstractTest {
 
-	@Test
-	public void continueInNestedForAndIf() {
-		testCFile("continueStatement/continueInForAndIfNested.c", false);
-	}
+    @Test
+    public void continueInNestedForAndIf() {
+        testCFile("continueStatement/continueInForAndIfNested.c", false);
+    }
 }

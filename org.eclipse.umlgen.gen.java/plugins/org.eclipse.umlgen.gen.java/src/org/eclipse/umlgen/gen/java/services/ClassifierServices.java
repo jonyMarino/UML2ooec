@@ -31,163 +31,202 @@ import org.eclipse.uml2.uml.VisibilityKind;
  * @since 2.0
  */
 public class ClassifierServices {
-	public List<Operation> getAllInheritedOperations(org.eclipse.uml2.uml.Class aClass) {
-		LinkedHashSet<Operation> inheritedOperations = new LinkedHashSet<Operation>();
 
-		// Everything inherited from the classes
-		List<Class> allGeneralizedClasses = this.getAllGeneralizedClasses(aClass);
-		for (Class aGeneralizedClass : allGeneralizedClasses) {
-			List<Operation> operations = aGeneralizedClass.getOperations();
-			for (Operation operation : operations) {
-				if (operation.isAbstract()) {
-					inheritedOperations.add(operation);
-				}
-			}
-		}
+    /**
+     * get all inherited operations from the given UML class.
+     *
+     * @param aClass
+     *            The UML class.
+     * @return The list of operations.
+     */
+    public List<Operation> getAllInheritedOperations(org.eclipse.uml2.uml.Class aClass) {
+        LinkedHashSet<Operation> inheritedOperations = new LinkedHashSet<Operation>();
 
-		List<Interface> implementedInterfaces = aClass.getImplementedInterfaces();
-		for (Interface anInterface : implementedInterfaces) {
-			inheritedOperations.addAll(anInterface.getAllOperations());
-		}
+        // Everything inherited from the classes
+        List<Class> allGeneralizedClasses = this.getAllGeneralizedClasses(aClass);
+        for (Class aGeneralizedClass : allGeneralizedClasses) {
+            List<Operation> operations = aGeneralizedClass.getOperations();
+            for (Operation operation : operations) {
+                if (operation.isAbstract()) {
+                    inheritedOperations.add(operation);
+                }
+            }
+        }
 
-		List<Operation> operationsToRemove = new ArrayList<Operation>();
-		for (Operation inheritedOperation : inheritedOperations) {
-			boolean shouldRemoveOperation = false;
+        List<Interface> implementedInterfaces = aClass.getImplementedInterfaces();
+        for (Interface anInterface : implementedInterfaces) {
+            inheritedOperations.addAll(anInterface.getAllOperations());
+        }
 
-			// See if it's not implemented
-			List<Operation> ownedOperations = aClass.getOwnedOperations();
-			for (Operation ownedOperation : ownedOperations) {
-				if (this.areEqual(ownedOperation, inheritedOperation)) {
-					shouldRemoveOperation = true;
-					break;
-				}
-			}
+        List<Operation> operationsToRemove = new ArrayList<Operation>();
+        for (Operation inheritedOperation : inheritedOperations) {
+            boolean shouldRemoveOperation = false;
 
-			// See if a parent is not implementing it
-			if (!shouldRemoveOperation) {
-				for (Class aGeneralizedClass : allGeneralizedClasses) {
-					List<Operation> generalizedClassOperations = aGeneralizedClass.getOwnedOperations();
-					for (Operation generalizedClassOperation : generalizedClassOperations) {
-						if (generalizedClassOperation != inheritedOperation
-								&& this.canOverride(generalizedClassOperation, inheritedOperation)
-								&& this.areEqual(generalizedClassOperation, inheritedOperation)) {
-							shouldRemoveOperation = true;
-							break;
-						}
-					}
-				}
-			}
+            // See if it's not implemented
+            List<Operation> ownedOperations = aClass.getOwnedOperations();
+            for (Operation ownedOperation : ownedOperations) {
+                if (this.areEqual(ownedOperation, inheritedOperation)) {
+                    shouldRemoveOperation = true;
+                    break;
+                }
+            }
 
-			// See if we don't have the same operation to implement with a stronger visibility
-			// public > package > protected > private
-			if (!shouldRemoveOperation) {
-				for (Operation otherInheritedOperation : inheritedOperations) {
-					if (this.areEqual(inheritedOperation, otherInheritedOperation)) {
-						if (VisibilityKind.PUBLIC_LITERAL.equals(otherInheritedOperation.getVisibility())
-								&& !VisibilityKind.PUBLIC_LITERAL.equals(inheritedOperation.getVisibility())) {
-							// Public > everything
-							shouldRemoveOperation = true;
-							break;
-						} else if (VisibilityKind.PACKAGE_LITERAL.equals(otherInheritedOperation
-								.getVisibility())
-								&& !VisibilityKind.PUBLIC_LITERAL.equals(inheritedOperation.getVisibility())) {
-							// Package > protected and private only
-							shouldRemoveOperation = true;
-							break;
-						} else if (VisibilityKind.PROTECTED_LITERAL.equals(otherInheritedOperation
-								.getVisibility())
-								&& VisibilityKind.PRIVATE_LITERAL.equals(inheritedOperation.getVisibility())) {
-							// Protected > private only
-							shouldRemoveOperation = true;
-							break;
-						}
-					}
-				}
-			}
+            // See if a parent is not implementing it
+            if (!shouldRemoveOperation) {
+                for (Class aGeneralizedClass : allGeneralizedClasses) {
+                    List<Operation> generalizedClassOperations = aGeneralizedClass.getOwnedOperations();
+                    for (Operation generalizedClassOperation : generalizedClassOperations) {
+                        if (generalizedClassOperation != inheritedOperation
+                                && this.canOverride(generalizedClassOperation, inheritedOperation)
+                                && this.areEqual(generalizedClassOperation, inheritedOperation)) {
+                            shouldRemoveOperation = true;
+                            break;
+                        }
+                    }
+                }
+            }
 
-			if (shouldRemoveOperation) {
-				operationsToRemove.add(inheritedOperation);
-			}
-		}
-		inheritedOperations.removeAll(operationsToRemove);
+            // See if we don't have the same operation to implement with a stronger visibility
+            // public > package > protected > private
+            if (!shouldRemoveOperation) {
+                for (Operation otherInheritedOperation : inheritedOperations) {
+                    if (this.areEqual(inheritedOperation, otherInheritedOperation)) {
+                        if (VisibilityKind.PUBLIC_LITERAL.equals(otherInheritedOperation.getVisibility())
+                                && !VisibilityKind.PUBLIC_LITERAL.equals(inheritedOperation.getVisibility())) {
+                            // Public > everything
+                            shouldRemoveOperation = true;
+                            break;
+                        } else if (VisibilityKind.PACKAGE_LITERAL.equals(otherInheritedOperation
+                                .getVisibility())
+                                && !VisibilityKind.PUBLIC_LITERAL.equals(inheritedOperation.getVisibility())) {
+                            // Package > protected and private only
+                            shouldRemoveOperation = true;
+                            break;
+                        } else if (VisibilityKind.PROTECTED_LITERAL.equals(otherInheritedOperation
+                                .getVisibility())
+                                && VisibilityKind.PRIVATE_LITERAL.equals(inheritedOperation.getVisibility())) {
+                            // Protected > private only
+                            shouldRemoveOperation = true;
+                            break;
+                        }
+                    }
+                }
+            }
 
-		List<Operation> operations = new ArrayList<Operation>();
-		operations.addAll(inheritedOperations);
-		return operations;
-	}
+            if (shouldRemoveOperation) {
+                operationsToRemove.add(inheritedOperation);
+            }
+        }
+        inheritedOperations.removeAll(operationsToRemove);
 
-	private boolean canOverride(Operation generalizedClassOperation, Operation inheritedOperation) {
-		return !generalizedClassOperation.isAbstract()
-				&& !VisibilityKind.PRIVATE_LITERAL.equals(generalizedClassOperation.getVisibility());
-	}
+        List<Operation> operations = new ArrayList<Operation>();
+        operations.addAll(inheritedOperations);
+        return operations;
+    }
 
-	private boolean areEqual(Operation generalizedClassOperation, Operation inheritedOperation) {
-		if (generalizedClassOperation.getName() != null
-				&& generalizedClassOperation.getName().equals(inheritedOperation.getName())) {
-			EList<Parameter> generalizedClassOperationParameters = generalizedClassOperation
-					.getOwnedParameters();
-			int generalizedClassOperationParametersSize = generalizedClassOperationParameters.size();
-			EList<Parameter> inheritedOperationParameters = inheritedOperation.getOwnedParameters();
+    /**
+     * Check if the given generalized UML operation can be overridden.
+     *
+     * @param generalizedClassOperation
+     *            the generalized UML operation.
+     * @param inheritedOperation
+     *            a inherited operation.
+     * @return True if it can be overridden.
+     */
+    private boolean canOverride(Operation generalizedClassOperation, Operation inheritedOperation) {
+        return !generalizedClassOperation.isAbstract()
+                && !VisibilityKind.PRIVATE_LITERAL.equals(generalizedClassOperation.getVisibility());
+    }
 
-			EList<Parameter> returnResult = generalizedClassOperation.returnResult();
-			int returnResultSize = returnResult.size();
-			EList<Parameter> inheritedOperationReturnResult = inheritedOperation.returnResult();
+    /**
+     * Check if the two given UML operation seems to be equal.
+     *
+     * @param generalizedClassOperation
+     *            The first operation.
+     * @param inheritedOperation
+     *            The second one.
+     * @return True if equal.
+     */
+    // CHECKSTYLE:OFF
+    private boolean areEqual(Operation generalizedClassOperation, Operation inheritedOperation) {
+        // CHECKSTYLE:ON
+        if (generalizedClassOperation.getName() != null
+                && generalizedClassOperation.getName().equals(inheritedOperation.getName())) {
+            EList<Parameter> generalizedClassOperationParameters = generalizedClassOperation
+                    .getOwnedParameters();
+            int generalizedClassOperationParametersSize = generalizedClassOperationParameters.size();
+            EList<Parameter> inheritedOperationParameters = inheritedOperation.getOwnedParameters();
 
-			if (generalizedClassOperationParametersSize == inheritedOperationParameters.size()
-					&& returnResultSize == inheritedOperationReturnResult.size()) {
+            EList<Parameter> returnResult = generalizedClassOperation.returnResult();
+            int returnResultSize = returnResult.size();
+            EList<Parameter> inheritedOperationReturnResult = inheritedOperation.returnResult();
 
-				for (int i = 0; i < generalizedClassOperationParametersSize; i++) {
-					Type inheritedOperationParameterType = inheritedOperationParameters.get(i).getType();
-					Type generalizedClassOperationParameterType = generalizedClassOperationParameters.get(i)
-							.getType();
+            if (generalizedClassOperationParametersSize == inheritedOperationParameters.size()
+                    && returnResultSize == inheritedOperationReturnResult.size()) {
 
-					if (inheritedOperationParameterType == null) {
-						if (generalizedClassOperationParameterType != null) {
-							return false;
-						}
-					} else {
-						if (!inheritedOperationParameterType
-								.conformsTo(generalizedClassOperationParameterType)) {
-							return false;
-						}
-					}
-				}
+                for (int i = 0; i < generalizedClassOperationParametersSize; i++) {
+                    Type inheritedOperationParameterType = inheritedOperationParameters.get(i).getType();
+                    Type generalizedClassOperationParameterType = generalizedClassOperationParameters.get(i)
+                            .getType();
 
-				for (int i = 0; i < returnResultSize; i++) {
-					Type inheritedOperationReturnResultType = inheritedOperationReturnResult.get(i).getType();
-					Type returnResultType = returnResult.get(i).getType();
+                    // CHECKSTYLE:OFF
+                    if (inheritedOperationParameterType == null) {
+                        if (generalizedClassOperationParameterType != null) {
+                            return false;
+                        }
+                    } else {
+                        if (!inheritedOperationParameterType
+                                .conformsTo(generalizedClassOperationParameterType)) {
+                            return false;
+                        }
+                    }
+                    // CHECKSTYLE:ON
+                }
 
-					if (inheritedOperationReturnResultType == null) {
-						if (returnResultType != null) {
-							return false;
-						}
-					} else {
-						if (!inheritedOperationReturnResultType.conformsTo(returnResultType)) {
-							return false;
-						}
-					}
-				}
+                for (int i = 0; i < returnResultSize; i++) {
+                    Type inheritedOperationReturnResultType = inheritedOperationReturnResult.get(i).getType();
+                    Type returnResultType = returnResult.get(i).getType();
 
-				return true;
-			}
-		}
+                    // CHECKSTYLE:OFF
+                    if (inheritedOperationReturnResultType == null) {
+                        if (returnResultType != null) {
+                            return false;
+                        }
+                    } else {
+                        if (!inheritedOperationReturnResultType.conformsTo(returnResultType)) {
+                            return false;
+                        }
+                    }
+                    // CHECKSTYLE:ON
+                }
 
-		return false;
-	}
+                return true;
+            }
+        }
 
-	private List<org.eclipse.uml2.uml.Class> getAllGeneralizedClasses(org.eclipse.uml2.uml.Class aClass) {
-		List<org.eclipse.uml2.uml.Class> generalizedClass = new ArrayList<org.eclipse.uml2.uml.Class>();
+        return false;
+    }
 
-		List<Generalization> generalizations = aClass.getGeneralizations();
-		for (Generalization generalization : generalizations) {
-			Classifier aClassifier = generalization.getGeneral();
-			if (aClassifier instanceof org.eclipse.uml2.uml.Class) {
-				org.eclipse.uml2.uml.Class anInheritedClass = (org.eclipse.uml2.uml.Class)aClassifier;
-				generalizedClass.add(anInheritedClass);
-				generalizedClass.addAll(this.getAllGeneralizedClasses(anInheritedClass));
-			}
-		}
+    /**
+     * get all generalized UML classes from the given UML class.
+     *
+     * @param aClass
+     *            The UML class.
+     * @return The list of classes.
+     */
+    private List<org.eclipse.uml2.uml.Class> getAllGeneralizedClasses(org.eclipse.uml2.uml.Class aClass) {
+        List<org.eclipse.uml2.uml.Class> generalizedClass = new ArrayList<org.eclipse.uml2.uml.Class>();
 
-		return generalizedClass;
-	}
+        List<Generalization> generalizations = aClass.getGeneralizations();
+        for (Generalization generalization : generalizations) {
+            Classifier aClassifier = generalization.getGeneral();
+            if (aClassifier instanceof org.eclipse.uml2.uml.Class) {
+                org.eclipse.uml2.uml.Class anInheritedClass = (org.eclipse.uml2.uml.Class)aClassifier;
+                generalizedClass.add(anInheritedClass);
+                generalizedClass.addAll(this.getAllGeneralizedClasses(anInheritedClass));
+            }
+        }
+
+        return generalizedClass;
+    }
 }

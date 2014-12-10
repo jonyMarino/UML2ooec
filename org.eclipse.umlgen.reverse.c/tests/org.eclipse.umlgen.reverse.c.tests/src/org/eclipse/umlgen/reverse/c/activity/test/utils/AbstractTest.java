@@ -31,69 +31,69 @@ import org.eclipse.umlgen.reverse.c.activity.UMLActivityBuilder;
 
 public abstract class AbstractTest {
 
-	private final String UML_EXTENSION = "uml";
+    private final String UML_EXTENSION = "uml";
 
-	private final String ACTIVITY_TEST_ROOT = "activity/";
+    private final String ACTIVITY_TEST_ROOT = "activity/";
 
-	private ResourceSetImpl rs;
+    private ResourceSetImpl rs;
 
-	static private List<String> testedFiles = new ArrayList<String>();
+    static private List<String> testedFiles = new ArrayList<String>();
 
-	public void testCFile(String cFilePath, boolean saveGeneratedModel) {
+    public void testCFile(String cFilePath, boolean saveGeneratedModel) {
 
-		String cFileFullPath = ACTIVITY_TEST_ROOT + cFilePath;
-		if (testedFiles.contains(cFileFullPath)) {
-			System.out.println("!!! File tested twice : " + cFileFullPath);
-		} else {
-			testedFiles.add(cFileFullPath);
-		}
+        String cFileFullPath = ACTIVITY_TEST_ROOT + cFilePath;
+        if (testedFiles.contains(cFileFullPath)) {
+            System.out.println("!!! File tested twice : " + cFileFullPath);
+        } else {
+            testedFiles.add(cFileFullPath);
+        }
 
-		int dotPos = cFileFullPath.lastIndexOf(".");
-		String umlFilePath = cFileFullPath.substring(0, dotPos + 1) + UML_EXTENSION;
+        int dotPos = cFileFullPath.lastIndexOf(".");
+        String umlFilePath = cFileFullPath.substring(0, dotPos + 1) + UML_EXTENSION;
 
-		IASTTranslationUnit unit = TestUtils.getTranslationUnit(cFileFullPath);
-		Model expectedModel = TestUtils.getUMLModel(getResourceSet(), umlFilePath);
-		Model actualModel = TestUtils.createOutputModel(getResourceSet(), expectedModel);
+        IASTTranslationUnit unit = TestUtils.getTranslationUnit(cFileFullPath);
+        Model expectedModel = TestUtils.getUMLModel(getResourceSet(), umlFilePath);
+        Model actualModel = TestUtils.createOutputModel(getResourceSet(), expectedModel);
 
-		// call here the creation of the activity
-		IASTFunctionDefinition functionUnderTest = TestUtils.getFirstFunctionInUnit(unit);
-		Activity activity = UMLActivityBuilder.build(functionUnderTest);
-		actualModel.getPackagedElements().add(activity);
+        // call here the creation of the activity
+        IASTFunctionDefinition functionUnderTest = TestUtils.getFirstFunctionInUnit(unit);
+        Activity activity = UMLActivityBuilder.build(functionUnderTest);
+        actualModel.getPackagedElements().add(activity);
 
-		if (saveGeneratedModel) {
-			System.out.println("Saving generated model for C file : " + cFileFullPath);
-			TestUtils.saveGeneratedModel(actualModel, rs, umlFilePath);
-		}
+        if (saveGeneratedModel) {
+            System.out.println("Saving generated model for C file : " + cFileFullPath);
+            TestUtils.saveGeneratedModel(actualModel, rs, umlFilePath);
+        }
 
-		TestUtils.assertEquals(expectedModel, actualModel);
-	}
+        TestUtils.assertEquals(expectedModel, actualModel);
+    }
 
-	@BeforeClass
-	public static void init() {
-		@SuppressWarnings("unused")
-		EPackage umlPackage = UMLPackage.eINSTANCE;
-		// Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("orderedxmi",
-		// new OrderedXMIResourceFactoryImpl());
-	}
+    @BeforeClass
+    public static void init() {
+        @SuppressWarnings("unused")
+        EPackage umlPackage = UMLPackage.eINSTANCE;
+        // Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("orderedxmi",
+        // new OrderedXMIResourceFactoryImpl());
+    }
 
-	@Before
-	public void setUp() {
-		rs = new ResourceSetImpl();
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UML_EXTENSION,
-				UMLResource.Factory.INSTANCE);
-	}
+    @Before
+    public void setUp() {
+        rs = new ResourceSetImpl();
+        rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UML_EXTENSION,
+                UMLResource.Factory.INSTANCE);
+    }
 
-	@After
-	public void tearDown() {
-		for (Iterator<Resource> it = rs.getResources().iterator(); it.hasNext();) {
-			Resource r = it.next();
-			r.unload();
-			it.remove();
-		}
-		rs = null;
-	}
+    @After
+    public void tearDown() {
+        for (Iterator<Resource> it = rs.getResources().iterator(); it.hasNext();) {
+            Resource r = it.next();
+            r.unload();
+            it.remove();
+        }
+        rs = null;
+    }
 
-	protected ResourceSet getResourceSet() {
-		return rs;
-	}
+    protected ResourceSet getResourceSet() {
+        return rs;
+    }
 }

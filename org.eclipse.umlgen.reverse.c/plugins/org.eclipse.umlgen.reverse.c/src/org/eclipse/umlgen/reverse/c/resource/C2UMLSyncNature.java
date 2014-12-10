@@ -32,73 +32,95 @@ import org.eclipse.umlgen.reverse.c.internal.bundle.Messages;
  */
 public class C2UMLSyncNature implements IProjectNature {
 
-	/** The project for which nature are added/removed */
-	private IProject project;
+    /** The project for which nature are added/removed. */
+    private IProject project;
 
-	/**
-	 * @see org.eclipse.core.resources.IProjectNature#configure()
-	 */
-	public void configure() throws CoreException {
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#configure()
+     */
+    public void configure() throws CoreException {
+    }
 
-	/**
-	 * @see org.eclipse.core.resources.IProjectNature#deconfigure()
-	 */
-	public void deconfigure() throws CoreException {
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#deconfigure()
+     */
+    public void deconfigure() throws CoreException {
+    }
 
-	/***
-	 * @see org.eclipse.core.resources.IProjectNature#getProject()
-	 */
-	public IProject getProject() {
-		return project;
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#getProject()
+     */
+    public IProject getProject() {
+        return project;
+    }
 
-	/**
-	 * @see org.eclipse.core.resources.IProjectNature#setProject(org.eclipse.core.resources.IProject)
-	 */
-	public void setProject(IProject value) {
-		project = value;
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#setProject(org.eclipse.core.resources.IProject)
+     */
+    public void setProject(IProject value) {
+        project = value;
+    }
 
-	/**
-	 * Opens a selection dialog to choose an existing UML model to reverse. Before returning the resource, the
-	 * selection is checked. If the selected resource is not an UML model then null is returned.
-	 *
-	 * @return The selected file chosen by the user.
-	 */
-	public static IFile selectExistingUMLModel(IProject project) {
-		ResourceSelectionDialog dialog = new ResourceSelectionDialog(Display.getCurrent().getActiveShell(),
-				project, Messages.getString("C2UMLSyncNature.select.resource")) //$NON-NLS-1$
-		{
-			@Override
-			public void checkStateChanged(CheckStateChangedEvent event) {
-				event.getElement();
-				super.checkStateChanged(event);
-			}
-		};
-		int result = dialog.open();
-		if (result == ResourceSelectionDialog.OK) {
-			Object[] results = dialog.getResult();
-			if (results.length > 0) {
-				// take only the first value
-				Object firstObj = results[0];
-				if (firstObj instanceof IFile) {
-					IFile selectedFile = (IFile)firstObj;
-					if (BundleConstants.UML_EXTENSION.equals(selectedFile.getFileExtension())) {
-						return selectedFile;
-					}
-				}
-			}
-		}
-		return null;
-	}
+    /**
+     * Opens a selection dialog to choose an existing UML model to reverse. Before returning the resource, the
+     * selection is checked. If the selected resource is not an UML model then null is returned.
+     *
+     * @param project
+     *            The eclipse project.
+     * @return The selected file chosen by the user.
+     */
+    public static IFile selectExistingUMLModel(IProject project) {
+        ResourceSelectionDialog dialog = new ResourceSelectionDialog(Display.getCurrent().getActiveShell(),
+                project, Messages.getString("C2UMLSyncNature.select.resource")) //$NON-NLS-1$
+        {
+            @Override
+            public void checkStateChanged(CheckStateChangedEvent event) {
+                event.getElement();
+                super.checkStateChanged(event);
+            }
+        };
+        int result = dialog.open();
+        if (result == ResourceSelectionDialog.OK) {
+            Object[] results = dialog.getResult();
+            if (results.length > 0) {
+                // take only the first value
+                Object firstObj = results[0];
+                if (firstObj instanceof IFile
+                        && BundleConstants.UML_EXTENSION.equals(((IFile)firstObj).getFileExtension())) {
+                    return (IFile)firstObj;
+                }
+            }
+        }
+        return null;
+    }
 
-	public static boolean isC2UMLSynchProject(ICProject cProject) {
-		return isC2UMLSynchProject(cProject.getProject());
-	}
+    /**
+     * This checks if the given CDT project is a "C2UML synchronized" project.
+     *
+     * @param cProject
+     *            The CDT project.
+     * @return True if yes.
+     */
+    public static boolean isC2UMLSynchProject(ICProject cProject) {
+        return isC2UMLSynchProject(cProject.getProject());
+    }
 
-	public static boolean isC2UMLSynchProject(IProject project) {
-		return ProjectUtil.hasNature(project, BundleConstants.NATURE_ID);
-	}
+    /**
+     * This checks if the given eclipse project is a "C2UML synchronized" project.
+     *
+     * @param project
+     *            The eclipse project.
+     * @return True if yes.
+     */
+    public static boolean isC2UMLSynchProject(IProject project) {
+        return ProjectUtil.hasNature(project, BundleConstants.NATURE_ID);
+    }
 }

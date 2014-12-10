@@ -24,21 +24,23 @@ import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
  */
 public class ObjectTypePropertyTester extends PropertyTester {
 
-	/**
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String,
-	 *      java.lang.Object[], java.lang.Object)
-	 */
-	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		boolean result = false;
-		if (receiver instanceof EObject) {
-			EObject eObject = (EObject)receiver;
-			result = expectedValue.equals(eObject.eClass().getInstanceClassName());
-		}
-		IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-		if (args.length > 0 && synchronizer instanceof IDiagramSynchronizer
-				&& ((IDiagramSynchronizer)synchronizer).getPresentation(receiver) != null) {
-			result &= args[0].equals(((IDiagramSynchronizer)synchronizer).getPresentation(receiver));
-		}
-		return result;
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String,
+     *      java.lang.Object[], java.lang.Object)
+     */
+    public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
+        boolean result = false;
+        if (receiver instanceof EObject) {
+            EObject eObject = (EObject)receiver;
+            result = expectedValue.equals(eObject.eClass().getInstanceClassName());
+        }
+        IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+        if (args.length > 0 && synchronizer instanceof IDiagramSynchronizer
+                && ((IDiagramSynchronizer)synchronizer).getPresentation(receiver) != null) {
+            result &= args[0].equals(((IDiagramSynchronizer)synchronizer).getPresentation(receiver));
+        }
+        return result;
+    }
 }

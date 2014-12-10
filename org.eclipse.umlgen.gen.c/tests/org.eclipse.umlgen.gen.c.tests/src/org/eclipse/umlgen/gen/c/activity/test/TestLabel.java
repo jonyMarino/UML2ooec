@@ -15,13 +15,13 @@ import org.junit.Test;
 
 public class TestLabel extends AbstractTest {
 
-	@Test
-	public void testBeforeIf() {
-		testUmlActivityFile("label/beforeIf.uml");
-	}
+    @Test
+    public void testBeforeIf() {
+        testUmlActivityFile("label/beforeIf.uml");
+    }
 
-	@Test
-	public void testSimple() {
-		testUmlActivityFile("label/simple.uml");
-	}
+    @Test
+    public void testSimple() {
+        testUmlActivityFile("label/simple.uml");
+    }
 }

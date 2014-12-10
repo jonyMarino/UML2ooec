@@ -13,30 +13,36 @@ package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.umlgen.c.common.util.ModelManager;
 
-public class FunctionDeclarationRenamed extends FunctionDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-	}
+/**
+ * Event related to renaming of a declaration.
+ */
+public class FunctionDeclarationRenamed extends AbstractFunctionDeclarationEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<FunctionDeclarationRenamed> builder() {
-		return new Builder<FunctionDeclarationRenamed>() {
-			private FunctionDeclarationRenamed event = new FunctionDeclarationRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.FunctionDeclarationEvent.Builder#getEvent()
-			 */
-			@Override
-			protected FunctionDeclarationRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<FunctionDeclarationRenamed> builder() {
+        return new AbstractBuilder<FunctionDeclarationRenamed>() {
+            private FunctionDeclarationRenamed event = new FunctionDeclarationRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractFunctionDeclarationEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected FunctionDeclarationRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

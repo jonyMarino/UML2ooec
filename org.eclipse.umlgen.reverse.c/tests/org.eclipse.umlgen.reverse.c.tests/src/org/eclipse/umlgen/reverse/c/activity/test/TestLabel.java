@@ -14,13 +14,13 @@ import org.eclipse.umlgen.reverse.c.activity.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestLabel extends AbstractTest {
-	@Test
-	public void simple() {
-		testCFile("label/simple.c", false);
-	}
+    @Test
+    public void simple() {
+        testCFile("label/simple.c", false);
+    }
 
-	@Test
-	public void beforeIf() {
-		testCFile("label/beforeIf.c", false);
-	}
+    @Test
+    public void beforeIf() {
+        testCFile("label/beforeIf.c", false);
+    }
 }

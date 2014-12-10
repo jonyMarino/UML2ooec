@@ -22,59 +22,64 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
 
-public class CUnitRemoved extends CUnitEvent {
+/**
+ * Event related to deletion of a C unit.
+ */
+public class CUnitRemoved extends AbstractCUnitEvent {
 
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findMatchingClassifier(manager, getTranslationUnit(),
-				getCurrentName().removeFileExtension().toString());
-		if (matchingClassifier != null) {
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findMatchingClassifier(manager, getTranslationUnit(),
+                getCurrentName().removeFileExtension().toString());
+        if (matchingClassifier != null) {
 
-			ModelUtil.setVisibility(matchingClassifier, getTranslationUnit(), EventType.REMOVE);
-			AnnotationUtil.removeEAnnotations(matchingClassifier, getTranslationUnit());
+            ModelUtil.setVisibility(matchingClassifier, getTranslationUnit(), EventType.REMOVE);
+            AnnotationUtil.removeEAnnotations(matchingClassifier, getTranslationUnit());
 
-			/*
-			 * check if the class must be destroyed : if we delete only one file .c or .h it is not the case
-			 */
-			if (getTranslationUnit().isHeaderUnit()) {
-				// delete all private model objects from this class
-				ModelUtil.deleteAllVisibleObjects(matchingClassifier, VisibilityKind.PUBLIC_LITERAL, manager);
-			} else if (getTranslationUnit().isSourceUnit()) {
-				// delete all public model objects from this class
-				ModelUtil
-				.deleteAllVisibleObjects(matchingClassifier, VisibilityKind.PRIVATE_LITERAL, manager);
-			}
+            /*
+             * check if the class must be destroyed : if we delete only one file .c or .h it is not the case
+             */
+            if (getTranslationUnit().isHeaderUnit()) {
+                // delete all private model objects from this class
+                ModelUtil.deleteAllVisibleObjects(matchingClassifier, VisibilityKind.PUBLIC_LITERAL, manager);
+            } else if (getTranslationUnit().isSourceUnit()) {
+                // delete all public model objects from this class
+                ModelUtil
+                        .deleteAllVisibleObjects(matchingClassifier, VisibilityKind.PRIVATE_LITERAL, manager);
+            }
 
-			/* only if no details persists then we can delete the class */
-			if (ModelUtil.isRemovable(matchingClassifier)) {
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(matchingClassifier, manager);
-				}
-				matchingClassifier.destroy();
-			}
-		}
-	}
+            /* only if no details persists then we can delete the class */
+            if (ModelUtil.isRemovable(matchingClassifier)) {
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(matchingClassifier, manager);
+                }
+                matchingClassifier.destroy();
+            }
+        }
+    }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<CUnitRemoved> builder() {
-		return new Builder<CUnitRemoved>() {
-			private CUnitRemoved event = new CUnitRemoved();
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<CUnitRemoved> builder() {
+        return new AbstractBuilder<CUnitRemoved>() {
+            private CUnitRemoved event = new CUnitRemoved();
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.CUnitEvent.Builder#getEvent()
-			 */
-			@Override
-			protected CUnitRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractCUnitEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected CUnitRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

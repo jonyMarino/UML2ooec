@@ -15,37 +15,57 @@ package org.eclipse.umlgen.reverse.c.event;
  *
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  */
-public abstract class AbstractNamedEvent extends CModelChangedEvent {
+public abstract class AbstractNamedEvent extends AbstractCModelChangedEvent {
 
-	private String previousName;
+    /** The previous name. */
+    private String previousName;
 
-	private String currentName;
+    /** The current name. */
+    private String currentName;
 
-	public String getPreviousName() {
-		return this.previousName;
-	}
+    public String getPreviousName() {
+        return this.previousName;
+    }
 
-	public String getCurrentName() {
-		return this.currentName;
-	}
+    public String getCurrentName() {
+        return this.currentName;
+    }
 
-	protected void setCurrentName(String currentName) {
-		this.currentName = currentName;
-	}
+    protected void setCurrentName(String currentName) {
+        this.currentName = currentName;
+    }
 
-	protected void setPreviousName(String previousName) {
-		this.previousName = previousName;
-	}
+    protected void setPreviousName(String previousName) {
+        this.previousName = previousName;
+    }
 
-	public static abstract class Builder<T extends AbstractNamedEvent> extends CModelChangedEvent.Builder<T> {
-		public Builder<T> currentName(String currentName) {
-			getEvent().setCurrentName(currentName);
-			return this;
-		}
+    /**
+     * Generic behavior for builders from events.
+     */
+    public abstract static class AbstractBuilder<T extends AbstractNamedEvent> extends AbstractCModelChangedEvent.AbstractBuilder<T> {
 
-		public Builder<T> previousName(String previousName) {
-			getEvent().setPreviousName(previousName);
-			return this;
-		}
-	}
+        /**
+         * This sets the given name as the current one, on the event.
+         *
+         * @param currentName
+         *            The current name.
+         * @return self
+         */
+        public AbstractBuilder<T> currentName(String currentName) {
+            getEvent().setCurrentName(currentName);
+            return this;
+        }
+
+        /**
+         * This sets the given name as the previous one, on the event.
+         *
+         * @param previousName
+         *            The previous name.
+         * @return self
+         */
+        public AbstractBuilder<T> previousName(String previousName) {
+            getEvent().setPreviousName(previousName);
+            return this;
+        }
+    }
 }

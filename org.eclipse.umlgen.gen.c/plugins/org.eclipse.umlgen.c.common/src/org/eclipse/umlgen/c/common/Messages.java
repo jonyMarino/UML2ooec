@@ -12,15 +12,26 @@ package org.eclipse.umlgen.c.common;
 
 import org.eclipse.osgi.util.NLS;
 
-public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.umlgen.c.common.messages"; //$NON-NLS-1$
+/**
+ * Messages.
+ */
+public final class Messages extends NLS {
+    /** Bundle name. */
+    private static final String BUNDLE_NAME = "org.eclipse.umlgen.c.common.messages"; //$NON-NLS-1$
 
-	public static String ModelManager_0;
-	static {
-		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-	}
+    /** model manager. */
+    private static String modelManager;
+    static {
+        // initialize resource bundle
+        NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+    }
 
-	private Messages() {
-	}
+    /** Default constructor. */
+    private Messages() {
+    }
+
+    public static String getModelManager() {
+        return modelManager;
+    }
+
 }

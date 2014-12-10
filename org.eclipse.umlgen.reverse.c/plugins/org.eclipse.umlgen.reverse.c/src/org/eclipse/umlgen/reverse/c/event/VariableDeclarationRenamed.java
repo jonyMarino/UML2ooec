@@ -18,31 +18,34 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class VariableDeclarationRenamed extends VariableDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be implemented
-	}
+public class VariableDeclarationRenamed extends AbstractVariableDeclarationEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<VariableDeclarationRenamed> builder() {
-		return new Builder<VariableDeclarationRenamed>() {
-			private VariableDeclarationRenamed event = new VariableDeclarationRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be implemented
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.VariableDeclarationEvent.Builder#getEvent()
-			 */
-			@Override
-			protected VariableDeclarationRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<VariableDeclarationRenamed> builder() {
+        return new AbstractBuilder<VariableDeclarationRenamed>() {
+            private VariableDeclarationRenamed event = new VariableDeclarationRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractVariableDeclarationEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected VariableDeclarationRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

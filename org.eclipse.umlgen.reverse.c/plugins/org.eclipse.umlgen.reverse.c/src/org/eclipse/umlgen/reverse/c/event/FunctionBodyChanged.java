@@ -13,6 +13,7 @@
 package org.eclipse.umlgen.reverse.c.event;
 
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -27,59 +28,62 @@ import org.eclipse.umlgen.reverse.c.util.EMFMarkerUtil;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class FunctionBodyChanged extends FunctionBodyEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Class myClass = ModelUtil.findClassInPackage(manager.getSourcePackage(), getUnitName());
-		if (myClass != null) {
-			// if a behavior already exists we link the operation to the
-			// behavior
-			OpaqueBehavior function = (OpaqueBehavior)myClass.getOwnedBehavior(getCurrentName(), false,
-					UMLPackage.Literals.OPAQUE_BEHAVIOR, false);
-			if (function != null) {
-				try {
-					String oldBody = getOldBody();
-					String newBoby = cleanInvalidXmlChars(getBody());
-					if (!oldBody.equals(newBoby)) {
-						EMFMarkerUtil.removeMarkerFor(function);
+public class FunctionBodyChanged extends AbstractFunctionBodyEvent {
 
-						// removes the former function body
-						function.getBodies().remove(oldBody);
-						// sets the new function body
-						function.getBodies().add(newBoby);
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Class myClass = ModelUtil.findClassInPackage(manager.getSourcePackage(), getUnitName());
+        if (myClass != null) {
+            // if a behavior already exists we link the operation to the
+            // behavior
+            OpaqueBehavior function = (OpaqueBehavior)myClass.getOwnedBehavior(getCurrentName(), false,
+                    UMLPackage.Literals.OPAQUE_BEHAVIOR, false);
+            if (function != null) {
+                try {
+                    String oldBody = getOldBody();
+                    String newBoby = cleanInvalidXmlChars(getBody());
+                    if (!oldBody.equals(newBoby)) {
+                        EMFMarkerUtil.removeMarkerFor(function);
 
-						EMFMarkerUtil
-								.addMarkerFor(
-										function,
-										"Function behavior body has changed. Existing Activity diagrams need to be reversed.",
-										IMarker.SEVERITY_WARNING);
-					}
-				} catch (Exception e) {
-					Activator.log(e);
-				}
-			}
-		}
-	}
+                        // removes the former function body
+                        function.getBodies().remove(oldBody);
+                        // sets the new function body
+                        function.getBodies().add(newBoby);
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<FunctionBodyChanged> builder() {
-		return new Builder<FunctionBodyChanged>() {
-			private FunctionBodyChanged event = new FunctionBodyChanged();
+                        EMFMarkerUtil
+                                .addMarkerFor(
+                                        function,
+                                        "Function behavior body has changed. Existing Activity diagrams need to be reversed.",
+                                        IMarker.SEVERITY_WARNING);
+                    }
+                } catch (CoreException e) {
+                    Activator.log(e);
+                }
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.FunctionBodyBuilder#getEvent()
-			 */
-			@Override
-			protected FunctionBodyChanged getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<FunctionBodyChanged> builder() {
+        return new AbstractBuilder<FunctionBodyChanged>() {
+            private FunctionBodyChanged event = new FunctionBodyChanged();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.FunctionBodyBuilder#getEvent()
+             */
+            @Override
+            protected FunctionBodyChanged getEvent() {
+                return event;
+            }
+        };
+    }
 }

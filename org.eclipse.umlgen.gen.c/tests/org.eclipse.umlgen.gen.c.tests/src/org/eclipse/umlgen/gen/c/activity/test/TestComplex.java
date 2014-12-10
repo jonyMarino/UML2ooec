@@ -15,8 +15,8 @@ import org.junit.Test;
 
 public class TestComplex extends AbstractTest {
 
-	@Test
-	public void testComplex1() {
-		testUmlActivityFile("complex/complex1.uml");
-	}
+    @Test
+    public void testComplex1() {
+        testUmlActivityFile("complex/complex1.uml");
+    }
 }

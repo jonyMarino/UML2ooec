@@ -25,128 +25,128 @@ import org.junit.Test;
 
 public class TestStorageClassExtern1to3 extends AbstractTest {
 
-	@Test
-	public void testStorageClassExtern1InC() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern1InC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern1C", new NullProgressMonitor());
+        IProject project = createIProject("/testextern1C", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern1.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern1.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern1.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern1.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern1C.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern1C.uml");
 
-	}
+    }
 
-	@Test
-	public void testStorageClassExtern1InH() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern1InH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern1H", new NullProgressMonitor());
+        IProject project = createIProject("/testextern1H", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern1.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern1.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern1.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern1.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern1H.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern1H.uml");
 
-	}
+    }
 
-	/***********************************************/
+    /***********************************************/
 
-	@Test
-	public void testStorageClassExtern2InC() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern2InC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern2C", new NullProgressMonitor());
+        IProject project = createIProject("/testextern2C", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern2.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern2.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern2.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern2.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern2C.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern2C.uml");
 
-	}
+    }
 
-	@Test
-	public void testStorageClassExtern2InH() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern2InH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern2H", new NullProgressMonitor());
+        IProject project = createIProject("/testextern2H", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern2.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern2.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern2.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern2.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern2H.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern2H.uml");
 
-	}
+    }
 
-	/***********************************************/
+    /***********************************************/
 
-	@Test
-	public void testStorageClassExtern3InC() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern3InC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern3C", new NullProgressMonitor());
+        IProject project = createIProject("/testextern3C", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern3.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern3.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern3.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern3.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern3C.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern3C.uml");
 
-	}
+    }
 
-	@Test
-	public void testStorageClassExtern3InH() throws CoreException, InterruptedException {
+    @Test
+    public void testStorageClassExtern3InH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testextern3H", new NullProgressMonitor());
+        IProject project = createIProject("/testextern3H", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("extern3.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("extern3.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/storageClasses/extern3.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/storageClasses/extern3.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/storageClasses/extern3H.uml");
+        testModel(project, "/resource/structural/addition/storageClasses/extern3H.uml");
 
-	}
+    }
 
 }

@@ -18,27 +18,50 @@ import org.eclipse.umlgen.reverse.c.activity.beans.CommentInfo;
 import org.eclipse.umlgen.reverse.c.activity.comments.CommentBuilder;
 import org.eclipse.umlgen.reverse.c.activity.util.UMLActivityFactory;
 
-abstract public class AbstractBuilder {
-	protected UMLActivityBuilder activityBuilder;
+/** Abstract builder. */
+public abstract class AbstractBuilder {
 
-	protected UMLActivityFactory factory;
+    /** Activity builder. */
+    protected UMLActivityBuilder activityBuilder;
 
-	protected CommentBuilder commentBuilder;
+    /** Activity factory. */
+    protected UMLActivityFactory factory;
 
-	protected Map<IASTNode, CommentInfo> nodesAndComments;
+    /** Comment builder. */
+    protected CommentBuilder commentBuilder;
 
-	public AbstractBuilder(UMLActivityBuilder activityBuilder, UMLActivityFactory factory,
-			CommentBuilder commentBuilder) {
-		this.activityBuilder = activityBuilder;
-		this.factory = factory;
-		this.commentBuilder = commentBuilder;
-	}
+    /** Map comment info to nodes. */
+    protected Map<IASTNode, CommentInfo> nodesAndComments;
 
-	public void setStatementsAndComments(Map<IASTNode, CommentInfo> nodesAndComments) {
-		this.nodesAndComments = nodesAndComments;
-	}
+    /**
+     * Constructor.
+     *
+     * @param activityBuilder
+     *            the activity builder.
+     * @param factory
+     *            The factory.
+     * @param commentBuilder
+     *            The comment builder.
+     */
+    public AbstractBuilder(UMLActivityBuilder activityBuilder, UMLActivityFactory factory,
+            CommentBuilder commentBuilder) {
+        this.activityBuilder = activityBuilder;
+        this.factory = factory;
+        this.commentBuilder = commentBuilder;
+    }
 
-	public CommentInfo getCommentInfo(IASTNode node) {
-		return nodesAndComments.remove(node);
-	}
+    public void setStatementsAndComments(Map<IASTNode, CommentInfo> pNodesAndComments) {
+        this.nodesAndComments = pNodesAndComments;
+    }
+
+    /**
+     * Get the comment info from the given node.
+     *
+     * @param node
+     *            The node.
+     * @return The comment info.
+     */
+    public CommentInfo getCommentInfo(IASTNode node) {
+        return nodesAndComments.remove(node);
+    }
 }

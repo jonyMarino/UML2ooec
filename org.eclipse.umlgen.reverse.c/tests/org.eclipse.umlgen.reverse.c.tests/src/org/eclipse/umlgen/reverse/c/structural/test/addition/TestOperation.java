@@ -24,42 +24,42 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestOperation extends AbstractTest {
-	@Test
-	public void testOperationInC() throws CoreException, InterruptedException {
+    @Test
+    public void testOperationInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testoperationC", new NullProgressMonitor());
+        IProject project = createIProject("testoperationC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("operation.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("operation.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/operation.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/operation.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/operationC.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/operationC.uml");
+    }
 
-	@Test
-	public void testOperationInH() throws CoreException, InterruptedException {
+    @Test
+    public void testOperationInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testoperationH", new NullProgressMonitor());
+        IProject project = createIProject("testoperationH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("operation.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("operation.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/operation/operation.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/operation/operation.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/operation/operationH.uml");
-	}
+        testModel(project, "/resource/structural/addition/operation/operationH.uml");
+    }
 
 }

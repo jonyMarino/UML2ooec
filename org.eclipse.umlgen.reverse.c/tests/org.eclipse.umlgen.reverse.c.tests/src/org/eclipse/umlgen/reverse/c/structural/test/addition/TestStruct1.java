@@ -25,324 +25,324 @@ import org.junit.Test;
 
 public class TestStruct1 extends AbstractTest {
 
-	@Test
-	public void testNamedStructDeclarationInC() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedStructDeclarationInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructNamedC", new NullProgressMonitor());
+        IProject project = createIProject("/testStructNamedC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("named.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("named.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/named.c"));
+        setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/named.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructNamedC.uml");
+        testModel(project, "/resource/structural/addition/struct/StructNamedC.uml");
 
-	}
+    }
 
-	@Test
-	public void testNamedStructDeclarationInH() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedStructDeclarationInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructNamedH", new NullProgressMonitor());
+        IProject project = createIProject("/testStructNamedH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("named.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("named.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/named.h"));
+        setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/named.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructNamedH.uml");
+        testModel(project, "/resource/structural/addition/struct/StructNamedH.uml");
 
-	}
+    }
 
-	@Test
-	public void testNamedWithArrayVarDeclInC() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedWithArrayVarDeclInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructnamedWithArrayVarDeclC", new NullProgressMonitor());
+        IProject project = createIProject("/testStructnamedWithArrayVarDeclC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("namedWithArrayVarDecl.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("namedWithArrayVarDecl.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDecl.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDecl.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclC.uml");
+        testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclC.uml");
 
-	}
+    }
 
-	@Test
-	public void testNamedWithArrayVarDeclInH() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedWithArrayVarDeclInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructnamedWithArrayVarDeclH", new NullProgressMonitor());
+        IProject project = createIProject("/testStructnamedWithArrayVarDeclH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("namedWithArrayVarDecl.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("namedWithArrayVarDecl.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDecl.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDecl.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclH.uml");
+        testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclH.uml");
 
-	}
+    }
 
-	@Test
-	public void testNamedWithArrayVarDeclAndInitInC() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedWithArrayVarDeclAndInitInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructnamedWithArrayVarDeclAndInitC",
-				new NullProgressMonitor());
+        IProject project = createIProject("/testStructnamedWithArrayVarDeclAndInitC",
+                new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("namedWithArrayVarDeclAndInit.c"),
-				new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("namedWithArrayVarDeclAndInit.c"),
+                new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDeclAndInit.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDeclAndInit.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclAndInitC.uml");
+        testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclAndInitC.uml");
 
-	}
+    }
 
-	@Test
-	public void testNamedWithArrayVarDeclAndInitInH() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedWithArrayVarDeclAndInitInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructnamedWithArrayVarDeclAndInitH",
-				new NullProgressMonitor());
+        IProject project = createIProject("/testStructnamedWithArrayVarDeclAndInitH",
+                new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("namedWithArrayVarDeclAndInit.h"),
-				new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("namedWithArrayVarDeclAndInit.h"),
+                new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDeclAndInit.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/namedWithArrayVarDeclAndInit.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclAndInitH.uml");
+        testModel(project, "/resource/structural/addition/struct/StructnamedWithArrayVarDeclAndInitH.uml");
 
-	}
+    }
 
-	@Test
-	public void testNamedWithVarDeclAndInitInC() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedWithVarDeclAndInitInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructnamedWithVarDeclAndInitC", new NullProgressMonitor());
+        IProject project = createIProject("/testStructnamedWithVarDeclAndInitC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("namedWithVarDeclAndInit.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("namedWithVarDeclAndInit.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/namedWithVarDeclAndInit.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/namedWithVarDeclAndInit.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructnamedWithVarDeclAndInitC.uml");
+        testModel(project, "/resource/structural/addition/struct/StructnamedWithVarDeclAndInitC.uml");
 
-	}
+    }
 
-	@Test
-	public void testNamedWithVarDeclAndInitInH() throws CoreException, InterruptedException {
+    @Test
+    public void testNamedWithVarDeclAndInitInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructnamedWithVarDeclAndInitH", new NullProgressMonitor());
+        IProject project = createIProject("/testStructnamedWithVarDeclAndInitH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("namedWithVarDeclAndInit.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("namedWithVarDeclAndInit.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/namedWithVarDeclAndInit.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/namedWithVarDeclAndInit.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructnamedWithVarDeclAndInitH.uml");
+        testModel(project, "/resource/structural/addition/struct/StructnamedWithVarDeclAndInitH.uml");
 
-	}
+    }
 
-	@Test
-	public void testpointersMembersInC() throws CoreException, InterruptedException {
+    @Test
+    public void testpointersMembersInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testpointersMembersC", new NullProgressMonitor());
+        IProject project = createIProject("/testpointersMembersC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("pointersMembers.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("pointersMembers.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/pointersMembers.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/pointersMembers.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/pointersMembersC.uml");
+        testModel(project, "/resource/structural/addition/struct/pointersMembersC.uml");
 
-	}
+    }
 
-	@Test
-	public void testpointersMembersInH() throws CoreException, InterruptedException {
+    @Test
+    public void testpointersMembersInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testpointersMembersH", new NullProgressMonitor());
+        IProject project = createIProject("/testpointersMembersH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("pointersMembers.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("pointersMembers.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/pointersMembers.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/pointersMembers.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/pointersMembersH.uml");
+        testModel(project, "/resource/structural/addition/struct/pointersMembersH.uml");
 
-	}
+    }
 
-	@Test
-	public void teststructMembersInC() throws CoreException, InterruptedException {
+    @Test
+    public void teststructMembersInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/teststructMembersC", new NullProgressMonitor());
+        IProject project = createIProject("/teststructMembersC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("structMembers.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("structMembers.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/structMembers.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/structMembers.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/structMembersC.uml");
+        testModel(project, "/resource/structural/addition/struct/structMembersC.uml");
 
-	}
+    }
 
-	@Test
-	public void teststructMembersInH() throws CoreException, InterruptedException {
+    @Test
+    public void teststructMembersInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/teststructMembersH", new NullProgressMonitor());
+        IProject project = createIProject("/teststructMembersH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("structMembers.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("structMembers.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/structMembers.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/structMembers.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/structMembersH.uml");
+        testModel(project, "/resource/structural/addition/struct/structMembersH.uml");
 
-	}
+    }
 
-	@Test
-	public void testtypeDefMembersInC() throws CoreException, InterruptedException {
+    @Test
+    public void testtypeDefMembersInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testtypeDefMembersC", new NullProgressMonitor());
+        IProject project = createIProject("/testtypeDefMembersC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("typeDefMembers.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("typeDefMembers.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/typeDefMembers.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/typeDefMembers.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/typeDefMembersC.uml");
+        testModel(project, "/resource/structural/addition/struct/typeDefMembersC.uml");
 
-	}
+    }
 
-	@Test
-	public void testtypeDefMembersInH() throws CoreException, InterruptedException {
+    @Test
+    public void testtypeDefMembersInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testtypeDefMembersH", new NullProgressMonitor());
+        IProject project = createIProject("/testtypeDefMembersH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("typeDefMembers.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("typeDefMembers.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/struct/typeDefMembers.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/struct/typeDefMembers.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/typeDefMembersH.uml");
+        testModel(project, "/resource/structural/addition/struct/typeDefMembersH.uml");
 
-	}
+    }
 
-	@Test
-	public void testanonymousInC() throws CoreException, InterruptedException {
+    @Test
+    public void testanonymousInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructanonymousC", new NullProgressMonitor());
+        IProject project = createIProject("/testStructanonymousC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("anonymous.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("anonymous.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/anonymous.c"));
+        setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/anonymous.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructanonymousC.uml");
+        testModel(project, "/resource/structural/addition/struct/StructanonymousC.uml");
 
-	}
+    }
 
-	@Test
-	public void testanonymousInH() throws CoreException, InterruptedException {
+    @Test
+    public void testanonymousInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("/testStructanonymousH", new NullProgressMonitor());
+        IProject project = createIProject("/testStructanonymousH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("anonymous.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("anonymous.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/anonymous.h"));
+        setEditorContent(editor, getResourceInputStream("/resource/structural/addition/struct/anonymous.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/struct/StructanonymousH.uml");
+        testModel(project, "/resource/structural/addition/struct/StructanonymousH.uml");
 
-	}
+    }
 
 }

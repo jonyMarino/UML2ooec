@@ -21,110 +21,110 @@ import org.junit.Test;
 
 public class TestIncludeGuard extends AbstractTest {
 
-	@Test
-	public void testIncludeGuard() throws CoreException, InterruptedException {
-		IProject project = createIProject("testincludeGuard1", new NullProgressMonitor());
+    @Test
+    public void testIncludeGuard() throws CoreException, InterruptedException {
+        IProject project = createIProject("testincludeGuard1", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
+        StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		testModel(project, "/resource/structural/addition/includeGuard/includeGuard1.uml");
+        testModel(project, "/resource/structural/addition/includeGuard/includeGuard1.uml");
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-	}
+    }
 
-	@Test
-	public void testIncludeGuard2() throws CoreException, InterruptedException {
+    @Test
+    public void testIncludeGuard2() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testincludeGuard2", new NullProgressMonitor());
+        IProject project = createIProject("testincludeGuard2", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
+        StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		sb.append("#define AFILE_H__\n");
+        sb.append("#define AFILE_H__\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		testModel(project, "/resource/structural/addition/includeGuard/includeGuard2.uml");
+        testModel(project, "/resource/structural/addition/includeGuard/includeGuard2.uml");
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-	}
+    }
 
-	@Test
-	public void testIncludeGuard3() throws CoreException, InterruptedException {
+    @Test
+    public void testIncludeGuard3() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testincludeGuard3", new NullProgressMonitor());
+        IProject project = createIProject("testincludeGuard3", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
+        StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		sb.append("#define AFILE_H__\n");
+        sb.append("#define AFILE_H__\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		sb.append("\n\n\n\n");
+        sb.append("\n\n\n\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		testModel(project, "/resource/structural/addition/includeGuard/includeGuard3.uml");
+        testModel(project, "/resource/structural/addition/includeGuard/includeGuard3.uml");
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-	}
+    }
 
-	@Test
-	public void testIncludeGuard4() throws CoreException, InterruptedException {
+    @Test
+    public void testIncludeGuard4() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testincludeGuard4", new NullProgressMonitor());
+        IProject project = createIProject("testincludeGuard4", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("aFile.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, " ");
+        setEditorContent(editor, " ");
 
-		StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
+        StringBuilder sb = new StringBuilder("#ifndef AFILE_H__\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		sb.append("#define AFILE_H__\n");
+        sb.append("#define AFILE_H__\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		sb.append("\n\n\n\n");
+        sb.append("\n\n\n\n");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		sb.append("#endif");
+        sb.append("#endif");
 
-		setEditorContent(editor, sb.toString());
+        setEditorContent(editor, sb.toString());
 
-		testModel(project, "/resource/structural/addition/includeGuard/includeGuard4.uml");
+        testModel(project, "/resource/structural/addition/includeGuard/includeGuard4.uml");
 
-		closeEditor(editor, true);
-	}
+        closeEditor(editor, true);
+    }
 
 }

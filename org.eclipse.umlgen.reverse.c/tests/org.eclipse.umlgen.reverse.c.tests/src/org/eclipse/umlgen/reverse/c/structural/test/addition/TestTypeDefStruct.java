@@ -24,42 +24,42 @@ import org.eclipse.umlgen.reverse.c.structural.test.utils.AbstractTest;
 import org.junit.Test;
 
 public class TestTypeDefStruct extends AbstractTest {
-	@Test
-	public void testTypeDefStructInC() throws CoreException, InterruptedException {
+    @Test
+    public void testTypeDefStructInC() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefStructC", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefStructC", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("struct.c"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("struct.c"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/struct/struct.c"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/struct/struct.c"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/struct/TypeDefStructC.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/struct/TypeDefStructC.uml");
+    }
 
-	@Test
-	public void testTypeDefStructInH() throws CoreException, InterruptedException {
+    @Test
+    public void testTypeDefStructInH() throws CoreException, InterruptedException {
 
-		IProject project = createIProject("testTypeDefStructH", new NullProgressMonitor());
+        IProject project = createIProject("testTypeDefStructH", new NullProgressMonitor());
 
-		IFile iFile = createIFile(project, new Path("struct.h"), new NullProgressMonitor());
+        IFile iFile = createIFile(project, new Path("struct.h"), new NullProgressMonitor());
 
-		TextEditor editor = openEditor(iFile);
+        TextEditor editor = openEditor(iFile);
 
-		setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
+        setEditorContent(editor, new ByteArrayInputStream(" ".getBytes()));
 
-		setEditorContent(editor,
-				getResourceInputStream("/resource/structural/addition/typedef/struct/struct.h"));
+        setEditorContent(editor,
+                getResourceInputStream("/resource/structural/addition/typedef/struct/struct.h"));
 
-		closeEditor(editor, true);
+        closeEditor(editor, true);
 
-		testModel(project, "/resource/structural/addition/typedef/struct/TypeDefStructH.uml");
-	}
+        testModel(project, "/resource/structural/addition/typedef/struct/TypeDefStructH.uml");
+    }
 
 }

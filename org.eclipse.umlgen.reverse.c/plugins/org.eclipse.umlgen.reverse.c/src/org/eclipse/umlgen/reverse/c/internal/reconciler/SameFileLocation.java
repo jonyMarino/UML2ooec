@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Mikael Barbero (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -17,17 +17,28 @@ import org.eclipse.cdt.core.dom.ast.IASTFileLocation;
 import org.eclipse.cdt.core.dom.ast.IASTNode;
 import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
 
-public final class SameFileLocation implements Predicate<IASTNode>
-{
+/** Predicate which selects files with the same location. */
+public final class SameFileLocation implements Predicate<IASTNode> {
+
+    /** The AST translation unit. */
     private final IASTTranslationUnit astTranslationUnit;
 
-    public SameFileLocation(IASTTranslationUnit astTranslationUnit)
-    {
+    /**
+     * Constructor.
+     * 
+     * @param astTranslationUnit
+     *            The AST translation unit
+     */
+    public SameFileLocation(IASTTranslationUnit astTranslationUnit) {
         this.astTranslationUnit = astTranslationUnit;
     }
 
-    public boolean apply(IASTNode input)
-    {
+    /**
+     * {@inheritDoc}
+     *
+     * @see com.google.common.base.Predicate#apply(java.lang.Object)
+     */
+    public boolean apply(IASTNode input) {
         if (input != null && astTranslationUnit != null) {
             IASTFileLocation fileLocation = input.getFileLocation();
             String filePath = astTranslationUnit.getFilePath();
@@ -35,7 +46,7 @@ public final class SameFileLocation implements Predicate<IASTNode>
                 return Objects.equal(filePath, fileLocation.getFileName());
             }
         }
-        
+
         return false;
     }
 }

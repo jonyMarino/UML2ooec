@@ -22,32 +22,90 @@ import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.Set;
 
-public class Utils {
-	public static <T> Collection<T> inLeftOnly(T[] left, T[] right) {
-		return inLeftOnly(Lists.newArrayList(left), Lists.newArrayList(right), Functions.identity());
-	}
+/** Utility class. */
+public final class Utils {
 
-	public static <T, X> Collection<T> inLeftOnly(T[] left, T[] right, Function<? super T, X> function) {
-		return inLeftOnly(Lists.newArrayList(left), Lists.newArrayList(right), function);
-	}
+    /** Constructor. */
+    private Utils() {
+    }
 
-	public static <X, T> Collection<T> inLeftOnly(Collection<T> left, Collection<T> right) {
-		return inLeftOnly(left, right, Functions.identity());
-	}
+    /**
+     * This returns only the objects which are only in the given <code>left</code> list.
+     *
+     * @param left
+     *            The left list
+     * @param right
+     *            The right list
+     * @param <T>
+     *            Any Java object
+     * @return The objects only in left side
+     */
+    public static <T> Collection<T> inLeftOnly(T[] left, T[] right) {
+        return inLeftOnly(Lists.newArrayList(left), Lists.newArrayList(right), Functions.identity());
+    }
 
-	public static <X, T> Collection<T> inLeftOnly(Collection<T> left, Collection<T> right,
-			final Function<? super T, X> function) {
-		Set<X> leftSet = ImmutableSet.copyOf(Iterables.transform(left, function));
-		Set<X> rigthSet = ImmutableSet.copyOf(Iterables.transform(right, function));
+    /**
+     * This returns only the objects which are only in the given <code>left</code> list.
+     *
+     * @param left
+     *            The left list
+     * @param right
+     *            The right list
+     * @param function
+     *            Function which applies on the 2 lists
+     * @param <T>
+     *            Any Java object
+     * @param <X>
+     *            Any java object
+     * @return The objects only in left side
+     */
+    public static <T, X> Collection<T> inLeftOnly(T[] left, T[] right, Function<? super T, X> function) {
+        return inLeftOnly(Lists.newArrayList(left), Lists.newArrayList(right), function);
+    }
 
-		Set<X> intersection = Sets.intersection(leftSet, rigthSet);
-		final Set<X> inLeftOnlyAfterFunction = Sets.difference(leftSet, intersection);
+    /**
+     * This returns only the objects which are only in the given <code>left</code> list.
+     *
+     * @param left
+     *            The left list
+     * @param right
+     *            The right list
+     * @param <T>
+     *            Any Java object
+     * @return The objects only in left side
+     */
+    public static <T> Collection<T> inLeftOnly(Collection<T> left, Collection<T> right) {
+        return inLeftOnly(left, right, Functions.identity());
+    }
 
-		return Collections2.filter(left, new Predicate<T>() {
-			public boolean apply(T input) {
-				return inLeftOnlyAfterFunction.contains(function.apply(input));
-			}
-		});
-	}
+    /**
+     * This returns only the objects which are only in the given <code>left</code> list.
+     *
+     * @param left
+     *            The left list
+     * @param right
+     *            The right list
+     * @param function
+     *            Function which applies on the 2 lists
+     * @param <T>
+     *            Any Java object
+     * @param <X>
+     *            Any java object
+     * @return The objects only in left side
+     */
+    public static <X, T> Collection<T> inLeftOnly(Collection<T> left, Collection<T> right,
+            final Function<? super T, X> function) {
+        Set<X> leftSet = ImmutableSet.copyOf(Iterables.transform(left, function));
+        Set<X> rigthSet = ImmutableSet.copyOf(Iterables.transform(right, function));
+
+        Set<X> intersection = Sets.intersection(leftSet, rigthSet);
+        final Set<X> inLeftOnlyAfterFunction = Sets.difference(leftSet, intersection);
+
+        return Collections2.filter(left, new Predicate<T>() {
+            public boolean apply(T input) {
+                return inLeftOnlyAfterFunction.contains(function.apply(input));
+            }
+        });
+    }
 
 }

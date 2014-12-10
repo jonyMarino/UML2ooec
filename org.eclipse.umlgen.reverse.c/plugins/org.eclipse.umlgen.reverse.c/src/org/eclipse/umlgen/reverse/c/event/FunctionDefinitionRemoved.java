@@ -25,57 +25,60 @@ import org.eclipse.umlgen.reverse.c.internal.beans.FunctionParameter;
 /**
  * Removes a {@link OpaqueBehavior} from a given {@link Class}.
  */
-public class FunctionDefinitionRemoved extends FunctionDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Class matchingClassifier = ModelUtil.findClassInPackage(manager.getSourcePackage(), getUnitName());
-		assert matchingClassifier != null;
+public class FunctionDefinitionRemoved extends AbstractFunctionDeclarationEvent {
 
-		OpaqueBehavior function = (OpaqueBehavior)matchingClassifier.getOwnedBehavior(getCurrentName(),
-				false, UMLPackage.Literals.OPAQUE_BEHAVIOR, false);
-		if (function != null) {
-			if (ModelUtil.isRemovable(function)) {
-				function.destroy();
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(function, manager);
-				}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Class matchingClassifier = ModelUtil.findClassInPackage(manager.getSourcePackage(), getUnitName());
+        assert matchingClassifier != null;
 
-				// deduce if the parameter types can be deleted from the model
-				for (FunctionParameter aParameter : getParameters()) {
-					DataType parameterType = manager.getDataType(aParameter.getType());
-					if (ModelUtil.isNotReferencedAnymore(parameterType)) {
-						ModelUtil.destroy(parameterType);
-					}
-				}
-				// deduce if the parameter types can be deleted from the model
-				DataType returnType = manager.getDataType(getReturnType());
-				if (ModelUtil.isNotReferencedAnymore(returnType)) {
-					ModelUtil.destroy(returnType);
-				}
-			}
-		}
-	}
+        OpaqueBehavior function = (OpaqueBehavior)matchingClassifier.getOwnedBehavior(getCurrentName(),
+                false, UMLPackage.Literals.OPAQUE_BEHAVIOR, false);
+        if (function != null) {
+            if (ModelUtil.isRemovable(function)) {
+                function.destroy();
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(function, manager);
+                }
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<FunctionDefinitionRemoved> builder() {
-		return new Builder<FunctionDefinitionRemoved>() {
-			private FunctionDefinitionRemoved event = new FunctionDefinitionRemoved();
+                // deduce if the parameter types can be deleted from the model
+                for (FunctionParameter aParameter : getParameters()) {
+                    DataType parameterType = manager.getDataType(aParameter.getType());
+                    if (ModelUtil.isNotReferencedAnymore(parameterType)) {
+                        ModelUtil.destroy(parameterType);
+                    }
+                }
+                // deduce if the parameter types can be deleted from the model
+                DataType returnType = manager.getDataType(getReturnType());
+                if (ModelUtil.isNotReferencedAnymore(returnType)) {
+                    ModelUtil.destroy(returnType);
+                }
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.FunctionBuilder#getEvent()
-			 */
-			@Override
-			protected FunctionDefinitionRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<FunctionDefinitionRemoved> builder() {
+        return new AbstractBuilder<FunctionDefinitionRemoved>() {
+            private FunctionDefinitionRemoved event = new FunctionDefinitionRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.FunctionBuilder#getEvent()
+             */
+            @Override
+            protected FunctionDefinitionRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

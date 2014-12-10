@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
  *******************************************************************************/
@@ -31,28 +31,30 @@ import org.eclipse.cdt.core.model.ICElement;
 import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.core.runtime.CoreException;
 
-public final class BindingResolver
-{
+/** A binding resolver. */
+public final class BindingResolver {
+
+    /** Default constructor. */
+    private BindingResolver() {
+    }
 
     /**
-     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElt
+     *            the ICElement identified by the CDT
      * @return the element bounded
      */
-    public static IASTSimpleDeclaration resolveBindingIASTSimpleDeclaration(Collection<IASTDeclaration> elements, ICElement coreElt)
-    {
-        for (IASTDeclaration declaration : elements)
-        {
-            if (declaration instanceof IASTSimpleDeclaration)
-            {
-                for (IASTDeclarator declarator : ((IASTSimpleDeclaration) declaration).getDeclarators())
-                {
+    public static IASTSimpleDeclaration resolveBindingIASTSimpleDeclaration(
+            Collection<IASTDeclaration> elements, ICElement coreElt) {
+        for (IASTDeclaration declaration : elements) {
+            if (declaration instanceof IASTSimpleDeclaration) {
+                for (IASTDeclarator declarator : ((IASTSimpleDeclaration)declaration).getDeclarators()) {
                     IBinding binding = declarator.getName().resolveBinding();
-                    if (binding instanceof IVariable && binding.getName().equals(coreElt.getElementName()))
-                    {
-                        return (IASTSimpleDeclaration) declaration;
+                    if (binding instanceof IVariable && binding.getName().equals(coreElt.getElementName())) {
+                        return (IASTSimpleDeclaration)declaration;
                     }
                 }
             }
@@ -61,29 +63,28 @@ public final class BindingResolver
     }
 
     /**
-     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElt
+     *            the ICElement identified by the CDT
+     * @param anonymousRanking
+     *            the anonymous ranking.
      * @return the element bounded
      */
-    public static IASTSimpleDeclaration resolveBindingIASTEnumeration(Collection<IASTDeclaration> elements, ICElement coreElt, int anonymousRanking)
-    {
+    public static IASTSimpleDeclaration resolveBindingIASTEnumeration(Collection<IASTDeclaration> elements,
+            ICElement coreElt, int anonymousRanking) {
         int ranking = 1;
-        for (IASTDeclaration declaration : elements)
-        {
-            if (declaration instanceof IASTSimpleDeclaration)
-            {
-                IASTDeclSpecifier specifier = ((IASTSimpleDeclaration) declaration).getDeclSpecifier();
-                if (specifier instanceof IASTEnumerationSpecifier)
-                {
-                    IBinding binding = ((IASTEnumerationSpecifier) specifier).getName().resolveBinding();
-                    if (binding instanceof IEnumeration && binding.getName().equals(coreElt.getElementName()) && ranking == anonymousRanking)
-                    {
-                        return (IASTSimpleDeclaration) declaration;
-                    }
-                    else if ("".equals(binding.getName()))
-                    {
+        for (IASTDeclaration declaration : elements) {
+            if (declaration instanceof IASTSimpleDeclaration) {
+                IASTDeclSpecifier specifier = ((IASTSimpleDeclaration)declaration).getDeclSpecifier();
+                if (specifier instanceof IASTEnumerationSpecifier) {
+                    IBinding binding = ((IASTEnumerationSpecifier)specifier).getName().resolveBinding();
+                    if (binding instanceof IEnumeration && binding.getName().equals(coreElt.getElementName())
+                            && ranking == anonymousRanking) {
+                        return (IASTSimpleDeclaration)declaration;
+                    } else if ("".equals(binding.getName())) {
                         ranking++;
                     }
                 }
@@ -93,20 +94,24 @@ public final class BindingResolver
     }
 
     /**
-     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElt
+     *            the ICElement identified by the CDT
+     * @param tu
+     *            the translation unit.
      * @return the element bounded
+     * @throws CoreException
+     *             exception
      */
-    public static IASTSimpleDeclaration resolveBindingIASTEnumeration(Collection<IASTDeclaration> elements, ICElement coreElt, ITranslationUnit tu) throws CoreException
-    {
+    public static IASTSimpleDeclaration resolveBindingIASTEnumeration(Collection<IASTDeclaration> elements,
+            ICElement coreElt, ITranslationUnit tu) throws CoreException {
         int anonymousRanking = 1;
         List<ICElement> childrenOfType = tu.getChildrenOfType(ICElement.C_ENUMERATION);
-        for (int i = 0; i < childrenOfType.indexOf(coreElt); i++)
-        {
-            if ("".equals(childrenOfType.get(i).getElementName()))
-            {
+        for (int i = 0; i < childrenOfType.indexOf(coreElt); i++) {
+            if ("".equals(childrenOfType.get(i).getElementName())) {
                 anonymousRanking++;
             }
         }
@@ -114,29 +119,29 @@ public final class BindingResolver
     }
 
     /**
-     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElt
+     *            the ICElement identified by the CDT
+     * @param anonymousRanking
+     *            The anonymous ranking.
      * @return the element bounded
      */
-    public static IASTSimpleDeclaration resolveBindingIASTStructure(Collection<IASTDeclaration> elements, ICElement coreElt, int anonymousRanking)
-    {
+    public static IASTSimpleDeclaration resolveBindingIASTStructure(Collection<IASTDeclaration> elements,
+            ICElement coreElt, int anonymousRanking) {
         int ranking = 1;
-        for (IASTDeclaration declaration : elements)
-        {
-            if (declaration instanceof IASTSimpleDeclaration)
-            {
-                IASTDeclSpecifier specifier = ((IASTSimpleDeclaration) declaration).getDeclSpecifier();
-                if (specifier instanceof IASTCompositeTypeSpecifier)
-                {
-                    IBinding binding = ((IASTCompositeTypeSpecifier) specifier).getName().resolveBinding();
-                    if (binding instanceof ICompositeType && binding.getName().equals(coreElt.getElementName()) && ranking == anonymousRanking)
-                    {
-                        return (IASTSimpleDeclaration) declaration;
-                    }
-                    else if ("".equals(binding.getName()))
-                    {
+        for (IASTDeclaration declaration : elements) {
+            if (declaration instanceof IASTSimpleDeclaration) {
+                IASTDeclSpecifier specifier = ((IASTSimpleDeclaration)declaration).getDeclSpecifier();
+                if (specifier instanceof IASTCompositeTypeSpecifier) {
+                    IBinding binding = ((IASTCompositeTypeSpecifier)specifier).getName().resolveBinding();
+                    if (binding instanceof ICompositeType
+                            && binding.getName().equals(coreElt.getElementName())
+                            && ranking == anonymousRanking) {
+                        return (IASTSimpleDeclaration)declaration;
+                    } else if ("".equals(binding.getName())) {
                         ranking++;
                     }
                 }
@@ -146,20 +151,24 @@ public final class BindingResolver
     }
 
     /**
-     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElt
+     *            the ICElement identified by the CDT
+     * @param tu
+     *            The translation unit.
      * @return the element bounded
+     * @throws CoreException
+     *             exception
      */
-    public static IASTSimpleDeclaration resolveBindingIASTStructure(Collection<IASTDeclaration> elements, ICElement coreElt, ITranslationUnit tu) throws CoreException
-    {
+    public static IASTSimpleDeclaration resolveBindingIASTStructure(Collection<IASTDeclaration> elements,
+            ICElement coreElt, ITranslationUnit tu) throws CoreException {
         int anonymousRanking = 1;
         List<ICElement> childrenOfType = tu.getChildrenOfType(ICElement.C_STRUCT);
-        for (int i = 0; i < childrenOfType.indexOf(coreElt); i++)
-        {
-            if ("".equals(childrenOfType.get(i).getElementName()))
-            {
+        for (int i = 0; i < childrenOfType.indexOf(coreElt); i++) {
+            if ("".equals(childrenOfType.get(i).getElementName())) {
                 anonymousRanking++;
             }
         }
@@ -167,24 +176,22 @@ public final class BindingResolver
     }
 
     /**
-     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElt
+     *            the ICElement identified by the CDT
      * @return the element bounded
      */
-    public static IASTSimpleDeclaration resolveBindingIASTypeDefDeclaration(Collection<IASTDeclaration> elements, ICElement coreElt)
-    {
-        for (IASTDeclaration declaration : elements)
-        {
-            if (declaration instanceof IASTSimpleDeclaration)
-            {
-                for (IASTDeclarator declarator : ((IASTSimpleDeclaration) declaration).getDeclarators())
-                {
+    public static IASTSimpleDeclaration resolveBindingIASTypeDefDeclaration(
+            Collection<IASTDeclaration> elements, ICElement coreElt) {
+        for (IASTDeclaration declaration : elements) {
+            if (declaration instanceof IASTSimpleDeclaration) {
+                for (IASTDeclarator declarator : ((IASTSimpleDeclaration)declaration).getDeclarators()) {
                     IBinding binding = declarator.getName().resolveBinding();
-                    if (binding instanceof ITypedef && binding.getName().equals(coreElt.getElementName()))
-                    {
-                        return (IASTSimpleDeclaration) declaration;
+                    if (binding instanceof ITypedef && binding.getName().equals(coreElt.getElementName())) {
+                        return (IASTSimpleDeclaration)declaration;
                     }
                 }
             }
@@ -193,26 +200,24 @@ public final class BindingResolver
     }
 
     /**
-     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTSimpleDeclaration for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElt
+     *            the ICElement identified by the CDT
      * @return the element bounded
      */
-    public static IASTSimpleDeclaration resolveBindingIASTFunctionDeclarator(Collection<IASTDeclaration> elements, ICElement coreElt)
-    {
-        for (IASTDeclaration declaration : elements)
-        {
-            if (declaration instanceof IASTSimpleDeclaration)
-            {
-                for (IASTDeclarator declarator : ((IASTSimpleDeclaration) declaration).getDeclarators())
-                {
-                    if (declarator instanceof IASTFunctionDeclarator)
-                    {
+    public static IASTSimpleDeclaration resolveBindingIASTFunctionDeclarator(
+            Collection<IASTDeclaration> elements, ICElement coreElt) {
+        for (IASTDeclaration declaration : elements) {
+            if (declaration instanceof IASTSimpleDeclaration) {
+                for (IASTDeclarator declarator : ((IASTSimpleDeclaration)declaration).getDeclarators()) {
+                    if (declarator instanceof IASTFunctionDeclarator) {
                         IBinding binding = declarator.getName().resolveBinding();
-                        if (binding instanceof IFunction && binding.getName().equals(coreElt.getElementName()))
-                        {
-                            return (IASTSimpleDeclaration) declaration;
+                        if (binding instanceof IFunction
+                                && binding.getName().equals(coreElt.getElementName())) {
+                            return (IASTSimpleDeclaration)declaration;
                         }
                     }
                 }
@@ -222,23 +227,22 @@ public final class BindingResolver
     }
 
     /**
-     * Resolve binding for an IASTFunctionDefinition for which the Declarator is the name binding
-     * 
-     * @param elements collection of declarations
-     * @param coreElement the ICElement identified by the CDT
+     * Resolve binding for an IASTFunctionDefinition for which the Declarator is the name binding.
+     *
+     * @param elements
+     *            collection of declarations
+     * @param coreElement
+     *            the ICElement identified by the CDT
      * @return the element bounded
      */
-    public static IASTFunctionDefinition resolveBindingIASTFunctionDefinition(Collection<IASTDeclaration> elements, ICElement coreElement)
-    {
-        for (IASTDeclaration declaration : elements)
-        {
-            if (declaration instanceof IASTFunctionDefinition)
-            {
-                IASTDeclarator declarator = ((IASTFunctionDefinition) declaration).getDeclarator();
+    public static IASTFunctionDefinition resolveBindingIASTFunctionDefinition(
+            Collection<IASTDeclaration> elements, ICElement coreElement) {
+        for (IASTDeclaration declaration : elements) {
+            if (declaration instanceof IASTFunctionDefinition) {
+                IASTDeclarator declarator = ((IASTFunctionDefinition)declaration).getDeclarator();
                 IBinding binding = declarator.getName().resolveBinding();
-                if (binding instanceof IFunction && binding.getName().equals(coreElement.getElementName()))
-                {
-                    return (IASTFunctionDefinition) declaration;
+                if (binding instanceof IFunction && binding.getName().equals(coreElement.getElementName())) {
+                    return (IASTFunctionDefinition)declaration;
                 }
             }
         }

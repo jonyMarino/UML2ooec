@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Sebastien Gabel (CS-SI) - initial API and implementation
  *******************************************************************************/
@@ -15,25 +15,34 @@ import java.util.ResourceBundle;
 
 /**
  * Class for message internationalization.<br>
- * 
  * Created : 07 may 2010<br>
- * 
+ *
  * @author <a href="mailto:sebastien.gabel@sdfsdfs.fr">Sebastien Gabel</a>
  */
 public final class Messages {
-	private static final String BUNDLE_NAME = "org.eclipse.umlgen.gen.c.ui.internal.bundle.messages"; //$NON-NLS-1$
 
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
-			.getBundle(BUNDLE_NAME);
+    /** The name of the messages bundle. */
+    private static final String BUNDLE_NAME = "org.eclipse.umlgen.gen.c.ui.internal.bundle.messages"; //$NON-NLS-1$
 
-	private Messages() {
-	}
+    /** The messages resource bundle. */
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
-	public static String getString(String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
-	}
+    /** Defualt constructor. */
+    private Messages() {
+    }
+
+    /**
+     * This gets the message from the given key.
+     * 
+     * @param key
+     *            the key.
+     * @return The message.
+     */
+    public static String getString(String key) {
+        try {
+            return RESOURCE_BUNDLE.getString(key);
+        } catch (MissingResourceException e) {
+            return '!' + key + '!';
+        }
+    }
 }

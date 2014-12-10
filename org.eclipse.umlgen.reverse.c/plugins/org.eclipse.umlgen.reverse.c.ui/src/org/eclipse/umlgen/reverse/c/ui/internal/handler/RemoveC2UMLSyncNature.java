@@ -29,19 +29,21 @@ import org.eclipse.umlgen.reverse.c.resource.ProjectUtil;
  */
 public class RemoveC2UMLSyncNature extends AbstractHandler {
 
-	/**
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection selection = (IStructuredSelection)HandlerUtil.getCurrentSelectionChecked(event);
-		IProject project = (IProject)selection.getFirstElement();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+     */
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        IStructuredSelection selection = (IStructuredSelection)HandlerUtil.getCurrentSelectionChecked(event);
+        IProject project = (IProject)selection.getFirstElement();
 
-		try {
-			ProjectUtil.removeNature(project, BundleConstants.NATURE_ID);
-			ProjectUtil.removeNature(project, UML2CBundleConstant.NATURE_ID);
-		} catch (CoreException e) {
-			throw new ExecutionException(e.getMessage(), e);
-		}
-		return null;
-	}
+        try {
+            ProjectUtil.removeNature(project, BundleConstants.NATURE_ID);
+            ProjectUtil.removeNature(project, UML2CBundleConstant.NATURE_ID);
+        } catch (CoreException e) {
+            throw new ExecutionException(e.getMessage(), e);
+        }
+        return null;
+    }
 }

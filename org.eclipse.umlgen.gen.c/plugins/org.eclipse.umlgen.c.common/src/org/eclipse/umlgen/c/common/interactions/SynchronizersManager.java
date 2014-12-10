@@ -21,30 +21,35 @@ import org.eclipse.umlgen.c.common.interactions.extension.registry.SynchronizerR
 /**
  * This allows to retrieve a potential model synchronizer to interact with semantic or graphical models.
  */
-public class SynchronizersManager {
+public final class SynchronizersManager {
 
-	private static Comparator<SynchronizerDescriptor> synchronizerComparator = new Comparator<SynchronizerDescriptor>() {
+    /** Comparator of synchronizers in order to retrieve the first synchronizer with the higher ranking. */
+    private static Comparator<SynchronizerDescriptor> synchronizerComparator = new Comparator<SynchronizerDescriptor>() {
 
-		public int compare(SynchronizerDescriptor o1, SynchronizerDescriptor o2) {
-			int o1ranking = Integer.parseInt(o1.getRanking());
-			int o2ranking = Integer.parseInt(o2.getRanking());
-			return o2ranking - o1ranking;
-		}
+        public int compare(SynchronizerDescriptor o1, SynchronizerDescriptor o2) {
+            int o1ranking = Integer.parseInt(o1.getRanking());
+            int o2ranking = Integer.parseInt(o2.getRanking());
+            return o2ranking - o1ranking;
+        }
 
-	};
+    };
 
-	/**
-	 * Get the most priority registered model synchronizer
-	 *
-	 * @return The model synchronizer
-	 */
-	public static IModelSynchronizer getSynchronizer() {
-		List<SynchronizerDescriptor> descriptors = SynchronizerRegistry.getRegisteredExtensions();
-		Collections.sort(descriptors, synchronizerComparator);
-		for (SynchronizerDescriptor desc : descriptors) {
-			return desc.getSynchronizerExtension();
-		}
-		return null;
-	}
+    /** Default constructor. */
+    private SynchronizersManager() {
+    }
+
+    /**
+     * Get the most priority registered model synchronizer.
+     *
+     * @return The model synchronizer
+     */
+    public static IModelSynchronizer getSynchronizer() {
+        List<SynchronizerDescriptor> descriptors = SynchronizerRegistry.getRegisteredExtensions();
+        Collections.sort(descriptors, synchronizerComparator);
+        for (SynchronizerDescriptor desc : descriptors) {
+            return desc.getSynchronizerExtension();
+        }
+        return null;
+    }
 
 }

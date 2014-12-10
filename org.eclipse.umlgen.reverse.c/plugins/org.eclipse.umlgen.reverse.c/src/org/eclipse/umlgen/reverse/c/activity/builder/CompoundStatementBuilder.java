@@ -19,37 +19,57 @@ import org.eclipse.umlgen.reverse.c.activity.beans.ActivityNodesPins;
 import org.eclipse.umlgen.reverse.c.activity.comments.CommentBuilder;
 import org.eclipse.umlgen.reverse.c.activity.util.UMLActivityFactory;
 
+/** compound statement builder. */
 public class CompoundStatementBuilder extends AbstractBuilder {
 
-	public CompoundStatementBuilder(UMLActivityBuilder activityBuilder, UMLActivityFactory factory,
-			CommentBuilder commentBuilder) {
-		super(activityBuilder, factory, commentBuilder);
-	}
+    /**
+     * Constructor.
+     *
+     * @param activityBuilder
+     *            The activity builder.
+     * @param factory
+     *            the activity factory.
+     * @param commentBuilder
+     *            The comment builder.
+     */
+    public CompoundStatementBuilder(UMLActivityBuilder activityBuilder, UMLActivityFactory factory,
+            CommentBuilder commentBuilder) {
+        super(activityBuilder, factory, commentBuilder);
+    }
 
-	public ActivityNodesPins buildCompoundStatement(IASTCompoundStatement stmt, ActivityContext currentContext) {
-		ActivityNode previousNode = null;
-		ActivityNode firstNode = null;
+    /**
+     * This builds activity nodes pins from the given statement and activity context.
+     *
+     * @param stmt
+     *            The current statement.
+     * @param currentContext
+     *            The activity context.
+     * @return Activity nodes pins.
+     */
+    public ActivityNodesPins buildCompoundStatement(IASTCompoundStatement stmt, ActivityContext currentContext) {
+        ActivityNode previousNode = null;
+        ActivityNode firstNode = null;
 
-		if (stmt.getStatements().length == 0) {
-			firstNode = factory.createOpaqueAction("", currentContext);
-			previousNode = firstNode;
-		} else {
-			IASTStatement[] statements = stmt.getStatements();
-			for (int i = 0; i < statements.length; i++) {
-				IASTStatement childStmt = statements[i];
-				// Create the nodes for the current statement
-				ActivityNodesPins nodes = activityBuilder.buildNodes(childStmt, currentContext);
+        if (stmt.getStatements().length == 0) {
+            firstNode = factory.createOpaqueAction("", currentContext);
+            previousNode = firstNode;
+        } else {
+            IASTStatement[] statements = stmt.getStatements();
+            for (int i = 0; i < statements.length; i++) {
+                IASTStatement childStmt = statements[i];
+                // Create the nodes for the current statement
+                ActivityNodesPins nodes = activityBuilder.buildNodes(childStmt, currentContext);
 
-				if (i == 0) {
-					firstNode = nodes.getStartNode();
-				}
+                if (i == 0) {
+                    firstNode = nodes.getStartNode();
+                }
 
-				// link with previous node
-				factory.createControlFlow(previousNode, nodes.getStartNode(), currentContext);
+                // link with previous node
+                factory.createControlFlow(previousNode, nodes.getStartNode(), currentContext);
 
-				previousNode = nodes.getEndNode();
-			}
-		}
-		return new ActivityNodesPins(firstNode, previousNode);
-	}
+                previousNode = nodes.getEndNode();
+            }
+        }
+        return new ActivityNodesPins(firstNode, previousNode);
+    }
 }

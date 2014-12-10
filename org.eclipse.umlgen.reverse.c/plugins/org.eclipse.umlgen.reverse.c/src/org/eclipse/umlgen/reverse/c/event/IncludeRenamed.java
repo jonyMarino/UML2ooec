@@ -18,31 +18,34 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class IncludeRenamed extends IncludeEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be defined
-	}
+public class IncludeRenamed extends AbstractIncludeEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<IncludeRenamed> builder() {
-		return new Builder<IncludeRenamed>() {
-			private IncludeRenamed event = new IncludeRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be defined
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.IncludeEvent.Builder#getEvent()
-			 */
-			@Override
-			protected IncludeRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<IncludeRenamed> builder() {
+        return new AbstractBuilder<IncludeRenamed>() {
+            private IncludeRenamed event = new IncludeRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractIncludeEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected IncludeRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

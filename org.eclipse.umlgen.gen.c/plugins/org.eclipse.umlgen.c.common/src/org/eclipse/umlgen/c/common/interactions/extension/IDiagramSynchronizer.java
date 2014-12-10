@@ -15,14 +15,35 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.umlgen.c.common.util.ModelManager;
 
 /**
- * Diagram Synchronizer interface to interact with graphical models
+ * Diagram Synchronizer interface to interact with graphical models.
  */
 public interface IDiagramSynchronizer extends IModelSynchronizer {
 
-	void removeRepresentation(EObject object, ModelManager mngr);
+    /**
+     * This enables to remove the representations related to the given semantic object.
+     *
+     * @param object
+     *            The semantic object.
+     * @param mngr
+     *            A model manager.
+     */
+    void removeRepresentation(EObject object, ModelManager mngr);
 
-	EClass getRepresentationKind();
+    /**
+     * This returns the EClass defining a concept of representation (diagram i.e.).
+     *
+     * @return The EClass which represents a kind of representation.
+     */
+    EClass getRepresentationKind();
 
-	String getPresentation(Object object);
+    /**
+     * This returns the label of the semantic object.<br>
+     * It is used by a property tester to activate a popup menu on a Diagram.
+     *
+     * @param object
+     *            The target diagram object.
+     * @return The label of the semantic object.
+     */
+    String getPresentation(Object object);
 
 }

@@ -12,34 +12,48 @@ package org.eclipse.umlgen.reverse.c.activity.beans;
 
 import org.eclipse.uml2.uml.ActivityNode;
 
+/**
+ * Activity nodes pins.
+ */
 public class ActivityNodesPins {
-	private ActivityNode startNode;
 
-	private ActivityNode endNode;
+    /** The start node. */
+    private ActivityNode startNode;
 
-	public ActivityNodesPins() {
+    /** The end node. */
+    private ActivityNode endNode;
 
-	}
+    /** Constructor. */
+    public ActivityNodesPins() {
+    }
 
-	public ActivityNodesPins(ActivityNode startNode, ActivityNode endNode) {
-		super();
-		this.startNode = startNode;
-		this.endNode = endNode;
-	}
+    /**
+     * Constructor.
+     * 
+     * @param startNode
+     *            The start node
+     * @param endNode
+     *            The end node
+     */
+    public ActivityNodesPins(ActivityNode startNode, ActivityNode endNode) {
+        super();
+        this.startNode = startNode;
+        this.endNode = endNode;
+    }
 
-	public ActivityNode getStartNode() {
-		return startNode;
-	}
+    public ActivityNode getStartNode() {
+        return startNode;
+    }
 
-	public void setStartNode(ActivityNode startNode) {
-		this.startNode = startNode;
-	}
+    public void setStartNode(ActivityNode startNode) {
+        this.startNode = startNode;
+    }
 
-	public ActivityNode getEndNode() {
-		return endNode;
-	}
+    public ActivityNode getEndNode() {
+        return endNode;
+    }
 
-	public void setEndNode(ActivityNode endNode) {
-		this.endNode = endNode;
-	}
+    public void setEndNode(ActivityNode endNode) {
+        this.endNode = endNode;
+    }
 }

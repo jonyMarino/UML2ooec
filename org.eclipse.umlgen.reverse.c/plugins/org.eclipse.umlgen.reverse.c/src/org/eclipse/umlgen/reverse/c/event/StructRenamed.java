@@ -18,31 +18,34 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public class StructRenamed extends StructEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.event.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		// TODO : to be implemented
-	}
+public class StructRenamed extends AbstractStructEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<StructRenamed> builder() {
-		return new Builder<StructRenamed>() {
-			private StructRenamed event = new StructRenamed();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        // TODO : to be implemented
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.TypeDefStructEvent#getEvent()
-			 */
-			@Override
-			protected StructRenamed getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<StructRenamed> builder() {
+        return new AbstractBuilder<StructRenamed>() {
+            private StructRenamed event = new StructRenamed();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.AbstractTypeDefStructEvent#getEvent()
+             */
+            @Override
+            protected StructRenamed getEvent() {
+                return event;
+            }
+        };
+    }
 }

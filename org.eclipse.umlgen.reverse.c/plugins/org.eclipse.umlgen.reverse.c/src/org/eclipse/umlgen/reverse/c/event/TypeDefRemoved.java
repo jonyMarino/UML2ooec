@@ -20,44 +20,50 @@ import org.eclipse.umlgen.c.common.util.ModelManager;
 import org.eclipse.umlgen.c.common.util.ModelUtil;
 import org.eclipse.umlgen.c.common.util.ModelUtil.EventType;
 
-public class TypeDefRemoved extends TypeDefEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		Classifier localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
-		if (localType != null) {
-			if (ModelUtil.isRemovable(localType)) {
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
-				}
-				localType.destroy();
-			} else {
-				ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);
-			}
-		}
-	}
+/**
+ * Event related to deletion of a type definition.
+ */
+public class TypeDefRemoved extends AbstractTypeDefEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<TypeDefRemoved> builder() {
-		return new Builder<TypeDefRemoved>() {
-			private TypeDefRemoved event = new TypeDefRemoved();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractTypeDefEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        Classifier localType = ModelUtil.findDataTypeInClassifier(matchingClassifier, getCurrentName());
+        if (localType != null) {
+            if (ModelUtil.isRemovable(localType)) {
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(localType, manager);
+                }
+                localType.destroy();
+            } else {
+                ModelUtil.setVisibility(localType, getTranslationUnit(), EventType.REMOVE);
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.TypeDefBuilder#getEvent()
-			 */
-			@Override
-			protected TypeDefRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<TypeDefRemoved> builder() {
+        return new AbstractBuilder<TypeDefRemoved>() {
+            private TypeDefRemoved event = new TypeDefRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.TypeDefBuilder#getEvent()
+             */
+            @Override
+            protected TypeDefRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

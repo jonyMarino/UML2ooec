@@ -20,24 +20,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class ObjectTypePropertyTester extends PropertyTester {
 
-	/**
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String,
-	 *      java.lang.Object[], java.lang.Object)
-	 */
-	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		boolean result = false;
-		if (receiver instanceof EObject) {
-			EObject eObject = (EObject)receiver;
-			result = expectedValue.equals(eObject.eClass().getInstanceClassName());
-		}
-		// FIXME MIGRATION reference to modeler
-		// if (receiver instanceof Diagram && args.length > 0)
-		// {
-		// Diagram diagram = (Diagram) receiver;
-		// result &=
-		// args[0].equals(diagram.getSemanticModel().getPresentation());
-		// }
-		return result;
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String,
+     *      java.lang.Object[], java.lang.Object)
+     */
+    public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
+        boolean result = false;
+        if (receiver instanceof EObject) {
+            EObject eObject = (EObject)receiver;
+            result = expectedValue.equals(eObject.eClass().getInstanceClassName());
+        }
+        // FIXME MIGRATION reference to modeler
+        // if (receiver instanceof Diagram && args.length > 0)
+        // {
+        // Diagram diagram = (Diagram) receiver;
+        // result &=
+        // args[0].equals(diagram.getSemanticModel().getPresentation());
+        // }
+        return result;
+    }
 
 }

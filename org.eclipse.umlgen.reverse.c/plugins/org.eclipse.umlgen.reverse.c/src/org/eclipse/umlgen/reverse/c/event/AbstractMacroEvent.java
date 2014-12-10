@@ -16,22 +16,35 @@ package org.eclipse.umlgen.reverse.c.event;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  * @author <a href="mailto:christophe.le-camus@c-s.fr">Christophe LE CAMUS</a>
  */
-public abstract class MacroEvent extends AbstractTypedEvent {
-	private String expansion;
+public abstract class AbstractMacroEvent extends AbstractTypedEvent {
 
-	public String getExpansion() {
-		return expansion;
-	}
+    /** The expansion. */
+    private String expansion;
 
-	protected void setExpansion(String value) {
-		expansion = value;
-	}
+    public String getExpansion() {
+        return expansion;
+    }
 
-	public static abstract class Builder<T extends MacroEvent> extends AbstractTypedEvent.Builder<T> {
-		public Builder<T> setExpansion(String typeName) {
-			getEvent().setExpansion(typeName);
-			return this;
-		}
-	}
+    protected void setExpansion(String value) {
+        expansion = value;
+    }
+
+    /**
+     * Generic behavior for builders from events.
+     */
+    public abstract static class AbstractBuilder<T extends AbstractMacroEvent> extends AbstractTypedEvent.AbstractBuilder<T> {
+
+        /**
+         * This sets the expansion flag to the event.
+         *
+         * @param typeName
+         *            the type name.
+         * @return self.
+         */
+        public AbstractBuilder<T> setExpansion(String typeName) {
+            getEvent().setExpansion(typeName);
+            return this;
+        }
+    }
 
 }

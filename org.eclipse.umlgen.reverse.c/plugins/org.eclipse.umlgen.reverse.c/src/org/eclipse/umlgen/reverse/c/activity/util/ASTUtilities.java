@@ -25,54 +25,88 @@ import org.eclipse.cdt.core.dom.ast.IASTNode;
 import org.eclipse.cdt.core.dom.ast.IASTReturnStatement;
 import org.eclipse.cdt.core.dom.ast.IASTSwitchStatement;
 
-public class ASTUtilities {
-	static public boolean hasDefaultStatement(IASTSwitchStatement stmt) {
-		if (stmt.getBody() == null) {
-			return false;
-		}
-		final Predicate<IASTNode> breakStatement = new Predicate<IASTNode>() {
-			public boolean apply(IASTNode node) {
-				return node instanceof IASTDefaultStatement;
-			}
-		};
-		List<IASTNode> nodes = Arrays.asList(stmt.getBody().getChildren());
-		return any(nodes, breakStatement);
-	}
+/** Utilities about AST. */
+public final class ASTUtilities {
 
-	static public boolean hasBreakStatement(List<IASTNode> nodes) {
-		final Predicate<IASTNode> hasBreakStatement = new Predicate<IASTNode>() {
-			public boolean apply(IASTNode node) {
-				return node instanceof IASTBreakStatement;
-			}
-		};
-		return any(nodes, hasBreakStatement);
-	}
+    /** Default constructor. */
+    private ASTUtilities() {
+    }
 
-	static public boolean hasReturnStatement(List<IASTNode> nodes) {
-		final Predicate<IASTNode> hasReturnStatement = new Predicate<IASTNode>() {
-			public boolean apply(IASTNode node) {
-				return node instanceof IASTReturnStatement;
-			}
-		};
-		return any(nodes, hasReturnStatement);
-	}
+    /**
+     * Check if the given switch statement owns a default statement.
+     *
+     * @param stmt
+     *            The statement.
+     * @return True if yes.
+     */
+    public static boolean hasDefaultStatement(IASTSwitchStatement stmt) {
+        if (stmt.getBody() == null) {
+            return false;
+        }
+        final Predicate<IASTNode> breakStatement = new Predicate<IASTNode>() {
+            public boolean apply(IASTNode node) {
+                return node instanceof IASTDefaultStatement;
+            }
+        };
+        List<IASTNode> nodes = Arrays.asList(stmt.getBody().getChildren());
+        return any(nodes, breakStatement);
+    }
 
-	static public List<List<IASTNode>> getStatementsGroupedByClause(IASTSwitchStatement switchStmt) {
-		List<List<IASTNode>> groups = newArrayList();
+    /**
+     * Check if the given list of nodes contains a break statement.
+     *
+     * @param nodes
+     *            The list of nodes.
+     * @return True if yes.
+     */
+    public static boolean hasBreakStatement(List<IASTNode> nodes) {
+        final Predicate<IASTNode> hasBreakStatement = new Predicate<IASTNode>() {
+            public boolean apply(IASTNode node) {
+                return node instanceof IASTBreakStatement;
+            }
+        };
+        return any(nodes, hasBreakStatement);
+    }
 
-		if (switchStmt.getBody() != null) {
-			IASTNode[] nodes = switchStmt.getBody().getChildren();
-			List<IASTNode> group = null;
-			for (IASTNode astNode : nodes) {
-				if (astNode instanceof IASTCaseStatement || astNode instanceof IASTDefaultStatement) {
-					// When we meet a Case or default statement we create a new
-					// group of statements
-					group = newArrayList();
-					groups.add(group);
-				}
-				group.add(astNode);
-			}
-		}
-		return groups;
-	}
+    /**
+     * Check if the given list of nodes contains a return statement.
+     *
+     * @param nodes
+     *            The list of nodes.
+     * @return True if yes.
+     */
+    public static boolean hasReturnStatement(List<IASTNode> nodes) {
+        final Predicate<IASTNode> hasReturnStatement = new Predicate<IASTNode>() {
+            public boolean apply(IASTNode node) {
+                return node instanceof IASTReturnStatement;
+            }
+        };
+        return any(nodes, hasReturnStatement);
+    }
+
+    /**
+     * Get the list of statements (nodes) grouped by clause in the given switch statement.
+     *
+     * @param switchStmt
+     *            The switch statement.
+     * @return The grouped statements.
+     */
+    public static List<List<IASTNode>> getStatementsGroupedByClause(IASTSwitchStatement switchStmt) {
+        List<List<IASTNode>> groups = newArrayList();
+
+        if (switchStmt.getBody() != null) {
+            IASTNode[] nodes = switchStmt.getBody().getChildren();
+            List<IASTNode> group = null;
+            for (IASTNode astNode : nodes) {
+                if (astNode instanceof IASTCaseStatement || astNode instanceof IASTDefaultStatement) {
+                    // When we meet a Case or default statement we create a new
+                    // group of statements
+                    group = newArrayList();
+                    groups.add(group);
+                }
+                group.add(astNode);
+            }
+        }
+        return groups;
+    }
 }

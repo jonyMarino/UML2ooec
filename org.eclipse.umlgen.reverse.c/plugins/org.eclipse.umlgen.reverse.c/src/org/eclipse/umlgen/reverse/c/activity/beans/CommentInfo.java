@@ -16,80 +16,161 @@ import java.util.Map;
 
 import org.eclipse.umlgen.c.common.BundleConstants;
 
+/**
+ * Comment Info.
+ */
 public class CommentInfo {
-	private static final int BEFORE = 0;
 
-	private static final int INLINE = 1;
+    /** Constant for empty strings. */
+    private static final String EMPTY_STRING = "";
 
-	private static final int LAST_LINE = 2;
+    /** Index to retrieve the info "before". */
+    private static final int BEFORE = 0;
 
-	private static final int SAME_LINE = 3;
+    /** Index to retrieve the info "inline". */
+    private static final int INLINE = 1;
 
-	private Map<Integer, String> info = Maps.newHashMap();
+    /** Index to retrieve the info "last line". */
+    private static final int LAST_LINE = 2;
 
-	private String getInfo(int infoType) {
-		return info.get(infoType);
-	}
+    /** Index to retrieve the info "same line". */
+    private static final int SAME_LINE = 3;
 
-	private void addToInfo(int infoType, String content, String separator) {
-		String existingContent = getInfo(infoType);
-		if (existingContent == null || existingContent.equals("")) {
-			info.put(infoType, content);
-		} else {
-			info.put(infoType, existingContent + separator + content);
-		}
-	}
+    /** Map which stores the informations. */
+    private Map<Integer, String> info = Maps.newHashMap();
 
-	private boolean hasInfo(int infoType) {
-		String content = getInfo(infoType);
-		return content != null && !content.equals("");
-	}
+    /**
+     * Get the info to the given index.
+     *
+     * @param infoType
+     *            The index
+     * @return The info
+     */
+    private String getInfo(int infoType) {
+        return info.get(infoType);
+    }
 
-	public String getBefore() {
-		return getInfo(BEFORE);
-	}
+    /**
+     * This adds a new info <code>content</code> to the given index <code>infoType</code>.<br>
+     * If there already is an info to his index, this adds the new one behind the given separator.
+     *
+     * @param infoType
+     *            The index.
+     * @param content
+     *            The info.
+     * @param separator
+     *            The separator.
+     */
+    private void addToInfo(int infoType, String content, String separator) {
+        String existingContent = getInfo(infoType);
+        if (existingContent == null || existingContent.equals(EMPTY_STRING)) {
+            info.put(infoType, content);
+        } else {
+            info.put(infoType, existingContent + separator + content);
+        }
+    }
 
-	public void addBefore(String content) {
-		addToInfo(BEFORE, content, BundleConstants.LINE_SEPARATOR);
-	}
+    /**
+     * Check if there exists an info to the given index.
+     *
+     * @param infoType
+     *            The index.
+     * @return True if yes.
+     */
+    private boolean hasInfo(int infoType) {
+        String content = getInfo(infoType);
+        return content != null && !content.equals(EMPTY_STRING);
+    }
 
-	public boolean hasBefore() {
-		return hasInfo(BEFORE);
-	}
+    public String getBefore() {
+        return getInfo(BEFORE);
+    }
 
-	public String getInline() {
-		return getInfo(INLINE);
-	}
+    /**
+     * Add the given info as "before".
+     *
+     * @param content
+     *            The info to add.
+     */
+    public void addBefore(String content) {
+        addToInfo(BEFORE, content, BundleConstants.LINE_SEPARATOR);
+    }
 
-	public void addInline(String content) {
-		addToInfo(INLINE, content, "");
-	}
+    /**
+     * Check if "before" exists.
+     *
+     * @return True if yes.
+     */
+    public boolean hasBefore() {
+        return hasInfo(BEFORE);
+    }
 
-	public boolean hasInline() {
-		return hasInfo(INLINE);
-	}
+    public String getInline() {
+        return getInfo(INLINE);
+    }
 
-	public String getLastLine() {
-		return getInfo(LAST_LINE);
-	}
+    /**
+     * Add the given info as "inline".
+     *
+     * @param content
+     *            The info to add.
+     */
+    public void addInline(String content) {
+        addToInfo(INLINE, content, EMPTY_STRING);
+    }
 
-	public void addLastLine(String content) {
-		addToInfo(LAST_LINE, content, BundleConstants.LINE_SEPARATOR);
-	}
+    /**
+     * Check if "inline" exists.
+     *
+     * @return True if yes.
+     */
+    public boolean hasInline() {
+        return hasInfo(INLINE);
+    }
 
-	public boolean hasLastLine() {
-		return hasInfo(LAST_LINE);
-	}
+    public String getLastLine() {
+        return getInfo(LAST_LINE);
+    }
 
-	public String getSameLine() {
-		return getInfo(SAME_LINE);
-	}
+    /**
+     * Add the given info as "last line".
+     *
+     * @param content
+     *            The info to add.
+     */
+    public void addLastLine(String content) {
+        addToInfo(LAST_LINE, content, BundleConstants.LINE_SEPARATOR);
+    }
 
-	public void addSameLine(String content) {
-		addToInfo(SAME_LINE, content, "");
-	}
+    /**
+     * Check if "last line" exists.
+     *
+     * @return True if yes.
+     */
+    public boolean hasLastLine() {
+        return hasInfo(LAST_LINE);
+    }
 
-	public boolean hasSameLine() {
-		return hasInfo(SAME_LINE);
-	}
+    public String getSameLine() {
+        return getInfo(SAME_LINE);
+    }
+
+    /**
+     * Add the given info as "same line".
+     *
+     * @param content
+     *            The info to add.
+     */
+    public void addSameLine(String content) {
+        addToInfo(SAME_LINE, content, EMPTY_STRING);
+    }
+
+    /**
+     * Check if "same line" exists.
+     *
+     * @return True if yes.
+     */
+    public boolean hasSameLine() {
+        return hasInfo(SAME_LINE);
+    }
 }

@@ -11,13 +11,18 @@
  *******************************************************************************/
 package org.eclipse.umlgen.gen.c.builder;
 
+/**
+ * Constants used within the plug-in.
+ */
 public interface UML2CBundleConstant {
 
-	public static final String BUILDER_ID = "org.eclipse.umlgen.gen.c.builder";
+    /** The builder ID. */
+    String BUILDER_ID = "org.eclipse.umlgen.gen.c.builder";
 
-	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.umlgen.gen.c.builder";
+    /** The plug-in ID. */
+    String PLUGIN_ID = "org.eclipse.umlgen.gen.c.builder";
 
-	public static final String NATURE_ID = "org.eclipse.umlgen.gen.c.nature";
+    /** The nature ID. */
+    String NATURE_ID = "org.eclipse.umlgen.gen.c.nature";
 
 }

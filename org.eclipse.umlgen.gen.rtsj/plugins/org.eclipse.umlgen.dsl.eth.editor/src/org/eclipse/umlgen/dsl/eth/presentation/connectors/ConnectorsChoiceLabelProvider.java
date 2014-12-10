@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -22,51 +22,68 @@ import org.eclipse.umlgen.dsl.eth.presentation.util.Requestor;
 
 /**
  * Specific label provider to display the choice of the connectors.
- * @author cnotot
  *
+ * @author cnotot
  */
 public class ConnectorsChoiceLabelProvider extends LabelProvider {
-	
-	private IItemLabelProvider itemLabelProvider;
-	
-	public ConnectorsChoiceLabelProvider(IItemLabelProvider itemLabelProvider) {
-		super();
-		this.itemLabelProvider = itemLabelProvider;
-	}
-	
-	@Override
-	public String getText(Object object) {
-		if (object instanceof Connector) {
-			Connector connector = (Connector) object;
-			ConnectorEnd start = Requestor.getStart(connector);
-			ConnectorEnd end = Requestor.getEnd(connector);
-			if ((start == null || end == null)
-					&& connector.getEnds().size() > 1) {
-				start = connector.getEnds().get(0);
-				end = connector.getEnds().get(0);
-				return start.getRole().getName() + " - "
-						+ ((NamedElement) end.getRole().eContainer()).getName()
-						+ " (" + end.getRole().getName() + ")";
-			}
 
-			return start.getRole().getName() + " -> "
-					+ ((NamedElement) end.getRole().eContainer()).getName()
-					+ " (" + end.getRole().getName() + ")";
-		} else if (object instanceof Namespace) {
-			if (((Namespace) object).getName() != null) {
-				return ((Namespace) object).getName();
-			} else {
-				return "";
-			}
-		}
+    /** The item label provider. */
+    private IItemLabelProvider itemLabelProvider;
 
-		return itemLabelProvider.getText(object);
-	}
+    /**
+     * Constructor.
+     *
+     * @param itemLabelProvider
+     *            The item label provider.
+     */
+    public ConnectorsChoiceLabelProvider(IItemLabelProvider itemLabelProvider) {
+        super();
+        this.itemLabelProvider = itemLabelProvider;
+    }
 
-	@Override
-	public Image getImage(Object object) {
-		return ExtendedImageRegistry.getInstance().getImage(
-				itemLabelProvider.getImage(object));
-	}
-	
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+     */
+    // CHECKSTYLE:OFF
+    @Override
+    public String getText(Object object) {
+        if (object instanceof Connector) {
+            Connector connector = (Connector)object;
+            ConnectorEnd start = Requestor.getStart(connector);
+            ConnectorEnd end = Requestor.getEnd(connector);
+            if ((start == null || end == null) && connector.getEnds().size() > 1) {
+                start = connector.getEnds().get(0);
+                end = connector.getEnds().get(0);
+                return start.getRole().getName() + " - "
+                + ((NamedElement)end.getRole().eContainer()).getName() + " ("
+                + end.getRole().getName() + ")";
+            }
+
+            return start.getRole().getName() + " -> " + ((NamedElement)end.getRole().eContainer()).getName()
+                    + " (" + end.getRole().getName() + ")";
+        } else if (object instanceof Namespace) {
+            if (((Namespace)object).getName() != null) {
+                return ((Namespace)object).getName();
+            } else {
+                return "";
+            }
+        }
+
+        return itemLabelProvider.getText(object);
+    }
+
+    // CHECKSTYLE:ON
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.jface.viewers.LabelProvider#getImage(java.lang.Object)
+     */
+    @Override
+    public Image getImage(Object object) {
+        return ExtendedImageRegistry.getInstance().getImage(itemLabelProvider.getImage(object));
+    }
+
 }

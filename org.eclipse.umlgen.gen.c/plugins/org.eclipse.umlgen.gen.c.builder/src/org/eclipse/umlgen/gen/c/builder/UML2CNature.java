@@ -25,42 +25,64 @@ import org.eclipse.umlgen.reverse.c.resource.ProjectUtil;
  */
 public class UML2CNature implements IProjectNature {
 
-	/** The project for which nature are added/removed */
-	private IProject project;
+    /** The project for which nature are added/removed. */
+    private IProject project;
 
-	/**
-	 * @see org.eclipse.core.resources.IProjectNature#configure()
-	 */
-	public void configure() throws CoreException {
-		ProjectUtil.addToBuildSpec(getProject(), UML2CBundleConstant.BUILDER_ID);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#configure()
+     */
+    public void configure() throws CoreException {
+        ProjectUtil.addToBuildSpec(getProject(), UML2CBundleConstant.BUILDER_ID);
+    }
 
-	/**
-	 * @see org.eclipse.core.resources.IProjectNature#deconfigure()
-	 */
-	public void deconfigure() throws CoreException {
-		ProjectUtil.removeFromBuildSpec(getProject(), UML2CBundleConstant.BUILDER_ID);
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#deconfigure()
+     */
+    public void deconfigure() throws CoreException {
+        ProjectUtil.removeFromBuildSpec(getProject(), UML2CBundleConstant.BUILDER_ID);
+    }
 
-	/***
-	 * @see org.eclipse.core.resources.IProjectNature#getProject()
-	 */
-	public IProject getProject() {
-		return project;
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#getProject()
+     */
+    public IProject getProject() {
+        return project;
+    }
 
-	/**
-	 * @see org.eclipse.core.resources.IProjectNature#setProject(org.eclipse.core.resources.IProject)
-	 */
-	public void setProject(IProject value) {
-		project = value;
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.core.resources.IProjectNature#setProject(org.eclipse.core.resources.IProject)
+     */
+    public void setProject(IProject value) {
+        project = value;
+    }
 
-	public static boolean isUML2CProject(ICProject cProject) {
-		return isUML2CProject(cProject.getProject());
-	}
+    /**
+     * This checks the nature of the given project.
+     *
+     * @param cProject
+     *            The project.
+     * @return True if it is a UML2C project.
+     */
+    public static boolean isUML2CProject(ICProject cProject) {
+        return isUML2CProject(cProject.getProject());
+    }
 
-	public static boolean isUML2CProject(IProject project) {
-		return ProjectUtil.hasNature(project, UML2CBundleConstant.NATURE_ID);
-	}
+    /**
+     * This checks the nature of the given project.
+     *
+     * @param project
+     *            The project.
+     * @return True if it is a UML2C project.
+     */
+    public static boolean isUML2CProject(IProject project) {
+        return ProjectUtil.hasNature(project, UML2CBundleConstant.NATURE_ID);
+    }
 }

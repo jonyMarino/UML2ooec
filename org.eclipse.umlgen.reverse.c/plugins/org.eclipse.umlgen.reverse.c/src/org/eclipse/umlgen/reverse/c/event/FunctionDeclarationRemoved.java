@@ -26,49 +26,52 @@ import org.eclipse.umlgen.c.common.util.ModelUtil;
 /**
  * Removes a {@link Operation} declaration from the model.
  */
-public class FunctionDeclarationRemoved extends FunctionDeclarationEvent {
-	/**
-	 * @see org.eclipse.umlgen.reverse.c.CModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
-	 */
-	@Override
-	public void notifyChanges(ModelManager manager) {
-		Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
-				getUnitName());
-		// initialize parameters in order to get the corresponding operations
-		Operation operation = matchingClassifier.getOperation(getCurrentName(), null, null);
-		if (operation != null) {
-			if (ModelUtil.isRemovable(operation)) {
-				operation.destroy();
-				IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
-				if (synchronizer instanceof IDiagramSynchronizer) {
-					((IDiagramSynchronizer)synchronizer).removeRepresentation(operation, manager);
-				}
-				for (Parameter parameter : operation.getOwnedParameters()) {
-					Type parameterType = parameter.getType();
-					if (ModelUtil.isNotReferencedAnymore(parameterType)) {
-						ModelUtil.destroy((DataType)parameterType);
-					}
-				}
-			}
-		}
-	}
+public class FunctionDeclarationRemoved extends AbstractFunctionDeclarationEvent {
 
-	/**
-	 * Gets the right builder
-	 *
-	 * @return the builder for this event
-	 */
-	public static Builder<FunctionDeclarationRemoved> builder() {
-		return new Builder<FunctionDeclarationRemoved>() {
-			private FunctionDeclarationRemoved event = new FunctionDeclarationRemoved();
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.reverse.c.event.AbstractCModelChangedEvent#notifyChanges(org.eclipse.umlgen.c.common.util.ModelManager)
+     */
+    @Override
+    public void notifyChanges(ModelManager manager) {
+        Classifier matchingClassifier = ModelUtil.findClassifierInPackage(manager.getSourcePackage(),
+                getUnitName());
+        // initialize parameters in order to get the corresponding operations
+        Operation operation = matchingClassifier.getOperation(getCurrentName(), null, null);
+        if (operation != null) {
+            if (ModelUtil.isRemovable(operation)) {
+                operation.destroy();
+                IModelSynchronizer synchronizer = SynchronizersManager.getSynchronizer();
+                if (synchronizer instanceof IDiagramSynchronizer) {
+                    ((IDiagramSynchronizer)synchronizer).removeRepresentation(operation, manager);
+                }
+                for (Parameter parameter : operation.getOwnedParameters()) {
+                    Type parameterType = parameter.getType();
+                    if (ModelUtil.isNotReferencedAnymore(parameterType)) {
+                        ModelUtil.destroy((DataType)parameterType);
+                    }
+                }
+            }
+        }
+    }
 
-			/**
-			 * @see org.eclipse.umlgen.reverse.c.event.FunctionDeclarationEvent.Builder#getEvent()
-			 */
-			@Override
-			protected FunctionDeclarationRemoved getEvent() {
-				return event;
-			}
-		};
-	}
+    /**
+     * Gets the right builder.
+     *
+     * @return the builder for this event
+     */
+    public static AbstractBuilder<FunctionDeclarationRemoved> builder() {
+        return new AbstractBuilder<FunctionDeclarationRemoved>() {
+            private FunctionDeclarationRemoved event = new FunctionDeclarationRemoved();
+
+            /**
+             * @see org.eclipse.umlgen.reverse.c.event.AbstractFunctionDeclarationEvent.AbstractBuilder#getEvent()
+             */
+            @Override
+            protected FunctionDeclarationRemoved getEvent() {
+                return event;
+            }
+        };
+    }
 }

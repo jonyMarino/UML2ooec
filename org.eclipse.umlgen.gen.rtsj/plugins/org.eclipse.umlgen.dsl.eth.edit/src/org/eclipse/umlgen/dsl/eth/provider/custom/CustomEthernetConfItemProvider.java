@@ -4,7 +4,7 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Cedric Notot (Obeo) - initial API and implementation
  *******************************************************************************/
@@ -16,22 +16,33 @@ import org.eclipse.umlgen.dsl.eth.provider.EthernetConfItemProvider;
 
 /**
  * Specific item provider for the display of nodes related to ethernet configurations.
- * @author cnotot
  *
+ * @author cnotot
  */
 public class CustomEthernetConfItemProvider extends EthernetConfItemProvider {
 
-	/** Delegate to the generic decorations item provider.*/
-	private CustomDecorationItemProvider decorationDelegate;
+    /** Delegate to the generic decorations item provider. */
+    private CustomDecorationItemProvider decorationDelegate;
 
-	public CustomEthernetConfItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-		decorationDelegate = new CustomDecorationItemProvider(adapterFactory);
-	}
+    /**
+     * Constructor.
+     *
+     * @param adapterFactory
+     *            The adapter factory.
+     */
+    public CustomEthernetConfItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
+        decorationDelegate = new CustomDecorationItemProvider(adapterFactory);
+    }
 
-	@Override
-	public Object getImage(Object object) {
-		return decorationDelegate.getImage(object, super.getImage(object));
-	}
+    /**
+     * {@inheritDoc}
+     *
+     * @see org.eclipse.umlgen.dsl.eth.provider.EthernetConfItemProvider#getImage(java.lang.Object)
+     */
+    @Override
+    public Object getImage(Object object) {
+        return decorationDelegate.getImage(object, super.getImage(object));
+    }
 
 }

@@ -20,31 +20,31 @@ import org.junit.Test;
 
 public class TestCUnit extends AbstractTest {
 
-	@Test
-	public void testEmptyHandC() throws CoreException, InterruptedException {
-		IProject project = createIProject("testemptyHandC", new NullProgressMonitor());
+    @Test
+    public void testEmptyHandC() throws CoreException, InterruptedException {
+        IProject project = createIProject("testemptyHandC", new NullProgressMonitor());
 
-		IFile cFile = createIFile(project, new Path("empty.c"), new NullProgressMonitor());
-		IFile hFile = createIFile(project, new Path("empty.h"), new NullProgressMonitor());
+        IFile cFile = createIFile(project, new Path("empty.c"), new NullProgressMonitor());
+        IFile hFile = createIFile(project, new Path("empty.h"), new NullProgressMonitor());
 
-		testModel(project, "/resource/structural/addition/empty/emptyHandC.uml");
-	}
+        testModel(project, "/resource/structural/addition/empty/emptyHandC.uml");
+    }
 
-	@Test
-	public void testEmptyC() throws CoreException, InterruptedException {
-		IProject project = createIProject("testemptyC", new NullProgressMonitor());
+    @Test
+    public void testEmptyC() throws CoreException, InterruptedException {
+        IProject project = createIProject("testemptyC", new NullProgressMonitor());
 
-		createIFile(project, new Path("empty.c"), new NullProgressMonitor());
+        createIFile(project, new Path("empty.c"), new NullProgressMonitor());
 
-		testModel(project, "/resource/structural/addition/empty/emptyC.uml");
-	}
+        testModel(project, "/resource/structural/addition/empty/emptyC.uml");
+    }
 
-	@Test
-	public void testEmptyH() throws CoreException, InterruptedException {
-		IProject project = createIProject("testemptyH", new NullProgressMonitor());
+    @Test
+    public void testEmptyH() throws CoreException, InterruptedException {
+        IProject project = createIProject("testemptyH", new NullProgressMonitor());
 
-		createIFile(project, new Path("empty.h"), new NullProgressMonitor());
+        createIFile(project, new Path("empty.h"), new NullProgressMonitor());
 
-		testModel(project, "/resource/structural/addition/empty/emptyH.uml");
-	}
+        testModel(project, "/resource/structural/addition/empty/emptyH.uml");
+    }
 }

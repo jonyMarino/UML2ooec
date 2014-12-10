@@ -46,140 +46,174 @@ import org.eclipse.umlgen.reverse.c.activity.comments.CommentsReconciler;
 import org.eclipse.umlgen.reverse.c.activity.util.UMLActivityFactory;
 import org.eclipse.umlgen.reverse.c.activity.util.UMLActivitySanitizer;
 
+/** An activity builder. */
 public class UMLActivityBuilder {
-	private UMLActivityFactory factory;
 
-	private SwitchStatementBuilder switchStmtBuilder;
+    /** comments attached to nodes. */
+    Map<IASTNode, CommentInfo> nodesAndComments;
 
-	private CompoundStatementBuilder compoundStmtBuilder;
+    /** a UML activity factory. */
+    private UMLActivityFactory factory;
 
-	private IfStatementBuilder ifStmtBuilder;
+    /** a switch statement builder. */
+    private SwitchStatementBuilder switchStmtBuilder;
 
-	private LoopStatementBuilder loopStmtBuilder;
+    /** a compound statement builder. */
+    private CompoundStatementBuilder compoundStmtBuilder;
 
-	private CommonStatementBuilder commonStmtBuilder;
+    /** an if statement builder. */
+    private IfStatementBuilder ifStmtBuilder;
 
-	private LabelStatementBuilder labelStmtBuilder;
+    /** a loop statement builder. */
+    private LoopStatementBuilder loopStmtBuilder;
 
-	private FlowControlStatementBuilder flowControlStmtBuilder;
+    /** a common statement builder. */
+    private CommonStatementBuilder commonStmtBuilder;
 
-	private UMLActivitySanitizer sanitizer;
+    /** a label statement builder. */
+    private LabelStatementBuilder labelStmtBuilder;
 
-	private CommentsReconciler commentsReconciler;
+    /** a flow control statement builder. */
+    private FlowControlStatementBuilder flowControlStmtBuilder;
 
-	private CommentBuilder commentBuilder;
+    /** an activity sanitizer. */
+    private UMLActivitySanitizer sanitizer;
 
-	Map<IASTNode, CommentInfo> nodesAndComments;
+    /** a comment reconciler. */
+    private CommentsReconciler commentsReconciler;
 
-	public UMLActivityBuilder() {
-		factory = new UMLActivityFactory();
-		commentBuilder = new CommentBuilder(factory);
-		switchStmtBuilder = new SwitchStatementBuilder(this, factory, commentBuilder);
-		compoundStmtBuilder = new CompoundStatementBuilder(this, factory, commentBuilder);
-		ifStmtBuilder = new IfStatementBuilder(this, factory, commentBuilder);
-		loopStmtBuilder = new LoopStatementBuilder(this, factory, commentBuilder);
-		commonStmtBuilder = new CommonStatementBuilder(this, factory, commentBuilder);
-		labelStmtBuilder = new LabelStatementBuilder(this, factory, commentBuilder);
-		flowControlStmtBuilder = new FlowControlStatementBuilder(this, factory, commentBuilder);
+    /** a comment builder. */
+    private CommentBuilder commentBuilder;
 
-		sanitizer = new UMLActivitySanitizer();
+    /** Constructor. */
+    public UMLActivityBuilder() {
+        factory = new UMLActivityFactory();
+        commentBuilder = new CommentBuilder(factory);
+        switchStmtBuilder = new SwitchStatementBuilder(this, factory, commentBuilder);
+        compoundStmtBuilder = new CompoundStatementBuilder(this, factory, commentBuilder);
+        ifStmtBuilder = new IfStatementBuilder(this, factory, commentBuilder);
+        loopStmtBuilder = new LoopStatementBuilder(this, factory, commentBuilder);
+        commonStmtBuilder = new CommonStatementBuilder(this, factory, commentBuilder);
+        labelStmtBuilder = new LabelStatementBuilder(this, factory, commentBuilder);
+        flowControlStmtBuilder = new FlowControlStatementBuilder(this, factory, commentBuilder);
 
-		commentsReconciler = new CommentsReconciler();
-	}
+        sanitizer = new UMLActivitySanitizer();
 
-	/**
-	 * Create an UML Activity based on a function definition
-	 *
-	 * @param functionDefinition
-	 * @return the UML Activity
-	 */
-	public static Activity build(IASTFunctionDefinition functionDefinition) {
-		return new UMLActivityBuilder().createActivity(functionDefinition);
-	}
+        commentsReconciler = new CommentsReconciler();
+    }
 
-	/**
-	 * Create an UML Activity based on a function definition
-	 *
-	 * @param functionDefinition
-	 * @return the UML activity
-	 */
-	private Activity createActivity(IASTFunctionDefinition functionDefinition) {
-		// Init comments information
-		initComments(functionDefinition);
+    /**
+     * Create an UML Activity based on a function definition.
+     *
+     * @param functionDefinition
+     *            a function definition.
+     * @return the UML Activity the activity
+     */
+    public static Activity build(IASTFunctionDefinition functionDefinition) {
+        return new UMLActivityBuilder().createActivity(functionDefinition);
+    }
 
-		// Initialisation of the activity
-		String functionName = functionDefinition.getDeclarator().getName().toString();
-		Activity activity = factory.createActivity(functionName);
-		ActivityContext currentContext = new ActivityContext(activity);
+    /**
+     * Create an UML Activity based on a function definition.
+     *
+     * @param functionDefinition
+     *            a function definition.
+     * @return the UML activity the activity.
+     */
+    private Activity createActivity(IASTFunctionDefinition functionDefinition) {
+        // Init comments information
+        initComments(functionDefinition);
 
-		// Build the activity nodes corresponding to the function body
-		IASTStatement body = functionDefinition.getBody();
-		ActivityNodesPins bodyNodes = buildNodes(body, currentContext);
+        // Initialisation of the activity
+        String functionName = functionDefinition.getDeclarator().getName().toString();
+        Activity activity = factory.createActivity(functionName);
+        ActivityContext currentContext = new ActivityContext(activity);
 
-		// Creation of the initial node
-		InitialNode initialNode = factory.createInitialNode(currentContext);
+        // Build the activity nodes corresponding to the function body
+        IASTStatement body = functionDefinition.getBody();
+        ActivityNodesPins bodyNodes = buildNodes(body, currentContext);
 
-		// Creation of the flow from initial to final node
-		// via built nodes if there are some
-		ActivityFinalNode finalNode = null;
-		if (bodyNodes.getStartNode() == null && bodyNodes.getEndNode() == null) {
-			finalNode = factory.createActivityFinalNode(currentContext);
-			factory.createControlFlow(initialNode, finalNode, currentContext);
-		} else {
-			factory.createControlFlow(initialNode, bodyNodes.getStartNode(), currentContext);
-			if (!(bodyNodes.getEndNode() instanceof ActivityFinalNode)) {
-				finalNode = factory.createActivityFinalNode(currentContext);
-				factory.addFlowTowardsActivityFinalNode(bodyNodes.getEndNode(), finalNode, currentContext);
-			} else {
-				finalNode = (ActivityFinalNode)bodyNodes.getEndNode();
-			}
-		}
+        // Creation of the initial node
+        InitialNode initialNode = factory.createInitialNode(currentContext);
 
-		// Add comments to the final node
-		commentBuilder.buildComment(finalNode, nodesAndComments.remove(functionDefinition.getBody()));
+        // Creation of the flow from initial to final node
+        // via built nodes if there are some
+        ActivityFinalNode finalNode = null;
+        if (bodyNodes.getStartNode() == null && bodyNodes.getEndNode() == null) {
+            finalNode = factory.createActivityFinalNode(currentContext);
+            factory.createControlFlow(initialNode, finalNode, currentContext);
+        } else {
+            factory.createControlFlow(initialNode, bodyNodes.getStartNode(), currentContext);
+            if (!(bodyNodes.getEndNode() instanceof ActivityFinalNode)) {
+                finalNode = factory.createActivityFinalNode(currentContext);
+                factory.addFlowTowardsActivityFinalNode(bodyNodes.getEndNode(), finalNode, currentContext);
+            } else {
+                finalNode = (ActivityFinalNode)bodyNodes.getEndNode();
+            }
+        }
 
-		// Merge all successive opaque actions into just one
-		sanitizer.sanitize(activity);
-		return activity;
-	}
+        // Add comments to the final node
+        commentBuilder.buildComment(finalNode, nodesAndComments.remove(functionDefinition.getBody()));
 
-	private void initComments(IASTFunctionDefinition functionDefinition) {
-		// Get comments with their associated statements
-		nodesAndComments = commentsReconciler.reconcile(functionDefinition);
-		switchStmtBuilder.setStatementsAndComments(nodesAndComments);
-		compoundStmtBuilder.setStatementsAndComments(nodesAndComments);
-		ifStmtBuilder.setStatementsAndComments(nodesAndComments);
-		loopStmtBuilder.setStatementsAndComments(nodesAndComments);
-		commonStmtBuilder.setStatementsAndComments(nodesAndComments);
-		labelStmtBuilder.setStatementsAndComments(nodesAndComments);
-		flowControlStmtBuilder.setStatementsAndComments(nodesAndComments);
-	}
+        // Merge all successive opaque actions into just one
+        sanitizer.sanitize(activity);
+        return activity;
+    }
 
-	public ActivityNodesPins buildNodes(IASTStatement stmt, ActivityContext currentContext) {
-		// switch to transfer treament to the appropriate class
-		if (stmt instanceof IASTSwitchStatement) {
-			return switchStmtBuilder.buildSwitchStatement((IASTSwitchStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTForStatement || stmt instanceof IASTWhileStatement
-				|| stmt instanceof IASTDoStatement) {
-			return loopStmtBuilder.buildLoopStatement(new LoopStatementWrapper(stmt), currentContext);
-		} else if (stmt instanceof IASTIfStatement) {
-			return ifStmtBuilder.buildIfStatement((IASTIfStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTCompoundStatement) {
-			return compoundStmtBuilder.buildCompoundStatement((IASTCompoundStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTCaseStatement) {
-			return switchStmtBuilder.buildCaseStatement((IASTCaseStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTDefaultStatement) {
-			return switchStmtBuilder.buildDefaultStatement((IASTDefaultStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTLabelStatement) {
-			return labelStmtBuilder.buildLabelStatement((IASTLabelStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTContinueStatement) {
-			return flowControlStmtBuilder.buildContinueStatement((IASTContinueStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTBreakStatement) {
-			return flowControlStmtBuilder.buildBreakStatement((IASTBreakStatement)stmt, currentContext);
-		} else if (stmt instanceof IASTReturnStatement) {
-			return flowControlStmtBuilder.buildReturnStatement((IASTReturnStatement)stmt, currentContext);
-		} else {
-			return commonStmtBuilder.buildCommonStatement(stmt, currentContext);
-		}
-	}
+    /**
+     * Initialize comments.
+     *
+     * @param functionDefinition
+     *            a function definition.
+     */
+    private void initComments(IASTFunctionDefinition functionDefinition) {
+        // Get comments with their associated statements
+        nodesAndComments = commentsReconciler.reconcile(functionDefinition);
+        switchStmtBuilder.setStatementsAndComments(nodesAndComments);
+        compoundStmtBuilder.setStatementsAndComments(nodesAndComments);
+        ifStmtBuilder.setStatementsAndComments(nodesAndComments);
+        loopStmtBuilder.setStatementsAndComments(nodesAndComments);
+        commonStmtBuilder.setStatementsAndComments(nodesAndComments);
+        labelStmtBuilder.setStatementsAndComments(nodesAndComments);
+        flowControlStmtBuilder.setStatementsAndComments(nodesAndComments);
+    }
+
+    /**
+     * Build the nodes.
+     *
+     * @param stmt
+     *            The current statement.
+     * @param currentContext
+     *            The context.
+     * @return ActivityNodesPins
+     */
+    // CHECKSTYLE:OFF
+    public ActivityNodesPins buildNodes(IASTStatement stmt, ActivityContext currentContext) {
+        // CHECKSTYLE:ON
+        // switch to transfer treament to the appropriate class
+        if (stmt instanceof IASTSwitchStatement) {
+            return switchStmtBuilder.buildSwitchStatement((IASTSwitchStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTForStatement || stmt instanceof IASTWhileStatement
+                || stmt instanceof IASTDoStatement) {
+            return loopStmtBuilder.buildLoopStatement(new LoopStatementWrapper(stmt), currentContext);
+        } else if (stmt instanceof IASTIfStatement) {
+            return ifStmtBuilder.buildIfStatement((IASTIfStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTCompoundStatement) {
+            return compoundStmtBuilder.buildCompoundStatement((IASTCompoundStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTCaseStatement) {
+            return switchStmtBuilder.buildCaseStatement((IASTCaseStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTDefaultStatement) {
+            return switchStmtBuilder.buildDefaultStatement((IASTDefaultStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTLabelStatement) {
+            return labelStmtBuilder.buildLabelStatement((IASTLabelStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTContinueStatement) {
+            return flowControlStmtBuilder.buildContinueStatement((IASTContinueStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTBreakStatement) {
+            return flowControlStmtBuilder.buildBreakStatement((IASTBreakStatement)stmt, currentContext);
+        } else if (stmt instanceof IASTReturnStatement) {
+            return flowControlStmtBuilder.buildReturnStatement((IASTReturnStatement)stmt, currentContext);
+        } else {
+            return commonStmtBuilder.buildCommonStatement(stmt, currentContext);
+        }
+    }
 }

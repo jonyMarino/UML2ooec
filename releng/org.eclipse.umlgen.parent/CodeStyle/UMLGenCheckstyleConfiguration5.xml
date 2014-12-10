@@ -5,8 +5,8 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: Eclipse UML Generators Checkstyle 5
-    Description: Eclipse UML Generators Checkstyle 5 Configuration
+    Checkstyle-Configuration: Eclipse UML Generators
+    Description: none
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
@@ -23,11 +23,7 @@
       <property name="checkEmptyJavadoc" value="true"/>
       <property name="checkHtml" value="false"/>
     </module>
-    <module name="JavadocType">
-      <property name="severity" value="error"/>
-      <property name="authorFormat" value="(&lt;a href=&quot;mailto:[a-z.]+@[a-z.]+\.[a-z]{2,4}\&quot;&gt;)?[A-Z][a-z]+\s[A-Z][a-z]+(&lt;/a&gt;)?"/>
-      <property name="allowUnknownTags" value="true"/>
-    </module>
+    <module name="JavadocType"/>
     <module name="JavadocVariable">
       <property name="severity" value="error"/>
     </module>
@@ -69,6 +65,7 @@
     </module>
     <module name="ImportOrder">
       <property name="severity" value="error"/>
+      <property name="option" value="top"/>
     </module>
     <module name="RedundantImport">
       <property name="severity" value="error"/>
@@ -330,6 +327,9 @@
     <module name="AbstractClassName">
       <property name="severity" value="error"/>
       <property name="format" value="^Abstract.*$"/>
+    </module>
+    <module name="ImportOrder">
+      <property name="option" value="top"/>
     </module>
   </module>
   <module name="FileLength">
