@@ -3,15 +3,26 @@
    <description url="http://www.eclipse.org/umlgen">
       Eclipse UML Generators
    </description>
-   <bundle id="org.eclipse.umlgen.rtsj.annotations" version="0.9.0.qualifier">
+   <bundle id="org.eclipse.umlgen.rtsj.annotations" version="0.0.0">
       <category name="umlgen frameworks"/>
    </bundle>
-   <bundle id="org.eclipse.umlgen.rtsj.framework" version="0.9.0.qualifier">
+   <bundle id="org.eclipse.umlgen.rtsj.framework" version="0.0.0">
       <category name="umlgen frameworks"/>
+   </bundle>
+    <bundle id="org.eclipse.umlgen.rtsj.annotations.source" version="0.0.0">
+      <category name="umlgen frameworks sdk"/>
+   </bundle>
+   <bundle id="org.eclipse.umlgen.rtsj.framework.source" version="0.0.0">
+      <category name="umlgen frameworks sdk"/>
    </bundle>
    <category-def name="umlgen frameworks" label="Eclipse UML Generators Frameworks">
       <description>
          The Eclipse UML Generators Frameworks
+      </description>
+   </category-def>
+   <category-def name="umlgen frameworks sdk" label="Eclipse UML Generators Frameworks SDK">
+      <description>
+         The Eclipse UML Generators Frameworks SDK
       </description>
    </category-def>
 </site>

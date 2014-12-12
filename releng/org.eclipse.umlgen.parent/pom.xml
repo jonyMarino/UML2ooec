@@ -37,7 +37,7 @@
 
   <properties>
     <tycho-version>0.21.0</tycho-version>
-    <tycho-extras-version>0.19.0</tycho-extras-version>
+    <tycho-extras-version>0.21.0</tycho-extras-version>
     <acceleo-version>3.5.0-SNAPSHOT</acceleo-version>
     <platform-version-name>luna</platform-version-name>
     <eclipse-site>http://download.eclipse.org/releases/${platform-version-name}</eclipse-site>
@@ -120,20 +120,62 @@
             <encoding>UTF-8</encoding>
           </configuration>
         </plugin>
+         <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-maven-plugin</artifactId>
+          <version>${tycho-version}</version>
+        </plugin>
         <plugin>
-          <!-- TODO remove workaround when https://issues.sonatype.org/browse/TYCHO-473 is fixed -->
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-packaging-plugin</artifactId>
+          <version>${tycho-version}</version>
+          <configuration>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho.extras</groupId>
+          <artifactId>tycho-source-feature-plugin</artifactId>
+          <version>${tycho-extras-version}</version>
+          <configuration>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+            </archive>
+          </configuration>
+          <executions>
+            <execution>
+              <id>source-feature</id>
+              <phase>package</phase>
+              <goals>
+                <goal>source-feature</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-source-plugin</artifactId>
           <version>${tycho-version}</version>
+          <configuration>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+            </archive>
+          </configuration>
           <executions>
             <execution>
-              <id>attach-source</id>
-              <phase>process-classes</phase>
+              <id>plugin-source</id>
               <goals>
                 <goal>plugin-source</goal>
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>target-platform-configuration</artifactId>
+          <version>${tycho-version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

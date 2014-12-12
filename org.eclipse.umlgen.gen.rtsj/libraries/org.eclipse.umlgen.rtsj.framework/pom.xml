@@ -17,9 +17,9 @@
 
   <parent>
     <groupId>org.eclipse.umlgen</groupId>
-    <artifactId>org.eclipse.umlgen.parent</artifactId>
+    <artifactId>org.eclipse.umlgen-bundle-parent</artifactId>
     <version>0.9.0-SNAPSHOT</version>
-    <relativePath>../../../releng/org.eclipse.umlgen.parent</relativePath>
+    <relativePath>../../../releng/org.eclipse.umlgen.parent/bundle-parent</relativePath>
   </parent>
 
   <artifactId>org.eclipse.umlgen.rtsj.framework</artifactId>
