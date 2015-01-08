@@ -1,0 +1,19 @@
+target "UML Generators based on Luna SDK"
+
+
+with source, requirements
+
+location "http://download.eclipse.org/releases/luna" {
+	org.eclipse.core.runtime.feature.feature.group
+	org.eclipse.draw2d.feature.group
+	org.eclipse.gef.feature.group
+	org.eclipse.platform.source.feature.group
+	org.eclipse.acceleo.feature.group
+	org.eclipse.uml2.feature.group
+	org.eclipse.cdt.feature.group
+	org.junit
+	org.eclipse.emf.compare
+	org.eclipse.emf.ecore.feature.group
+	org.eclipse.ocl.feature.group
+	org.eclipse.jdt.feature.group
+}
