@@ -10,10 +10,10 @@
       <category name="umlgen"/>
    </feature>
    <feature id="org.eclipse.umlgen.gen.java.feature.source" version="0.0.0">
-      <category name="umlgen"/>
+      <category name="umlgen.sdk"/>
    </feature>
    <feature id="org.eclipse.umlgen.gen.java.ui.feature.source" version="0.0.0">
-      <category name="umlgen"/>
+      <category name="umlgen.sdk"/>
    </feature>
    <category-def name="umlgen" label="Eclipse UML Generators">
       <description>
