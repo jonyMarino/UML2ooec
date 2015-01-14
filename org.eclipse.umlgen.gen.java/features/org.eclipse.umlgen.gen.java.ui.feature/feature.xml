@@ -16,12 +16,12 @@
       provider-name="%providerName"
       plugin="org.eclipse.umlgen.gen.java.ui">
 
-  <description url="http://www.eclipse.org/umlgen">
+   <description url="http://www.eclipse.org/umlgen">
       %description
    </description>
 
    <copyright>
-	  %copyright		
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
@@ -41,5 +41,11 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="org.eclipse.umlgen.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>

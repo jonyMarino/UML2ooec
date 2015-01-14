@@ -23,7 +23,6 @@
         <module>../org.eclipse.umlgen.target</module>
         
         <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
-        <module>../../org.eclipse.umlgen/features/org.eclipse.umlgen.common.feature</module>
         
         <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module><!-- To refactor: [438144]-->
         <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module><!-- To refactor: [438144]-->

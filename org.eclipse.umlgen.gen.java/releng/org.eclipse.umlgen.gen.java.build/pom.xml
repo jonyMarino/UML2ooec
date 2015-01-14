@@ -21,6 +21,7 @@
 
     <modules>
         <module>../../../releng/org.eclipse.umlgen.target</module>
+        <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
         <module>integration</module>
     </modules>
     
@@ -29,6 +30,7 @@
             <id>luna</id>
             <modules>
                 <module>../../../releng/org.eclipse.umlgen.target</module>
+                <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
                 <module>integration</module>
             </modules>
         </profile>
