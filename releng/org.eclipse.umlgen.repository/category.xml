@@ -12,10 +12,22 @@
    <feature id="org.eclipse.umlgen.gen.java.ui.feature" version="0.0.0">
       <category name="umlgen"/>
    </feature>
+   <feature id="org.eclipse.umlgen.gen.c.feature" version="0.0.0">
+      <category name="umlgen"/>
+   </feature>
+   <feature id="org.eclipse.umlgen.reverse.c.feature" version="0.0.0">
+      <category name="umlgen"/>
+   </feature>
    <feature id="org.eclipse.umlgen.gen.java.feature.source" version="0.0.0">
       <category name="umlgen.sdk"/>
    </feature>
    <feature id="org.eclipse.umlgen.gen.java.ui.feature.source" version="0.0.0">
+      <category name="umlgen.sdk"/>
+   </feature>
+   <feature id="org.eclipse.umlgen.gen.c.feature.source" version="0.0.0">
+      <category name="umlgen.sdk"/>
+   </feature>
+   <feature id="org.eclipse.umlgen.reverse.c.feature.source" version="0.0.0">
       <category name="umlgen.sdk"/>
    </feature>
    <category-def name="umlgen" label="Eclipse UML Generators">

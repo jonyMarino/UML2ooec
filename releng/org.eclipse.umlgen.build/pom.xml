@@ -25,8 +25,15 @@
         <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
         <module>../../org.eclipse.umlgen/features/org.eclipse.umlgen.common.feature</module>
         
+        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module><!-- To refactor: [438144]-->
+        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module><!-- To refactor: [438144]-->
+        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c</module><!-- To refactor: [438144]-->
+        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c.builder</module><!-- To refactor: [438144]-->
+        
         <!-- Add the generators to build -->
         <module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build/integration</module>
+        <module>../../org.eclipse.umlgen.gen.c/releng/org.eclipse.umlgen.gen.c.build/integration</module>
+        <module>../../org.eclipse.umlgen.reverse.c/releng/org.eclipse.umlgen.reverse.c.build/integration</module>
         
         <module>../org.eclipse.umlgen.repository</module>
    </modules>
@@ -37,10 +44,12 @@
             <modules>
                 <module>../org.eclipse.umlgen.target</module>
                 <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
-                <module>../../org.eclipse.umlgen/features/org.eclipse.umlgen.common.feature</module>
+                <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module>
+                <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module>
                 Add the generators to build
-                <module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build</module>
-                <module>../../org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.gen.rtsj.build</module>
+                <module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build/integration</module>
+                <module>../../org.eclipse.umlgen.gen.c/releng/org.eclipse.umlgen.gen.c.build/integration</module>
+                <module>../../org.eclipse.umlgen.reverse.c/releng/org.eclipse.umlgen.reverse.c.build/integration</module>
                 <module>../org.eclipse.umlgen.repository</module>
             </modules>
         </profile>

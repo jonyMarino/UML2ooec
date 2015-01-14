@@ -17,3 +17,7 @@ location "http://download.eclipse.org/releases/luna" {
 	org.eclipse.ocl.feature.group
 	org.eclipse.jdt.feature.group
 }
+
+location "http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/" {
+	com.google.guava [15.0.0,15.0.1)
+}
