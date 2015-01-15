@@ -27,14 +27,4 @@
   <packaging>eclipse-plugin</packaging>
 
   <name>Eclipse UML Generators Documentation</name>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-source-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
-  
 </project>

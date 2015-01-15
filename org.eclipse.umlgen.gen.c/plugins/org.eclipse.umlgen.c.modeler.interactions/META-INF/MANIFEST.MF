@@ -18,3 +18,4 @@ Export-Package: org.eclipse.umlgen.c.modeler.interactions,
  org.eclipse.umlgen.c.modeler.interactions.model,
  org.eclipse.umlgen.c.modeler.interactions.templates
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
