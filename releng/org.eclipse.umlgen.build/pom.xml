@@ -31,6 +31,7 @@
         
         <!-- Common plug-ins -->        
         <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
+        <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.ui</module>
         
         <!-- Common C part -->
         <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module>

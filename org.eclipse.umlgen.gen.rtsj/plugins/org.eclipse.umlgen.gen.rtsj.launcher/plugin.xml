@@ -11,19 +11,36 @@
 -->
 <?eclipse version="3.2"?>
 <plugin>
-   <extension
-         point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            adaptable="false"
-            id="org.eclipse.umlgen.gen.rtsj.launcher.objectContribution1"
-            nameFilter="*.uml"
-            objectClass="org.eclipse.core.resources.IResource">
-         <action
-               class="org.eclipse.umlgen.gen.rtsj.launcher.popupMenus.GenAllRtsj"
-               id="org.eclipse.umlgen.gen.rtsj.launcher.genrtsj"
-               label="Generate RTSJ Components (All)">
-         </action>
-      </objectContribution>
+	<extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.umlgen.gen.rtsj.launcher.generate.all"
+            name="Generate RTSJ (all)">
+      </command>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.umlgen.gen.rtsj.launcher.popupMenus.GenAllRtsj"
+            commandId="org.eclipse.umlgen.gen.rtsj.launcher.generate.all">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.umlgen.ui.menu?endof=org.eclipse.umlgen.ui.gen">
+         <command
+               commandId="org.eclipse.umlgen.gen.rtsj.launcher.generate.all"
+               label="Generate RTSJ Code (All)"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+                  <reference
+                        definitionId="org.eclipse.umlgen.ui.definition.isUmlFile">
+                  </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
 </plugin>

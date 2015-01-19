@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2010, 2014 Obeo and others.
+  Copyright (c) 2010, 2015 Obeo and others.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
@@ -21,6 +21,10 @@
       <command
             id="org.eclipse.umlgen.reverse.c.ui.removeSynchNature"
             name="Remove C2UML Synchronization Nature">
+      </command>
+      <command
+            id="org.eclipse.umlgen.gen.c.ui.reverse"
+            name="Reverse C Code">
       </command>
    </extension>
    <extension
@@ -55,55 +59,26 @@
             </iterate>
          </activeWhen>
       </handler>
+      <handler
+            class="org.eclipse.umlgen.reverse.c.ui.internal.handler.ReverseCCodeToUML"
+            commandId="org.eclipse.umlgen.gen.c.ui.reverse">
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
+            allPopups="false"
+            locationURI="popup:org.eclipse.umlgen.ui.menu?endof=org.eclipse.umlgen.ui.reverse">
          <command
-               commandId="org.eclipse.umlgen.reverse.c.ui.addSynchNature"
-               label="Add C2UML Nature"
+               commandId="org.eclipse.umlgen.gen.c.ui.reverse"
+               icon="icons/reverse_code.gif"
+               label="Reverse C Code"
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.core.resources.projectNature"
-                        value="org.eclipse.cdt.core.cnature">
-                  </test>
-                  <not>
-                     <test
-                           forcePluginActivation="true"
-                           property="org.eclipse.core.resources.projectNature"
-                           value="org.eclipse.umlgen.reverse.c.syncNature">
-                     </test>
-                  </not>
-               </iterate>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.umlgen.reverse.c.ui.removeSynchNature"
-               label="Remove C2UML Nature"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.core.resources.projectNature"
-                        value="org.eclipse.cdt.core.cnature">
-                  </test>
-                  <test
-                        forcePluginActivation="true"
-                        property="org.eclipse.core.resources.projectNature"
-                        value="org.eclipse.umlgen.reverse.c.syncNature">
-                  </test>
-               </iterate>
+               <reference
+                     definitionId="org.eclipse.umlgen.ui.definition.isProject">
+               </reference>
             </visibleWhen>
          </command>
       </menuContribution>

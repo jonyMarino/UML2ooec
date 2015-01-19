@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 Obeo and others.
+ * Copyright (c) 2010, 2015 Obeo and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,6 +37,7 @@ import org.eclipse.umlgen.reverse.c.resource.C2UMLSyncNature;
 /**
  * Builder for the generation UML to C.
  */
+@Deprecated
 public class UML2CBuilder extends IncrementalProjectBuilder {
 
     /** The id of the builder. */
@@ -206,7 +207,7 @@ public class UML2CBuilder extends IncrementalProjectBuilder {
 
     /**
      * This gets the current model manager.
-     * 
+     *
      * @return The model manager.
      */
     protected ModelManager getModelManager() {

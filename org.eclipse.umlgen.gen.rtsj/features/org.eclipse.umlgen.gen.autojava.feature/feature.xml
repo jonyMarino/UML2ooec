@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2012, 2014 CNES and others.
+  Copyright (c) 2012, 2015 CNES and others.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
@@ -28,9 +28,26 @@
       %license
    </license>
 
-   <requires>
-      <import plugin="org.eclipse.umlgen.doc"/>
-   </requires>
+   <plugin
+         id="org.eclipse.umlgen.gen.autojava"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.umlgen.gen.autojava.launcher"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.umlgen.gen.autojava.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="org.eclipse.umlgen.dsl.asl"
@@ -75,28 +92,32 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.umlgen.gen.autojava"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.umlgen.gen.autojava.thirdparty"
          download-size="0"
          install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.umlgen.gen.autojava.launcher"
+         id="org.eclipse.umlgen.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.umlgen.gen.autojava.doc"
+         id="org.eclipse.umlgen.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.umlgen.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.umlgen.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -25,7 +25,8 @@
         
         <!-- Common plug-ins -->
         <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
-        
+        <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.ui</module>
+
         <module>integration</module>
   </modules>
 

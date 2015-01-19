@@ -22,6 +22,10 @@
     <modules>
         <module>../../../releng/org.eclipse.umlgen.target</module>
         
+        <!-- Common plug-ins -->        
+        <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
+        <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.ui</module>
+        
         <!-- Common C part -->
         <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module>
         <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module>

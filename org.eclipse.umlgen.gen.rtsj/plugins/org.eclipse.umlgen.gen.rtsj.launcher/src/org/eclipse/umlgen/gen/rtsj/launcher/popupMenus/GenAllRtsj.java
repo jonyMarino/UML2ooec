@@ -15,21 +15,21 @@ import java.io.IOException;
 import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.umlgen.gen.autojava.launcher.popupMenus.AbstractGenAutoJavaComponents;
+import org.eclipse.umlgen.gen.autojava.launcher.popupMenus.AbstractGenAutoJavaHandler;
 import org.eclipse.umlgen.gen.autojava.main.Uml2autojava;
 import org.eclipse.umlgen.gen.rtsj.main.Uml2rtsj;
 
-public class GenAllRtsj extends AbstractGenAutoJavaComponents {
+public class GenAllRtsj extends AbstractGenAutoJavaHandler {
 
-	@Override
-	protected Uml2autojava getGenerator(URI modelURI, String sDecorators, File target) throws IOException {
-		return new Uml2rtsj(modelURI, target, Collections.EMPTY_LIST, sDecorators);
-	}
+    @Override
+    protected Uml2autojava getGenerator(URI modelURI, String sDecorators, File target) throws IOException {
+        return new Uml2rtsj(modelURI, target, Collections.EMPTY_LIST, sDecorators);
+    }
 
-	@Override
-	protected String getModuleQualifiedName() {
-		// TODO Auto-generated method stub
-		return "org.eclipse.umlgen.gen.rtsj.main.Uml2rtsj";
-	}
+    @Override
+    protected String getModuleQualifiedName() {
+        // TODO Auto-generated method stub
+        return "org.eclipse.umlgen.gen.rtsj.main.Uml2rtsj";
+    }
 
 }

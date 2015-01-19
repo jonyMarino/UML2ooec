@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2014 CNES and others.
+ * Copyright (c) 2008, 2015 CNES and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -28,20 +31,18 @@ import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.actions.ActionDelegate;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.umlgen.gen.autojava.launcher.Activator;
 import org.eclipse.umlgen.gen.autojava.main.Uml2autojava;
 
 /**
- * UML to Autojava components code generation.
+ * UML to Autojava code generation handler.
  */
-public abstract class AbstractGenAutoJavaComponents extends ActionDelegate implements IActionDelegate {
+public abstract class AbstractGenAutoJavaHandler extends AbstractHandler {
 
     /**
      * Selected model files.
@@ -51,26 +52,13 @@ public abstract class AbstractGenAutoJavaComponents extends ActionDelegate imple
     /**
      * {@inheritDoc}
      *
-     * @see org.eclipse.ui.actions.ActionDelegate#selectionChanged(org.eclipse.jface.action.IAction,
-     *      org.eclipse.jface.viewers.ISelection)
-     * @generated
+     * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
      */
-    @Override
-    @SuppressWarnings("unchecked")
-    public void selectionChanged(IAction action, ISelection selection) {
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        ISelection selection = HandlerUtil.getCurrentSelection(event);
         if (selection instanceof IStructuredSelection) {
             files = ((IStructuredSelection)selection).toList();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see org.eclipse.ui.actions.ActionDelegate#run(org.eclipse.jface.action.IAction)
-     * @generated
-     */
-    @Override
-    public void run(IAction action) {
         if (files != null) {
             IRunnableWithProgress operation = new GenRunner();
             try {
@@ -83,6 +71,7 @@ public abstract class AbstractGenAutoJavaComponents extends ActionDelegate imple
                 Activator.getDefault().getLog().log(status);
             }
         }
+        return null;
     }
 
     /**
@@ -111,7 +100,7 @@ public abstract class AbstractGenAutoJavaComponents extends ActionDelegate imple
         monitor.worked(1);
         String generationID = org.eclipse.acceleo.engine.utils.AcceleoLaunchingUtil.computeUIProjectID(
                 "org.eclipse.umlgen.gen.autojava", getModuleQualifiedName(), generator.getModel().eResource()
-                .getURI().toString(), generator.getTargetFolder().getAbsolutePath(),
+                        .getURI().toString(), generator.getTargetFolder().getAbsolutePath(),
                 new ArrayList<String>());
         generator.setGenerationID(generationID);
         try {

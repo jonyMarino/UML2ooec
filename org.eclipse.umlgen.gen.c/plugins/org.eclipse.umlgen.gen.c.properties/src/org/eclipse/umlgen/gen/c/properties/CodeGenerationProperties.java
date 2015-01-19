@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2014 Obeo and others.
+ * Copyright (c) 2007, 2015 Obeo and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,8 @@ import org.eclipse.core.runtime.QualifiedName;
 /**
  * The stored properties used in the property page to configure the generation.
  */
+@Deprecated
+// No use ?
 public final class CodeGenerationProperties {
 
     /** Key for property "Generate author". */

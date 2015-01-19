@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2014 CS Systèmes d'Information (CS-SI) and others.
+  Copyright (c) 2014, 2015 CS Systèmes d'Information (CS-SI) and others.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
@@ -16,7 +16,7 @@
          point="org.eclipse.ui.commands">
       <command
             id="org.eclipse.umlgen.gen.c.ui.generate"
-            name="Generate C Code from UML">
+            name="Generate C Code">
       </command>
    </extension>
    <extension
@@ -36,52 +36,24 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+            locationURI="popup:org.eclipse.umlgen.ui.menu?endof=org.eclipse.umlgen.ui.gen">
          <command
                commandId="org.eclipse.umlgen.gen.c.ui.generate"
-               label="Generate C code"
+               label="Generate C Code"
                style="push">
             <visibleWhen
                   checkEnabled="false">
-               <with
-                     variable="activeMenuSelection">
-                             <iterate
-                                   ifEmpty="false">
-                                <or>
-                                   <test
-                                         forcePluginActivation="true"
-                                         property="org.eclipse.umlgen.c.common.objectType"
-                                         value="org.eclipse.uml2.uml.Class">
-                                   </test>
-                                   <test
-                                         forcePluginActivation="true"
-                                         property="org.eclipse.umlgen.c.common.objectType"
-                                         value="org.eclipse.uml2.uml.Interface">
-                                   </test>
-                                   <test
-                                         forcePluginActivation="true"
-                                         property="org.eclipse.umlgen.c.common.objectType"
-                                         value="org.eclipse.uml2.uml.Package">
-                                   </test>
-                                </or>
-                             </iterate>
-               </with>
-                   </visibleWhen>
+               <or>
+                  <reference
+                        definitionId="org.eclipse.umlgen.ui.definition.isUmlFile">
+                  </reference>
+                  <reference
+                        definitionId="org.eclipse.umlgen.ui.definition.isModelElt">
+                  </reference>
+               </or>
+            </visibleWhen>
          </command>
       </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.propertyPages">
-      <!-- FIXME MIGRATION reference to facilities -->   
-      <page
-            class="org.eclipse.umlgen.gen.c.ui.UML2CPropertyPage"
-            id="org.eclipse.umlgen.gen.c.PropertyPage"
-            name="UML to C">
-         <filter
-               name="open"
-               value="true">
-         </filter>
-      </page>
    </extension>
 <!--
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 CS Systèmes d'Information (CS-SI).
+ * Copyright (c) 2010, 2015 CS Systèmes d'Information (CS-SI).
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  *     Sebastien Gabel (CS-SI) - initial API and implementation
  *     Cedric Notot (Obeo) - evolutions to cut off from diagram part
  *******************************************************************************/
-package org.eclipse.umlgen.gen.c.ui;
+package org.eclipse.umlgen.c.common.ui;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,10 +50,9 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.eclipse.umlgen.c.common.BundleConstants;
+import org.eclipse.umlgen.c.common.Messages;
 import org.eclipse.umlgen.c.common.interactions.SynchronizersManager;
 import org.eclipse.umlgen.c.common.interactions.extension.IModelSynchronizer;
-import org.eclipse.umlgen.c.common.ui.PreferenceStoreManager;
-import org.eclipse.umlgen.gen.c.ui.internal.bundle.Messages;
 
 /**
  * Manages the customization for reverse C to UML.<br />
@@ -64,7 +63,7 @@ import org.eclipse.umlgen.gen.c.ui.internal.bundle.Messages;
  * @author <a href="mailto:sebastien.gabel@c-s.fr">Sebastien GABEL</a>
  */
 // FIXME MIGRATION reference to facilities
-public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPreferencePage, IWorkbenchPropertyPage {
+public class CProjectPropertyPage extends PreferencePage implements IWorkbenchPreferencePage, IWorkbenchPropertyPage {
 
     /** The related eclipse project. */
     private IProject project;
@@ -108,7 +107,7 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
     /**
      * Constructor.
      */
-    public UML2CPropertyPage() {
+    public CProjectPropertyPage() {
 
         rscSet = new ResourceSetImpl();
 
@@ -189,12 +188,12 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
     // private void createSyncModeGroup(Composite parent) {
     // String[][] data = new String[2][2];
     // data[0] = new String[] {
-    //				Messages.getString("UML2CPropertyPage.4"), BundleConstants.SYNC_SOURCE_VALUE }; //$NON-NLS-1$
+    //				Messages.getString("CProjectPropertyPage.4"), BundleConstants.SYNC_SOURCE_VALUE }; //$NON-NLS-1$
     // data[1] = new String[] {
-    //				Messages.getString("UML2CPropertyPage.5"), BundleConstants.SYNC_MODEL_VALUE }; //$NON-NLS-1$
+    //				Messages.getString("CProjectPropertyPage.5"), BundleConstants.SYNC_MODEL_VALUE }; //$NON-NLS-1$
     // syncModeEditor = new RadioGroupFieldEditor(
     // BundleConstants.SYNC_AT_STARTING,
-    //				Messages.getString("UML2CPropertyPage.6"), 2, data, parent, true); //$NON-NLS-1$
+    //				Messages.getString("CProjectPropertyPage.6"), 2, data, parent, true); //$NON-NLS-1$
     // syncModeEditor.setPreferenceStore(getPreferenceStore());
     // }
 
@@ -206,7 +205,7 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
      */
     private void createModelsGroup(Composite parent) {
         final Group mainGroup = new Group(parent, SWT.NONE);
-        mainGroup.setText(Messages.getString("UML2CPropertyPage.0")); //$NON-NLS-1$
+        mainGroup.setText(Messages.getString("CProjectPropertyPage.0")); //$NON-NLS-1$
         mainGroup.setLayout(new GridLayout());
         mainGroup.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
 
@@ -219,7 +218,7 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
 
         // FIXME MIGRATION reference to facilities
         // Access to UMLDI Model path
-        //        diagramPath = new ResourceFieldEditor(BundleConstants.UMLDI_MODEL_PATH, Messages.getString("UML2CPropertyPage.1"), diagramComposite); //$NON-NLS-1$
+        //        diagramPath = new ResourceFieldEditor(BundleConstants.UMLDI_MODEL_PATH, Messages.getString("CProjectPropertyPage.1"), diagramComposite); //$NON-NLS-1$
         // diagramPath.setPreferenceStore(getPreferenceStore());
         // diagramPath.setPage(this);
         // diagramPath.setEmptyStringAllowed(false);
@@ -266,7 +265,7 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
         modelPath = new StringButtonFieldEditor() {
             // CHECKSTYLE:ON
             {
-                init(BundleConstants.UML_MODEL_PATH, Messages.getString("C2UMLPropertyPage.3")); //$NON-NLS-1$
+                init(BundleConstants.UML_MODEL_PATH, Messages.getString("CProjectPropertyPage.3")); //$NON-NLS-1$
                 createControl(modelComposite);
             }
 
@@ -297,12 +296,12 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
         };
 
         modelPath.setPreferenceName(BundleConstants.UML_MODEL_PATH);
-        modelPath.setLabelText(Messages.getString("UML2CPropertyPage.3")); //$NON-NLS-1$
+        modelPath.setLabelText(Messages.getString("CProjectPropertyPage.3")); //$NON-NLS-1$
         modelPath.setEnabled(true, modelComposite);
 
         // FIXME MIGRATION
         // modelPath = new ResourceFieldEditor(BundleConstants.UML_MODEL_PATH,
-        // Messages.getString("UML2CPropertyPage.3"), modelComposite); //$NON-NLS-1$
+        // Messages.getString("CProjectPropertyPage.3"), modelComposite); //$NON-NLS-1$
         // modelPath.setEnabled(false, modelComposite);
         // modelPath.getLabelControl(modelComposite).setEnabled(true);
         modelPath.setPreferenceStore(getPreferenceStore());
@@ -365,7 +364,7 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
         final Group settingsGroup = new Group(parent, SWT.NONE);
         settingsGroup.setLayout(new GridLayout());
         settingsGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        settingsGroup.setText(Messages.getString("UML2CPropertyPage.7")); //$NON-NLS-1$
+        settingsGroup.setText(Messages.getString("CProjectPropertyPage.7")); //$NON-NLS-1$
 
         // Intermediate composite to permit to get inner borders
         final Composite intermediateComposite = new Composite(settingsGroup, SWT.NONE);
@@ -373,11 +372,11 @@ public class UML2CPropertyPage extends PreferencePage implements IWorkbenchPrefe
         intermediateComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         srcPath = createStringFieldEditor(intermediateComposite, BundleConstants.SRC_PCK_NAME, Messages
-                .getString("UML2CPropertyPage.2")); //$NON-NLS-1$
+                .getString("CProjectPropertyPage.2")); //$NON-NLS-1$
         typePath = createStringFieldEditor(intermediateComposite, BundleConstants.TYPE_PCK_NAME, Messages
-                .getString("UML2CPropertyPage.9")); //$NON-NLS-1$
+                .getString("CProjectPropertyPage.9")); //$NON-NLS-1$
         extPath = createStringFieldEditor(intermediateComposite, BundleConstants.EXT_PCK_NAME, Messages
-                .getString("UML2CPropertyPage.10")); //$NON-NLS-1$
+                .getString("CProjectPropertyPage.10")); //$NON-NLS-1$
     }
 
     // FIXME MIGRATION reference to facilities

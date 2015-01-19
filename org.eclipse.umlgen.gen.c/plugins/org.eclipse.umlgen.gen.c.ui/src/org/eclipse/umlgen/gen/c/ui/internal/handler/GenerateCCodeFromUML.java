@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 CS Systèmes d'Information (CS-SI).
+ * Copyright (c) 2010, 2015 CS Systèmes d'Information (CS-SI).
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import java.util.Collections;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -26,6 +27,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Activity;
@@ -57,37 +59,60 @@ public class GenerateCCodeFromUML extends AbstractHandler {
         try {
             IStructuredSelection selection = (IStructuredSelection)HandlerUtil
                     .getCurrentSelectionChecked(event);
-            EObject selectedObject = (EObject)selection.getFirstElement();
 
-            IResource model = ResourcesPlugin.getWorkspace().getRoot().findMember(
-                    selectedObject.eResource().getURI().toPlatformString(true));
-            manager = new ModelManager(model);
+            EObject selectedObject = null;
 
-            EClass eClass = selectedObject.eClass();
-            if (eClass == UMLPackage.Literals.ACTIVITY) {
-                caseActivity((Activity)selectedObject);
-            } else if (eClass == UMLPackage.Literals.OPERATION) {
-                caseOperation((Operation)selectedObject);
-            } else if (eClass == UMLPackage.Literals.CLASS) {
-                caseClass((Class)selectedObject);
-            } else if (eClass == UMLPackage.Literals.INTERFACE) {
-                caseClass((Interface)selectedObject);
-            } else if (eClass == UMLPackage.Literals.PACKAGE) {
-                casePackage((Package)selectedObject);
-            } else if (eClass == UMLPackage.Literals.OPAQUE_BEHAVIOR) {
-                caseOpaqueBehavior((OpaqueBehavior)selectedObject);
-            } else if (SynchronizersManager.getSynchronizer() instanceof IDiagramSynchronizer
-                    && eClass == ((IDiagramSynchronizer)SynchronizersManager.getSynchronizer())
-                            .getRepresentationKind()) {
-                caseDiagram(selectedObject);
-            } else {
-                throw new ExecutionException("Bad object's class");
+            Object obj = selection.getFirstElement();
+
+            if (obj instanceof IFile) {
+                // URI uri = URI.createURI(((IFile)obj).getFullPath().toString());
+                // ResourceSet rscSet = new ResourceSetImpl();
+                // Resource resource = rscSet.getResource(uri, true);
+                // if (resource.getContents().size() > 0) {
+                // selectedObject = resource.getContents().get(0);
+                // doGenerate(selectedObject);
+                // }
+                // return null;
+                manager = new ModelManager((IFile)obj);
+                Resource umlResource = manager.getModelResource();
+                if (umlResource.getContents().size() > 0) {
+                    doGenerate(umlResource.getContents().get(0));
+                }
+            } else if (obj instanceof EObject) {
+                selectedObject = (EObject)obj;
+                IResource model = ResourcesPlugin.getWorkspace().getRoot().findMember(
+                        selectedObject.eResource().getURI().toPlatformString(true));
+                manager = new ModelManager(model);
+
+                EClass eClass = selectedObject.eClass();
+                if (eClass == UMLPackage.Literals.ACTIVITY) {
+                    caseActivity((Activity)selectedObject);
+                } else if (eClass == UMLPackage.Literals.OPERATION) {
+                    caseOperation((Operation)selectedObject);
+                } else if (eClass == UMLPackage.Literals.CLASS) {
+                    caseClass((Class)selectedObject);
+                } else if (eClass == UMLPackage.Literals.INTERFACE) {
+                    caseClass((Interface)selectedObject);
+                } else if (eClass == UMLPackage.Literals.PACKAGE) {
+                    casePackage((Package)selectedObject);
+                } else if (eClass == UMLPackage.Literals.OPAQUE_BEHAVIOR) {
+                    caseOpaqueBehavior((OpaqueBehavior)selectedObject);
+                } else if (SynchronizersManager.getSynchronizer() instanceof IDiagramSynchronizer
+                        && eClass == ((IDiagramSynchronizer)SynchronizersManager.getSynchronizer())
+                        .getRepresentationKind()) {
+                    caseDiagram(selectedObject);
+                } else {
+                    throw new ExecutionException("Bad object's class");
+                }
+
             }
         } catch (ExecutionException e) {
             throw e;
         } finally {
-            manager.dispose();
-            manager = null;
+            if (manager != null) {
+                manager.dispose();
+                manager = null;
+            }
         }
 
         return null; // *MUST* be null (cf.
@@ -132,7 +157,7 @@ public class GenerateCCodeFromUML extends AbstractHandler {
 
     /**
      * This generates from the given model object.
-     * 
+     *
      * @param eObject
      *            The model object.
      * @throws ExecutionException

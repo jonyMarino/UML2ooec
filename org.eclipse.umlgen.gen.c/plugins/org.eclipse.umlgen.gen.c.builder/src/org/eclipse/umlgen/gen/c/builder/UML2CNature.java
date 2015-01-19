@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2014 CS Systèmes d'Information (CS-SI).
+ * Copyright (c) 2010, 2015 CS Systèmes d'Information (CS-SI).
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.umlgen.reverse.c.resource.ProjectUtil;
  *
  * @author <a href="mailto:mikael.barbero@obeo.fr">Mikael BARBERO</a>
  */
+@Deprecated
 public class UML2CNature implements IProjectNature {
 
     /** The project for which nature are added/removed. */

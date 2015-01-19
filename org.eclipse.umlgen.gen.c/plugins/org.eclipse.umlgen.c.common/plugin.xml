@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (c) 2014 Obeo and others.
+  Copyright (c) 2014, 2015 Obeo and others.
   All rights reserved. This program and the accompanying materials
   are made available under the terms of the Eclipse Public License v1.0
   which accompanies this distribution, and is available at
@@ -21,5 +21,18 @@
             properties="objectType"
             type="org.eclipse.emf.ecore.EObject">
       </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            category="org.eclipse.umlgen.ui.properties"
+            class="org.eclipse.umlgen.c.common.ui.CProjectPropertyPage"
+            id="org.eclipse.umlgen.c.common.ui.CProjectPropertyPage"
+            name="C Generation and Reversing">
+         <filter
+               name="open"
+               value="true">
+         </filter>
+      </page>
    </extension>
 </plugin>
