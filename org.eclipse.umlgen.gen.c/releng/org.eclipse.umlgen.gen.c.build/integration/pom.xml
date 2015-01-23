@@ -22,6 +22,7 @@
     <modules>        
         <module>../../../plugins/org.eclipse.umlgen.gen.c</module>
         <module>../../../plugins/org.eclipse.umlgen.gen.c.ui</module>
+        <module>../../../doc/org.eclipse.umlgen.gen.c.doc</module>
         <module>../../../plugins/org.eclipse.umlgen.gen.c.properties</module>
         <module>../../../features/org.eclipse.umlgen.gen.c.feature</module>
         <module>../../org.eclipse.umlgen.gen.c.repository</module>

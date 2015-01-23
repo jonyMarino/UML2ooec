@@ -1,0 +1,356 @@
+<!--
+	Copyright (c) 2015 CNES and others.
+	All rights reserved. This program and the accompanying materials
+	are made available under the terms of the Eclipse Public License v1.0
+	which accompanies this distribution, and is available at
+	http://www.eclipse.org/legal/epl-v10.html
+
+	Contributors:
+    	Cedric Notot (Obeo) - initial API and implementation
+-->
+= User Guide =
+
+== Getting Started ==
+
+=== Installing UML Generators ===
+
+'''<pre style="color: red">PENDING</pre>'''
+
+=== Model design ===
+
+==== Template ====
+
+Your UML model has to fit a template to be well interpreted by the generator. 
+The chosen template is common to C generator and reverser in order to be consistent.
+
+The default template is structured on several sub-packages and each of them plays a role. The three most important are "Source Artifacts", "Types" and "Libs":
+* The '''Source Artifacts''' package contains all the source code (which may be produced by a reverse processing). The first level of content is composed by Classes, Interfaces and Usages. This package is also fully exploited by the code generator.
+* The '''Types''' package contains all the used data types.
+* The '''Libs''' package contains all the not resolved inclusions. For instance, if you program includes stdio.h, an Interface will be created into this folder to satisfy the corresponding Usage. 
+
+==== EAnnotations ====
+
+EAnnotations bring additional information needed by the generator. They are always related to an UML element. Two distinct EAnnotations are used : 
+* One to store documentation (http://www.eclipse.org/umlgen/c/documentation).
+** <tt>Note that this is not a standard and compatible way to store documentation from this way. The generator could evolve to base on the UML Comment...</tt> 
+* Another one for additional and specific purpose (http://www.eclipse.org/umlgen/annotation/c):
+
+{| class="wikitable"
+! style="text-align:center;"| Detail entry key
+! style="text-align:center;"| Expected value
+! style="text-align:center;"| On UML element
+! See
+|-
+|PROJECT_CHARSET
+|The charset to use
+|Model
+|[[#Project_charset|Project charset]]
+|-
+|IFNDEF
+|Conditional inclusion
+|Classifier
+|[[#Conditional_one|Conditional inclusion]]
+|-
+|C_FILENAME
+|Relative path to the C file
+|Classifier
+|[[#Module_creation|Module creation]], [[#Module_and_header_both_creation|Module and header creation]]
+|-
+|H_FILENAME
+|Relative path to the H file
+|Classifier
+[[#Header_creation|Header creation]], [[#Module_and_header_both_creation|Module and header creation]]
+|-
+|STD_LIBRARY
+|true or false
+|Usage
+[[#Inclusions|System-defined file inclusions]]
+|-
+|REGISTER
+|true or false
+|Property
+|__
+|-
+|VOLATILE
+|true or false
+|Property
+|__
+|}
+
+==== Project charset ====
+
+Before making generation, the project charset must be specified to avoid encoding issues. This step will have to be done at the highest level, directly under the uml:Model element of your model.
+
+This step is not mandatory and can be skipped. In this case, the UTF-8 encoding will be applied while generating.
+
+==== Element visibility ====
+
+The visibility of the elements is used to define the target of the generated block.
+* An element with a public visibility implies that the generation will affect the header file (potentially the module also. See <Functions> i.e.).
+* An element with a private visibility will only affect the C file.
+
+==== Module creation ====
+
+In the '''Source Artifacts''' package:
+* Create a ''UML Class'' and set the name of the module to generate, then set the visibility to '''private'''.
+* Create a "C_FILENAME" EAnnotation (see [[#EAnnotations|EAnnotations section]]) with the relative path from the project to the C file (module) to generate as value. Note that the name of this file has to be the same as the ''UML Class'' name.
+* Save the model.
+
+==== Header creation ====
+
+In the '''Source Artifacts''' package:
+* Create a ''UML Interface'' and set the name of the header to generate, then set the visibility to '''public'''.
+* Create a "H_FILENAME" EAnnotation (see [[#EAnnotations|EAnnotations section]]) with the relative path from the project to the H file to generate as value. Note that the name of this file has to be the same as the ''UML Interface'' name.
+* Save the model.
+
+==== Module and header both creation ====
+
+In the '''Source Artifacts''' package:
+* Create a ''UML Class'' and set the name of the couple of files to generate, then set the visibility to '''public'''.
+* Create a "C_FILENAME" EAnnotation (see [[#EAnnotations|EAnnotations section]]) with the relative path from the project to the C file (module) to generate as value. Note that the name of this file has to be the same as the ''UML Class'' name.
+* Create a "H_FILENAME" EAnnotation (see [[#EAnnotations|EAnnotations section]]) with the relative path from the project to the H file to generate as value. Note that the name of this file has to be the same as the ''UML Class'' name.
+* Save the model.
+
+==== Inclusions ====
+
+''UML Usage'' elements are used to manage inclusions. Create a ''UML Usage'' between the source (client) module and the target (supplier) ''UML Interface''.
+
+Generated code in Engine.h:<br>
+<code>#include "Sensor.h"</code>
+
+To make the inclusion of a system-defined file (i.e. stdio), you have to add a "STD_LIBRARY" EAnnotation (see [[#EAnnotations|EAnnotations section]]) with "true" as value, on the ''UML Usage''
+
+Generated code:<br>
+<code>#include <stdio.h></code>
+
+==== Macros ====
+
+===== Conditional one =====
+
+From a ''UML Classifier'' (''UML Class'' or ''UML Interface''), you can specify a conditional inclusion.
+
+For that, add a "IFNDEF" EAnnotation (see [[#EAnnotations|EAnnotations section]]) with the macro constant label you want (i.e. "__ENGINE_H__") as value, on the ''UML Classifier''.
+
+Only the header file will be impacted during the generation. It will look like that:
+
+<code>#ifndef __ENGINE_H__</code><br>
+<code>#define __ENGINE_H__</code><br>
+<code><nowiki>[</nowiki>...]</code><br>
+<code>#endif</code><br>
+
+===== Object-like one =====
+
+On the '''Types''' package of the model, create a ''UML Primitive Type'' named "Macro" if not already existing.
+
+On a given ''UML Class'', in a '''Source Artifacts''' package, add a ''UML Property'' and:
+* set a name (i.e. "BUFFER_SIZE")
+* set the type with the ''UML Primitive Type'' named "Macro"
+* set a default value with a ''UML Literal String'' where the value will be set with your macro definition (i.e. "1024").
+
+Generated code:<br>
+<code>#define BUFFER_SIZE 1024</code>
+
+===== Function-like one =====
+
+Same thing as the [[#Object-like_one|Object-like_one section]]. The name will be the signature of the function (i.e. "MAX(a, b)") and the value will be a statement ("((a < b) ? b : a)").
+
+Generated code:<br>
+<code>MAX(a, b) ((a < b) ? b : a)</code>
+
+==== Variable declaration ====
+
+On a ''UML Class'', create a ''UML Property'' and set the name, type and visibility of your variable.
+
+If your variable is private, you can set ''isStatic'' to true to obtain a static variable (<code>static</code> will be added during generation).
+
+Set ''isReadOnly'' to true to create a constant (<code>const</code> will be added during generation)
+
+When the property visibility is public, the variable declaration will be generated in the header file while the definition part will be located in the C file. If it is private, the variable declaration and definition will be both on the module file.
+
+To define the variable as volatile or register, respectively add a "VOLATILE" or "REGISTER" EAnnotation (see [[#EAnnotations|EAnnotations section]]).
+
+
+To initialize the variable, set the default value with a ''UML OpaqueExpression'' or ''UML Literal String'' and set the value you want on it.
+
+Generated code:
+
+In the header file:<br> 
+<code>extern const char* address;</code>
+
+In the module file:<br> 
+<code>const char* address = "0x456FEA";</code>
+
+
+For multi-dimensional variables, the dimension(s) is directly defined in the name of the ''UML Property" (i.e. <nowiki>"address_array[3]"</nowiki> or <nowiki>"record_matrix[MAX_ROW][MAX_COL]"</nowiki>).
+
+==== Type definition ====
+
+A <code>typedef</code> declaration lets you define your own identifiers that can be used in place of type specifiers such as <code>int</code>, <code>float</code>, <code>double</code> and so on.
+
+You can make this definition creating a ''UML DataType'' and setting the name you want to express (i.e. "LENGTH"). Then, you have to set the ''redefined classifier'' feature with the type you want to redefine (i.e. ''UML Primitive Type'' int).
+
+Generated code:<br>
+<code>typedef int LENGTH</code>
+
+
+To '''redefine a pointer type''', you have to reference your own type as ''redefined classifier'' (i.e. ''UML DataType'' int*)
+
+Generated code:<br>
+<code>typedef int* PTR_LENGTH</code> 
+
+
+To '''define a multi-dimensional array type''', you have to set, on the ''UML DataType'', the ''named expression'' with a ''UML String Expression'' in order to specify the dimension(s).
+The value of the dimension must be set in the ''symbol'' feature, with brackets.
+
+To '''define a function pointer''', you have to add, in the ''UML DataType'', through the ''ownedOperation'' feature, a ''UML Operation''.
+
+For example, here is the generated code for a function pointer type named "TYPES_COMMUNS__T_POINTER_FCT" which points to an operation with returns a type (output parameter) named "TYPES_COMMUNS__T_STATUS":<br>
+<code>typedef TYPES_COMMUNS__T_STATUS (*TYPES_COMMUNS__T_POINTER_FCT)();</code>
+
+==== Structures ====
+
+'''To define a structure''', add a ''UML DataType'', in your ''UML Class'', with a name (i.e. "person") and a visibility.
+Then, add on it a ''UML Property'' with a name and type (i.e. "age") for each field of the structure.
+
+Generated code:<br>
+<code>struct person</code><br>
+<code>{</code><br>
+: <code>	char forename<nowiki>[</nowiki>20];</code><br>
+: <code>	char surname<nowiki>[</nowiki>20];</code><br>
+: <code>	float age;</code><br>
+: <code>	int childcount;</code><br>
+<code>};</code>
+
+
+'''To declare a structure''', add a ''UML Property'' in your ''UML Class'' with a name and setting the type to the defined structure (''UML DataType'').
+
+For example, here is the generated code for 3 person declared structures as john, ed and paul:<br>
+<code>struct person</code><br>
+<code>{</code><br>
+: <code>	char forename<nowiki>[</nowiki>20];</code><br>
+: <code>	char surname<nowiki>[</nowiki>20];</code><br>
+: <code>	float age;</code><br>
+: <code>	int childcount;</code><br>
+<code>} john, ed, paul;</code>
+
+
+'''To define a shorthand structure''', create a new ''UML DataType'' with a name (i.e. "PEOPLE") and reference your structure as ''redefined classifier'' (i.e. ''UML DataType'' person).
+
+For example:<br>
+<code>typedef struct person</code><br>
+<code>{</code><br>
+: <code>	char forename<nowiki>[</nowiki>20];</code><br>
+: <code>	char surname<nowiki>[</nowiki>20];</code><br>
+: <code>	float age;</code><br>
+: <code>	int childcount;</code><br>
+<code>} PEOPLE;</code>
+
+==== Enumerations ====
+
+'''To define an enumeration''', add a ''UML Enumeration'', in your ''UML Class'', with a name (i.e. "week") and a visibility. The content of the enumeration is specified with a set of named ''UML Enumeration Literal''.
+To specify a default value to a literal, set the ''specification'' feature on the literal with a new ''OpaqueExpression'' or ''LiteralString'' and set the value on it.
+
+Example:<br>
+<code>enum week</code><br>
+<code>{</code><br>
+: <code>	Monday = 0,</code><br>
+: <code>	Tuesday,</code><br>
+: <code>	Wednesday,</code><br>
+: <code>	Thursday,</code><br>
+: <code>	Friday,</code><br>
+: <code>	Saturday,</code><br>
+: <code>	Sunday</code><br>
+<code>};</code>
+
+
+'''To declare an enumeration''', add a ''UML Property'' in your ''UML Class'' with a name and setting the type to the defined enumeration (''UML Enumeration'').
+
+For example, here is the generated code for 2 week declared enumeration as week30 and week31:<br>
+<code>enum week</code><br>
+<code>{</code><br>
+: <code>	Monday = 0,</code><br>
+: <code>	Tuesday,</code><br>
+: <code>	Wednesday,</code><br>
+: <code>	Thursday,</code><br>
+: <code>	Friday,</code><br>
+: <code>	Saturday,</code><br>
+: <code>	Sunday</code><br>
+<code>} week30, week31;</code>
+
+
+'''To define a shorthand enumeration''', create a new ''UML Enumeration' with a name (i.e. "WEEK") and reference your enumeration as ''redefined classifier'' (i.e. ''UML Enumeration'' week).
+
+For example:<br>
+<code>typedef enum week</code><br>
+<code>{</code><br>
+: <code>	Monday = 0,</code><br>
+: <code>	Tuesday,</code><br>
+: <code>	Wednesday,</code><br>
+: <code>	Thursday,</code><br>
+: <code>	Friday,</code><br>
+: <code>	Saturday,</code><br>
+: <code>	Sunday</code><br>
+<code>} WEEK;</code>
+
+==== Functions ====
+
+'''To declare a function''', create a ''UML Operation'' in your ''UML Class'' and:
+* Set the name
+* Specify the return type (mandatory). If no return type is specified, "int" will be generated as default type.
+* Define the parameters:
+** Set a name (optional for function declaration)
+** Define the type with an existing one (simple or pointer)
+** Define the direction:
+*** '''in/out''': this should be the default value for arguments
+*** '''in''': means that this argument is read-only, used to represent a constant
+*** '''out''': not used in this scope
+*** '''return''': used for the return type
+* Define the visibility:
+** '''public''' : The operation declaration will be generated into the header file prefixed by the <code>extern</code> keyword.
+** '''private''': The operation declaration will be generated into the module file without any particular storage modifier keyword.
+** '''static''': The operation declaration will be generated into the module file prefixed by the <code>static</code> keyword. Note that <code>static</code> will be generated only if visibility is set to "private".
+
+
+Generated code example:<br>
+<code>static BOOL checkValues(const INT32* valueA, const INT32* valueB);</code>
+
+
+'''To define a function''', a ''UML OpaqueBehavior'' has to be created with the same name and parameters as the previous declaration, in the same ''UML Class''. Its ''body'' feature must be set with your code implementation. At last, its ''specification'' feature must reference the previous declaration (''UML Operation'').
+
+Example of generated code:<br>
+<code>// function declaration</code><br>
+<code>static BOOL checkValues(const INT32* valueA, const INT32* valueB);</code><br>
+<code></code><br>
+<code>// function definition</code><br>
+<code>static BOOL checkValues(const INT32* valueA, const INT32* valueB)</code><br>
+<code>{</code><br>
+: <code>	if (*valueA >=0 && *valueA < 256)</code><br>
+: <code>	{</code><br>
+:: <code>		if (*valueB >=0 && *valueB < 256)</code><br>
+:: <code>		{</code><br>
+::: <code>			return TRUE;</code><br>
+:: <code>		}</code><br>
+: <code>	}</code><br>
+: <code>	return FALSE;</code><br>
+<code>}</code>
+
+==== Comments ====
+
+* '''"Standard" ones'''
+Comments can be added for every ''UML NamedElement'' objects and will be injected into the generated code.
+
+To add a comment, you have to create a "http://www.eclipse.org/umlgen/c/documentation" EAnnotation, under the UML element to document, containing a detail entry where the key is "documentation" and the value is set to your comment content. The content must be raw comments, without any comment formatting characters (slash or star).
+
+Generated code example:<br>
+<code>/*</code><br>
+<code>* This buffer will store information on 1024 bytes.</code><br>
+<code>*/</code><br>
+<code>#define BUFFER_SIZE 1024</code>
+
+* '''Inline ones'''
+For that, you must create a "http://www.eclipse.org/umlgen/annotation/c" EAnnotation with different detail entry keys, according to the context:
+"C_INLINE_COMMENT_AFTER_DECLARATION", "C_INLINE_COMMENT_BEFORE_DECLARATION", "H_INLINE_COMMENT_AFTER_DECLARATION", "H_INLINE_COMMENT_BEFORE_DECLARATION".
+
+=== Generate C code ===
+
+To generate C code, your UML model must be compliant with the template defined for this purpose (see [[#Template|Template organization]]). The generator will look for the source package ('Source Artefacts' by default) and will focus on the classifiers contained inside.

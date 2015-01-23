@@ -28,10 +28,6 @@
       %license
    </license>
 
-   <requires>
-      <import plugin="org.eclipse.umlgen.c.modeler.interactions"/>
-   </requires>
-
    <plugin
          id="org.eclipse.umlgen.gen.c"
          download-size="0"
@@ -48,13 +44,6 @@
 
    <plugin
          id="org.eclipse.umlgen.gen.c.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.umlgen.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -79,5 +68,18 @@
          download-size="0"
          install-size="0"
          version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.umlgen.gen.c.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.umlgen.c.modeler.interactions"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
