@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012, 2014 CNES and others.&#xD;&#xA;All rights reserved. This program and the accompanying materials &#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0 &#xD;&#xA;which accompanies this distribution, and is available at &#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;  &#xD;&#xA;Contributors:&#xD;&#xA;     Cedric Notot (Obeo) - initial API and implementation"
+    modelDirectory="/org.eclipse.umlgen.dsl.eth/src-gen" editDirectory="/org.eclipse.umlgen.dsl.eth.edit/src-gen"
+    editorDirectory="/org.eclipse.umlgen.dsl.eth.editor/src-gen" modelPluginID="org.eclipse.umlgen.dsl.eth"
+    modelName="Eth" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    usedGenPackages="platform:/plugin/org.eclipse.umlgen.dsl.asl/model/asl.genmodel#//asl platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types">
+  <foreignModel>eth.ecore</foreignModel>
+  <genPackages prefix="Eth" basePackage="org.eclipse.umlgen.dsl" resource="XML" disposableProviderFactory="true"
+      ecorePackage="eth.ecore#/">
+    <genClasses ecoreClass="eth.ecore#//EthernetConfRepository"/>
+    <genClasses ecoreClass="eth.ecore#//EthernetConf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference eth.ecore#//EthernetConf/connectors"/>
+    </genClasses>
+    <genClasses ecoreClass="eth.ecore#//Container">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eth.ecore#//Container/ipAddress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eth.ecore#//Container/portNumber"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference eth.ecore#//Container/components"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eth.ecore#//Container/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,31 @@
+******************************************************************************************************
+The following images are covered by 
+Copyright (c) 2014 CNES and others.
+All rights reserved. They are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ 
+/org.eclipse.umlgen.gen.autojava.doc/src/images/useCaseAsyncComp.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/useCaseAsyncInterface.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/useCaseEventDataComp.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/useCaseEventDataEth.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/useCaseEventDataInterface.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/useCaseSyncComp.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/useCaseSyncInterface.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLArrayByte.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLArrayByte2.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLArrayObject.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLArrayObject2.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLCompDef.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLComponents.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLInterfaces.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLObject.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideUMLObject2.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth2.png
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth3.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth4.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth5.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth6.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth7.PNG
+/org.eclipse.umlgen.gen.autojava.doc/src/images/userGuideWizardEth8.PNG
+******************************************************************************************************

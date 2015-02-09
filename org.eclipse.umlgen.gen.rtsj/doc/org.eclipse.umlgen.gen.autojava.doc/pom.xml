@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (c) 2014 CNES and others.
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+   
+   Contributors:
+		Cedric Notot (Obeo) - initial API and implementation
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.eclipse.umlgen</groupId>
+    <artifactId>org.eclipse.umlgen-bundle-parent</artifactId>
+    <version>0.9.0-SNAPSHOT</version>
+    <relativePath>../../../releng/org.eclipse.umlgen.parent/bundle-parent</relativePath>
+  </parent>
+
+  <artifactId>org.eclipse.umlgen.gen.autojava.doc</artifactId>
+  <version>0.9.0-SNAPSHOT</version>
+  <packaging>eclipse-plugin</packaging>
+
+  <name>UML to Autojava Generator Documentation</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <configuration>
+          <!-- 
+          As the the help folder and the plugin.xml will be generated @ build time 
+          by the o.e.e.c.gendoc WikitexToHTML tool, we can not use the build.properties 
+          file to specify its  inclusion, it would lead to warnings during the PDE build 
+          in the Eclipse workspace. We better include it with the following directive.
+           -->
+          <additionalFileSets>
+            <fileSet>
+              <directory>${project.basedir}/help</directory>
+              <prefix>help/</prefix>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileSet>
+            <fileSet>
+              <directory>${project.basedir}</directory>
+              <includes>
+                <include>plugin.xml</include>
+              </includes>
+            </fileSet>
+          </additionalFileSets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!--
+        Run the org.e.e.c.gendoc WikitTextToHTML tool to generate Eclipse help and
+        website HTML documentation.
+        -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <id>buid-info-generator</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${JAVA_HOME}/bin/java</executable>
+              <arguments>
+                <argument>-jar</argument>
+                <argument>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc/lib/org.eclipse.emf.compare.gendoc-1.0-uberjar.jar</argument>
+                <argument>-location</argument>
+                <argument>${project.basedir}</argument>
+                <argument>-eclipsehelp</argument>
+                <argument>${project.basedir}/help</argument>
+                <argument>-website</argument>
+                <argument>${project.build.directory}/website</argument>
+                <argument>-version</argument>
+                <argument>${unqualifiedVersion}.${buildQualifier}</argument>
+                <argument>-projectid</argument>
+                <argument>${project.artifactId}</argument>
+                <argument>-projectname</argument>
+                <argument>UML Generators</argument>
+                <argument>-anchorid</argument>
+                <argument>../org.eclipse.umlgen.doc/help/toc.xml#org.eclipse.umlgen.doc.anchor</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

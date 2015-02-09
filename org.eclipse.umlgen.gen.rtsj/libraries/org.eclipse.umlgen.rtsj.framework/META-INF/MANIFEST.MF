@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UMLGen RTSJ Framework (Incubation)
+Bundle-SymbolicName: org.eclipse.umlgen.rtsj.framework
+Bundle-Version: 0.9.0.qualifier
+Export-Package: org.eclipse.umlgen.rtsj.framework,
+ org.eclipse.umlgen.rtsj.framework.async,
+ org.eclipse.umlgen.rtsj.framework.ethernet,
+ org.eclipse.umlgen.rtsj.framework.sync,
+ org.eclipse.umlgen.rtsj.framework.types
+Bundle-Vendor: Eclipse UML Generators
