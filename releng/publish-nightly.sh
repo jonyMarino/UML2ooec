@@ -10,14 +10,13 @@
 #    Cedric Notot (Obeo) - initial API and implementation
 # ====================================================================
 
-[ -z "$WORKSPACE"  -o -z "$PLATFORM" -o -z "$GIT_BRANCH" ] && {
+[ -z "$WORKSPACE" -o -z "$GIT_BRANCH" ] && {
      echo "Execution aborted.
 
 One or more of the required variables is not set. They are normally
 provided by the Hudson build.
 
 - WORKSPACE  : the build workspace root.
-- PLATFORM   : the name of the target Eclipse release (e.g. luna).
 - GIT_BRANCH : the name for the Git branch being build/published.
 "
     exit 1
@@ -29,6 +28,9 @@ provided by the Hudson build.
 
 # Exit on error
 set -e
+
+# The platform name (should be taken as an argument)
+export PLATFORM="luna"
 
 # The full version (should be taken as an argument)
 export VERSION="0.9.0"
