@@ -93,9 +93,9 @@ mkdir -p "$TARGET_DIR"
 cp -a "$WORKSPACE"/releng/org.eclipse.umlgen.repository/target/repository/* "$TARGET_DIR"
 
 # Ensure the RTSJ jars folder exists
-# mkdir -p "$RTSJ_JARS_TARGET_DIR"
+mkdir -p "$RTSJ_JARS_TARGET_DIR"
 # The actual publication of the p2 repo produced by the build
-# cp -a "$WORKSPACE"/org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.rtsj.frameworks.repository/target/repository/plugins/* "$RTSJ_JARS_TARGET_DIR"
+cp -a "$WORKSPACE"/org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.rtsj.frameworks.repository/target/repository/plugins/* "$RTSJ_JARS_TARGET_DIR"
 
 # Publish a dump of the build environment, may be useful to debug
 env | sort > "$TARGET_DIR/build_env.txt"
