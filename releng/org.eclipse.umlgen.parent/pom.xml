@@ -111,35 +111,30 @@
                     </target>
                     <environments>
                         <environment>
-                            <os>macosx</os>
-                            <ws>cocoa</ws>
-                            <arch>x86</arch>
-                        </environment>
-                        <environment>
-                            <os>macosx</os>
-                            <ws>cocoa</ws>
-                            <arch>x86_64</arch>
-                        </environment>
-                        <environment>
-                            <os>win32</os>
-                            <ws>win32</ws>
-                            <arch>x86</arch>
-                        </environment>
-                        <environment>
-                            <os>win32</os>
-                            <ws>win32</ws>
-                            <arch>x86_64</arch>
-                        </environment>
-                        <environment>
-                            <os>linux</os>
-                            <ws>gtk</ws>
-                            <arch>x86</arch>
-                        </environment>
-                        <environment>
-                            <os>linux</os>
-                            <ws>gtk</ws>
-                            <arch>x86_64</arch>
-                        </environment>
+              				<os>win32</os>
+              				<ws>win32</ws>
+              				<arch>x86</arch>
+            			</environment>
+            			<environment>
+              				<os>win32</os>
+              				<ws>win32</ws>
+              				<arch>x86_64</arch>
+            			</environment>
+            			<environment>
+              				<os>linux</os>
+              				<ws>gtk</ws>
+             				<arch>x86</arch>
+            			</environment>
+            			<environment>
+              				<os>linux</os>
+              				<ws>gtk</ws>
+              				<arch>x86_64</arch>
+            			</environment>
+            			<environment>
+              				<os>macosx</os>
+              				<ws>cocoa</ws>
+              				<arch>x86_64</arch>
+            			</environment>
                     </environments>
                 </configuration>
             </plugin>
@@ -247,36 +242,16 @@
             <properties>
                 <target-platform.version>luna-sdk</target-platform.version>
             </properties>
-            <!-- <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.eclipse.tycho</groupId>
-                        <version>${tycho-version}</version>
-                        <artifactId>target-platform-configuration</artifactId>
-                        <configuration>
-                            <pomDependencies>consider</pomDependencies>
-                            <resolver>p2</resolver>
-                            <target>
-                                <artifact>
-                                    <groupId>org.eclipse.umlgen</groupId>
-                                    <artifactId>org.eclipse.umlgen.target</artifactId>
-                                    <version>0.9.0-SNAPSHOT</version>
-                                    <classifier>${target-platform.version}</classifier>
-                                </artifact>
-                            </target>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            <modules>
-                <module>../org.eclipse.umlgen.target</module>
-                <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
-                <module>../../org.eclipse.umlgen/features/org.eclipse.umlgen.common.feature</module>
-                Add the generators to build
-                <module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build</module>
-                <module>../../org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.gen.rtsj.build</module>
-                <module>../org.eclipse.umlgen.repository</module>
-            </modules> -->
+        </profile>
+        
+        <profile>
+            <id>mars</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <target-platform.version>mars-sdk</target-platform.version>
+            </properties>
         </profile>
         
         <profile>

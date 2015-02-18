@@ -28,18 +28,4 @@
         <module>../../org.eclipse.umlgen.gen.java.repository</module>
     </modules>
     
-    <!-- <profiles>
-        <profile>
-            <id>luna</id>
-            <modules>
-                <module>../../../plugins/org.eclipse.umlgen.gen.java</module>
-                <module>../../../plugins/org.eclipse.umlgen.gen.java.ui</module>
-                <module>../../../doc/org.eclipse.umlgen.gen.java.doc</module>
-                <module>../../../features/org.eclipse.umlgen.gen.java.feature</module>
-                <module>../../../features/org.eclipse.umlgen.gen.java.ui.feature</module>
-                <module>../../org.eclipse.umlgen.gen.java.repository</module>
-            </modules>
-        </profile>
-    </profiles> -->
-
 </project>

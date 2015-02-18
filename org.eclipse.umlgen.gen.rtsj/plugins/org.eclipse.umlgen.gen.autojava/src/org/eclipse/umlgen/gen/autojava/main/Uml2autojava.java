@@ -53,7 +53,7 @@ public class Uml2autojava extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = {"main" };
+    public static final String[] TEMPLATE_NAMES = { "main" };
 
     /** Empty string definition. */
     private static final String EMPTY_STRING = "";
@@ -315,10 +315,10 @@ public class Uml2autojava extends AbstractAcceleoGenerator {
     public List<IAcceleoTextGenerationListener> getGenerationListeners() {
         List<IAcceleoTextGenerationListener> listeners = super.getGenerationListeners();
         /*
-         * TODO if you need to listen to generation event, add listeners to the list here. If you want to
-         * change the content of this method, do NOT forget to change the "@generated" tag in the Javadoc of
-         * this method to "@generated NOT". Without this new tag, any compilation of the Acceleo module with
-         * the main template that has caused the creation of this class will revert your modifications.
+         * TODO if you need to listen to generation event, add listeners to the list here. If you want to change
+         * the content of this method, do NOT forget to change the "@generated" tag in the Javadoc of this method
+         * to "@generated NOT". Without this new tag, any compilation of the Acceleo module with the main template
+         * that has caused the creation of this class will revert your modifications.
          */
         return listeners;
     }

@@ -29,12 +29,12 @@
     <modules>
         <module>../org.eclipse.umlgen.target</module>
         
+        <!-- Common plug-ins -->        
         <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
         
-        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module><!-- To refactor: [438144]-->
-        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module><!-- To refactor: [438144]-->
-        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c</module><!-- To refactor: [438144]-->
-        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c.builder</module><!-- To refactor: [438144]-->
+        <!-- Common C part -->
+        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module>
+        <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module>
         
         <!-- Add the generators to build -->
         <module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build/integration</module>
@@ -44,93 +44,5 @@
         
         <module>../org.eclipse.umlgen.repository</module>
    </modules>
-   
-   <!-- <profiles>
-        <profile>
-            <id>luna</id>           
-            <modules>
-                <module>../org.eclipse.umlgen.target</module>
-                <module>../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
-                <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module>
-                <module>../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module>
-                Add the generators to build
-                <module>../../org.eclipse.umlgen.gen.java/releng/org.eclipse.umlgen.gen.java.build/integration</module>
-                <module>../../org.eclipse.umlgen.gen.c/releng/org.eclipse.umlgen.gen.c.build/integration</module>
-                <module>../../org.eclipse.umlgen.reverse.c/releng/org.eclipse.umlgen.reverse.c.build/integration</module>
-                <module>../../org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.gen.rtsj.build/integration</module>
-                <module>../org.eclipse.umlgen.repository</module>
-            </modules>
-        </profile>
-    </profiles> -->
-    <!-- <profiles>
-        <profile>
-            <id>sign</id>
-            <activation>
-                <property>
-                    <name>BUILD_SIGN</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.eclipse.tycho.extras</groupId>
-                        <artifactId>tycho-pack200a-plugin</artifactId>
-                        <version>${tycho-version}</version>
-                        <executions>
-                            <execution>
-                                <id>pack200-normalize</id>
-                                <goals>
-                                    <goal>normalize</goal>
-                                </goals>
-                                <phase>verify</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.eclipse.cbi.maven.plugins</groupId>
-                        <artifactId>eclipse-jarsigner-plugin</artifactId>
-                        <version>1.0.4</version>
-                        <executions>
-                            <execution>
-                                <id>sign</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.eclipse.tycho.extras</groupId>
-                        <artifactId>tycho-pack200b-plugin</artifactId>
-                        <version>${tycho-version}</version>
-                        <executions>
-                            <execution>
-                                <id>pack200-pack</id>
-                                <goals>
-                                    <goal>pack</goal>
-                                </goals>
-                                <phase>verify</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>cbi</id>
-                    <url>https://repo.eclipse.org/content/repositories/cbi-releases/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile>
-    </profiles> -->
 
 </project>

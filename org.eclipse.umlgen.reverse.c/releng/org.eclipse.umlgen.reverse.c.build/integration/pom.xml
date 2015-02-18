@@ -20,24 +20,13 @@
     <name>Build of C Reverser Generator</name>
 
     <modules>
+    
+        <module>../../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c.builder</module>
+    
         <module>../../../plugins/org.eclipse.umlgen.reverse.c</module>
         <module>../../../plugins/org.eclipse.umlgen.reverse.c.ui</module>
-        <module>../../../plugins/org.eclipse.umlgen.reverse.c.sync.util</module>
         <module>../../../features/org.eclipse.umlgen.reverse.c.feature</module>
         <module>../../org.eclipse.umlgen.reverse.c.repository</module>
     </modules>
-    
-    <!-- <profiles>
-        <profile>
-            <id>luna</id>
-            <modules>
-                <module>../../../plugins/org.eclipse.umlgen.reverse.c</module>
-                <module>../../../plugins/org.eclipse.umlgen.reverse.c.ui</module>
-                <module>../../../plugins/org.eclipse.umlgen.reverse.c.sync.util</module>
-                <module>../../../features/org.eclipse.umlgen.reverse.c.feature</module>
-                <module>../../org.eclipse.umlgen.reverse.c.repository</module>
-            </modules>
-        </profile>
-    </profiles> -->
 
 </project>

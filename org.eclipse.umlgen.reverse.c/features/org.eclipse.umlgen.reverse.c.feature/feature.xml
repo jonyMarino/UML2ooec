@@ -28,6 +28,12 @@
       %license
    </license>
 
+   <requires>
+      <import plugin="org.eclipse.umlgen.gen.c.builder"/>
+      <import plugin="org.eclipse.umlgen.c.common"/>
+      <import plugin="org.eclipse.umlgen.c.modeler.interactions"/>
+   </requires>
+
    <plugin
          id="org.eclipse.umlgen.reverse.c"
          download-size="0"
@@ -37,27 +43,6 @@
 
    <plugin
          id="org.eclipse.umlgen.reverse.c.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.umlgen.gen.c.builder"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.umlgen.c.common"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.umlgen.c.modeler.interactions"
          download-size="0"
          install-size="0"
          version="0.0.0"

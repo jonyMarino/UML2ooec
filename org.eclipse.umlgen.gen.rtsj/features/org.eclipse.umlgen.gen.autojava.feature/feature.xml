@@ -28,6 +28,10 @@
       %license
    </license>
 
+   <requires>
+      <import plugin="org.eclipse.umlgen.doc"/>
+   </requires>
+
    <plugin
          id="org.eclipse.umlgen.dsl.asl"
          download-size="0"

@@ -10,14 +10,14 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.umlgen.dsl.eth.provider,
  org.eclipse.umlgen.dsl.eth.provider.custom
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.umlgen.dsl.eth;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport,
- org.eclipse.umlgen.dsl.asl;visibility:=reexport,
- org.eclipse.umlgen.dsl.asl.edit;visibility:=reexport,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.uml2.uml;bundle-version="5.0.0";visibility:=reexport,
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0",
+ org.eclipse.umlgen.dsl.eth;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.emf.edit;bundle-version="2.10.1";visibility:=reexport,
+ org.eclipse.umlgen.dsl.asl;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.umlgen.dsl.asl.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.emf.ecore;bundle-version="2.10.1";visibility:=reexport,
+ org.eclipse.emf.ecore.edit;bundle-version="2.9.0";visibility:=reexport,
+ org.eclipse.uml2.uml;bundle-version="5.0.1";visibility:=reexport,
  org.eclipse.uml2.uml.edit;bundle-version="5.0.0";visibility:=reexport,
  org.eclipse.uml2.types;bundle-version="2.0.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy

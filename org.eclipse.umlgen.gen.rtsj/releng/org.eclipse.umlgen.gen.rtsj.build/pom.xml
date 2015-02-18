@@ -22,17 +22,11 @@
   
   <modules>
         <module>../../../releng/org.eclipse.umlgen.target</module>
+        
+        <!-- Common plug-ins -->
         <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
+        
         <module>integration</module>
   </modules>
-  <!-- <profiles>
-        <profile>
-            <id>luna</id>
-            <modules>
-                <module>../../../releng/org.eclipse.umlgen.target</module>
-                <module>integration</module>
-            </modules>
-        </profile>
-  </profiles> -->
 
 </project>

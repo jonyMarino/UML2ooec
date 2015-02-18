@@ -21,27 +21,14 @@
 
     <modules>
         <module>../../../releng/org.eclipse.umlgen.target</module>
-        <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
         
-        <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module><!-- To refactor: [438144]-->
-        <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module><!-- To refactor: [438144]-->
-        <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c</module><!-- To refactor: [438144]-->
-        <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c.builder</module><!-- To refactor: [438144]-->
+        <!-- Common C part -->
+        <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module>
+        <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module>
+       
+        <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.gen.c</module><!-- required by org.eclipse.umlgen.gen.c.builder -->
         
         <module>integration</module>
     </modules>
-    
-    <!-- <profiles>
-        <profile>
-            <id>luna</id>
-            <modules>
-                <module>../../../releng/org.eclipse.umlgen.target</module>
-                <module>../../../org.eclipse.umlgen/plugins/org.eclipse.umlgen.doc</module>
-                <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.common</module>
-                <module>../../../org.eclipse.umlgen.gen.c/plugins/org.eclipse.umlgen.c.modeler.interactions</module>
-                <module>integration</module>
-            </modules>
-        </profile>
-    </profiles> -->
 
 </project>

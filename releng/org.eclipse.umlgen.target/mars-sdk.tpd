@@ -1,0 +1,18 @@
+target "UML Generators based on Mars SDK"
+
+
+with source, requirements
+
+location "http://download.eclipse.org/releases/mars" {
+	org.eclipse.platform.sdk lazy
+	
+	org.eclipse.emf.sdk.feature.group lazy
+	org.eclipse.uml2.feature.group lazy
+	org.eclipse.acceleo.feature.group lazy
+	
+	org.eclipse.cdt.feature.group lazy
+}
+
+location "http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/" {
+	com.google.guava [15.0.0,15.0.1)
+}
