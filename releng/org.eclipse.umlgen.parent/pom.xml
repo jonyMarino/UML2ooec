@@ -51,9 +51,17 @@
             <id>Eclipse - Acceleo Release</id>
             <url>https://repo.eclipse.org/content/repositories/acceleo-releases</url>
         </repository>
+        <repository>
+            <id>papyrus.snapshots</id>
+            <url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/luna/1.0.2/main</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
+    	<!-- pluginRepository>
+            <id>papyrus.snapshots</id>
+            <url>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/luna/1.0.2</url>
+        </pluginRepository-->
         <pluginRepository>
             <id>codehaus.snapshots</id>
             <url>http://snapshots.repository.codehaus.org/</url>

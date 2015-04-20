@@ -67,5 +67,29 @@
             </iterate>
          </with>
       </definition>
+      <definition
+            id="org.eclipse.umlgen.ui.definition.isPackage">
+         <with
+               variable="activeMenuSelection">
+            <iterate
+                  ifEmpty="false">
+               <instanceof
+                     value="org.eclipse.jdt.internal.core.PackageFragment">
+               </instanceof>
+            </iterate>
+         </with>
+      </definition>
+      <definition
+            id="org.eclipse.umlgen.ui.definition.isJavaProject">
+         <with
+               variable="activeMenuSelection">
+            <iterate
+                  ifEmpty="false">
+               <instanceof
+                     value="org.eclipse.jdt.core.IJavaProject">
+               </instanceof>
+            </iterate>
+         </with>
+      </definition>
    </extension>
 </plugin>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Tbj9IOQWEeS4y5krJijsMA" name="ProjectTest">
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIoeQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIouQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIo-QWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIpOQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIpeQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIpuQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIp-QWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGIqOQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGvsOQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGvseQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGvsuQWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_TcGvs-QWEeS4y5krJijsMA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_TcFhkOQWEeS4y5krJijsMA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_TcGIoOQWEeS4y5krJijsMA">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_TcHWwOQWEeS4y5krJijsMA" name="testActivity">
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcH90OQWEeS4y5krJijsMA" name="TestWhile" visibility="public">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TcPSkOQWEeS4y5krJijsMA" name="condition" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TcSV4OQWEeS4y5krJijsMA" name="n" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_Tdgd4OQWEeS4y5krJijsMA" name="testWhile" specification="_TcULEOQWEeS4y5krJijsMA" node="_TdhE8OQWEeS4y5krJijsMA _TdhE8eQWEeS4y5krJijsMA _TdhE8uQWEeS4y5krJijsMA _TdhE8-QWEeS4y5krJijsMA _TdhE9uQWEeS4y5krJijsMA _TdhsA-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdhE9OQWEeS4y5krJijsMA" name="While_0_merge_cond" target="_TdhE8-QWEeS4y5krJijsMA" source="_TdhE8uQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdhE9eQWEeS4y5krJijsMA" name="InitNode_While_0_merge" target="_TdhE8uQWEeS4y5krJijsMA" source="_TdhE8OQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdhsAOQWEeS4y5krJijsMA" name="While_0_cond_condition=false;" target="_TdhE9uQWEeS4y5krJijsMA" source="_TdhE8-QWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_TdhsAeQWEeS4y5krJijsMA" value="condition"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdhsAuQWEeS4y5krJijsMA" name="condition=false;_While_0_merge" target="_TdhE8uQWEeS4y5krJijsMA" source="_TdhE9uQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdhsBOQWEeS4y5krJijsMA" name="While_0_cond_condition=true;" target="_TdhsA-QWEeS4y5krJijsMA" source="_TdhE8-QWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_TdhsBeQWEeS4y5krJijsMA" value="else"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdhsBuQWEeS4y5krJijsMA" name="condition=true;_FinalNode" target="_TdhE8eQWEeS4y5krJijsMA" source="_TdhsA-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdhE8OQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdhE9eQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdhE8eQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdhsBuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:MergeNode" xmi:id="_TdhE8uQWEeS4y5krJijsMA" name="While_0_merge" incoming="_TdhE9eQWEeS4y5krJijsMA _TdhsAuQWEeS4y5krJijsMA" outgoing="_TdhE9OQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_TdhE8-QWEeS4y5krJijsMA" name="While_0_cond" incoming="_TdhE9OQWEeS4y5krJijsMA" outgoing="_TdhsAOQWEeS4y5krJijsMA _TdhsBOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_TdhE9uQWEeS4y5krJijsMA" name="condition=false;" incoming="_TdhsAOQWEeS4y5krJijsMA" outgoing="_TdhsAuQWEeS4y5krJijsMA">
+          <language>JAVA</language>
+          <body>condition=false;
+</body>
+        </node>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_TdhsA-QWEeS4y5krJijsMA" name="condition=true;" incoming="_TdhsBOQWEeS4y5krJijsMA" outgoing="_TdhsBuQWEeS4y5krJijsMA">
+          <language>JAVA</language>
+          <body>condition=true;
+</body>
+        </node>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdiTEOQWEeS4y5krJijsMA" name="testWhileBreak" specification="_TcWAQOQWEeS4y5krJijsMA" node="_TdiTEeQWEeS4y5krJijsMA _TdiTEuQWEeS4y5krJijsMA _TdiTE-QWEeS4y5krJijsMA _TdiTFOQWEeS4y5krJijsMA _TdiTF-QWEeS4y5krJijsMA _Tdi6IeQWEeS4y5krJijsMA _Tdi6IuQWEeS4y5krJijsMA _TdjhMOQWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdiTFeQWEeS4y5krJijsMA" name="While_1_merge_cond" target="_TdiTFOQWEeS4y5krJijsMA" source="_TdiTE-QWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdiTFuQWEeS4y5krJijsMA" name="InitNode_While_1_merge" target="_TdiTE-QWEeS4y5krJijsMA" source="_TdiTEeQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdiTGOQWEeS4y5krJijsMA" name="While_1_cond_condition=false;" target="_TdiTF-QWEeS4y5krJijsMA" source="_TdiTFOQWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_Tdi6IOQWEeS4y5krJijsMA" value="condition"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdi6I-QWEeS4y5krJijsMA" name="condition=false;_If_0_cond" target="_Tdi6IeQWEeS4y5krJijsMA" source="_TdiTF-QWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdi6JOQWEeS4y5krJijsMA" name="If_0_else" target="_Tdi6IuQWEeS4y5krJijsMA" source="_Tdi6IeQWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_Tdi6JuQWEeS4y5krJijsMA" value="else"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdi6J-QWEeS4y5krJijsMA" name="If_0_merge_While_1_merge" target="_TdiTE-QWEeS4y5krJijsMA" source="_Tdi6IuQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdjhMeQWEeS4y5krJijsMA" name="While_1_cond_condition=true;" target="_TdjhMOQWEeS4y5krJijsMA" source="_TdiTFOQWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_Tdi6JeQWEeS4y5krJijsMA" value="n == 0"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdjhMuQWEeS4y5krJijsMA" name="condition=true;_FinalNode" target="_TdiTEuQWEeS4y5krJijsMA" source="_TdjhMOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdiTEeQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdiTFuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdiTEuQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdjhMuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:MergeNode" xmi:id="_TdiTE-QWEeS4y5krJijsMA" name="While_1_merge" incoming="_TdiTFuQWEeS4y5krJijsMA _Tdi6J-QWEeS4y5krJijsMA" outgoing="_TdiTFeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_TdiTFOQWEeS4y5krJijsMA" name="While_1_cond" incoming="_TdiTFeQWEeS4y5krJijsMA" outgoing="_TdiTGOQWEeS4y5krJijsMA _TdjhMeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_TdiTF-QWEeS4y5krJijsMA" name="condition=false;" incoming="_TdiTGOQWEeS4y5krJijsMA" outgoing="_Tdi6I-QWEeS4y5krJijsMA">
+          <language>JAVA</language>
+          <body>condition=false;
+</body>
+        </node>
+        <node xmi:type="uml:DecisionNode" xmi:id="_Tdi6IeQWEeS4y5krJijsMA" name="If_0_cond" incoming="_Tdi6I-QWEeS4y5krJijsMA" outgoing="_Tdi6JOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:MergeNode" xmi:id="_Tdi6IuQWEeS4y5krJijsMA" name="If_0_merge" incoming="_Tdi6JOQWEeS4y5krJijsMA" outgoing="_Tdi6J-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:OpaqueAction" xmi:id="_TdjhMOQWEeS4y5krJijsMA" name="condition=true;" incoming="_TdjhMeQWEeS4y5krJijsMA" outgoing="_TdjhMuQWEeS4y5krJijsMA">
+          <language>JAVA</language>
+          <body>condition=true;
+</body>
+        </node>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TcULEOQWEeS4y5krJijsMA" name="testWhile" visibility="public" method="_Tdgd4OQWEeS4y5krJijsMA"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TcWAQOQWEeS4y5krJijsMA" name="testWhileBreak" visibility="public" method="_TdiTEOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcH90eQWEeS4y5krJijsMA" name="TestFor" visibility="public">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdkIQOQWEeS4y5krJijsMA" name="testFor" specification="_TcYcgOQWEeS4y5krJijsMA" node="_TdkvUOQWEeS4y5krJijsMA _TdkvUeQWEeS4y5krJijsMA _TdkvUuQWEeS4y5krJijsMA _TdkvU-QWEeS4y5krJijsMA _TdkvVeQWEeS4y5krJijsMA _TdkvWOQWEeS4y5krJijsMA _TdlWYeQWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdkvVuQWEeS4y5krJijsMA" name="int i=0_merge" target="_TdkvUuQWEeS4y5krJijsMA" source="_TdkvVeQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdkvV-QWEeS4y5krJijsMA" name="For_0_merge_cond" target="_TdkvU-QWEeS4y5krJijsMA" source="_TdkvUuQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdkvWeQWEeS4y5krJijsMA" name="For_0_cond_merge" target="_TdkvUuQWEeS4y5krJijsMA" source="_TdkvWOQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdlWYOQWEeS4y5krJijsMA" name="InitNode_int i=0" target="_TdkvVeQWEeS4y5krJijsMA" source="_TdkvUOQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdlWY-QWEeS4y5krJijsMA" name="For_0_cond_System.out.println(&quot;Test for&quot;);" target="_TdlWYeQWEeS4y5krJijsMA" source="_TdkvU-QWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_TdlWZOQWEeS4y5krJijsMA" value="i &lt; 4"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdlWZeQWEeS4y5krJijsMA" name="System.out.println(&quot;Test for&quot;)_i++" target="_TdkvWOQWEeS4y5krJijsMA" source="_TdlWYeQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdlWZuQWEeS4y5krJijsMA" name="For_0_cond_FinalNode" target="_TdkvUeQWEeS4y5krJijsMA" source="_TdkvU-QWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_Tdl9cOQWEeS4y5krJijsMA" value="else"/>
+        </edge>
+        <variable xmi:type="uml:Variable" xmi:id="_TdkvVOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdkvUOQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdlWYOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdkvUeQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdlWZuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:MergeNode" xmi:id="_TdkvUuQWEeS4y5krJijsMA" name="For_0_merge" incoming="_TdkvVuQWEeS4y5krJijsMA _TdkvWeQWEeS4y5krJijsMA" outgoing="_TdkvV-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_TdkvU-QWEeS4y5krJijsMA" name="For_0_cond" incoming="_TdkvV-QWEeS4y5krJijsMA" outgoing="_TdlWY-QWEeS4y5krJijsMA _TdlWZuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:AddVariableValueAction" xmi:id="_TdkvVeQWEeS4y5krJijsMA" name="int i=0" incoming="_TdlWYOQWEeS4y5krJijsMA" outgoing="_TdkvVuQWEeS4y5krJijsMA" variable="_TdkvVOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:AddVariableValueAction" xmi:id="_TdkvWOQWEeS4y5krJijsMA" name="i++" incoming="_TdlWZeQWEeS4y5krJijsMA" outgoing="_TdkvWeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdlWYeQWEeS4y5krJijsMA" name="System.out.println(&quot;Test for&quot;);" incoming="_TdlWY-QWEeS4y5krJijsMA" outgoing="_TdlWZeQWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_TdlWYuQWEeS4y5krJijsMA" name="&quot;Test for&quot;"/>
+        </node>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TcYcgOQWEeS4y5krJijsMA" name="testFor" visibility="public" method="_TdkIQOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcIk4OQWEeS4y5krJijsMA" name="TestIfElse" visibility="public">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TccG4OQWEeS4y5krJijsMA" name="condition" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Tcct8OQWEeS4y5krJijsMA" name="" value="true">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdmkgOQWEeS4y5krJijsMA" name="testIfElse" specification="_Tcd8EOQWEeS4y5krJijsMA" node="_TdmkgeQWEeS4y5krJijsMA _TdmkguQWEeS4y5krJijsMA _Tdmkg-QWEeS4y5krJijsMA _TdmkhOQWEeS4y5krJijsMA _TdmkhuQWEeS4y5krJijsMA _TdnLk-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdmkheQWEeS4y5krJijsMA" name="InitNode_If_0_cond" target="_Tdmkg-QWEeS4y5krJijsMA" source="_TdmkgeQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdnLkeQWEeS4y5krJijsMA" name="If_0_cond_System.out.println(&quot;Test if&quot;);" target="_TdmkhuQWEeS4y5krJijsMA" source="_Tdmkg-QWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_TdnLkuQWEeS4y5krJijsMA" value="condition"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdnLleQWEeS4y5krJijsMA" name="If_0_cond_System.out.println(&quot;Test else&quot;);" target="_TdnLk-QWEeS4y5krJijsMA" source="_Tdmkg-QWEeS4y5krJijsMA">
+          <guard xmi:type="uml:LiteralString" xmi:id="_TdnLluQWEeS4y5krJijsMA" value="else"/>
+        </edge>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdnLl-QWEeS4y5krJijsMA" name="thenPathTo_If_0_merge" target="_TdmkhOQWEeS4y5krJijsMA" source="_TdmkhuQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdnyoOQWEeS4y5krJijsMA" name="System.out.println(&quot;Test else&quot;_If_0_merge" target="_TdmkhOQWEeS4y5krJijsMA" source="_TdnLk-QWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdnyoeQWEeS4y5krJijsMA" name="If_0_merge_FinalNode" target="_TdmkguQWEeS4y5krJijsMA" source="_TdmkhOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdmkgeQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdmkheQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdmkguQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdnyoeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:DecisionNode" xmi:id="_Tdmkg-QWEeS4y5krJijsMA" name="If_0_cond" incoming="_TdmkheQWEeS4y5krJijsMA" outgoing="_TdnLkeQWEeS4y5krJijsMA _TdnLleQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:MergeNode" xmi:id="_TdmkhOQWEeS4y5krJijsMA" name="If_0_merge" incoming="_TdnLl-QWEeS4y5krJijsMA _TdnyoOQWEeS4y5krJijsMA" outgoing="_TdnyoeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdmkhuQWEeS4y5krJijsMA" name="System.out.println(&quot;Test if&quot;);" incoming="_TdnLkeQWEeS4y5krJijsMA" outgoing="_TdnLl-QWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_TdnLkOQWEeS4y5krJijsMA" name="&quot;Test if&quot;"/>
+        </node>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdnLk-QWEeS4y5krJijsMA" name="System.out.println(&quot;Test else&quot;);" incoming="_TdnLleQWEeS4y5krJijsMA" outgoing="_TdnyoOQWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_TdnLlOQWEeS4y5krJijsMA" name="&quot;Test else&quot;"/>
+        </node>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Tcd8EOQWEeS4y5krJijsMA" name="testIfElse" visibility="public" method="_TdmkgOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_TcIk4eQWEeS4y5krJijsMA" name="testPackage">
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcIk4uQWEeS4y5krJijsMA" name="ClassTest" visibility="public">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdoZsOQWEeS4y5krJijsMA" name="methodTest" specification="_TcgYUOQWEeS4y5krJijsMA" node="_TdoZseQWEeS4y5krJijsMA _TdoZsuQWEeS4y5krJijsMA _TdoZs-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdpAwOQWEeS4y5krJijsMA" name="InitNode_System.out.println(&quot;Test package&quot;);" target="_TdoZs-QWEeS4y5krJijsMA" source="_TdoZseQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdpAweQWEeS4y5krJijsMA" name="System.out.println(&quot;Test packa_FinalNode" target="_TdoZsuQWEeS4y5krJijsMA" source="_TdoZs-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdoZseQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdpAwOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdoZsuQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdpAweQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdoZs-QWEeS4y5krJijsMA" name="System.out.println(&quot;Test package&quot;);" incoming="_TdpAwOQWEeS4y5krJijsMA" outgoing="_TdpAweQWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_TdoZtOQWEeS4y5krJijsMA" name="&quot;Test package&quot;"/>
+        </node>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TcgYUOQWEeS4y5krJijsMA" name="methodTest" visibility="public" method="_TdoZsOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_TcJL8OQWEeS4y5krJijsMA" name="testStructural">
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcJL8uQWEeS4y5krJijsMA" name="TestAbstractClass" visibility="public" isAbstract="true">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_Tdq18OQWEeS4y5krJijsMA" name="method1" specification="_TckCsOQWEeS4y5krJijsMA" node="_Tdq18eQWEeS4y5krJijsMA _Tdq18uQWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdq18-QWEeS4y5krJijsMA" name="InitNode_FinalNode" target="_Tdq18uQWEeS4y5krJijsMA" source="_Tdq18eQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_Tdq18eQWEeS4y5krJijsMA" name="InitNode" outgoing="_Tdq18-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_Tdq18uQWEeS4y5krJijsMA" name="FinalNode" incoming="_Tdq18-QWEeS4y5krJijsMA"/>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TckCsOQWEeS4y5krJijsMA" name="method1" visibility="public" isAbstract="true" method="_Tdq18OQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcJzAOQWEeS4y5krJijsMA" name="TestMethod" visibility="public">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdrdAOQWEeS4y5krJijsMA" name="testMethod" specification="_Tcl34OQWEeS4y5krJijsMA" node="_TdrdAeQWEeS4y5krJijsMA _TdrdAuQWEeS4y5krJijsMA _TdrdA-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdsEEeQWEeS4y5krJijsMA" name="InitNode_System.out.println(&quot;Test method without parameter&quot;)" target="_TdrdA-QWEeS4y5krJijsMA" source="_TdrdAeQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdsEEuQWEeS4y5krJijsMA" name="System.out.println(&quot;Test metho_FinalNode" target="_TdrdAuQWEeS4y5krJijsMA" source="_TdrdA-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdrdAeQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdsEEeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdrdAuQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdsEEuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdrdA-QWEeS4y5krJijsMA" name="System.out.println(&quot;Test method without parameter&quot;);" incoming="_TdsEEeQWEeS4y5krJijsMA" outgoing="_TdsEEuQWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_TdsEEOQWEeS4y5krJijsMA" name="&quot;Test method without parameter&quot;"/>
+        </node>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdsEE-QWEeS4y5krJijsMA" name="testMethodWithParameters" specification="_TcslkOQWEeS4y5krJijsMA" node="_TdsEFOQWEeS4y5krJijsMA _TdsEFeQWEeS4y5krJijsMA _TdsEFuQWEeS4y5krJijsMA _TdsrIOQWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdsrIuQWEeS4y5krJijsMA" name="InitNode_System.out.println(&quot;Test method with parameter :&quot; +" target="_TdsrIOQWEeS4y5krJijsMA" source="_TdsEFeQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdsrI-QWEeS4y5krJijsMA" name="System.out.println(&quot;Test metho_FinalNode" target="_TdsEFuQWEeS4y5krJijsMA" source="_TdsrIOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityParameterNode" xmi:id="_TdsEFOQWEeS4y5krJijsMA" name="test" parameter="_TcslkeQWEeS4y5krJijsMA">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </node>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdsEFeQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdsrIuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdsEFuQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdsrI-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdsrIOQWEeS4y5krJijsMA" name="System.out.println(&quot;Test method with parameter :&quot; + test);" incoming="_TdsrIuQWEeS4y5krJijsMA" outgoing="_TdsrI-QWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_TdsrIeQWEeS4y5krJijsMA" name="&quot;Test method with parameter :&quot; + test"/>
+        </node>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdsrJOQWEeS4y5krJijsMA" name="testMethodWithReturn" specification="_TcwP8OQWEeS4y5krJijsMA" node="_TdsrJeQWEeS4y5krJijsMA _TdsrJuQWEeS4y5krJijsMA _TdsrJ-QWEeS4y5krJijsMA _TdtSMOQWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdtSMeQWEeS4y5krJijsMA" name="InitNode_int i=0;" target="_TdtSMOQWEeS4y5krJijsMA" source="_TdsrJuQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdtSM-QWEeS4y5krJijsMA" name="int i=0;_FinalNode" target="_TdsrJ-QWEeS4y5krJijsMA" source="_TdtSMOQWEeS4y5krJijsMA"/>
+        <variable xmi:type="uml:Variable" xmi:id="_TdtSMuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityParameterNode" xmi:id="_TdsrJeQWEeS4y5krJijsMA" parameter="_TcwP8eQWEeS4y5krJijsMA">
+          <name xsi:nil="true"/>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </node>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdsrJuQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdtSMeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdsrJ-QWEeS4y5krJijsMA" name="FinalNode" incoming="_TdtSM-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:AddVariableValueAction" xmi:id="_TdtSMOQWEeS4y5krJijsMA" name="int i=0;" incoming="_TdtSMeQWEeS4y5krJijsMA" outgoing="_TdtSM-QWEeS4y5krJijsMA" variable="_TdtSMuQWEeS4y5krJijsMA"/>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdtSNOQWEeS4y5krJijsMA" name="testCallMethod" specification="_TcyFIOQWEeS4y5krJijsMA" node="_TdtSNeQWEeS4y5krJijsMA _TdtSNuQWEeS4y5krJijsMA _TdtSN-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdt5QOQWEeS4y5krJijsMA" name="InitNode_testMethod();" target="_TdtSN-QWEeS4y5krJijsMA" source="_TdtSNeQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdt5QeQWEeS4y5krJijsMA" name="testMethod();_FinalNode" target="_TdtSNuQWEeS4y5krJijsMA" source="_TdtSN-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdtSNeQWEeS4y5krJijsMA" name="InitNode" outgoing="_Tdt5QOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdtSNuQWEeS4y5krJijsMA" name="FinalNode" incoming="_Tdt5QeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdtSN-QWEeS4y5krJijsMA" name="testMethod();" incoming="_Tdt5QOQWEeS4y5krJijsMA" outgoing="_Tdt5QeQWEeS4y5krJijsMA"/>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Tcl34OQWEeS4y5krJijsMA" name="testMethod" visibility="public" method="_TdrdAOQWEeS4y5krJijsMA"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TcslkOQWEeS4y5krJijsMA" name="testMethodWithParameters" visibility="public" method="_TdsEE-QWEeS4y5krJijsMA">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_TcslkeQWEeS4y5krJijsMA" name="test">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TcwP8OQWEeS4y5krJijsMA" name="testMethodWithReturn" visibility="public" method="_TdsrJOQWEeS4y5krJijsMA">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_TcwP8eQWEeS4y5krJijsMA" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TcyFIOQWEeS4y5krJijsMA" name="testCallMethod" visibility="public" method="_TdtSNOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcJzAeQWEeS4y5krJijsMA" name="TestList" visibility="public">
+      <elementImport xmi:type="uml:ElementImport" xmi:id="_Tc2WkuQWEeS4y5krJijsMA" importedElement="_Tc2WkeQWEeS4y5krJijsMA" visibility="private"/>
+      <elementImport xmi:type="uml:ElementImport" xmi:id="_Tc4y0eQWEeS4y5krJijsMA" importedElement="_Tc4y0OQWEeS4y5krJijsMA" visibility="private"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Tc8dMOQWEeS4y5krJijsMA" name="testList" visibility="public" isOrdered="true" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Tc8dMeQWEeS4y5krJijsMA" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TdAuoOQWEeS4y5krJijsMA" name="testCollection" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TdAuoeQWEeS4y5krJijsMA" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcKaEOQWEeS4y5krJijsMA" name="TestVariables" visibility="public">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TdDx8OQWEeS4y5krJijsMA" name="var" visibility="public" isStatic="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TdFAEOQWEeS4y5krJijsMA" name="testClassVar" visibility="public" type="_TcJL8eQWEeS4y5krJijsMA" association="_TdeoseQWEeS4y5krJijsMA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TdIqcOQWEeS4y5krJijsMA" name="var1" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TdLGsOQWEeS4y5krJijsMA" name="var2" visibility="protected">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TdOKAOQWEeS4y5krJijsMA" name="var3" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcKaEeQWEeS4y5krJijsMA" name="TestImport" visibility="public">
+      <elementImport xmi:type="uml:ElementImport" xmi:id="_TdOxEOQWEeS4y5krJijsMA" importedElement="_TcH90eQWEeS4y5krJijsMA" visibility="private"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdvucOQWEeS4y5krJijsMA" name="testMethod" specification="_TdQmQOQWEeS4y5krJijsMA" node="_TdvuceQWEeS4y5krJijsMA _TdvucuQWEeS4y5krJijsMA _Tdvuc-QWEeS4y5krJijsMA _TdvuduQWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdvudOQWEeS4y5krJijsMA" name="InitNode_TestFor test=new TestFor();" target="_Tdvuc-QWEeS4y5krJijsMA" source="_TdvuceQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdwVgOQWEeS4y5krJijsMA" name="TestFor test=new TestFor();_test.testFor();" target="_TdvuduQWEeS4y5krJijsMA" source="_Tdvuc-QWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdwVgeQWEeS4y5krJijsMA" name="test.testFor();_FinalNode" target="_TdvucuQWEeS4y5krJijsMA" source="_TdvuduQWEeS4y5krJijsMA"/>
+        <variable xmi:type="uml:Variable" xmi:id="_TdvudeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdvuceQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdvudOQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdvucuQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdwVgeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:AddVariableValueAction" xmi:id="_Tdvuc-QWEeS4y5krJijsMA" name="TestFor test=new TestFor();" incoming="_TdvudOQWEeS4y5krJijsMA" outgoing="_TdwVgOQWEeS4y5krJijsMA" variable="_TdvudeQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdvuduQWEeS4y5krJijsMA" name="test.testFor();" incoming="_TdwVgOQWEeS4y5krJijsMA" outgoing="_TdwVgeQWEeS4y5krJijsMA"/>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TdQmQOQWEeS4y5krJijsMA" name="testMethod" visibility="public" method="_TdvucOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcLBIOQWEeS4y5krJijsMA" name="TestImplements" visibility="public">
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_TdSbcOQWEeS4y5krJijsMA" name="testStructural.TestInterface" client="_TcLBIOQWEeS4y5krJijsMA" supplier="_TcLBIeQWEeS4y5krJijsMA" contract="_TcLBIeQWEeS4y5krJijsMA"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_Tdw8kOQWEeS4y5krJijsMA" name="testMethod" specification="_TdU3sOQWEeS4y5krJijsMA" node="_Tdw8keQWEeS4y5krJijsMA _Tdw8kuQWEeS4y5krJijsMA _Tdw8k-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdw8leQWEeS4y5krJijsMA" name="InitNode_System.out.println(&quot;Test the implements&quot;);" target="_Tdw8k-QWEeS4y5krJijsMA" source="_Tdw8keQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_Tdw8luQWEeS4y5krJijsMA" name="System.out.println(&quot;Test the i_FinalNode" target="_Tdw8kuQWEeS4y5krJijsMA" source="_Tdw8k-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_Tdw8keQWEeS4y5krJijsMA" name="InitNode" outgoing="_Tdw8leQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_Tdw8kuQWEeS4y5krJijsMA" name="FinalNode" incoming="_Tdw8luQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_Tdw8k-QWEeS4y5krJijsMA" name="System.out.println(&quot;Test the implements&quot;);" incoming="_Tdw8leQWEeS4y5krJijsMA" outgoing="_Tdw8luQWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_Tdw8lOQWEeS4y5krJijsMA" name="&quot;Test the implements&quot;"/>
+        </node>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TdU3sOQWEeS4y5krJijsMA" name="testMethod" visibility="public" method="_Tdw8kOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_TcLBIeQWEeS4y5krJijsMA" name="TestInterface" visibility="public">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TdXT8OQWEeS4y5krJijsMA" name="testMethod" visibility="public"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcLBIuQWEeS4y5krJijsMA" name="TestExtends" visibility="public">
+      <generalization xmi:type="uml:Generalization" xmi:id="_TdYiEOQWEeS4y5krJijsMA" general="_TcJL8uQWEeS4y5krJijsMA"/>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_TdyKsOQWEeS4y5krJijsMA" name="method1" specification="_TdaXQOQWEeS4y5krJijsMA" node="_TdyKseQWEeS4y5krJijsMA _TdyKsuQWEeS4y5krJijsMA _TdyKs-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdyxweQWEeS4y5krJijsMA" name="InitNode_System.out.println(&quot;Test the extends&quot;);" target="_TdyKs-QWEeS4y5krJijsMA" source="_TdyKseQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdyxwuQWEeS4y5krJijsMA" name="System.out.println(&quot;Test the e_FinalNode" target="_TdyKsuQWEeS4y5krJijsMA" source="_TdyKs-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_TdyKseQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdyxweQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_TdyKsuQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdyxwuQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_TdyKs-QWEeS4y5krJijsMA" name="System.out.println(&quot;Test the extends&quot;);" incoming="_TdyxweQWEeS4y5krJijsMA" outgoing="_TdyxwuQWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_TdyxwOQWEeS4y5krJijsMA" name="&quot;Test the extends&quot;"/>
+        </node>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TdaXQOQWEeS4y5krJijsMA" name="method1" visibility="public" method="_TdyKsOQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_TcLoMOQWEeS4y5krJijsMA" name="TestEnum" visibility="public">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_TdcMcOQWEeS4y5krJijsMA" name="TEST1">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_TdcMceQWEeS4y5krJijsMA"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_TdcMcuQWEeS4y5krJijsMA" name="TEST2">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_TdczgOQWEeS4y5krJijsMA"/>
+      </ownedLiteral>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_TdczgeQWEeS4y5krJijsMA" name="TEST3">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_TdczguQWEeS4y5krJijsMA"/>
+      </ownedLiteral>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_TdeBoOQWEeS4y5krJijsMA" name="testStructural_util" client="_TcJL8OQWEeS4y5krJijsMA" supplier="_Tc2WkOQWEeS4y5krJijsMA"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_TdeosOQWEeS4y5krJijsMA" name="testStructural_testActivity" client="_TcJL8OQWEeS4y5krJijsMA" supplier="_TcHWwOQWEeS4y5krJijsMA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_TdeoseQWEeS4y5krJijsMA" name="testClassVar_target" memberEnd="_TdFAEOQWEeS4y5krJijsMA _TdeosuQWEeS4y5krJijsMA">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_TdeosuQWEeS4y5krJijsMA" name="target" type="_TcKaEOQWEeS4y5krJijsMA" association="_TdeoseQWEeS4y5krJijsMA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_TcJL8eQWEeS4y5krJijsMA" name="TestClass" visibility="public">
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_Tdpn0OQWEeS4y5krJijsMA" name="methodTest" specification="_TciNgOQWEeS4y5krJijsMA" node="_Tdpn0eQWEeS4y5krJijsMA _Tdpn0uQWEeS4y5krJijsMA _Tdpn0-QWEeS4y5krJijsMA">
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdqO4OQWEeS4y5krJijsMA" name="InitNode_System.out.println(&quot;Test the class&quot;);" target="_Tdpn0-QWEeS4y5krJijsMA" source="_Tdpn0eQWEeS4y5krJijsMA"/>
+        <edge xmi:type="uml:ControlFlow" xmi:id="_TdqO4eQWEeS4y5krJijsMA" name="System.out.println(&quot;Test the c_FinalNode" target="_Tdpn0uQWEeS4y5krJijsMA" source="_Tdpn0-QWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:InitialNode" xmi:id="_Tdpn0eQWEeS4y5krJijsMA" name="InitNode" outgoing="_TdqO4OQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:ActivityFinalNode" xmi:id="_Tdpn0uQWEeS4y5krJijsMA" name="FinalNode" incoming="_TdqO4eQWEeS4y5krJijsMA"/>
+        <node xmi:type="uml:CallOperationAction" xmi:id="_Tdpn0-QWEeS4y5krJijsMA" name="System.out.println(&quot;Test the class&quot;);" incoming="_TdqO4OQWEeS4y5krJijsMA" outgoing="_TdqO4eQWEeS4y5krJijsMA">
+          <argument xmi:type="uml:InputPin" xmi:id="_Tdpn1OQWEeS4y5krJijsMA" name="&quot;Test the class&quot;"/>
+        </node>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TciNgOQWEeS4y5krJijsMA" name="methodTest" visibility="public" method="_Tdpn0OQWEeS4y5krJijsMA"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Tc1vgOQWEeS4y5krJijsMA" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_Tc2WkOQWEeS4y5krJijsMA" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Tc2WkeQWEeS4y5krJijsMA" name="ArrayList"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_Tc4y0OQWEeS4y5krJijsMA" name="HashSet"/>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

@@ -43,6 +43,7 @@
         <module>../../org.eclipse.umlgen.reverse.c/releng/org.eclipse.umlgen.reverse.c.build/integration</module>
         <module>../../org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.gen.rtsj.build/integration</module>
         <module>../../org.eclipse.umlgen.gen.embedded.c/releng/org.eclipse.umlgen.gen.embedded.c.build/integration</module>
+        <module>../../org.eclipse.umlgen.reverse.java/releng/org.eclipse.umlgen.reverse.java.build/integration</module>
         
         <module>../org.eclipse.umlgen.repository</module>
    </modules>

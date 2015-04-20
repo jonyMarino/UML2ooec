@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="UML Generators Documentation" link_to="../org.eclipse.umlgen.doc/help/toc.xml#org.eclipse.umlgen.doc.anchor" topic="pages/index.html">
+   <topic label="Java reversing">
+      <topic href="pages/guide/user_documentation.htm" label="User documentation">
+      </topic>
+      <anchor id="org.eclipse.umlgen.reverse.java.doc.features.anchor"/>
+      <topic href="pages/test/test_procedure.htm" label="Test Procedure">
+      </topic>
+      <anchor id="org.eclipse.umlgen.reverse.java.doc.anchor"/>
+   </topic>
+</toc> 

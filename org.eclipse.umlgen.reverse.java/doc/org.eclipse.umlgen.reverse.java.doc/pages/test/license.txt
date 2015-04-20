@@ -1,0 +1,22 @@
+******************************************************************************************************
+The following images are covered by 
+Copyright (c) 2015 Atos and others.
+All rights reserved. They are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ 
+pages/test/test_procedure_fichiers/image001.jpg
+pages/test/test_procedure_fichiers/image002.jpg
+pages/test/test_procedure_fichiers/image003.jpg
+pages/test/test_procedure_fichiers/image004.jpg
+pages/test/test_procedure_fichiers/image005.jpg
+pages/test/test_procedure_fichiers/image006.jpg
+pages/test/test_procedure_fichiers/image007.jpg
+pages/test/test_procedure_fichiers/image008.jpg
+pages/test/test_procedure_fichiers/image009.jpg
+pages/test/test_procedure_fichiers/image010.jpg
+pages/test/test_procedure_fichiers/image011.jpg
+pages/test/test_procedure_fichiers/image012.jpg
+pages/test/test_procedure_fichiers/image013.jpg
+pages/test/test_procedure_fichiers/image014.jpg
+pages/test/test_procedure_fichiers/image015.jpg
+******************************************************************************************************

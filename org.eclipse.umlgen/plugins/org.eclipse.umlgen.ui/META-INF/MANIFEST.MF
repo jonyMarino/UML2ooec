@@ -12,3 +12,4 @@ Require-Bundle: org.eclipse.ui.workbench,
 Export-Package: org.eclipse.umlgen.ui.properties
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin

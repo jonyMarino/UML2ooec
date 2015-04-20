@@ -1,0 +1,43 @@
+WARNING - 10:55:17: Creating types 
+WARNING - 10:55:17: Initializing types
+WARNING - 10:55:17: Generic post-process : Creating usages and associations
+WARNING - 10:55:17: Generic post-process : Creating activities
+WARNING - 10:55:17: Saving .uml resource: 20150416_105517
+WARNING - 10:55:17: Finished saving .uml resource: 20150416_105517
+ERROR - 10:55:17: Multiple exceptions
+----- exceptions : ----------
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor'
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor'
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.services.EditorLifecycleManager'
+unknown : No service found under key 'org.eclipse.papyrus.infra.core.services.EditorLifecycleManager'
+org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService : No service registered under 'interface org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor'
+org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService : Bad state for service 'org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService'. Expected 'initialized' found 'error'.
+----------------------------- 
+
+WARNING - 10:55:17: Creating class diagrams
+WARNING - 10:55:17: Creating activity diagrams
+WARNING - 10:55:17:    class diagram for packageImports
+WARNING - 10:55:17: Saving .notation resource
+WARNING - 10:55:17: Finished saving .notation resource
+WARNING - 10:55:17: Saving .di resource
+WARNING - 10:55:17: Finished saving .di resource
+WARNING - 10:55:17:    class diagram for ProjectTest
+WARNING - 10:55:17:    class diagram for testActivity
+WARNING - 10:55:17:    class diagram for testPackage
+WARNING - 10:55:17:    class diagram for testStructural
+WARNING - 10:55:17:    class diagram for java
+WARNING - 10:55:17:    class diagram for util
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:17:    activity diagram for ProjectTest
+WARNING - 10:55:18:    activity diagram for ProjectTest
+WARNING - 10:55:18:    activity diagram for ProjectTest
+WARNING - 10:55:18:    activity diagram for ProjectTest
+WARNING - 10:55:18:    activity diagram for ProjectTest
+WARNING - 10:55:18:    activity diagram for ProjectTest
+WARNING - 10:55:18:    activity diagram for ProjectTest
