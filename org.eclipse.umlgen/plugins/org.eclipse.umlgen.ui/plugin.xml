@@ -6,11 +6,8 @@
       <page
             class="org.eclipse.umlgen.ui.properties.UMLGeneratorsProperties"
             id="org.eclipse.umlgen.ui.properties"
-            name="UML Generators">
-         <filter
-               name="open"
-               value="true">
-         </filter>
+            name="UML Generators"
+            nameFilter="*.uml">
       </page>
    </extension>
    <extension
