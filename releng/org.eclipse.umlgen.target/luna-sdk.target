@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="UML Generators based on Luna SDK" sequenceNumber="1421161946">
+<target name="UML Generators based on Luna SDK" sequenceNumber="1434977216">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.1.v20140909-1633"/>
+      <unit id="org.eclipse.core.runtime.feature.feature.group" version="1.1.2.v20150203-1939"/>
       <unit id="org.eclipse.draw2d.feature.group" version="3.9.101.201408150207"/>
       <unit id="org.eclipse.gef.feature.group" version="3.9.101.201408150207"/>
-      <unit id="org.eclipse.platform.source.feature.group" version="4.4.0.v20140925-0400"/>
+      <unit id="org.eclipse.platform.source.feature.group" version="4.4.2.v20150204-1700"/>
       <unit id="org.eclipse.acceleo.feature.group" version="3.5.1.201409021433"/>
-      <unit id="org.eclipse.uml2.feature.group" version="5.0.0.v20140910-1354"/>
-      <unit id="org.eclipse.cdt.feature.group" version="8.5.0.201409172108"/>
+      <unit id="org.eclipse.uml2.feature.group" version="5.0.2.v20150202-0947"/>
+      <unit id="org.eclipse.cdt.feature.group" version="8.6.0.201502131403"/>
       <unit id="org.junit" version="4.11.0.v201303080030"/>
-      <unit id="org.eclipse.emf.compare" version="3.1.1.201408191310"/>
-      <unit id="org.eclipse.emf.ecore.feature.group" version="2.10.1.v20140901-1043"/>
+      <unit id="org.eclipse.emf.compare" version="3.1.2.201501201328"/>
+      <unit id="org.eclipse.emf.ecore.feature.group" version="2.10.2.v20150123-0348"/>
       <unit id="org.eclipse.ocl.feature.group" version="3.4.2.v20140725-2242"/>
-      <unit id="org.eclipse.jdt.feature.group" version="3.10.0.v20140925-0400"/>
+      <unit id="org.eclipse.jdt.feature.group" version="3.10.1.v20150204-1700"/>
+      <unit id="org.eclipse.papyrus.sdk.feature.feature.group" version="0.0.0"/>
       <repository location="http://download.eclipse.org/releases/luna"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">

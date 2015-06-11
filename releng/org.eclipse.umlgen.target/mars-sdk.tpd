@@ -11,6 +11,8 @@ location "http://download.eclipse.org/releases/mars" {
 	org.eclipse.acceleo.feature.group lazy
 	
 	org.eclipse.cdt.feature.group lazy
+	
+	org.eclipse.papyrus.sdk.feature.feature.group lazy
 }
 
 location "http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/" {

@@ -16,6 +16,7 @@ location "http://download.eclipse.org/releases/luna" {
 	org.eclipse.emf.ecore.feature.group
 	org.eclipse.ocl.feature.group
 	org.eclipse.jdt.feature.group
+	org.eclipse.papyrus.sdk.feature.feature.group lazy
 }
 
 location "http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/" {

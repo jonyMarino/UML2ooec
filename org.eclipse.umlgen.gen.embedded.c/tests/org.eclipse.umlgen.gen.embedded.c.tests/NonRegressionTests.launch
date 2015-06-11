@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.umlgen.gen.embedded.c.ui.launchConfigurationType">
+<stringAttribute key="author" value="Johan Hardy"/>
+<stringAttribute key="copyright" value="Spacebel SA"/>
+<booleanAttribute key="generate_svn_date" value="true"/>
+<booleanAttribute key="generate_svn_id" value="true"/>
+<booleanAttribute key="generate_traceability" value="true"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.eclipse.umlgen.gen.embedded.c.tests/models/NonRegressionModel.uml"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="output_folder_path" value="/org.eclipse.umlgen.gen.embedded.c.tests/src-gen"/>
+<stringAttribute key="uml_model_path" value="/org.eclipse.umlgen.gen.embedded.c.tests/models/NonRegressionModel.uml"/>
+<stringAttribute key="version" value="1.0.0"/>
+</launchConfiguration>

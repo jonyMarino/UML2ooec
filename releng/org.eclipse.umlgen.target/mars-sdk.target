@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="UML Generators based on Mars SDK" sequenceNumber="1424191797">
+<target name="UML Generators based on Mars SDK" sequenceNumber="1434728829">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.platform.sdk" version="0.0.0"/>
@@ -9,6 +9,7 @@
       <unit id="org.eclipse.uml2.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.acceleo.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.cdt.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.papyrus.sdk.feature.feature.group" version="0.0.0"/>
       <repository location="http://download.eclipse.org/releases/mars"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
