@@ -73,6 +73,7 @@ export TARGET_ROOT="$UMLGEN_UPDATES_ROOT/$BUILD_TYPE"
 # The folder for this particular build
 export TARGET_DIR="$TARGET_ROOT/$FULL_VERSION/$PLATFORM"
 
+
 # The root folder where all the builds of the same type as this one
 # are published
 export JARS_TARGET_ROOT="$UMLGEN_JARS_ROOT/$BUILD_TYPE"
@@ -80,8 +81,10 @@ export JARS_TARGET_ROOT="$UMLGEN_JARS_ROOT/$BUILD_TYPE"
 # The folder for this particular build
 export JARS_TARGET_DIR="$JARS_TARGET_ROOT/$FULL_VERSION"
 
+
 # The folder for the related "third parties" jars on each component
 export RTSJ_JARS_TARGET_DIR="$JARS_TARGET_DIR/rtsj"
+
 
 ######################################################################
 # Publish the build
@@ -92,10 +95,16 @@ mkdir -p "$TARGET_DIR"
 # The actual publication of the p2 repo produced by the build
 cp -a "$WORKSPACE"/releng/org.eclipse.umlgen.repository/target/repository/* "$TARGET_DIR"
 
+##############################
+# PUBLISH THE RTSJ FRAMEWORK 
+
 # Ensure the RTSJ jars folder exists
 mkdir -p "$RTSJ_JARS_TARGET_DIR"
 # The actual publication of the p2 repo produced by the build
-cp -a "$WORKSPACE"/org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.rtsj.frameworks.repository/target/repository/plugins/* "$RTSJ_JARS_TARGET_DIR"
+cp -a "$WORKSPACE"/org.eclipse.umlgen.gen.rtsj/releng/org.eclipse.umlgen.rtsj.frameworks.repository/target/repository/* "$RTSJ_JARS_TARGET_DIR"
+
+#
+##############################
 
 # Publish a dump of the build environment, may be useful to debug
 env | sort > "$TARGET_DIR/build_env.txt"
@@ -118,7 +127,7 @@ create_redirect() {
     <property name='p2.timestamp' value='$P2_TIMESTAMP'/>
   </properties>
   <children size='1'>
-    <child location='http://download.eclipse.org/umlgen/updates/$TO'/>
+    <child location='http://download.eclipse.org/umlgen/$TO'/>
   </children>
 </repository>
 EOF
@@ -131,7 +140,7 @@ EOF
     <property name='p2.timestamp' value='$P2_TIMESTAMP'/>
   </properties>
   <children size='1'>
-    <child location='http://download.eclipse.org/umlgen/updates/$TO'/>
+    <child location='http://download.eclipse.org/umlgen/$TO'/>
   </children>
 </repository>
 EOF
@@ -139,10 +148,25 @@ EOF
 }
 
 # First, a link for the $VERSION (e.g. "0.9.0/luna" => "0.9.0-NYYYYMMDD-HHMM/luna")
-create_redirect "$TARGET_ROOT/$VERSION/$PLATFORM" "$BUILD_TYPE/$FULL_VERSION/$PLATFORM"
+create_redirect "$TARGET_ROOT/$VERSION/$PLATFORM" "updates/$BUILD_TYPE/$FULL_VERSION/$PLATFORM"
 # Also create a link for the $STREAM (e.g. "0.9/luna" => "0.9.1-NYYYYMMDD-HHMM/luna")
-create_redirect "$TARGET_ROOT/$STREAM/$PLATFORM" "$BUILD_TYPE/$FULL_VERSION/$PLATFORM"
+create_redirect "$TARGET_ROOT/$STREAM/$PLATFORM" "updates/$BUILD_TYPE/$FULL_VERSION/$PLATFORM"
 # Also update the global "latest" links if we are building master
 if [ "master" = "$GIT_BRANCH" ]; then
-    create_redirect "$TARGET_ROOT/latest/$PLATFORM" "$BUILD_TYPE/$FULL_VERSION/$PLATFORM"
+    create_redirect "$TARGET_ROOT/latest/$PLATFORM" "updates/$BUILD_TYPE/$FULL_VERSION/$PLATFORM"
 fi
+
+###################################
+# REDIRECT FOR THE RTSJ FRAMEWORK 
+
+# First, a link for the $VERSION (e.g. "0.9.0/rtsj" => "0.9.0-NYYYYMMDD-HHMM/rtsj")
+create_redirect "$JARS_TARGET_ROOT/$VERSION/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
+# Also create a link for the $STREAM (e.g. "0.9/rtsj" => "0.9.1-NYYYYMMDD-HHMM/rtsj")
+create_redirect "$JARS_TARGET_ROOT/$STREAM/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
+# Also update the global "latest" links if we are building master
+if [ "master" = "$GIT_BRANCH" ]; then
+    create_redirect "$JARS_TARGET_ROOT/latest/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
+fi
+
+#
+###################################
