@@ -147,6 +147,24 @@ EOF
     
 }
 
+# Create a index.htm to setup a redirect for jars
+create_redirectJars() {
+    FROM="$1"
+    TO="$2"
+
+    mkdir -p "$FROM"
+    cat > "$FROM/index.htm" <<EOF
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; URL=http://download.eclipse.org/umlgen/$TO/plugins/?d">
+  </head>
+  <body>
+  </body>
+</html> 
+EOF
+    
+}
+
 # First, a link for the $VERSION (e.g. "0.9.0/luna" => "0.9.0-NYYYYMMDD-HHMM/luna")
 create_redirect "$TARGET_ROOT/$VERSION/$PLATFORM" "updates/$BUILD_TYPE/$FULL_VERSION/$PLATFORM"
 # Also create a link for the $STREAM (e.g. "0.9/luna" => "0.9.1-NYYYYMMDD-HHMM/luna")
@@ -160,12 +178,12 @@ fi
 # REDIRECT FOR THE RTSJ FRAMEWORK 
 
 # First, a link for the $VERSION (e.g. "0.9.0/rtsj" => "0.9.0-NYYYYMMDD-HHMM/rtsj")
-create_redirect "$JARS_TARGET_ROOT/$VERSION/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
+create_redirectJars "$JARS_TARGET_ROOT/$VERSION/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
 # Also create a link for the $STREAM (e.g. "0.9/rtsj" => "0.9.1-NYYYYMMDD-HHMM/rtsj")
-create_redirect "$JARS_TARGET_ROOT/$STREAM/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
+create_redirectJars "$JARS_TARGET_ROOT/$STREAM/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
 # Also update the global "latest" links if we are building master
 if [ "master" = "$GIT_BRANCH" ]; then
-    create_redirect "$JARS_TARGET_ROOT/latest/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
+    create_redirectJars "$JARS_TARGET_ROOT/latest/rtsj" "jars/$BUILD_TYPE/$FULL_VERSION/rtsj"
 fi
 
 #
