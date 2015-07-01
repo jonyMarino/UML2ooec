@@ -92,12 +92,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.umlgen.gen.autojava.thirdparty"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
          id="org.eclipse.umlgen.doc"
          download-size="0"
          install-size="0"
@@ -109,5 +103,11 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="org.eclipse.umlgen.rtsj.profile"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>

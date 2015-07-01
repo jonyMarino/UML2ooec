@@ -29,7 +29,7 @@
 	<module>../../../plugins/org.eclipse.umlgen.dsl.eth.editor</module>
     <module>../../../plugins/org.eclipse.umlgen.gen.autojava</module>
 	<module>../../../plugins/org.eclipse.umlgen.gen.autojava.launcher</module>
-	<module>../../../plugins/org.eclipse.umlgen.gen.autojava.thirdparty</module>
+	<module>../../../plugins/org.eclipse.umlgen.rtsj.profile</module>
 	<module>../../../doc/org.eclipse.umlgen.gen.autojava.doc</module>
 	<module>../../../features/org.eclipse.umlgen.gen.autojava.feature</module>
     <module>../../../plugins/org.eclipse.umlgen.gen.rtsj</module>
