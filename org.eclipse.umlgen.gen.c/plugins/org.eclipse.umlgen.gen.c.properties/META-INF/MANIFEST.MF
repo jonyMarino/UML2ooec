@@ -10,4 +10,4 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="3.9.0",
  org.eclipse.ui;bundle-version="3.106.0",
  org.eclipse.ui.ide;bundle-version="3.10.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.umlgen.gen.c.properties
+Export-Package: org.eclipse.umlgen.gen.c.properties;x-internal:=true

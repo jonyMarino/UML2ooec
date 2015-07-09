@@ -13,8 +13,8 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="3.9.0",
  org.eclipse.umlgen.reverse.c;bundle-version="0.9.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.umlgen.c.modeler.interactions,
- org.eclipse.umlgen.c.modeler.interactions.model,
- org.eclipse.umlgen.c.modeler.interactions.templates
+Export-Package: org.eclipse.umlgen.c.modeler.interactions;x-internal:=true,
+ org.eclipse.umlgen.c.modeler.interactions.model;x-internal:=true,
+ org.eclipse.umlgen.c.modeler.interactions.templates;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

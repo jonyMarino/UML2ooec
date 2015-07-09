@@ -16,4 +16,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Export-Package: org.eclipse.umlgen.gen.autojava.launcher.popupMenus
+Export-Package: org.eclipse.umlgen.gen.autojava.launcher.popupMenus;x-internal:=true

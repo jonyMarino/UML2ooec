@@ -16,7 +16,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Export-Package: org.eclipse.umlgen.gen.autojava,
- org.eclipse.umlgen.gen.autojava.main,
- org.eclipse.umlgen.gen.autojava.services
+Export-Package: org.eclipse.umlgen.gen.autojava;x-internal:=true,
+ org.eclipse.umlgen.gen.autojava.main;x-internal:=true,
+ org.eclipse.umlgen.gen.autojava.services;x-internal:=true
 

@@ -3,5 +3,5 @@ Bundle-ManifestVersion: 2
 Bundle-Name: UMLGen RTSJ Annotations (Incubation)
 Bundle-SymbolicName: org.eclipse.umlgen.rtsj.annotations
 Bundle-Version: 0.9.0.qualifier
-Export-Package: org.eclipse.umlgen.rtsj.annotations
+Export-Package: org.eclipse.umlgen.rtsj.annotations;x-internal:=true
 Bundle-Vendor: Eclipse UML Generators

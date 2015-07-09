@@ -18,11 +18,11 @@ Require-Bundle: org.eclipse.ui,
  com.google.guava,
  org.eclipse.emf.common
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.umlgen.reverse.java,
- org.eclipse.umlgen.reverse.java.internal,
- org.eclipse.umlgen.reverse.java.internal.handler,
- org.eclipse.umlgen.reverse.java.internal.wizards,
- org.eclipse.umlgen.reverse.java.logging,
- org.eclipse.umlgen.reverse.java.preferencesStore,
- org.eclipse.umlgen.reverse.java.properties
+Export-Package: org.eclipse.umlgen.reverse.java;x-internal:=true,
+ org.eclipse.umlgen.reverse.java.internal;x-internal:=true,
+ org.eclipse.umlgen.reverse.java.internal.handler;x-internal:=true,
+ org.eclipse.umlgen.reverse.java.internal.wizards;x-internal:=true,
+ org.eclipse.umlgen.reverse.java.logging;x-internal:=true,
+ org.eclipse.umlgen.reverse.java.preferencesStore;x-internal:=true,
+ org.eclipse.umlgen.reverse.java.properties;x-internal:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

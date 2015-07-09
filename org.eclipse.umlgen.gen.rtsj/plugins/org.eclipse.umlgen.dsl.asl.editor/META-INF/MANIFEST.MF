@@ -8,9 +8,9 @@ Bundle-Activator: org.eclipse.umlgen.dsl.asl.presentation.AslEditorPlugin$Implem
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.umlgen.dsl.asl.presentation,
- org.eclipse.umlgen.dsl.asl.presentation.custom,
- org.eclipse.umlgen.dsl.asl.presentation.elements
+Export-Package: org.eclipse.umlgen.dsl.asl.presentation;x-internal:=true,
+ org.eclipse.umlgen.dsl.asl.presentation.custom;x-internal:=true,
+ org.eclipse.umlgen.dsl.asl.presentation.elements;x-internal:=true
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0",
  org.eclipse.core.resources;bundle-version="3.9.0";visibility:=reexport,
  org.eclipse.umlgen.dsl.asl.edit;bundle-version="0.9.0";visibility:=reexport,

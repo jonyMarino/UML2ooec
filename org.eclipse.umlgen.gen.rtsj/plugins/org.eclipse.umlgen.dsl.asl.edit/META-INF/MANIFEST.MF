@@ -8,10 +8,10 @@ Bundle-Activator: org.eclipse.umlgen.dsl.asl.provider.AslEditPlugin$Implementati
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.umlgen.dsl.asl.configurations.provider,
- org.eclipse.umlgen.dsl.asl.provider,
- org.eclipse.umlgen.dsl.asl.provider.custom,
- org.eclipse.umlgen.dsl.asl.provider.custom.util
+Export-Package: org.eclipse.umlgen.dsl.asl.configurations.provider;x-internal:=true,
+ org.eclipse.umlgen.dsl.asl.provider;x-internal:=true,
+ org.eclipse.umlgen.dsl.asl.provider.custom;x-internal:=true,
+ org.eclipse.umlgen.dsl.asl.provider.custom.util;x-internal:=true
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0",
  org.eclipse.umlgen.dsl.asl;bundle-version="0.9.0";visibility:=reexport,
  org.eclipse.emf.edit;bundle-version="2.10.1";visibility:=reexport,
