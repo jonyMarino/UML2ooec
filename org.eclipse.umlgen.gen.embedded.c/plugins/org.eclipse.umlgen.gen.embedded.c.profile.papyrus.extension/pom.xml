@@ -26,5 +26,5 @@
   <version>0.9.0-SNAPSHOT</version> <!-- This version should match the version of your project in the MANIFEST.MF-->
   <packaging>eclipse-plugin</packaging>
 
-  <name>UMLGen Embedded C Profile (Papyrus Extension)</name>
+  <name>Eclipse UML Embedded C Profile (Papyrus Extension)</name>
 </project>

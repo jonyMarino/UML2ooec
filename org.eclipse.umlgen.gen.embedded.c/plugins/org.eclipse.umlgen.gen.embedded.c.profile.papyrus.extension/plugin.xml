@@ -21,4 +21,11 @@
             provider="Eclipse UML Generators">
       </profile>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.context">
+      <context
+            contextModel="properties/embedded_C.ctx"
+            isCustomizable="true">
+      </context>
+   </extension>
 </plugin>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+    xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang"
+    xmlns="http://www.eclipse.org/xwt/presentation"
+    xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
+    <Composite.layout>
+        <ppel:PropertiesLayout></ppel:PropertiesLayout>
+    </Composite.layout>
+    <ppe:StringEditor property="UML:NamedElement:name"
+        input="{Binding}"></ppe:StringEditor>
+    <Composite>
+        <Composite.layout>
+            <ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+        </Composite.layout>
+        <ppe:EnumRadio input="{Binding}" property="embedded_C:Constant:Condition"></ppe:EnumRadio>
+    </Composite>
+    <Composite>
+        <Composite.layout>
+            <ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+        </Composite.layout>
+        <ppe:StringMultiline input="{Binding}"
+            property="embedded_C:Constant:Declaration"></ppe:StringMultiline>
+    </Composite>
+</Composite>

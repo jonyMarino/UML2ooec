@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="embedded_C">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#/"/>
+  <tabs label="Embedded C" id="embedded_c" priority="11">
+    <afterTab href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@tabs.2"/>
+    <sections name="Single Attribute" sectionFile="ui/SingleAttribute.xwt">
+      <widget href="ui/SingleAttribute.xwt#/"/>
+    </sections>
+    <sections name="Multiple Attribute" sectionFile="ui/MultipleAttribute.xwt">
+      <widget href="ui/MultipleAttribute.xwt#/"/>
+    </sections>
+    <sections name="Single Value" sectionFile="ui/SingleValue.xwt">
+      <widget href="ui/SingleValue.xwt#/"/>
+    </sections>
+    <sections name="Multiple Value" sectionFile="ui/MultipleValue.xwt">
+      <widget href="ui/MultipleValue.xwt#/"/>
+    </sections>
+    <sections name="Single Typedef" sectionFile="ui/SingleTypedef.xwt">
+      <widget href="ui/SingleTypedef.xwt#/"/>
+    </sections>
+    <sections name="Multiple Typedef" sectionFile="ui/MultipleTypedef.xwt">
+      <widget href="ui/MultipleTypedef.xwt#/"/>
+    </sections>
+    <sections name="Single Singleton" sectionFile="ui/SingleSingleton.xwt">
+      <widget href="ui/SingleSingleton.xwt#/"/>
+    </sections>
+    <sections name="Multiple Singleton" sectionFile="ui/MultipleSingleton.xwt">
+      <widget href="ui/MultipleSingleton.xwt#/"/>
+    </sections>
+    <sections name="Single asm" sectionFile="ui/Singleasm.xwt">
+      <widget href="ui/Singleasm.xwt#/"/>
+    </sections>
+    <sections name="Multiple asm" sectionFile="ui/Multipleasm.xwt">
+      <widget href="ui/Multipleasm.xwt#/"/>
+    </sections>
+    <sections name="Single Pointer" sectionFile="ui/SinglePointer.xwt">
+      <widget href="ui/SinglePointer.xwt#/"/>
+    </sections>
+    <sections name="Multiple Pointer" sectionFile="ui/MultiplePointer.xwt">
+      <widget href="ui/MultiplePointer.xwt#/"/>
+    </sections>
+    <sections name="Single Array" sectionFile="ui/SingleArray.xwt">
+      <widget href="ui/SingleArray.xwt#/"/>
+    </sections>
+    <sections name="Multiple Array" sectionFile="ui/MultipleArray.xwt">
+      <widget href="ui/MultipleArray.xwt#/"/>
+    </sections>
+    <sections name="Single UsesStaticMethods" sectionFile="ui/SingleUsesStaticMethods.xwt">
+      <widget href="ui/SingleUsesStaticMethods.xwt#/"/>
+    </sections>
+    <sections name="Multiple UsesStaticMethods" sectionFile="ui/MultipleUsesStaticMethods.xwt">
+      <widget href="ui/MultipleUsesStaticMethods.xwt#/"/>
+    </sections>
+    <sections name="Single Constant" sectionFile="ui/SingleConstant.xwt">
+      <widget href="ui/SingleConstant.xwt#/"/>
+    </sections>
+    <sections name="Multiple Constant" sectionFile="ui/MultipleConstant.xwt">
+      <widget href="ui/MultipleConstant.xwt#/"/>
+    </sections>
+    <sections name="Single Struct" sectionFile="ui/SingleStruct.xwt">
+      <widget href="ui/SingleStruct.xwt#/"/>
+    </sections>
+    <sections name="Multiple Struct" sectionFile="ui/MultipleStruct.xwt">
+      <widget href="ui/MultipleStruct.xwt#/"/>
+    </sections>
+    <sections name="Single Requirement" sectionFile="ui/SingleRequirement.xwt">
+      <widget href="ui/SingleRequirement.xwt#/"/>
+    </sections>
+    <sections name="Multiple Requirement" sectionFile="ui/MultipleRequirement.xwt">
+      <widget href="ui/MultipleRequirement.xwt#/"/>
+    </sections>
+    <sections name="Single Object" sectionFile="ui/SingleObject.xwt">
+      <widget href="ui/SingleObject.xwt#/"/>
+    </sections>
+    <sections name="Multiple Object" sectionFile="ui/MultipleObject.xwt">
+      <widget href="ui/MultipleObject.xwt#/"/>
+    </sections>
+    <sections name="Single Union" sectionFile="ui/SingleUnion.xwt">
+      <widget href="ui/SingleUnion.xwt#/"/>
+    </sections>
+    <sections name="Multiple Union" sectionFile="ui/MultipleUnion.xwt">
+      <widget href="ui/MultipleUnion.xwt#/"/>
+    </sections>
+    <sections name="Single Inline" sectionFile="ui/SingleInline.xwt">
+      <widget href="ui/SingleInline.xwt#/"/>
+    </sections>
+    <sections name="Multiple Inline" sectionFile="ui/MultipleInline.xwt">
+      <widget href="ui/MultipleInline.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single Attribute" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAttribute">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Attribute"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Attribute" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAttribute">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Attribute"/>
+    </constraints>
+  </views>
+  <views name="Single Value" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleValue">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Value"/>
+    </constraints>
+  </views>
+  <views name="Single Typedef" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTypedef">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Typedef"/>
+    </constraints>
+  </views>
+  <views name="Single Pointer" sections="//@tabs.0/@sections.10" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePointer">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Pointer"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Pointer" sections="//@tabs.0/@sections.11" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePointer">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Pointer"/>
+    </constraints>
+  </views>
+  <views name="Single Array" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleArray">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Array"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Array" sections="//@tabs.0/@sections.13" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleArray">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Array"/>
+    </constraints>
+  </views>
+  <views name="Single Constant" sections="//@tabs.0/@sections.16" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleConstant">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Constant"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Constant" sections="//@tabs.0/@sections.17" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleConstant">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Constant"/>
+    </constraints>
+  </views>
+  <views name="Single Requirement" sections="//@tabs.0/@sections.20" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRequirement">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Requirement"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Requirement" sections="//@tabs.0/@sections.21" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRequirement">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Requirement"/>
+    </constraints>
+  </views>
+  <views name="Single Inline" sections="//@tabs.0/@sections.26" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleInline">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Inline"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="Multiple Inline" sections="//@tabs.0/@sections.27" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleInline">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="embedded_C::Inline"/>
+    </constraints>
+  </views>
+  <dataContexts name="embedded_C">
+    <elements name="Constant">
+      <properties name="Declaration"/>
+      <properties name="Condition" type="Enumeration"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.91"/>
+    </elements>
+    <elements name="Array">
+      <properties name="Multiplicity"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
+    </elements>
+    <elements name="Value">
+      <properties name="Value"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.91"/>
+    </elements>
+    <elements xsi:type="contexts:DataContextPackage" name="Primitive Types"/>
+    <elements name="Pointer">
+      <properties name="Pointer" type="Enumeration"/>
+      <properties name="ConstantData" type="Enumeration"/>
+      <properties name="ConstantPointer" type="Enumeration"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.13"/>
+    </elements>
+    <elements name="Inline">
+      <properties name="Condition" type="Enumeration"/>
+      <properties name="Value"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.42"/>
+    </elements>
+    <elements name="Object">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.45"/>
+    </elements>
+    <elements name="Attribute">
+      <properties name="Attribute"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.73"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
+    </elements>
+    <elements name="UsesStaticMethods">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.35"/>
+    </elements>
+    <elements name="Union">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.73"/>
+    </elements>
+    <elements name="asm">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.42"/>
+    </elements>
+    <elements name="Singleton">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.45"/>
+    </elements>
+    <elements name="Struct">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.13"/>
+    </elements>
+    <elements name="Typedef">
+      <properties name="MappedType"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.73"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.90"/>
+    </elements>
+    <elements name="Requirement">
+      <properties name="Parent" multiplicity="-1"/>
+      <properties name="Verification" type="Enumeration"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.11"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.2"/>
+  </dataContexts>
+</contexts:Context>

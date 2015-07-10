@@ -24,6 +24,9 @@
    <feature id="org.eclipse.umlgen.gen.embedded.c.feature" version="0.0.0">
       <category name="umlgen"/>
    </feature>
+   <feature id="org.eclipse.umlgen.gen.embedded.c.papyrus.feature" version="0.0.0">
+      <category name="umlgen"/>
+   </feature>
    <feature id="org.eclipse.umlgen.gen.java.feature.source" version="0.0.0">
       <category name="umlgen.sdk"/>
    </feature>
@@ -43,6 +46,9 @@
       <category name="umlgen.sdk"/>
    </feature>
    <feature id="org.eclipse.umlgen.gen.embedded.c.feature.source" version="0.0.0">
+      <category name="umlgen.sdk"/>
+   </feature>
+   <feature id="org.eclipse.umlgen.gen.embedded.c.papyrus.feature.source" version="0.0.0">
       <category name="umlgen.sdk"/>
    </feature>
    <category-def name="umlgen" label="Eclipse UML Generators (Incubation)">

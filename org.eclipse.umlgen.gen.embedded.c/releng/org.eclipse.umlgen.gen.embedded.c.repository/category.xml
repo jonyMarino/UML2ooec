@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <description url="http://www.eclipse.org/umlgen">
-   		Eclipse UML Generators
+      Eclipse UML Generators
    </description>
    <feature id="org.eclipse.umlgen.gen.embedded.c.feature" version="0.0.0">
+      <category name="umlgen"/>
+   </feature>
+   <feature id="org.eclipse.umlgen.gen.embedded.c.papyrus.feature" version="0.0.0">
       <category name="umlgen"/>
    </feature>
    <category-def name="umlgen" label="Eclipse UML Generators">

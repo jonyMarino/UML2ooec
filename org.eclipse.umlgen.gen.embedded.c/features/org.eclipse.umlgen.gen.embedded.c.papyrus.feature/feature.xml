@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2015 Spacebel SA.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+
+  Contributors:
+       Johan Hardy (Spacebel) - initial API and implementation
+-->
+<feature
+      id="org.eclipse.umlgen.gen.embedded.c.papyrus.feature"
+      label="%featureName"
+      version="0.9.0.qualifier"
+      provider-name="%providerName"
+      plugin="org.eclipse.umlgen.gen.embedded.c.profile.papyrus.extension">
+
+   <description url="http://www.eclipse.org/umlgen">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <discovery label="Papyrus Luna" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/Luna"/>
+      <discovery label="Papyrus Mars" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/mars"/>
+   </url>
+
+   <plugin
+         id="org.eclipse.umlgen.gen.embedded.c.profile"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.umlgen.gen.embedded.c.profile.papyrus.extension"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
