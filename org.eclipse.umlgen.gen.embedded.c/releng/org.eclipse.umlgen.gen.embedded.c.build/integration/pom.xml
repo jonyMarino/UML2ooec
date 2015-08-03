@@ -25,6 +25,7 @@
         <module>../../../plugins/org.eclipse.umlgen.gen.embedded.c.ui</module>
         <module>../../../plugins/org.eclipse.umlgen.gen.embedded.c.profile</module>
         <module>../../../plugins/org.eclipse.umlgen.gen.embedded.c.profile.papyrus.extension</module>
+        <module>../../../doc/org.eclipse.umlgen.gen.embedded.c.doc</module>
         <module>../../../features/org.eclipse.umlgen.gen.embedded.c.feature</module>
         <module>../../../features/org.eclipse.umlgen.gen.embedded.c.papyrus.feature</module>
         <module>../../org.eclipse.umlgen.gen.embedded.c.repository</module>

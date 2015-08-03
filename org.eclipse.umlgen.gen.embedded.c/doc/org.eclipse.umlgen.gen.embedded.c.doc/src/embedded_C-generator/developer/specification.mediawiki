@@ -1,0 +1,419 @@
+<!--
+    Copyright (c) 2015 Spacebel SA.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        Johan Hardy (Spacebel) - initial API and implementation
+-->
+== Specification  ==
+
+The following sections present a detailed specification of the Generator UML to Embedded C. It specifies the functional & non-functional requirements that are implemented in the generator and the UML profile 'Embedded_C'.
+
+=== Profile specification  ===
+
+UML is so generic and sometimes so abstract that it is really hard to map the C language in UML. In order to overcome this problem, the entities of the C language are described with the help of UML stereotypes. Indeed, the UML standard often needs extensions to specify entities that only exist in C.
+
+Therefore, UML stereotypes constitute a nice way to extend the UML standard. A stereotype is defined either as an extension of a UML base meta-class or as a specialization of an existing stereotype. The extension relationship of UML is not an association but a kind of association directed from the stereotype to the extended meta-class. Consequently, the metadata conveyed by the associated the attributes of the stereotype are associated to the extended meta-class in a transparent manner for the meta-class itself. This allows profiles owning the stereotypes to be applied and removed dynamically without modifying the underlying models.
+
+For the sake of simplicity, a minimum number of stereotypes have been defined.
+
+'''REQ-PROF-001''': The profile Embedded_C shall be identified under the ID 'org.eclipse.umlgen.gen.embedded.c.profile'. 
+
+'''REQ-PROF-002''': The profile Embedded_C shall provide the following stereotypes:
+* Array
+* Asm
+* Attribute
+* Constant
+* Inline
+* Pointer
+* Requirement
+* Singleton
+* Object
+* Struct
+* Typedef
+* Union
+* UsesStaticMethods
+* Value
+* Volatile
+
+'''REQ-PROF-003''': The stereotype 'Array' shall be applicable for any uml::Property. It shall have the following attribute:
+* The ‘multiplicity’ of the array shall be specified. The type of the attribute shall be 'String' meaning that it can be an alphanumeric value.
+
+[[Image:./../../images/specification/Stereotype_Array.JPEG|frame]]
+
+
+'''REQ-PROF-004''': The stereotype 'Asm' shall be applicable for any uml::Operation.
+
+[[Image:./../../images/specification/Stereotype_Asm.JPEG|frame]]
+
+
+'''REQ-PROF-005''': The stereotype 'Attribute' shall be applicable for any uml::Property or uml::Datatype. It shall have the following attribute:
+* The 'attribute' of the property or datatype shall be specified (aligned, packed, ...).
+
+[[Image:./../../images/specification/Stereotype_Attribute.JPEG|frame]]
+
+
+'''REQ-PROF-006''': The stereotype 'Constant' shall be applicable for any uml::EnumerationLiteral of a given uml::Enumeration. It shall have the following attributes:
+* The ‘declaration’ of the constant shall be specified or leave empty. The type of the attribute is String meaning that it can be an alphanumeric value.
+* The ‘condition’ of the constant shall be specified or leave at ‘None’. In case ifndef or ifdef is selected, the definition of the constant will be conditional with respect to its name existence.
+
+[[Image:./../../images/specification/Stereotype_Constant.JPEG|frame]]
+
+
+'''REQ-PROF-007''': The stereotype 'Inline' shall be applicable for any uml::Operation.
+* The ‘condition’ of the inline operation shall be specified or leave at ‘None’. In case ifndef or ifdef is selected, the definition of the inline operation will be conditional with respect to a ‘value’.
+* The ‘value’ (of the condition) of the inline operation shall be specified or leave empty. The attribute ‘Value’ only takes effect when the attribute ‘condition’ is different than ‘None’ (e.g. condition = 'ifdef, value = 'DEBUGGING).
+
+[[Image:./../../images/specification/Stereotype_Inline.JPEG|frame]]
+
+
+'''REQ-PROF-008''': The stereotype 'Pointer' shall be applicable for any uml::TypedElement. It shall have the following attribute:
+* The pointer kind shall be specified. The pointer can be simple, double or none. The pointer may also be oriented constant data or constant pointer.
+
+[[Image:./../../images/specification/Stereotype_Pointer.JPEG|frame]]
+
+
+'''REQ-PROF-009''': The stereotype 'Requirement' shall be applicable for any uml::Constraint. It shall have the following attributes:
+* The attribute ‘parents’ shall make the traceability between requirement baseline and technical specification. The value of the ‘parents’ can be empty or it can be a list of requirement IDs.
+* It shall possible to specify how the requirement is verified (Review, Inspection, Test, Analysis). By default, the verification by test shall be selected.
+
+[[Image:./../../images/specification/Stereotype_Requirement.JPEG|frame]]
+
+
+'''REQ-PROF-010''': The stereotype 'Singleton' shall be applicable for any uml::Class. 
+
+[[Image:./../../images/specification/Stereotype_Singleton.JPEG|frame]]
+
+
+'''REQ-PROF-011''': The stereotype 'Object' shall be applicable for any uml::Class. 
+
+[[Image:./../../images/specification/Stereotype_Object.JPEG|frame]]
+
+
+'''REQ-PROF-012''': The stereotype 'Struct' shall be applicable for any uml::TypedElement. 
+
+[[Image:./../../images/specification/Stereotype_Struct.JPEG|frame]]
+
+
+'''REQ-PROF-013''': The stereotype 'Typedef' shall be applicable for any uml::DataType or uml::Enumeration. It shall have the following attribute:
+* The attribute ‘MappedType’ shall be specified. The attribute must receive the existing type to which it is mapped. 
+
+''In case of Enumeration, if the attribute ‘MappedType’ is specified, the default type of the Enumeration is redefined by an specified mapped type. Otherwise, the Enumeration itself is seen as a type.''
+
+[[Image:./../../images/specification/Stereotype_Typedef.JPEG|frame]]
+
+
+'''REQ-PROF-014''': The stereotype 'Union' shall be applicable for any uml::DataType. 
+
+[[Image:./../../images/specification/Stereotype_Union.JPEG|frame]]
+
+
+'''REQ-PROF-015''': The stereotype 'UsesStaticMethods' shall be applicable for any uml::Property.
+
+[[Image:./../../images/specification/Stereotype_UsesStaticMethods.JPEG|frame]]
+
+
+'''REQ-PROF-016''': The stereotype 'Value' shall be applicable for any uml::EnumerationLiteral. It shall have the following attribute:
+* The attribute ‘Value’ shall be specified. It specifies the value of the Enumeration Literal. It can be an alphanumeric value.
+
+[[Image:./../../images/specification/Stereotype_Value.JPEG|frame]]
+
+
+'''REQ-PROF-017''': The stereotype 'Volatile' shall be applicable for uml::Property.
+
+[[Image:./../../images/specification/Stereotype_Volatile.JPEG|frame]]
+
+
+In addition to the stereotypes, the profile should also own the basic types of the C language.
+
+'''REQ-PROF-018''': The profile Embedded_C shall provide the primitive types of the C language:
+* char
+* signed char
+* unsigned char
+* int
+* signed int
+* unsigned int
+* short
+* signed short
+* unsigned short
+* long
+* signed long
+* unsigned long
+* long long
+* signed long long
+* unsigned long long
+* float
+* double
+* void
+
+[[Image:./../../images/specification/File-Primitive_Types.JPEG|frame]]
+
+=== Generator specification  ===
+
+The Generator UML to Embedded C shall be an Acceleo based generator which shall be compliant to the UML2 meta-model (http://www.eclipse.org/uml2/5.0.0/UML). The following lines present the general specification of the  feature and a detailed specification of the model to text transformations.
+
+==== General specification  ====
+
+'''REQ-GEN-001''': The Generator UML to Embedded C shall be identified under the ID 'org.eclipse.umlgen.gen.embedded.c'.
+
+'''REQ-GEN-002''': The feature Generator UML to Embedded C shall include at least the following plugins:
+* org.eclipse.umlgen.gen.embedded.c
+* org.eclipse.umlgen.gen.embedded.c.profile
+
+'''REQ-GEN-003''': The Generator UML to Embedded C shall be a specialization of the 'org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator'.
+
+'''REQ-GEN-004''': The generator shall generate ANSI C files from an UML model.
+
+''The model shall contain at least one uml::Package. Otherwise, nothing is generated.''
+
+'''REQ-GEN-005''': The maximum size of a comment line shall be 120 semi-colomns.
+
+'''REQ-GEN-006''': The size of a tabulation shall be 4 spaces.
+
+==== Package specification ====
+
+The following requirements specify the model to text transformations for uml::Package.
+
+[[Image:./../../images/specification/Package_element.jpg|frame]]
+
+
+'''REQ-PACK-001''': A uml::Package shall take the representation of a directory in the file system. The name of the directory shall be the name of the uml::Package.
+
+'''REQ-PACK-002''': Besides the directory, a header and a source file shall be generated for each uml::Package. The name of the files shall be the name of the uml::Package.
+
+'''REQ-PACK-003''': The header file of a uml::Package shall contain the followings:
+* A configurable comment placed at the top of the file
+* The path of the file
+* The includes of parent uml::Package and dependencies (uml::Usage)
+* Comments documenting the uml::Package (with Doxygen tokens)
+* Traceability with the specification (requirement list)
+* Definitions of macros or constants
+* Definitions of types
+
+[[Image:./../../images/specification/Package_h.jpg|frame]]
+
+
+'''REQ-PACK-004''': The source file of a uml::Package shall contain the followings:
+* A configurable comment placed at the top of the file
+* The path of the file
+* The includes of its own header and dependencies (uml::Usage)
+
+[[Image:./../../images/specification/Package_c.jpg|frame]]
+
+==== Class specification ====
+
+The following requirements specify the model to text transformations for uml::Class.
+
+[[Image:./../../images/specification/Object_example.jpg|frame]]
+
+
+'''REQ-CLASS-001''': The generator shall generate a source file plus a header file for any uml::Class. The name of both files shall be equal to the name of the uml::Class.
+
+'''REQ-CLASS-002''': The header file of an uml::Class shall contain at least the followings:
+* A configurable comment placed at the top of the file
+* The path of the file
+* The includes of parent uml::Package and dependencies (uml::Usage)
+* Comments documenting the uml::Class (with Doxygen tokens)
+* Traceability with the specification (requirement list)
+* Definitions of macros or constants
+* Definitions of types
+* Declaration of global variables
+* Declaration of inline functions
+* Declaration of prototypes of public operations
+
+[[Image:./../../images/specification/Object_h.jpg|frame]]
+
+
+'''REQ-CLASS-003''': The source file of an uml::Class shall contain at least the followings:
+* A configurable comment placed at the top of the file
+* The path of the file
+* The includes of its own header and dependencies (uml::Usage)
+* Declaration of variables
+* Declaration of prototypes of private operations
+* Declaration of variables that use private operations
+* Declaration of functions (protected implementation field included)
+
+[[Image:./../../images/specification/Object_c.jpg|frame]]
+
+
+'''REQ-CLASS-004''': A uml::Class may have several representations. The generator shall manage the following extensions:
+* Object
+* Singleton
+
+'''REQ-CLASS-005''': In case of uml::Class stereotyped as 'Object', the properties of the given uml::Class shall be generated as variables.
+
+''The variables may be public (generated in the source file and external in the header file) or private (generated statically in the source file).''
+
+'''REQ-CLASS-006''': In presence of uml::Class stereotyped as 'Singleton' or nothing, a structural definition of the uml::Class shall be generated where the fields of the structure are the properties of the given uml::Class.
+
+''The name of the C structure is the name of the uml::Class plus the string '_t'.''
+
+'''REQ-CLASS-007''': In presence of a uml::Class stereotyped as 'Singleton', its structural definition shall be instantiated once as a static variable in the source file if the singleton is private.
+
+''The name of the variable shall be equal to the name of the 'Singleton'.''
+
+==== Property specification ====
+
+The following requirements specify the model to text transformations for uml::Property.
+
+[[Image:./../../images/specification/Variable.jpg|frame]]
+
+
+'''REQ-PROP-001''': A uml::Property which has no type shall be generated as #define.
+
+''The default value of the uml::Property is the value of the #define.''
+
+'''REQ-PROP-002''': A typped uml::Property marked as read-only shall be generated as constant ('const').
+
+'''REQ-PROP-003''': A uml::Property of an 'Object' class shall be generated as variables.
+
+'''REQ-PROP-004''': Private uml::Property of an 'Object' shall be generated as static variable in the source file.
+
+'''REQ-PROP-005''': Public uml::Property of an 'Object' shall be generated as extern variable in the header file.
+
+'''REQ-PROP-006''': The default value of the property of an 'Object' shall be generated as the initialisation of the variable.
+
+'''REQ-PROP-007''': In case a uml::Comment is applied to the uml::Property, Doxygen comments shall be generated.
+
+'''REQ-PROP-008''': In case the stereotype 'Array' is applied to a uml::Property, the uml::Property shall be generated as an Array with the specified multiplicity.
+
+''In case the uml::Multiplicity (upper bound) of the uml::Property is higher than 1 and no stereotype Array is applied on, the uml::Property shall also be generated as an Array with the specified upper value.''
+
+'''REQ-PROP-009''': In case the stereotype 'Pointer' is applied on a uml::Property, simple or double pointer shall be generated for the given variable.
+
+'''REQ-PROP-010''': In case the stereotype 'Volatile' is applied on a uml::Property, the keyword 'volatile' shall be generated for the given variable.
+
+'''REQ-PROP-011''': In case the stereotype 'Attribute' is applied on a uml::Property, the keyword '_attribute_' shall be generated for the given variable with its value.
+
+'''REQ-PROP-012''': In case the stereotype 'UsesStaticMethods' is applied on a uml::Property, the variable shall be generated after the declaration of static prototype(s).
+
+''This is typically the case of static callback table where callbacks are static functions.''
+
+'''REQ-PROP-013''': In case requirement(s) constrain(s) a uml::Property, a requirement list shall be generated.
+
+==== Enumeration specification ====
+
+The following requirements specify the model to text transformations for uml::Enumeration.
+
+'''REQ-ENUM-001''': A uml::Enumeration shall be generated as 'typedef enum'. The name of the enumeration shall be equal to the name of the uml::Enumeration.
+
+[[Image:./../../images/specification/enum.jpg|frame]]
+
+
+'''REQ-ENUM-002''': In case the stereotype 'Typedef' is applied to a uml::Enumeration, the enumeration shall be generated as a simple 'enum'. Below the the 'enum' declaration, a 'typdef' shall specify the corresponding mapped type.
+
+[[Image:./../../images/specification/Enumeration_type.jpg|frame]]
+
+
+'''REQ-ENUM-003''': Inside a uml::Enumeration, a uml::EnumerationLiteral stereotyped as 'Constant' shall be generated as #define.
+
+''The property 'Declaration' of the stereotype 'Constant' is the value of the #define. The stereotype 'Constant' specifies also #define conditions (#ifdef, #ifndef, #endif).''
+
+'''REQ-ENUM-004''': In case a comment is applied to the the uml::Enumeration or literals, Doxygen comments shall be generated.
+
+'''REQ-ENUM-006''': In case the stereotype 'Value' is applied to a uml::EnumerationLiteral, the value of the literal shall be forced to the value of the stereotype.
+
+'''REQ-ENUM-006''': In case requirement(s) constrain(s) a uml::Enumeration, a requirement list shall be generated.
+
+==== Datatype specification ====
+
+The following requirements specify the model to text transformations for uml::Datatype. 
+
+'''REQ-DTYPE-001''': A uml::Datatype shall be generated as 'typedef struct'. The id of the structure shall be the name of the uml::Datatype.
+
+'''REQ-DTYPE-002''': All the porperties of the uml::Datatype shall be generated as fields of the structure.
+
+''The properties are generated with their types, the multiplicity and the comment (properties may also be stereotyped as 'struct', 'Array', ...).''
+
+[[Image:./../../images/specification/data_type.jpg|frame]]
+
+
+'''REQ-DTYPE-003''': A uml::Datatype stereotyped as 'union' shall be generated  as 'typedef union'.
+
+'''REQ-DTYPE-004''': A uml::Datatype stereotyped as 'typedef' shall be generated as 'typedef'.
+
+[[Image:./../../images/specification/typedef.jpg|frame]]
+
+
+'''REQ-DTYPE-005''': In case the 'mapped type' property of the stereotype 'typedef' contains the string '%s', the latter shall be replaced by the name of the uml::Datatype.
+
+'''REQ-DTYPE-006''': For each type (structure, typedef or union), corresponding Doxygen comment shall be generated.
+
+'''REQ-DTYPE-007''': In case the stereotype 'struct' is applied on a property of a uml::Datatype, the keyword 'struct' shall specify the field.
+
+'''REQ-DTYPE-008''': In case the stereotype 'pointer' is applied on a property of a uml::Datatype, simple or double pointer shall be generated for the given field.
+
+'''REQ-DTYPE-009''': In case the stereotype 'Attribute' is applied on a uml::Datatype, the keyword '_attribute_' shall be generated for the given structure with its value. 
+
+'''REQ-DTYPE-010''': In case requirement(s) constrain(s) a uml::Datatype, a requirement list shall be generated.
+
+==== Usage specification ====
+
+The following requirements specify the model to text transformations for uml::Usage. 
+
+'''REQ-USE-001''': Private uml::Usage shall be generated as #include in the source file.
+
+'''REQ-USE-002''': Public uml::Usage shall be generated as #include in the header file.
+
+'''REQ-USE-003''': A comment shall be generated to describe the object of the uml::Usage.
+
+[[Image:./../../images/specification/usage.jpg|frame]]
+
+==== Operation specification ====
+
+The following requirements specify the model to text transformations for uml::Operation.
+
+'''REQ-OPER-001''': Private operation shall be generated as static function.
+
+[[Image:./../../images/specification/static.jpg|frame]]
+
+
+'''REQ-OPER-002''': In case no parameter with the direction 'return' is specified, the signature of the function shall be 'void'.
+
+'''REQ-OPER-003''': In case a parameter with the direction 'return' is specified, the signature shall be the type of this parameter.
+
+'''REQ-OPER-004''': The name of the function shall be the name of the operation.
+
+'''REQ-OPER-005''': In case no parameter is found, the argument of the function shall be 'void'.
+
+'''REQ-OPER-006''': Each parameter owned by the operation shall be generated as argument of the function.
+
+''The type, the pointer value, the const data or const pointer. In the prototype, each argument must be separated by a comma.''
+
+[[Image:./../../images/specification/Parameter.jpg|frame]]
+
+
+'''REQ-OPER-007''': An operation stereotyped as 'inline' shall be generated as #define.
+
+[[Image:./../../images/specification/inline_model.jpg|frame]]
+
+
+''Inline operation may have conditional declaration. The stereotype 'Inline' has several Boolean property to specify #ifdef or #ifndef conditions.''
+
+'''REQ-OPER-008''': The parameter defined in an operation stereotyped as 'inline' shall be generated as argument of the #define.
+
+''Only the name of the parameter is generated (no type). In the prototype, each argument must be separated by a comma.''
+
+'''REQ-OPER-009''': A protected field shall be generated for the user implementation.
+
+''This includes 'ASM' and 'Inline' operation.''
+
+[[Image:./../../images/specification/inline.jpg|frame]]
+
+
+'''REQ-OPER-010''': In case the stereotype 'Pointer' is applied on a uml::Parameter, simple or double pointer shall be generated for the given argument. 
+
+''This includes 'const' data or 'const' pointer.''
+
+[[Image:./../../images/specification/Operation_pointer.jpg|frame]]
+
+
+'''REQ-OPER-011''': In case requirement(s) constrain(s) a uml::Operation, a requirement list shall be generated.
+
+[[Image:./../../images/specification/Operation_constrain.jpg|frame]]
+
+
+'''REQ-OPER-012''': Detailed comments for the function (description of the function) and for each parameters (direction, comments and type) shall be generated.

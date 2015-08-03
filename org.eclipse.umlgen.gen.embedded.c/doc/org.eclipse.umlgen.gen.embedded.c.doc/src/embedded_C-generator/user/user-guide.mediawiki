@@ -1,0 +1,190 @@
+<!--
+    Copyright (c) 2015 Spacebel SA.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        Johan Hardy (Spacebel) - initial API and implementation
+-->
+= User Guide =
+
+== Getting Started ==
+
+The model and the code generator both follow the same UML standard defined by the OMG. The UML model is thus independent of the UML modeler. Whether it is Eclipse Papyrus, Eclipse UML Editor or even Eclipse UML Designer, the UML model will always be correctly interpreted by the Embedded C generator.
+
+=== Model Embedded C software ===
+
+In this paragraph, a dummy 'Hello World' application is presented with the regular Eclipse UML Editor and the Eclipse Papyrus.
+
+==== Model with Eclipse UML Editor ====
+
+In order to start modeling in UML with the UML editor, a new project must be created. Create a new project select '''File''' -> '''New''' -> '''Project...''' -> '''General''' -> '''Project'''. In the project, create a new UML model, '''File''' -> '''New''' -> '''Other...''' -> '''UML Model'''. Select Model as the root element of the model.
+
+Open the UML model with the Eclipse UML Editor and apply the profile Embedded C on the root element: Menu '''UML Editor''' -> '''Package''' -> '''Apply Profile...'''. Select the Embedded C profile in the list:
+
+[[Image:./../../images/user-guide/apply_profile_embedded_C-umledit.png|1000px]]
+
+For information, more than one profile can be added at a time per model (e.g. SysML).
+
+Now the model is ready and the Embedded application can be modeled. Create the root package element with a class called 'main' where the operation 'main' is defined:
+
+[[Image:./../../images/user-guide/class_main1-umledit.png]]
+
+Apply the stereotype 'Object' on the Class main by selecting the class and the menu '''UML Editor''' -> '''Element''' -> '''Apply Stereotype...''':
+
+[[Image:./../../images/user-guide/apply_stereotype_object-umledit.png|900px]]
+
+Finally, add all the parameters for the entry point 'main' (argc, argv and the return) and add comments for each parameter:
+
+[[Image:./../../images/user-guide/class_main2-umledit.png]]
+
+Specify the type for each parameter : char for argc and argv, int for the return. The types are primitive C type and they can be assigned in the property view:
+
+[[Image:./../../images/user-guide/select_primitive_types-umledit.png|1100px]]
+
+The parameter argv is a double pointer. Select the parameter in the Model Explorer and apply the stereotype pointer via the menu '''UML Editor''' -> '''Element''' -> '''Apply Stereotype...'''.
+
+The specification of the software can also be modeled with the Embedded C profile. Add a new use case in the Class '''New Child''' -> '''Use Case'''. Called the use case 'MySpecification' and add a new Constraint inside the use case '''New Child''' -> '''Constraint'''. Apply the stereotype Requirement on the constraint and write the specification: "The main function shall display the string 'Hello World'".
+
+[[Image:./../../images/user-guide/class_main3-umledit.png|1000px]]
+
+In the same property view, constrain the operation 'main' with the requirement SPEC-REQ-001.
+
+As a result, the 'hello world' application is completely modeled and specified. The next step is to generate the code to write the implementation.
+
+==== Model with Eclipse Papyrus Editor ====
+
+Papyrus editor has a dedicate perspective where all the features of the editor are available. In order to open the Papyrus perspective, select '''Windows''' -> '''Open perspective''' -> '''Other...''' -> '''Papyrus'''. Another way to open the Papyrus perspective is a simple click on the button [[Image:./../../images/user-guide/open_new_perspective-icon.jpg]] and select '''Papyrus'''.
+
+In order to start modeling in UML with Papyrus, a new Papyrus project must be created. In the Papyrus perspective, the right way to create a new Papyrus project is to select '''File''' -> '''New''' -> '''Project...''' -> '''Papyrus''' -> '''Papyrus project''':
+
+[[Image:./../../images/user-guide/new_papyrus_project-creation.jpg|400px]]
+
+Give a name to your project and select '''Next'''. After having named the project, select '''UML''' as the diagram language. Then, click on '''Finish''' (ignore Next).
+
+[[Image:./../../images/user-guide/new_papyrus_project-created.jpg|1000px]]
+
+As shown by the picture above, the project is composed of three files:
+* The diagram file,
+* The annotation file,
+* And, the UML file.
+
+The diagram file is only a model used by Papyrus to retrieve the relative positions of the objects present in the diagrams that the user has created/edited.
+
+The annotation file encloses the information relevant to Papyrus documentation and other information used by Papyrus.
+
+The last file is probably the most important one because this is the one which encloses the complete UML model. The format of the file is coded in XMI. The model can be edited directly by creating a new diagram or by using the Model Explorer.
+
+The next step is the application of the profile Embedded C. Applying the Embedded C profile is very simple with Papyrus. In the '''Model Explorer''' view, select the root element of the project. In this case, it is the model element.
+
+[[Image:./../../images/user-guide/model_papyrus_selected.jpg]]
+
+Then, in the property view, open the '''Profile''' tab:
+
+[[Image:./../../images/user-guide/papyrus_profile_tab-property.jpg]]
+
+In the '''Profile''' tab, click on the [[Image:./../../images/user-guide/open_available_profile-icon.jpg]] button and select the Embedded C profile. Confirm the choice by selecting '''Ok'''.
+
+[[Image:./../../images/user-guide/apply_profile_embedded_C-papyrus.png]]
+
+After the confirmation, the user is invited to select the primitive types that will be used for modeling. If all the types of the Embedded C are required, select all the primitive types and confirm by clicking '''Ok'''.
+
+[[Image:./../../images/user-guide/select_primitive_types_panel-papyrus.png]]
+
+The profile should be successfully applied and the profile information should appear in the property tab:
+
+[[Image:./../../images/user-guide/profile_applied-papyrus.png]]
+
+For information, more than one profile can be added at a time per model (e.g. example SysML).
+
+Now the model is ready and the Embedded application can be modeled. Create a class diagram '''New Diagram''' -> '''Class Diagram''' and create the root package element with a class called 'main' where the operation 'main' is defined:
+
+[[Image:./../../images/user-guide/class_diagram1-papyrus.png]]
+
+Apply the stereotype 'Object' on the Class main by selecting the class in the diagram and the profile tab:
+
+[[Image:./../../images/user-guide/class_diagram2-papyrus.png|1000px]]
+
+Finally, add all the parameters for the entry point 'main' (argc, argv and the return) and add comments for each parameter:
+
+[[Image:./../../images/user-guide/model_explorer-papyrus.png]]
+
+Specify the type for each parameter : char for argc and argv, int for the return. Here, the types are primitive C type so the types must be assigned via the Advanced tab of Papyrus : 
+
+[[Image:./../../images/user-guide/select_primitive_type-papyrus.png|1100px]]
+
+The parameter argv is a double pointer. Select the parameter in the Model Explorer and apply the stereotype pointer.
+
+The specification of the software can also be modeled with the Embedded C profile. Add a new use case in the Class '''New Child''' -> '''Use Case'''. Called the use case 'MySpecification' and add a new Constraint inside the use case '''New Child''' -> '''Constraint'''. Apply the stereotype Requirement on the constraint and write the specification: "The main function shall display the string 'Hello World'".
+
+[[Image:./../../images/user-guide/class_diagram3-papyrus.png|1000px]]
+
+In the Embedded C tab, constrain the operation 'main' with the requirement SPEC-REQ-001:
+
+[[Image:./../../images/user-guide/constrain_main-papyrus.png]]
+
+As a result, the 'hello world' application is completely modeled and specified. The next step is to generate the code to write the implementation.
+
+=== Launching a code generation ===
+
+In order to generate the code of the UML model with the Embedded C generator, a launch configuration has to be created. Select the project that encloses the UML model, right click -> '''Run As''' -> '''Run Configurations...''' -> '''UML to Embedded C Generation'''.
+
+==== General ====
+
+The general panel is used to reference the UML model and the output path of the generation.
+
+[[Image:./../../images/user-guide/launch_configuration1.png|650px]]
+
+* The relative path to the UML file.
+* The output path is the folder where the C sources are generated.
+
+When the fields are correctly filled in, just '''Apply''' the configuration. This configuration will be stored in the current workspace. So, it will be saved for next generations. Several launch configuration can be set for a single model.
+
+Select '''Run''' to start the code generation. At the end of the generation, the expected sources are located in the output folder path.
+
+==== Documentation ====
+
+The documentation in the C sources is customizable.
+
+[[Image:./../../images/user-guide/launch_configuration2.png|650px]]
+
+* Author: The author of the sources.
+* Version: The version of the generated code.
+* Copyright: The copyright that will be included as a header in all the generated files.
+* SVN properties: Add to the header the svn:property $Date$ and the svn:property $Id$.
+<code>
+ /*************************************************
+ * Copyright: 2015 All rights reserved.
+ * Project: model
+ * File: HelloWorld/main.h
+ * Code Management Tool File Version: 1.0.0
+ * Date: $Date$
+ * SDD Component: main
+ * Language: C
+ * Author: jhy
+ * Last Change: $Id$
+ *************************************************/
+</code>
+* Traceability: Generate the traceability between Requirement(s) and Detailed Design.
+<code>
+ /***************************************** FUNCTION ****************/
+ * \brief This is the entry point of my application.
+ *        
+ * \param argc in
+ *        The number of arguments in argv.
+ *        
+ * \param argv in
+ *        The arguments.
+ *        
+ * \return int : The error code.
+ *        
+ * '''Requirements traceability'''
+ *      '''- SPEC-REQ-001''' 
+ *
+ * Function detailed processing extracted from source code
+ *
+ ********************************************************************/
+</code>
+Setup the documentation settings and select '''Run''' to start the code generation.

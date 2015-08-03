@@ -1,0 +1,20 @@
+<!--
+    Copyright (c) 2015 Spacebel SA.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        Johan Hardy (Spacebel) - initial API and implementation
+-->
+= Embedded C Generator Guide =
+
+== User Guide ==
+
+* [embedded_C-generator/user/embedded_C-profile.html|Embedded C profile]
+* [embedded_C-generator/user/user-guide.html|User guide]
+
+== Developer Guide ==
+
+* [embedded_C-generator/developer/specification.html|Specification]

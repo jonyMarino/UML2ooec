@@ -1,0 +1,240 @@
+<!--
+    Copyright (c) 2015 Spacebel SA.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        Johan Hardy (Spacebel) - initial API and implementation
+-->
+= Embedded C profile =
+
+== Introduction ==
+
+The basic premise of profiles is that all domain-specific concepts are derived as extensions or refinements of existing UML concepts, called UML meta-classes. These extensions are called stereotypes. A stereotype definition must be consistent with the abstract syntax and semantics of standard UML meta-classes it extends. Consequently, a profile-based model can be created and manipulated by any tool that supports standard UML. Moreover, because the concepts underlying a profile are specializations of existing UML concepts, it is more easily learned by anyone with knowledge of UML.
+
+A stereotype is defined either as an extension of a UML base meta-class or as a specialization of an existing stereotype. The extension relationship of UML is not an association but a kind of association directed from the stereotype to the extended meta-class. Consequently, the metadata conveyed by the associated the attributes of the stereotype are associated to the extended meta-class in a transparent manner for the meta-class itself. This allows profiles owning the stereotypes to be applied and removed dynamically without modifying the underlying models — a fundamental feature of the profile mechanism.
+
+A stereotype may have attributes and may be associated with other stereotypes or existing UML meta-classes.
+
+== Profile ==
+
+The purpose of this chapter is to give a description of the entities of the profile Embedded C. The profile is mainly composed of primitive types and stereotypes.
+
+=== Primitive types ===
+
+The package _Primitive Types_ includes all the basic types found in the C language. As they are primitive types of the language, the representations are totally abstract and they depend on the architecture of the target.
+
+[[Image:./../../images/specification/File-Primitive_Types.JPEG|frame]]
+
+==== Type char ====
+
+Smallest addressable unit of the target that can contain basic character set. It is an integer type. Actual type can be either signed or unsigned depending on the target.
+
+==== Type signed char ====
+
+Same size as "char", but guaranteed to be signed.
+
+==== Type unsigned char ====
+
+Same size as "char", but guaranteed to be unsigned.
+
+==== Type int ====
+
+Basic signed integer type. At least 16 bits in size depending on the target.
+
+==== Type signed int ====
+
+Basic signed integer type. Same as "int", but guaranteed to be signed.
+
+==== Type unsigned int ====
+
+Basic unsigned integer type. Same as "int", but guaranteed to be unsigned.
+
+==== Type short ====
+
+Short signed integer type. At least 16 bits in size.
+
+==== Type signed short ====
+
+Short signed integer type. Same as "short", but guaranteed to be signed.
+
+==== Type unsigned short ====
+
+Short unsigned integer type. Same as "short", but guaranteed to be unsigned.
+
+==== Type long ====
+
+Long signed integer type. At least 32 bits in size.
+
+==== Type signed long ====
+
+Same as "long", but guaranteed to be signed.
+
+==== Type unsigned long ====
+
+Same as "long", but guaranteed to be unsigned.
+
+==== Type long long ====
+
+Long long signed integer type. At least 64 bits in size.
+
+==== Type signed long long ====
+
+Same as "long long", but guaranteed to be signed.
+
+==== Type unsigned long long ====
+
+Same as "long long", but guaranteed to be unsigned.
+
+==== Type float ====
+
+Single precision floating-point type. Actual properties unspecified (except minimum limits), however on most systems this is the IEEE 754 single-precision binary floating-point format. This format is required by the optional Annex F "IEC 60559 floating-point arithmetic".
+
+==== Type double ====
+
+Double precision floating-point type. Actual properties unspecified (except minimum limits), however on most systems this is the IEEE 754 double-precision binary floating-point format. This format is required by the optional Annex F "IEC 60559 floating-point arithmetic".
+
+==== Type void ====
+
+Representation indicating the absence of type information.
+
+=== Stereotypes ===
+
+Find below the exhaustive list of stereotypes implemented by the Embedded C profile.
+
+==== Array ====
+
+[[Image:./../../images/specification/Stereotype_Array.jpeg|frame]]
+
+The stereotype Array can be applied on any property of any Class. It gives to the property the representation of one dimension array. For two dimensions arrays, an array type must be declared beforehand using the "typedef". Combining the latter and the stereotype Array, the property can thus be represented as a double entry array.
+
+The stereotype Array has one attribute:
+* The 'multiplicity' of the array must be specified. The type of the attribute is String meaning that it can be an alphanumeric value.
+
+==== Asm ====
+
+[[Image:./../../images/specification/Stereotype_asm.jpeg|frame]]
+
+The stereotype asm gives to a class operation, the ability to be declared as assembly code.
+
+The stereotype asm does not have any attribute.
+
+==== Attribute ====
+
+[[Image:./../../images/specification/Stereotype_Attribute.jpeg|frame]]
+
+The stereotype Attribute gives to a class property or a class DataType, the ability to declared an attribute set.
+
+The stereotype Attribute has one attribute:
+* The attribute of the property must be specified by the user (aligned, packed, ...)
+
+==== Constant ====
+
+[[Image:./../../images/specification/Stereotype_Constant.jpeg|frame]]
+
+The stereotype Constant can only be applied on Enumeration Literals of a given Enumeration. The stereotype Constant is usually used in UML Packages for declarations of Constants at Package level.
+
+The stereotype Constant has two attributes:
+* The 'declaration' of the constant can be specified or leave empty. The type of the attribute is String meaning that it can be an alphanumeric value.
+* The 'condition' of the constant can be specified or leave at 'None'. In case ifndef or ifdef is selected, the definition of the constant will be conditional with respect to its name existence.
+
+==== Inline ====
+
+[[Image:./../../images/specification/Stereotype_Inline.jpeg|frame]]
+
+If the stereotype Inline is applied on an Operation, the Operation of the Class is represented as an Inline function. In C language, it is sometimes called macros.
+
+The stereotype Inline has two attributes:
+* The 'condition' of the inline operation can be specified or leave at 'None'. In case ifndef or ifdef is selected, the definition of the inline operation will be conditional with respect to a 'value'.
+* The 'value' (of the condition) of the inline operation can be specified or leave empty. The attribute 'Value' only takes effect when the attribute 'condition' is different than 'None' (e.g. condition = 'ifdef, value = 'DEBUGGING).
+
+==== Pointer ====
+
+[[Image:./../../images/specification/Stereotype_Pointer.jpeg|frame]]
+
+The stereotype Pointer mainly fills the gap between C variables and UML properties. Indeed, this stereotype can be applied on any typed elements of UML: parameters, properties, properties of data types, etc. The stereotype implements the void, simple and double pointers.
+
+The stereotype Pointer has three attributes:
+* The pointer kind must be specified by the user. The pointer can be simple, double or none.
+* The user must specify whether the pointer is oriented constant data
+* The user must specify whether the pointer is oriented constant pointer
+
+==== Requirement ====
+
+[[Image:./../../images/specification/Stereotype_Requirement.jpeg|frame]]
+
+The stereotype Requirement can only be applied on UML Constraints. The Constraints define in some way the Use Cases of the model and consequently the Software. The UML Constraint element is very adequate to specify non-functional requirements. However, concerning the functional requirements, the constraint element is not enough. Therefore, the stereotype Requirement has been created and it helps to complete the specification.
+
+In general, the stereotype Requirement is used for documentation (Software Requirement Document and traceability matrixes).
+
+The stereotype Requirement has two attributes:
+* The attribute 'parents' makes the traceability between requirement baseline and technical specification. The value of the 'parents' can be empty or it can be a list of requirement IDs
+* The user must however specify how the requirement is verified. Several methods of verification are proposed. By default, the verification by test is selected.
+
+==== Singleton ====
+
+[[Image:./../../images/specification/Stereotype_Singleton.jpeg|frame]]
+
+The stereotype Singleton specifies whether a given class is instantiated only once. In case the stereotype is applied on a Class, the attributes of the Class will be considered as fields of a structure. The Class is instantiated once.
+
+The stereotype Singleton does not have any attribute.
+
+==== Object ====
+
+[[Image:./../../images/specification/Stereotype_Object.jpeg|frame]]
+
+The stereotype Object specifies whether a given class is instantiated only once as an object with private or/and global variables. On the one hand, in case the stereotype is applied on a Class, the attributes of the Class will be considered as regular variables (public or private depending on their visibilities). On the other hand, if the Class is left without the stereotype Object or "Singleton", the Class is seen as a data type where its attributes are the fields of a structure. Hence, the Class can be instantiated more than once through that structure.
+
+The stereotype Object does not have any attribute.
+
+==== Struct ====
+
+[[Image:./../../images/specification/Stereotype_Struct.jpeg|frame]]
+
+The stereotype Struct can be applied on a typed element. It is usually used to give the C __struct__ property to a field of a C structure.
+
+The stereotype Struct does not have any attribute.
+
+==== Typedef ====
+
+[[Image:./../../images/specification/Stereotype_Typedef.jpeg|frame]]
+
+In UML, it is not easy to redefine a data type. The stereotype Typedef helps at redefining or mapping an existing data type into a new data type. For the Enumerations, the stereotype is also used to represent an enumeration as a type or to remap the default type of the Enumeration.
+
+The stereotype Typedef has one attribute:
+* The attribute 'MappedType' is mandatory for data types. The attribute must receive the existing type to which it is mapped. In case of Enumeration, if the attribute 'MappedType' is specified, the default type of the Enumeration is redefined by an specified mapped type. Otherwise, the Enumeration itself is seen as a type.
+
+==== Union ====
+
+[[Image:./../../images/specification/Stereotype_Union.jpeg|frame]]
+
+The stereotype Union gives to a data type the representation of an C union.
+
+The stereotype Union does not have any attribute.
+
+==== UsesStaticMethods ====
+
+[[Image:./../../images/specification/Stereotype_UsesStaticMethods.jpeg|frame]]
+
+The stereotype UsesStaticMethods gives to a class property, the ability to be declared after the declaration of static operations/methods.
+
+The stereotype UsesStaticMethods does not have any attribute.
+
+==== Value ====
+
+[[Image:./../../images/specification/Stereotype_Value.jpeg|frame]]
+
+If applied on an Enumeration Literal, the stereotype Value specifies the value of the latter inside its Enumeration.
+ 
+The stereotype Value has one attribute:
+* The attribute 'Value' is mandatory in case the stereotype is applied on. It specifies the value of the Enumeration Literal. It can be an alphanumeric value.
+
+==== Volatile ====
+
+[[Image:./../../images/specification/Stereotype_Volatile.jpeg|frame]]
+
+If applied on a property of a class, the stereotype Volatile specifies that the corresponding C variable is Volatile.
+ 
+The stereotype Volatile does not have any attribute.
