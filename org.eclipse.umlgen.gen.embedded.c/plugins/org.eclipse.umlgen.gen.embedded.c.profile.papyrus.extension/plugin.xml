@@ -28,4 +28,17 @@
             isCustomizable="true">
       </context>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.umlgen.gen.embedded.c.profile.papyrus.extension.elementTypeSet"
+            path="resources/embedded_C_types.xmi">
+      </elementTypeSet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel
+            model="resources/embedded_C_menu.xmi">
+      </menuCreationModel>
+   </extension>
 </plugin>

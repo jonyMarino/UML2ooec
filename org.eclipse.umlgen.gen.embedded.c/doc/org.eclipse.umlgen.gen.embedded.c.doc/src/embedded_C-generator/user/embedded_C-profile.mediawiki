@@ -193,7 +193,7 @@ The stereotype Object does not have any attribute.
 
 [[Image:./../../images/specification/Stereotype_Struct.jpeg|frame]]
 
-The stereotype Struct can be applied on a typed element. It is usually used to give the C __struct__ property to a field of a C structure.
+The stereotype Struct can be applied on a typed element. It is usually used to give the C ''struct''  property to a field of a C structure.
 
 The stereotype Struct does not have any attribute.
 

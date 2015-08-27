@@ -107,6 +107,10 @@ Apply the stereotype 'Object' on the Class main by selecting the class in the di
 
 [[Image:./../../images/user-guide/class_diagram2-papyrus.png|1000px]]
 
+It is also possible to create an Object by using the Embedded C menu:
+
+[[Image:./../../images/user-guide/new_child_menu-papyrus.png]]
+
 Finally, add all the parameters for the entry point 'main' (argc, argv and the return) and add comments for each parameter:
 
 [[Image:./../../images/user-guide/model_explorer-papyrus.png]]
