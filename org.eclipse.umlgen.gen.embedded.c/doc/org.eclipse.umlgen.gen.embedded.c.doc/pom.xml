@@ -18,12 +18,12 @@
   <parent>
     <groupId>org.eclipse.umlgen</groupId>
     <artifactId>org.eclipse.umlgen-bundle-parent</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <relativePath>../../../releng/org.eclipse.umlgen.parent/bundle-parent</relativePath>
   </parent>
 
   <artifactId>org.eclipse.umlgen.gen.embedded.c.doc</artifactId>
-  <version>0.9.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 
   <name>UML to Embedded C Generator Documentation</name>

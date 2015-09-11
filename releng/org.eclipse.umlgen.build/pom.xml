@@ -16,13 +16,13 @@
   <parent>
     <groupId>org.eclipse.umlgen</groupId>
     <artifactId>org.eclipse.umlgen.parent</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <relativePath>../org.eclipse.umlgen.parent</relativePath>
   </parent>
 
    <groupId>org.eclipse.umlgen</groupId>
    <artifactId>org.eclipse.umlgen.build</artifactId>
-   <version>0.9.0-SNAPSHOT</version>
+   <version>1.0.0-SNAPSHOT</version>
    <packaging>pom</packaging>
    <name>Eclipse UML Generators Build</name>
 

@@ -14,7 +14,7 @@
 
     <groupId>org.eclipse.umlgen</groupId>
     <artifactId>org.eclipse.umlgen.reverse.java.build-alone</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Build of Java Reverse Generator</name>
 

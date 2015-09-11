@@ -15,13 +15,13 @@
     <parent>
         <groupId>org.eclipse.umlgen</groupId>
         <artifactId>org.eclipse.umlgen.parent</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../org.eclipse.umlgen.parent</relativePath>
     </parent>
 
     <artifactId>org.eclipse.umlgen.target</artifactId>
     <name>Eclipse UML Generators Target Platform</name>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <build>

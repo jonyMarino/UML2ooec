@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.eclipse.umlgen</groupId>
   	<artifactId>org.eclipse.umlgen.parent</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
   <groupId>org.eclipse.umlgen</groupId>
   <artifactId>org.eclipse.umlgen-bundle-parent</artifactId>
-  <version>0.9.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <build>

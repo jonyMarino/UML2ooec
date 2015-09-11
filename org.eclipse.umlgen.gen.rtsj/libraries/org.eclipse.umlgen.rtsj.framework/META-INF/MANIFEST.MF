@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: UMLGen RTSJ Framework (Incubation)
+Bundle-Name: UMLGen RTSJ Framework
 Bundle-SymbolicName: org.eclipse.umlgen.rtsj.framework
-Bundle-Version: 0.9.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Export-Package: org.eclipse.umlgen.rtsj.framework;x-internal:=true,
  org.eclipse.umlgen.rtsj.framework.async;x-internal:=true,
  org.eclipse.umlgen.rtsj.framework.ethernet;x-internal:=true,

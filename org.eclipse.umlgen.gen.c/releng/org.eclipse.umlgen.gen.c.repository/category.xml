@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <description url="http://www.eclipse.org/umlgen">
-   		Eclipse UML Generators (Incubation)
+   		Eclipse UML Generators
    </description>
    <feature id="org.eclipse.umlgen.gen.c.feature" version="0.0.0">
       <category name="umlgen"/>
