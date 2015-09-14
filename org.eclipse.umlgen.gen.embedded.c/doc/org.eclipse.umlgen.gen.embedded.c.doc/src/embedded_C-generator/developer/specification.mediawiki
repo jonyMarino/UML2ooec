@@ -300,7 +300,7 @@ The following requirements specify the model to text transformations for uml::En
 
 '''REQ-ENUM-001''': A uml::Enumeration shall be generated as 'typedef enum'. The name of the enumeration shall be equal to the name of the uml::Enumeration.
 
-[[Image:./../../images/specification/enum.jpg|frame]]
+[[Image:./../../images/specification/Enum.jpg|frame]]
 
 
 '''REQ-ENUM-002''': In case the stereotype 'Typedef' is applied to a uml::Enumeration, the enumeration shall be generated as a simple 'enum'. Below the the 'enum' declaration, a 'typdef' shall specify the corresponding mapped type.
@@ -328,14 +328,14 @@ The following requirements specify the model to text transformations for uml::Da
 
 ''The properties are generated with their types, the multiplicity and the comment (properties may also be stereotyped as 'struct', 'Array', ...).''
 
-[[Image:./../../images/specification/data_type.jpg|frame]]
+[[Image:./../../images/specification/Data_type.jpg|frame]]
 
 
 '''REQ-DTYPE-003''': A uml::Datatype stereotyped as 'union' shall be generated  as 'typedef union'.
 
 '''REQ-DTYPE-004''': A uml::Datatype stereotyped as 'typedef' shall be generated as 'typedef'.
 
-[[Image:./../../images/specification/typedef.jpg|frame]]
+[[Image:./../../images/specification/Typedef.jpg|frame]]
 
 
 '''REQ-DTYPE-005''': In case the 'mapped type' property of the stereotype 'typedef' contains the string '%s', the latter shall be replaced by the name of the uml::Datatype.
@@ -360,7 +360,7 @@ The following requirements specify the model to text transformations for uml::Us
 
 '''REQ-USE-003''': A comment shall be generated to describe the object of the uml::Usage.
 
-[[Image:./../../images/specification/usage.jpg|frame]]
+[[Image:./../../images/specification/Usage.jpg|frame]]
 
 ==== Operation specification ====
 
@@ -368,7 +368,7 @@ The following requirements specify the model to text transformations for uml::Op
 
 '''REQ-OPER-001''': Private operation shall be generated as static function.
 
-[[Image:./../../images/specification/static.jpg|frame]]
+[[Image:./../../images/specification/Static.jpg|frame]]
 
 
 '''REQ-OPER-002''': In case no parameter with the direction 'return' is specified, the signature of the function shall be 'void'.
@@ -388,7 +388,7 @@ The following requirements specify the model to text transformations for uml::Op
 
 '''REQ-OPER-007''': An operation stereotyped as 'inline' shall be generated as #define.
 
-[[Image:./../../images/specification/inline_model.jpg|frame]]
+[[Image:./../../images/specification/Inline_model.jpg|frame]]
 
 
 ''Inline operation may have conditional declaration. The stereotype 'Inline' has several Boolean property to specify #ifdef or #ifndef conditions.''
@@ -401,7 +401,7 @@ The following requirements specify the model to text transformations for uml::Op
 
 ''This includes 'ASM' and 'Inline' operation.''
 
-[[Image:./../../images/specification/inline.jpg|frame]]
+[[Image:./../../images/specification/Inline.jpg|frame]]
 
 
 '''REQ-OPER-010''': In case the stereotype 'Pointer' is applied on a uml::Parameter, simple or double pointer shall be generated for the given argument. 
