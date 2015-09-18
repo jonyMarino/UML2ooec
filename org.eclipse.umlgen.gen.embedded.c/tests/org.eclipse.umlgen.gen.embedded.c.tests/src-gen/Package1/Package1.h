@@ -18,7 +18,6 @@
 #ifndef Package1_Package1_H
 #define Package1_Package1_H
 
-
 /* Dependency Software_external_lib: "external_lib.h" <- Package1 */
 #include "external_lib.h"
 

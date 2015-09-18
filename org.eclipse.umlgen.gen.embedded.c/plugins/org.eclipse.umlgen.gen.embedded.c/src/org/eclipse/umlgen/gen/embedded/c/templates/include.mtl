@@ -24,6 +24,7 @@
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().oclIsUndefined())]
 /* Dependency with parent package */
 #include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"
+
 [/if]
 [/template]
 
