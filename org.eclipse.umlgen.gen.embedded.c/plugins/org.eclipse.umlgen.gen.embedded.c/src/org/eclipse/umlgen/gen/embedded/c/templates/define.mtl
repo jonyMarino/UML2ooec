@@ -97,7 +97,6 @@
 [let seqEnum : Sequence(uml::NamedElement) = p.ownedElement->filter(uml::Enumeration)->asSequence()]
 [for (en : uml::NamedElement | seqEnum->orderByContents())]
 [en.oclAsType(uml::Enumeration).genEnumerationLiteralDefines()/]
-
 [/for]
 [/let]
 [/template]

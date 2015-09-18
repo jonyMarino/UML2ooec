@@ -18,6 +18,13 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::structure/]
 
+[query public hasCVariables(c : uml::Class) : Boolean = not(getNotReadOnly(getHasTypeApplied(ownedAttribute->asSequence()))->isEmpty())/]
+
+[query public hasHVariables(c : uml::Class) : Boolean = not(getPublic(getNotReadOnly(getHasTypeApplied(ownedAttribute->asSequence())))->isEmpty())/]
+
+[query public hasCVariablesUsesStaticMethods(c : uml::Class) : Boolean = 
+not(getUsesStaticMethods(getNotReadOnly(getHasTypeApplied(ownedAttribute->asSequence())))->isEmpty())/]
+
 [template private genMultiplicity(p : uml::Property) ? (isArrray()) post(trim())]
 ['['/][p.getMultiplicity()/][']'/]
 [/template]
@@ -94,10 +101,7 @@ extern [genHVariable()/];
 /*!
  * \var The instance of the singleton [name/]
  */
-[if (isPrivate())]
-static [name/]_t me;
-[else]
-[name/]_t [name/];
+[if (isPrivate())]static [name/]_t me;[else][name/]_t [name/];
 [/if]
 [/template]
 
@@ -136,7 +140,7 @@ typedef struct [name/]_t
 } [c.name/]_t;
 [/template]
 
-[template public genCVariablesUsesStaticMethods(c : uml::Class) ? (isObject() and not(isSingleton())) post(trim())]
+[template public genCVariablesUsesStaticMethods(c : uml::Class) ? (isObject()) post(trim())]
 [let seqProp : Sequence(uml::Property) = getNotReadOnly(getHasTypeApplied(ownedAttribute->asSequence()))]
 [for (p : uml::Property | seqProp )]
 [if p.isUsesStaticMethods()]

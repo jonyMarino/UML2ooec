@@ -16,6 +16,12 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 
+[query public hasCConstants(c : uml::Class) : Boolean = 
+not(getReadOnly(getHasTypeApplied(ownedAttribute->asSequence()))->isEmpty())/]
+
+[query public hasHConstants(c : uml::Class) : Boolean = 
+not(getPublic(getReadOnly(getHasTypeApplied(ownedAttribute->asSequence())))->isEmpty())/]
+
 [template public genHConstants(c : uml::Class) post(trim())]
 [let seqProp : Sequence(uml::Property) = getPublic(getReadOnly(getHasTypeApplied(ownedAttribute->asSequence())))]
 [for (p : uml::Property | seqProp )]

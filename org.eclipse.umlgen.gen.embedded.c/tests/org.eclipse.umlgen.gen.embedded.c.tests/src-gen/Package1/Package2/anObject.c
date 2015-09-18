@@ -68,8 +68,6 @@ static uint32 var2;
  */
 signed long long var3;
 
-
-
 /***************************************** FUNCTION *****************************************/
 /*!
  * \brief Comment of function2

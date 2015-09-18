@@ -25,6 +25,21 @@ ownedParameter->select(direction <> ParameterDirectionKind::return)->asSequence(
 [query public hasOperationParameters(operation : uml::Operation) : Boolean = 
 (ownedParameter->size() = 0) or (ownedParameter->size() = 1) and (ownedParameter->select(direction = ParameterDirectionKind::return)->notEmpty())/]
 
+[query public hasCInlineOperations(c : uml::Class) : Boolean = 
+not(getPrivate(getInline(getNotAbstract(getNotStatic(getOwnedOperations()))))->isEmpty())/]
+
+[query public hasHInlineOperations(c : uml::Class) : Boolean = 
+not(getPublic(getInline(getNotAbstract(getNotStatic(getOwnedOperations()))))->isEmpty())/]
+
+[query public hasCPrivateOperationsPrototypes(c : uml::Class) : Boolean = 
+not(getNotInline(getPrivate(getNotAbstract(getNotStatic(getOwnedOperations()))))->isEmpty())/]
+
+[query public hasHPublicOperationsPrototypes(c : uml::Class) : Boolean = 
+not(getNotInline(getNotPrivate(getNotAbstract(getNotStatic(getOwnedOperations()))))->isEmpty())/]
+
+[query public hasCOperationsDeclarations(c : uml::Class) : Boolean = 
+not(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations())))->isEmpty())/]
+
 [template private genParameter(param : uml::Parameter) post(trim())]
 [if (isConstantData())]const [/if][getType()/][genPointer()/][if (isConstantPointer())] const[/if] [getName()/]
 [/template]

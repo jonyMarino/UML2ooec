@@ -125,8 +125,6 @@ enum enum2 {
 };
 typedef uint16 enum2;
 
-
-
 /*!
  * \brief Type definition of the singleton class aSingleton
  */
@@ -146,8 +144,6 @@ typedef struct aSingleton_t
  * \var External declaration of the instance of the singleton aSingleton
  */
 extern aSingleton_t aSingleton;
-
-
 
 /**************************************** ASM FUNCTION **************************************/
 /*!

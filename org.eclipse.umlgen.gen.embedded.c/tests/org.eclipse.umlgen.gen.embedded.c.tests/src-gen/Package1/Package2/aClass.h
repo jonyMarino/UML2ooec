@@ -125,8 +125,6 @@ enum enum2 {
 };
 typedef uint16 enum2;
 
-
-
 /*!
  * \brief Type definition of the class aClass
  */

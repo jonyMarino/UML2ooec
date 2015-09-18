@@ -28,8 +28,6 @@
 
 /*## class TopLevel::aSingleton */
 
-
-
 /*!
  * \var The instance of the singleton aSingleton
  */
@@ -68,8 +66,6 @@ aSingleton_t aSingleton;
  ********************************************************************************************/
 /*## operation function2(void) */
 static void function2(void);
-
-
 
 /*## operation function1(void) */
 void function1(void)

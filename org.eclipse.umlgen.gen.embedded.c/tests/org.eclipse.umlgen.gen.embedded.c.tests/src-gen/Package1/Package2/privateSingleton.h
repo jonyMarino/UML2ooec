@@ -38,8 +38,6 @@
 
 
 
-
-
 /*!
  * \brief Type definition of the singleton class privateSingleton
  */
@@ -50,10 +48,6 @@ typedef struct privateSingleton_t
     /*! Property with upper bound != 1 */
     char buffer[20];
 } privateSingleton_t;
-
-
-
-
 
 #endif
 

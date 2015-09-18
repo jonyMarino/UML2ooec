@@ -11,6 +11,7 @@
 [/comment]
 [module cFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
@@ -53,23 +54,35 @@
 /*## class TopLevel::[name/] */
 
 [comment ---------- generate constants ---------------------------------/]
+[if (aClass.hasCConstants())]
 [genCConstants()/]
 
+[/if]
 [comment ---------- generate variables ---------------------------------/]
+[if (aClass.hasCVariables() and (isSingleton() or isObject()))]
 [genCVariables()/]
 
+[/if]
 [comment ---------- generate private inline functions ------------------/]
+[if (aClass.hasCInlineOperations())]
 [genCInlineOperations()/]
 
+[/if]
 [comment ---------- generate prototypes of private operations ----------/]
+[if (aClass.hasCPrivateOperationsPrototypes())]
 [genCPrivateOperationsPrototypes()/]
 
+[/if]
 [comment ---------- generate variables that uses static methods --------/]
+[if (aClass.hasCVariablesUsesStaticMethods() and aClass.isObject())]
 [genCVariablesUsesStaticMethods()/]
 
+[/if]
 [comment ---------- generate declarations of operations ----------------/]
+[if (aClass.hasCOperationsDeclarations())]
 [genCOperationsDeclarations()/]
 
+[/if]
 /**********************************************************************************
  * File Path: [getFullFilePath()/][getName()/].c
  **********************************************************************************/

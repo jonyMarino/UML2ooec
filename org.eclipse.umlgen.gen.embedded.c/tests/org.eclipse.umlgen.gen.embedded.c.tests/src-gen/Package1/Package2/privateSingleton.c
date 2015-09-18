@@ -27,20 +27,10 @@
 
 /*## class TopLevel::privateSingleton */
 
-
-
 /*!
  * \var The instance of the singleton privateSingleton
  */
 static privateSingleton_t me;
-
-
-
-
-
-
-
-
 
 /**********************************************************************************
  * File Path: Package1/Package2/privateSingleton.c

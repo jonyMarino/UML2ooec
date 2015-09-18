@@ -28,12 +28,6 @@
 
 /*## class TopLevel::aClass */
 
-
-
-
-
-
-
 /***************************************** FUNCTION *****************************************/
 /*!
  * \brief Comment of function2
@@ -48,8 +42,6 @@
  ********************************************************************************************/
 /*## operation function2(void) */
 static void function2(void);
-
-
 
 /*## operation function1(void) */
 void function1(void)

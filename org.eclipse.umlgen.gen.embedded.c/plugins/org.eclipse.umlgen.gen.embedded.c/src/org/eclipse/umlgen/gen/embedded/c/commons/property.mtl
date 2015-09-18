@@ -36,6 +36,9 @@ seq->select(p : uml::Property | p.isReadOnly)->asSequence()/]
 [query public getNotReadOnly(seq : Sequence(uml::Property)) : Sequence(uml::Property) =  
 seq->select(p : uml::Property | not(p.isReadOnly))->asSequence()/]
 
+[query public getUsesStaticMethods(seq : Sequence(uml::Property)) : Sequence(uml::Property) =  
+seq->select(p : uml::Property | p.isUsesStaticMethods())->asSequence()/]
+
 [query public getNotUsesStaticMethods(seq : Sequence(uml::Property)) : Sequence(uml::Property) =  
 seq->select(p : uml::Property | not(p.isUsesStaticMethods()))->asSequence()/]
 
