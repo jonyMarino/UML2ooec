@@ -8,11 +8,11 @@
     Contributors:
         Johan Hardy (Spacebel) - initial API and implementation
 -->
-== Specification  ==
+= Specification  =
 
 The following sections present a detailed specification of the Generator UML to Embedded C. It specifies the functional & non-functional requirements that are implemented in the generator and the UML profile 'Embedded_C'.
 
-=== Profile specification  ===
+== Profile specification  ==
 
 UML is so generic and sometimes so abstract that it is really hard to map the C language in UML. In order to overcome this problem, the entities of the C language are described with the help of UML stereotypes. Indeed, the UML standard often needs extensions to specify entities that only exist in C.
 
@@ -151,11 +151,11 @@ In addition to the stereotypes, the profile should also own the basic types of t
 
 [[Image:./../../images/specification/File-Primitive_Types.JPEG|frame]]
 
-=== Generator specification  ===
+== Generator specification  ==
 
 The Generator UML to Embedded C shall be an Acceleo based generator which shall be compliant to the UML2 meta-model (http://www.eclipse.org/uml2/5.0.0/UML). The following lines present the general specification of the  feature and a detailed specification of the model to text transformations.
 
-==== General specification  ====
+=== General specification  ===
 
 '''REQ-GEN-001''': The Generator UML to Embedded C shall be identified under the ID 'org.eclipse.umlgen.gen.embedded.c'.
 
@@ -173,7 +173,7 @@ The Generator UML to Embedded C shall be an Acceleo based generator which shall 
 
 '''REQ-GEN-006''': The size of a tabulation shall be 4 spaces.
 
-==== Package specification ====
+=== Package specification ===
 
 The following requirements specify the model to text transformations for uml::Package.
 
@@ -203,7 +203,7 @@ The following requirements specify the model to text transformations for uml::Pa
 
 [[Image:./../../images/specification/Package_c.jpg|frame]]
 
-==== Class specification ====
+=== Class specification ===
 
 The following requirements specify the model to text transformations for uml::Class.
 
@@ -255,7 +255,7 @@ The following requirements specify the model to text transformations for uml::Cl
 
 ''The name of the variable shall be equal to the name of the 'Singleton'.''
 
-==== Property specification ====
+=== Property specification ===
 
 The following requirements specify the model to text transformations for uml::Property.
 
@@ -294,7 +294,7 @@ The following requirements specify the model to text transformations for uml::Pr
 
 '''REQ-PROP-013''': In case requirement(s) constrain(s) a uml::Property, a requirement list shall be generated.
 
-==== Enumeration specification ====
+=== Enumeration specification ===
 
 The following requirements specify the model to text transformations for uml::Enumeration.
 
@@ -318,7 +318,7 @@ The following requirements specify the model to text transformations for uml::En
 
 '''REQ-ENUM-006''': In case requirement(s) constrain(s) a uml::Enumeration, a requirement list shall be generated.
 
-==== Datatype specification ====
+=== Datatype specification ===
 
 The following requirements specify the model to text transformations for uml::Datatype. 
 
@@ -350,7 +350,7 @@ The following requirements specify the model to text transformations for uml::Da
 
 '''REQ-DTYPE-010''': In case requirement(s) constrain(s) a uml::Datatype, a requirement list shall be generated.
 
-==== Usage specification ====
+=== Usage specification ===
 
 The following requirements specify the model to text transformations for uml::Usage. 
 
@@ -362,7 +362,7 @@ The following requirements specify the model to text transformations for uml::Us
 
 [[Image:./../../images/specification/Usage.jpg|frame]]
 
-==== Operation specification ====
+=== Operation specification ===
 
 The following requirements specify the model to text transformations for uml::Operation.
 
