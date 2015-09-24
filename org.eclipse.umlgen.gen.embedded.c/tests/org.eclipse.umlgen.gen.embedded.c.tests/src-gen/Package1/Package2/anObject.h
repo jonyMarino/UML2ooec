@@ -212,8 +212,8 @@ void function1(void);
  * <b>Function detailed processing extracted from source code</b>
  *
  ********************************************************************************************/
-/*## operation function3(float64 ** const param1, const float64 * param2, unsigned char param4) */
-int32 * function3(float64 ** const param1, const float64 * param2, unsigned char param4);
+/*## operation function3(float64** const param1, const float64* param2, unsigned char param4) */
+int32* function3(float64** const param1, const float64* param2, unsigned char param4);
 
 #endif
 

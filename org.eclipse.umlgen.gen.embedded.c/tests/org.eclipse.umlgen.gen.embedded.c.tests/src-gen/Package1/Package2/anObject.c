@@ -102,8 +102,8 @@ static void function2(void)
     /* End of user code for function2 */
 }
 
-/*## operation function3(float64 ** const param1, const float64 * param2, unsigned char param4) */
-int32 * function3(float64 ** const param1, const float64 * param2, unsigned char param4)
+/*## operation function3(float64** const param1, const float64* param2, unsigned char param4) */
+int32* function3(float64** const param1, const float64* param2, unsigned char param4)
 {
     /* Start of user code for function3 */
     /* End of user code for function3 */

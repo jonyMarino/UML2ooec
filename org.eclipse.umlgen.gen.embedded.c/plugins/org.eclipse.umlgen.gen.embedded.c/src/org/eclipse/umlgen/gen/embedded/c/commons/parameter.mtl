@@ -28,7 +28,7 @@ endif
 /]
 
 [template public genPointer(parameter : uml::Parameter)]
-[if (getPointerKind() = 'Simple')] *[else][if (getPointerKind() = 'Double')] **[else][/if][/if]
+[if (getPointerKind() = 'Simple')]*[else][if (getPointerKind() = 'Double')]**[else][/if][/if]
 [/template]
 
 [query public isConstantPointer(p : uml::Parameter) : Boolean = 
