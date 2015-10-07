@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -51,8 +52,9 @@ public class UML2ECLaunchDelegate implements ILaunchConfigurationDelegate {
         Path outputFolderPath = null;
         try {
             umlModelPath = configuration.getAttribute(IUML2ECConstants.UML_MODEL_PATH, "");
-            outputFolderPath = new Path(ResourcesPlugin.getWorkspace().getRoot().getLocation().toString()
-                    + configuration.getAttribute(IUML2ECConstants.OUTPUT_FOLDER_PATH, ""));
+            IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(configuration
+                    .getAttribute(IUML2ECConstants.OUTPUT_FOLDER_PATH, "")));
+            outputFolderPath = new Path(folder.getRawLocation().toString());
         } catch (CoreException e) {
             IStatus status = new Status(IStatus.ERROR, UML2ECUIActivator.PLUGIN_ID, e.getMessage(), e);
             UML2ECUIActivator.getDefault().getLog().log(status);

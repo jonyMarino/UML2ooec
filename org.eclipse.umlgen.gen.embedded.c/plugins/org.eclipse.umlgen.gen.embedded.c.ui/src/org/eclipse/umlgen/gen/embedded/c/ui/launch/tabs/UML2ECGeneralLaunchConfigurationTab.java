@@ -186,17 +186,17 @@ public class UML2ECGeneralLaunchConfigurationTab extends AbstractUML2ECLaunchCon
             }
         });
 
-        final Button browseModelButton = createPushButton(comp, UML2ECMessages
-                .getString("UML2ECGeneralLaunchConfigurationTab.OutputFolderBrowseButtonName"), null);
-        browseModelButton.addSelectionListener(new SelectionListener() {
+        final Button browseOutputButton = createPushButton(comp, UML2ECMessages.getString(
+                "UML2ECGeneralLaunchConfigurationTab.OutputFolderBrowseButtonName"), null);
+        browseOutputButton.addSelectionListener(new SelectionListener() {
             public void widgetDefaultSelected(SelectionEvent e) {
             }
 
             public void widgetSelected(SelectionEvent e) {
                 FilteredResourcesSelectionDialog dialog = new FilteredResourcesSelectionDialog(getShell(),
                         false, ResourcesPlugin.getWorkspace().getRoot(), IResource.FOLDER);
-                dialog.setTitle(UML2ECMessages
-                        .getString("UML2ECGeneralLaunchConfigurationTab.OutputFolderDialogTitle"));
+                dialog.setTitle(UML2ECMessages.getString(
+                        "UML2ECGeneralLaunchConfigurationTab.OutputFolderDialogTitle"));
                 dialog.setInitialPattern("**");
                 dialog.open();
                 if (dialog.getResult() != null && dialog.getResult().length > 0) {
