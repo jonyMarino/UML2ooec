@@ -698,6 +698,8 @@
         <packagedElement xmi:type="uml:Usage" xmi:id="_XZR7sQ9fEeWawdzS12uxpQ" name="anObject_aClass" visibility="private" client="_3mXn4A9XEeWawdzS12uxpQ" supplier="_3vS6YA9XEeWawdzS12uxpQ"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_XjQXEA9fEeWawdzS12uxpQ" name="aClass_aSingleton" client="_3vS6YA9XEeWawdzS12uxpQ" supplier="_2-fvkA9XEeWawdzS12uxpQ"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_XjQXEQ9fEeWawdzS12uxpQ" name="aClass_anObject" visibility="private" client="_3vS6YA9XEeWawdzS12uxpQ" supplier="_3mXn4A9XEeWawdzS12uxpQ"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_04BEwG2dEeWhXaZOChsvRw" name="Package2_anObject" visibility="public" client="_e_DH48SXEeOfKd0Yj87vFg" supplier="_3mXn4A9XEeWawdzS12uxpQ"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_KsYwAG2eEeWhXaZOChsvRw" name="Package2_anObject" visibility="public" client="_e_DH48SXEeOfKd0Yj87vFg" supplier="_3mXn4A9XEeWawdzS12uxpQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_jpPa0BZAEeSAFvFSf-WY_Q" name="Constants">
         <ownedLiteral xmi:id="_lKhnYBZAEeSAFvFSf-WY_Q" name="NULL">

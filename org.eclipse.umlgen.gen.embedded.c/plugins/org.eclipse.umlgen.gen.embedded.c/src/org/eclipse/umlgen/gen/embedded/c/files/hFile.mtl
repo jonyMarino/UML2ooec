@@ -48,7 +48,6 @@
 #define [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
 
 [comment ---------- generate includes ----------------------------------/]
-[genHIncludeParentPackage()/]
 [genHIncludes()/]
 
 /**********************************************************************************

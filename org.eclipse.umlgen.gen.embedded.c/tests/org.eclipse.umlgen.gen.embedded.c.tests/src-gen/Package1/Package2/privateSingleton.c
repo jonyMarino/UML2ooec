@@ -18,7 +18,6 @@
 /* Dependency with own header */
 #include "Package1/Package2/privateSingleton.h"
 
-
 /**********************************************************************************
  * Package2/privateSingleton.c
  **********************************************************************************/

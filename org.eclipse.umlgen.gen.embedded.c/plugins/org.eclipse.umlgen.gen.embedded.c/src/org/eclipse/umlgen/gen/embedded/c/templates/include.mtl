@@ -13,27 +13,25 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::usage/]
 
-[template public genHIncludeParentPackage(c : uml::Class) post(trim())]
+[template private genHIncludeParentPackage(c : uml::Class) post(trim())]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().oclIsUndefined())]
 /* Dependency with parent package */
 #include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"
 [/if]
 [/template]
 
-[template public genHIncludeParentPackage(p : uml::Package) post(trim())]
+[template private genHIncludeParentPackage(p : uml::Package) post(trim())]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().oclIsUndefined())]
 /* Dependency with parent package */
-#include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"
-
-[/if]
+#include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"[/if]
 [/template]
 
-[template public genCIncludeOwnHeader(c : uml::Class) post(trim())]
+[template private genCIncludeOwnHeader(c : uml::Class) post(trim())]
 /* Dependency with own header */
 #include "[getFullFilePath()/][name/].h"
 [/template]
 
-[template public genCIncludeOwnHeader(p : uml::Package) post(trim())]
+[template private genCIncludeOwnHeader(p : uml::Package) post(trim())]
 /* Dependency with own header */
 #include "[getFullFilePath()/][name/]/[name/].h"
 [/template]
@@ -47,6 +45,7 @@
 [/template]
 
 [template public genHIncludes(p : uml::Package) post(trim())]
+[genHIncludeParentPackage()/]
 [let seq : Sequence(uml::Usage) = getAllPublicUsage(ownedElement->filter(uml::Usage)->asSequence())]
 [for (u : uml::Usage | seq->sortedBy(name))]
 [if client->notEmpty() and (not(client->excludes(p)))]
@@ -58,6 +57,7 @@
 [/template]
 
 [template public genCIncludes(p : uml::Package) post(trim())]
+[genCIncludeOwnHeader()/]
 [let seq : Sequence(uml::Usage) = getAllPrivateUsage(ownedElement->filter(uml::Usage)->asSequence())]
 [for (u : uml::Usage | seq->sortedBy(name))]
 [if client->notEmpty() and (not(client->excludes(p)))]
@@ -69,6 +69,7 @@
 [/template]
 
 [template public genHIncludes(c : uml::Class) post(trim())]
+[genHIncludeParentPackage()/]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first()->isEmpty())]
 [let seq : Sequence(uml::Usage) = getAllPublicUsage(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().ownedElement->filter(uml::Usage)->asSequence())]
 [for (u : uml::Usage | seq->sortedBy(name))]
@@ -82,6 +83,7 @@
 [/template]
 
 [template public genCIncludes(c : uml::Class) post(trim())]
+[genCIncludeOwnHeader()/]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first()->isEmpty())]
 [let seq : Sequence(uml::Usage) = getAllPrivateUsage(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().ownedElement->filter(uml::Usage)->asSequence())]
 [for (u : uml::Usage | seq->sortedBy(name))]

@@ -44,7 +44,7 @@
 #define [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_[getName().substituteAll('/', '_')/]_H
 
 [comment ---------- generate includes ----------------------------------/]
-[genHIncludeParentPackage()/][genHIncludes()/]
+[genHIncludes()/]
 
 /**********************************************************************************
  * [getFilePath()/][getName()/].h
