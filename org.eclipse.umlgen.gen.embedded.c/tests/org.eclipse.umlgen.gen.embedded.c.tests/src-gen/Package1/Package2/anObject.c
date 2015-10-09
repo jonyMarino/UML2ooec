@@ -72,6 +72,9 @@ signed long long var3;
 /*!
  * \brief Comment of function2
  *        
+ * \param ... [in]
+ *        Argument list
+ *        
  * \return void : Nothing to return
  *        
  * <b>Requirements traceability</b>
@@ -80,8 +83,8 @@ signed long long var3;
  * <b>Function detailed processing extracted from source code</b>
  *
  ********************************************************************************************/
-/*## operation function2(void) */
-static void function2(void);
+/*## operation function2(...) */
+static void function2(...);
 
 /*! 
  * \var reference
@@ -95,8 +98,8 @@ void function1(void)
     /* End of user code for function1 */
 }
 
-/*## operation function2(void) */
-static void function2(void)
+/*## operation function2(...) */
+static void function2(...)
 {
     /* Start of user code for function2 */
     /* End of user code for function2 */

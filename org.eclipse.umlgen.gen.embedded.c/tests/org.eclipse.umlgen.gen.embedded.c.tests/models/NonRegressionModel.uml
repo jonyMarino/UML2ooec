@@ -307,6 +307,11 @@
             <ownedComment xmi:id="_2eGesA9fEeWawdzS12uxpQ">
               <body>Comment of function2</body>
             </ownedComment>
+            <ownedParameter xmi:id="_ed0vkG5hEeWCXuetl5-How" name="...">
+              <ownedComment xmi:id="_gNRT8G5hEeWCXuetl5-How">
+                <body>Argument list</body>
+              </ownedComment>
+            </ownedParameter>
             <ownedParameter xmi:id="_2eGesQ9fEeWawdzS12uxpQ" name="return" direction="return">
               <ownedComment xmi:id="_2eGesg9fEeWawdzS12uxpQ">
                 <body>Nothing to return</body>

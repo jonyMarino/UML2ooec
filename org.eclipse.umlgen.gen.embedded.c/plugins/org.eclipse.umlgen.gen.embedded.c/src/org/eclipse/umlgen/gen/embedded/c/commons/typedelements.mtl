@@ -13,7 +13,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::type/]
 
 [query public getType(t : uml::TypedElement) : String = 
-if  type.oclIsUndefined() then 'void'
-else type.getType()
+if name = '...' then '' 
+else if type.oclIsUndefined() then 'void' else type.getType() endif
 endif
 /]
