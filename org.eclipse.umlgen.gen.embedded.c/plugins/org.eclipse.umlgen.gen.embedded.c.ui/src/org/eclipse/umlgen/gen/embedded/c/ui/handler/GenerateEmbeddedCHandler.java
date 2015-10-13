@@ -115,7 +115,7 @@ public class GenerateEmbeddedCHandler extends AbstractHandler {
      * @throws ExecutionException
      *             exception.
      */
-    private void doGenerate(EObject eObject) throws ExecutionException {
+    static public void doGenerate(EObject eObject) throws ExecutionException {
         Path outputFolderPath = null;
         final IContainer container = ResourcesPlugin.getWorkspace().getRoot();
 
