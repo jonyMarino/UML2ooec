@@ -16,9 +16,9 @@
 package model;
 import org.eclipse.umlgen.rtsj.annotations.*;
 
-import javax.realtime.*;
-import fr.cnes.autojava.component.AperiodicRealtimeEntry;
-import fr.cnes.autojava.component.AperiodicRealtimeComponent;
+// import javax.realtime.*;
+// import AperiodicRealtimeEntry;
+// import AperiodicRealtimeComponent;
 
 import org.eclipse.umlgen.rtsj.framework.ArgsBuffer;
 import org.eclipse.umlgen.rtsj.framework.MBuffer;

@@ -28,7 +28,7 @@
   <name>Eclipse UML2 to RTSJ Repository</name>
   
   <!-- see http://issues.sonatype.org/browse/TYCHO-313 -->
-  <version>1.0.0-SNAPSHOT</version>
+  <version>0.9.0-SNAPSHOT</version>
 
   <build>
     <plugins>

@@ -116,18 +116,18 @@ public void catchCommunicationException(String service, ArgsBuffer params) {
 [comment generates thread import /]
 [template public genThreadImport(aClass : Class) overrides genThreadImport]
 [if (isAperiodic() or isSporadic())]
-import javax.realtime.*;
-import fr.cnes.autojava.component.AperiodicRealtimeEntry;
-import fr.cnes.autojava.component.AperiodicRealtimeComponent;
+// import javax.realtime.*;
+// import AperiodicRealtimeEntry;
+// import AperiodicRealtimeComponent;
 [/if]
 [if (isPeriodic())]
-import javax.realtime.*;
-import fr.cnes.autojava.component.PeriodicRealtimeEntry;
-import fr.cnes.autojava.component.PeriodicRealtimeComponent;
+// import javax.realtime.*;
+// import PeriodicRealtimeEntry;
+// import PeriodicRealtimeComponent;
 [/if]
 [if (isSynchronized())]
-import javax.realtime.MonitorControl;
-import javax.realtime.PriorityInheritance;
+// import javax.realtime.MonitorControl;
+// import javax.realtime.PriorityInheritance;
 [/if]
 [/template]
 

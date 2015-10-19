@@ -108,7 +108,7 @@ import org.eclipse.umlgen.rtsj.framework.MBuffer;
 [comment generates static memory buffer attributes if needed /]
 [template public genStaticMemoryBuffer(aClass : Class)]
 [if (not ownedPort->select(isPortInfo())->isEmpty())]
-protected fr.CNES and others.autojava.communication.StaticMemoryBuffer asyncBuffer;
+// protected org.eclipse.umlgen.rtsj.framework.StaticMemoryBuffer asyncBuffer;
 [/if]
 [/template]
 
