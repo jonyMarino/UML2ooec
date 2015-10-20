@@ -53,7 +53,7 @@ public class Uml2autojava extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public static final String[] TEMPLATE_NAMES = { "main" };
+    public static final String[] TEMPLATE_NAMES = {"main" };
 
     /** Empty string definition. */
     private static final String EMPTY_STRING = "";
@@ -133,7 +133,8 @@ public class Uml2autojava extends AbstractAcceleoGenerator {
      *             the model cannot be loaded.
      * @generated
      */
-    public Uml2autojava(URI modelURI, File targetFolder, List<? extends Object> arguments) throws IOException {
+    public Uml2autojava(URI modelURI, File targetFolder, List<? extends Object> arguments)
+            throws IOException {
         initialize(modelURI, targetFolder, arguments);
     }
 
@@ -301,7 +302,6 @@ public class Uml2autojava extends AbstractAcceleoGenerator {
         for (Resource resource : rs.getResources()) {
             resource.unload();
         }
-        AcceleoWorkspaceUtil.INSTANCE.reset();
 
     }
 
@@ -315,10 +315,10 @@ public class Uml2autojava extends AbstractAcceleoGenerator {
     public List<IAcceleoTextGenerationListener> getGenerationListeners() {
         List<IAcceleoTextGenerationListener> listeners = super.getGenerationListeners();
         /*
-         * TODO if you need to listen to generation event, add listeners to the list here. If you want to change
-         * the content of this method, do NOT forget to change the "@generated" tag in the Javadoc of this method
-         * to "@generated NOT". Without this new tag, any compilation of the Acceleo module with the main template
-         * that has caused the creation of this class will revert your modifications.
+         * TODO if you need to listen to generation event, add listeners to the list here. If you want to
+         * change the content of this method, do NOT forget to change the "@generated" tag in the Javadoc of
+         * this method to "@generated NOT". Without this new tag, any compilation of the Acceleo module with
+         * the main template that has caused the creation of this class will revert your modifications.
          */
         return listeners;
     }
@@ -439,8 +439,8 @@ public class Uml2autojava extends AbstractAcceleoGenerator {
         Map uriMap = resourceSet.getURIConverter().getURIMap();
 
         URI uri = URI.createURI("platform:/plugin/org.eclipse.uml2.uml.resources");
-        uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri.appendSegment("libraries")
-                .appendSegment(EMPTY_STRING));
+        uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri.appendSegment("libraries").appendSegment(
+                EMPTY_STRING));
         uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri.appendSegment("metamodels")
                 .appendSegment(EMPTY_STRING));
         uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri.appendSegment("profiles").appendSegment(
