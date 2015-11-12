@@ -112,16 +112,18 @@ public class GenerateEmbeddedCHandler extends AbstractHandler {
      *
      * @param eObject
      *            The model object.
+     * @param root
+     *            The model root object.
      * @throws ExecutionException
      *             exception.
      */
-    static public void doGenerate(EObject eObject) throws ExecutionException {
+    static public void doGenerate(EObject eObject, EObject root) throws ExecutionException {
         Path outputFolderPath = null;
         final IContainer container = ResourcesPlugin.getWorkspace().getRoot();
 
         /* Find out the model resource */
-        IResource model = ResourcesPlugin.getWorkspace().getRoot().findMember(
-                eObject.eResource().getURI().toPlatformString(true));
+        IResource model = ResourcesPlugin.getWorkspace().getRoot().findMember(root.eResource().getURI()
+                .toPlatformString(true));
 
         /* Retrieve corresponding launch configuration and create a configuration holder */
         String configNameToSelect = ConfigurationServices.getConfigurationProperty((IResource)model);
@@ -180,7 +182,7 @@ public class GenerateEmbeddedCHandler extends AbstractHandler {
      *             exception.
      */
     private void caseClass(Class selectedObject) throws ExecutionException {
-        doGenerate(selectedObject);
+        doGenerate(selectedObject, selectedObject.getModel());
     }
 
     /**
@@ -192,7 +194,7 @@ public class GenerateEmbeddedCHandler extends AbstractHandler {
      *             exception.
      */
     private void casePackage(Package selectedObject) throws ExecutionException {
-        doGenerate(selectedObject);
+        doGenerate(selectedObject, selectedObject.getModel());
     }
 
     /**
@@ -204,7 +206,7 @@ public class GenerateEmbeddedCHandler extends AbstractHandler {
      *             exception.
      */
     private void caseModel(Model selectedObject) throws ExecutionException {
-        doGenerate(selectedObject);
+        doGenerate(selectedObject, selectedObject.getModel());
     }
 
 }
