@@ -34,6 +34,7 @@
  * \brief Comment of the object
  *
  * <b>Requirements traceability</b>
+ *    - REQ_FUNC_001
  *    - REQ_FUNC_002
  */
 
