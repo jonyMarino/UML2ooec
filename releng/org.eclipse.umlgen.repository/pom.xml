@@ -56,7 +56,46 @@
               </resources>
             </configuration>
           </execution>
-        </executions>
+        </executions>       
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+			<version>1.7</version>
+			<executions>
+				<execution>
+					<id>create-zip-files</id>
+					<phase>package</phase>
+					<configuration>
+						<target>
+							<echo>Copy web documentation from org.eclipse.umlgen.gen.c.doc</echo>
+							<copy todir="${project.build.directory}/webDoc/org.eclipse.umlgen.gen.c.doc">
+								<fileset dir="${basedir}/../../org.eclipse.umlgen.gen.c/doc/org.eclipse.umlgen.gen.c.doc/target/website/">
+									<include name="*" />
+								</fileset>
+							</copy>
+							<echo>Copy web documentation from org.eclipse.umlgen.gen.autojava.doc</echo>
+							<copy todir="${project.build.directory}/webDoc/org.eclipse.umlgen.gen.autojava.doc">
+								<fileset dir="${basedir}/../../org.eclipse.umlgen.gen.rtsj/doc/org.eclipse.umlgen.gen.autojava.doc/target/website/">
+									<include name="*" />
+								</fileset>
+							</copy>
+							<echo>Copy web documentation from org.eclipse.umlgen.gen.embedded.c.doc</echo>
+							<copy todir="${project.build.directory}/webDoc/org.eclipse.umlgen.gen.embedded.c.doc">
+								<fileset dir="${basedir}/../../org.eclipse.umlgen.gen.embedded.c/doc/org.eclipse.umlgen.gen.embedded.c.doc/target/website/">
+									<include name="*" />
+								</fileset>
+							</copy>
+							<echo>Zip web documentation</echo>
+							<zip basedir="${project.build.directory}/webDoc"
+								destfile="${project.build.directory}/webDoc.zip" >
+							</zip>                            		 
+						</target>
+					</configuration>
+					<goals>
+						<goal>run</goal>
+					</goals>
+				</execution>
+			</executions>
       </plugin>
     </plugins>
   </build>
