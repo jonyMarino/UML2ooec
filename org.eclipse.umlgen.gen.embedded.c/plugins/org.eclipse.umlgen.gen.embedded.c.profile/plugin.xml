@@ -21,7 +21,7 @@
     <extension 
        point="org.eclipse.uml2.uml.dynamic_package">
           <profile 
-             uri="http://www.spacebel.com/1.0.0/embedded_C" 
-             location="pathmap://UMLGEN_PROFILES/Embedded_C/embedded_C.profile.uml#_2htC4AqWEeWYB_j0d7Rmhw"/>
+             uri="http://www.spacebel.com/1.0.1/embedded_C" 
+             location="pathmap://UMLGEN_PROFILES/Embedded_C/embedded_C.profile.uml#_i2LuAJUQEeWnPNAS6tX0cw"/>
      </extension>
 </plugin>
