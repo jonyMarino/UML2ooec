@@ -20,8 +20,6 @@
 
 /* Dependency with parent package */
 #include "Package1/Package2/Package2.h"
-/* Dependency anObject_aSingleton: aSingleton <- anObject */
-#include "Package1/Package2/aSingleton.h"
 
 /**********************************************************************************
  * Package2/anObject.h

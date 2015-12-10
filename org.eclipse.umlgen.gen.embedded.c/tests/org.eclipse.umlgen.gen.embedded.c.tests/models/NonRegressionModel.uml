@@ -699,7 +699,7 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Usage" xmi:id="_LWxMEA9fEeWawdzS12uxpQ" name="aSingleton_anObject" client="_2-fvkA9XEeWawdzS12uxpQ" supplier="_3mXn4A9XEeWawdzS12uxpQ"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_S9RqcA9fEeWawdzS12uxpQ" name="aSingleton_aClass" visibility="private" client="_2-fvkA9XEeWawdzS12uxpQ" supplier="_3vS6YA9XEeWawdzS12uxpQ"/>
-        <packagedElement xmi:type="uml:Usage" xmi:id="_XZR7sA9fEeWawdzS12uxpQ" name="anObject_aSingleton" client="_3mXn4A9XEeWawdzS12uxpQ" supplier="_2-fvkA9XEeWawdzS12uxpQ"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_XZR7sA9fEeWawdzS12uxpQ" name="anObject_aSingleton" visibility="private" client="_3mXn4A9XEeWawdzS12uxpQ" supplier="_2-fvkA9XEeWawdzS12uxpQ"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_XZR7sQ9fEeWawdzS12uxpQ" name="anObject_aClass" visibility="private" client="_3mXn4A9XEeWawdzS12uxpQ" supplier="_3vS6YA9XEeWawdzS12uxpQ"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_XjQXEA9fEeWawdzS12uxpQ" name="aClass_aSingleton" client="_3vS6YA9XEeWawdzS12uxpQ" supplier="_2-fvkA9XEeWawdzS12uxpQ"/>
         <packagedElement xmi:type="uml:Usage" xmi:id="_XjQXEQ9fEeWawdzS12uxpQ" name="aClass_anObject" visibility="private" client="_3vS6YA9XEeWawdzS12uxpQ" supplier="_3mXn4A9XEeWawdzS12uxpQ"/>

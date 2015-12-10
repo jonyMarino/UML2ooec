@@ -17,6 +17,8 @@
 
 /* Dependency with own header */
 #include "Package1/Package2/anObject.h"
+/* Dependency anObject_aSingleton: aSingleton <- anObject */
+#include "Package1/Package2/aSingleton.h"
 /* Dependency anObject_aClass: aClass <- anObject */
 #include "Package1/Package2/aClass.h"
 

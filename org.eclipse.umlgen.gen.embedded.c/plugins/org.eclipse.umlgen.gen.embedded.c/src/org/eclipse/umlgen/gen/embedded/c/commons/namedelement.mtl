@@ -83,5 +83,8 @@ s->sortedBy(n : uml::NamedElement | n.eContainer().eContents()->indexOf(n))->asS
 [query public orderByContents(s : Sequence(uml::NamedElement)) : Sequence (uml::NamedElement) = 
 s->sortedBy(n : uml::NamedElement | n.eContainer().eContents()->indexOf(n))/]
 
+[query public orderByContents(s : Sequence(uml::Usage)) : Sequence (uml::Usage) = 
+s->sortedBy(u : uml::Usage | u.oclAsType(uml::NamedElement).eContainer().eContents()->indexOf(u.oclAsType(uml::NamedElement)))/]
+
 [query public hasStereotype(e : uml::Element, qualifiedName : String) : Boolean =
 not(e.getAppliedStereotype(qualifiedName).oclIsUndefined())/]
