@@ -150,17 +150,18 @@ public final class ConfigurationServices {
 
             // Documentation
             configurationHolder.put(IUML2ECConstants.AUTHOR, configuration.getAttribute(
-                    IUML2ECConstants.AUTHOR, ""));
+                    IUML2ECConstants.AUTHOR, IUML2ECConstants.Default.DEFAULT_AUTHOR));
             configurationHolder.put(IUML2ECConstants.VERSION, configuration.getAttribute(
-                    IUML2ECConstants.VERSION, ""));
+                    IUML2ECConstants.VERSION, IUML2ECConstants.Default.DEFAULT_VERSION));
             configurationHolder.put(IUML2ECConstants.COPYRIGHT, configuration.getAttribute(
-                    IUML2ECConstants.COPYRIGHT, ""));
+                    IUML2ECConstants.COPYRIGHT, IUML2ECConstants.Default.DEFAULT_COPYRIGHT));
             configurationHolder.put(IUML2ECConstants.GENERATE_TRACEABILITY, configuration.getAttribute(
-                    IUML2ECConstants.GENERATE_TRACEABILITY, false));
+                    IUML2ECConstants.GENERATE_TRACEABILITY,
+                    IUML2ECConstants.Default.DEFAULT_GENERATE_TRACEABILITY));
             configurationHolder.put(IUML2ECConstants.GENERATE_SVN_DATE, configuration.getAttribute(
-                    IUML2ECConstants.GENERATE_SVN_DATE, false));
+                    IUML2ECConstants.GENERATE_SVN_DATE, IUML2ECConstants.Default.DEFAULT_GENERATE_SVN_DATE));
             configurationHolder.put(IUML2ECConstants.GENERATE_SVN_ID, configuration.getAttribute(
-                    IUML2ECConstants.GENERATE_SVN_ID, false));
+                    IUML2ECConstants.GENERATE_SVN_ID, IUML2ECConstants.Default.DEFAULT_GENERATE_SVN_ID));
         } catch (CoreException e) {
             IStatus status = new Status(IStatus.ERROR, UML2ECUIActivator.PLUGIN_ID, e.getMessage(), e);
             UML2ECUIActivator.getDefault().getLog().log(status);
