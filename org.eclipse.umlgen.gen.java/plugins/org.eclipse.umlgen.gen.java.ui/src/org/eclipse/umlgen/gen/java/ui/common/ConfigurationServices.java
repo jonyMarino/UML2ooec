@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.umlgen.gen.java.ui.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -22,8 +25,9 @@ import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.debug.ui.ILaunchGroup;
 import org.eclipse.umlgen.gen.java.ui.UML2JavaUIActivator;
 import org.eclipse.umlgen.gen.java.ui.launch.IUML2JavaUIConstants;
+import org.eclipse.umlgen.gen.java.utils.IUML2JavaConstants;
 
-/** Utility class to manage launch configurations from menu and properties page.*/
+/** Utility class to manage launch configurations from menu and properties page. */
 public final class ConfigurationServices {
 
     /**
@@ -37,7 +41,7 @@ public final class ConfigurationServices {
     }
 
     /**
-     * Get the stored launch configurations for the current UML model, for Java generation.
+     * Get the stored launch configurations for Java generation.
      *
      * @return ILaunchConfiguration[]
      */
@@ -52,6 +56,27 @@ public final class ConfigurationServices {
             UML2JavaUIActivator.getDefault().getLog().log(status);
         }
         return null;
+    }
+
+    /**
+     * Get the stored launch configurations for the given UML model, for Java generation.
+     *
+     * @return The launch configurations
+     */
+    public static List<ILaunchConfiguration> getStoredJavaGenerationLaunchConfigurations(IResource umlModel) {
+        List<ILaunchConfiguration> configs = new ArrayList<ILaunchConfiguration>();
+        try {
+            for (ILaunchConfiguration launchConfig : getStoredJavaGenerationLaunchConfigurations()) {
+                String modelPath = launchConfig.getAttribute(IUML2JavaConstants.UML_MODEL_PATH, (String)null);
+                if (umlModel.getFullPath().toString().equals(modelPath)) {
+                    configs.add(launchConfig);
+                }
+            }
+        } catch (CoreException e) {
+            IStatus status = new Status(IStatus.ERROR, UML2JavaUIActivator.PLUGIN_ID, e.getMessage(), e);
+            UML2JavaUIActivator.getDefault().getLog().log(status);
+        }
+        return configs;
     }
 
     /**
@@ -110,7 +135,7 @@ public final class ConfigurationServices {
 
     /**
      * Get the launch group.
-     * 
+     *
      * @return The launch group.
      */
     public static ILaunchGroup getLaunchGroup() {

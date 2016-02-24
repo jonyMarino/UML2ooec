@@ -43,32 +43,49 @@ public class GenerateJavaHandler extends AbstractHandler {
      */
     public Object execute(ExecutionEvent event) throws ExecutionException {
         try {
-            IStructuredSelection selection = (IStructuredSelection)HandlerUtil
-                    .getCurrentSelectionChecked(event);
+            IStructuredSelection selection = (IStructuredSelection)HandlerUtil.getCurrentSelectionChecked(
+                    event);
             IResource model = null;
             Object selectedObj = selection.getFirstElement();
             if (selectedObj instanceof IResource) {
                 model = (IResource)selectedObj;
             } else if (selectedObj instanceof EObject) {
-                model = ResourcesPlugin.getWorkspace().getRoot().findMember(
-                        ((EObject)selectedObj).eResource().getURI().toPlatformString(true));
+                model = ResourcesPlugin.getWorkspace().getRoot().findMember(((EObject)selectedObj).eResource()
+                        .getURI().toPlatformString(true));
             }
 
             if (model != null) {
                 String configName = ConfigurationServices.getConfigurationProperty(model);
-                ILaunchConfiguration config = ConfigurationServices.getStoredLaunchConfiguration(configName);
+                if (configName != null) {
+                    ILaunchConfiguration config = ConfigurationServices.getStoredLaunchConfiguration(
+                            configName);
 
-                String computedModelPath = model.getFullPath().toString();
-                String modelPath = config.getAttribute(IUML2JavaConstants.UML_MODEL_PATH, "");
+                    if (config != null) {
+                        String computedModelPath = model.getFullPath().toString();
 
-                if (modelPath != null && modelPath.equals(computedModelPath)) {
-                    ILaunchGroup group = ConfigurationServices.getLaunchGroup();
-                    if (group != null) {
-                        DebugUITools.launch(config, group.getMode());
+                        String modelPath = config.getAttribute(IUML2JavaConstants.UML_MODEL_PATH, "");
+
+                        if (modelPath != null && modelPath.equals(computedModelPath)) {
+                            ILaunchGroup group = ConfigurationServices.getLaunchGroup();
+                            if (group != null) {
+                                DebugUITools.launch(config, group.getMode());
+                            }
+                        } else {
+                            IStatus status = new Status(IStatus.ERROR, UML2JavaUIActivator.PLUGIN_ID,
+                                    "No configuration matches with this model.");
+                            UML2JavaUIActivator.getDefault().getLog().log(status);
+                        }
+                    } else {
+                        IStatus status = new Status(IStatus.INFO, UML2JavaUIActivator.PLUGIN_ID,
+                                "The launch configuration \"" + configName
+                                        + "\" does not exist. Maybe it has been removed. You may define this in the properties of the model: \""
+                                        + model.getFullPath().toString() + "\"");
+                        UML2JavaUIActivator.getDefault().getLog().log(status);
                     }
                 } else {
-                    IStatus status = new Status(IStatus.ERROR, UML2JavaUIActivator.PLUGIN_ID,
-                            "No configuration matches with this model.");
+                    IStatus status = new Status(IStatus.INFO, UML2JavaUIActivator.PLUGIN_ID,
+                            "No Java generation launch configuration has been chosen for the model: \""
+                                    + model.getFullPath().toString() + "\"");
                     UML2JavaUIActivator.getDefault().getLog().log(status);
                 }
             }
