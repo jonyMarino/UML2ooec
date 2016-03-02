@@ -83,19 +83,36 @@ public class GenerateEmbeddedCHandler extends AbstractHandler {
 
             if (model != null) {
                 String configName = ConfigurationServices.getConfigurationProperty(model);
-                ILaunchConfiguration config = ConfigurationServices.getStoredLaunchConfiguration(configName);
+                if (configName != null) {
+                    ILaunchConfiguration config = ConfigurationServices.getStoredLaunchConfiguration(
+                            configName);
 
-                String computedModelPath = model.getFullPath().toString();
-                String modelPath = config.getAttribute(IUML2ECConstants.UML_MODEL_PATH, "");
+                    if (config != null) {
+                        String computedModelPath = model.getFullPath().toString();
 
-                if (modelPath != null && modelPath.equals(computedModelPath)) {
-                    ILaunchGroup group = ConfigurationServices.getLaunchGroup();
-                    if (group != null) {
-                        DebugUITools.launch(config, group.getMode());
+                        String modelPath = config.getAttribute(IUML2ECConstants.UML_MODEL_PATH, "");
+
+                        if (modelPath != null && modelPath.equals(computedModelPath)) {
+                            ILaunchGroup group = ConfigurationServices.getLaunchGroup();
+                            if (group != null) {
+                                DebugUITools.launch(config, group.getMode());
+                            }
+                        } else {
+                            IStatus status = new Status(IStatus.ERROR, UML2ECUIActivator.PLUGIN_ID,
+                                    "No configuration matches with this model.");
+                            UML2ECUIActivator.getDefault().getLog().log(status);
+                        }
+                    } else {
+                        IStatus status = new Status(IStatus.INFO, UML2ECUIActivator.PLUGIN_ID,
+                                "The launch configuration \"" + configName
+                                        + "\" does not exist. Maybe it has been removed. You may define this in the properties of the model: \""
+                                        + model.getFullPath().toString() + "\"");
+                        UML2ECUIActivator.getDefault().getLog().log(status);
                     }
                 } else {
-                    IStatus status = new Status(IStatus.ERROR, UML2ECUIActivator.PLUGIN_ID,
-                            "No configuration matches with this model.");
+                    IStatus status = new Status(IStatus.INFO, UML2ECUIActivator.PLUGIN_ID,
+                            "No Java generation launch configuration has been chosen for the model: \""
+                                    + model.getFullPath().toString() + "\"");
                     UML2ECUIActivator.getDefault().getLog().log(status);
                 }
             }

@@ -12,6 +12,7 @@
 package org.eclipse.umlgen.gen.embedded.c.ui.properties;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
@@ -28,15 +29,18 @@ import org.eclipse.debug.ui.ILaunchGroup;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.PropertyPage;
 import org.eclipse.umlgen.gen.embedded.c.ui.common.ConfigurationServices;
 import org.eclipse.umlgen.gen.embedded.c.ui.launch.IUML2ECUIConstants;
+import org.eclipse.umlgen.gen.embedded.c.utils.IUML2ECConstants;
 
 /**
  * Properties page to select the launch configuration for the Embedded C generation. The implementation of
@@ -71,35 +75,41 @@ public class LaunchConfigurationPropertiesPage extends PropertyPage {
         // generation.
         combo = new LaunchConfigurationsCombo(composite, SWT.READ_ONLY);
 
+        String configNameToSelect = ConfigurationServices.getConfigurationProperty((IResource)getElement());
+        List<ILaunchConfiguration> configs = ConfigurationServices
+                .getStoredJavaGenerationLaunchConfigurations((IResource)getElement());
+
+        if (configs.isEmpty() || configNameToSelect == null) {
+            Label isStoredLabel = new Label(composite, SWT.NONE);
+            isStoredLabel.setForeground(new org.eclipse.swt.graphics.Color(composite.getDisplay(), new RGB(
+                    255, 0, 0)));
+            isStoredLabel.setText(
+                    "No favourite configuration for this model. Click on OK to choose the selected one.");
+        }
+
         // Create the viewer from the launch configurations.
         viewer = createViewer(composite);
 
         if (viewer != null) {
-            ILaunchConfiguration[] configs = ConfigurationServices
-                    .getStoredEmbeddedCGenerationLaunchConfigurations();
 
             combo.setLaunchConfigurations(configs);
             combo.setViewer(viewer);
 
-            String configNameToSelect = ConfigurationServices
-                    .getConfigurationProperty((IResource)getElement());
-
-            if ((configNameToSelect == null || configNameToSelect.compareTo("") == 0 || !combo
-                    .contains(configNameToSelect))
-                    && !combo.isEmpty()) {
+            if ((configNameToSelect == null || configNameToSelect.compareTo("") == 0 || !combo.contains(
+                    configNameToSelect)) && !combo.isEmpty()) {
                 configNameToSelect = combo.getItem(0);
             } else if (combo.isEmpty()) {
                 try {
                     ILaunchConfigurationWorkingCopy newLaunchConfig = createLaunchConfigurationWorkingCopy();
                     combo.add(newLaunchConfig);
                     configNameToSelect = newLaunchConfig.getName();
+                    newLaunchConfig.setAttribute(IUML2ECConstants.UML_MODEL_PATH, ((IResource)getElement())
+                            .getFullPath().toString());
                 } catch (CoreException e) {
                     e.printStackTrace();
                 }
             }
             combo.select(configNameToSelect);
-            ConfigurationServices.saveConfigurationProperty((IResource)getElement(), configNameToSelect);
-
         }
         return composite;
     }
@@ -200,7 +210,7 @@ public class LaunchConfigurationPropertiesPage extends PropertyPage {
          * @param configs
          *            The launch configurations.
          */
-        public void setLaunchConfigurations(ILaunchConfiguration[] configs) {
+        public void setLaunchConfigurations(List<ILaunchConfiguration> configs) {
             for (ILaunchConfiguration config : configs) {
                 add(config);
             }

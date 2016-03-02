@@ -11,6 +11,9 @@
  *******************************************************************************/
 package org.eclipse.umlgen.gen.embedded.c.ui.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -60,6 +63,27 @@ public final class ConfigurationServices {
             UML2ECUIActivator.getDefault().getLog().log(status);
         }
         return null;
+    }
+
+    /**
+     * Get the stored launch configurations for the given UML model, for Embedded C generation.
+     *
+     * @return The launch configurations
+     */
+    public static List<ILaunchConfiguration> getStoredJavaGenerationLaunchConfigurations(IResource umlModel) {
+        List<ILaunchConfiguration> configs = new ArrayList<ILaunchConfiguration>();
+        try {
+            for (ILaunchConfiguration launchConfig : getStoredEmbeddedCGenerationLaunchConfigurations()) {
+                String modelPath = launchConfig.getAttribute(IUML2ECConstants.UML_MODEL_PATH, (String)null);
+                if (umlModel.getFullPath().toString().equals(modelPath)) {
+                    configs.add(launchConfig);
+                }
+            }
+        } catch (CoreException e) {
+            IStatus status = new Status(IStatus.ERROR, UML2ECUIActivator.PLUGIN_ID, e.getMessage(), e);
+            UML2ECUIActivator.getDefault().getLog().log(status);
+        }
+        return configs;
     }
 
     /**
