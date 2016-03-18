@@ -359,6 +359,21 @@
               </ownedComment>
             </ownedParameter>
           </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_9JLP8O0QEeWCUNqZSfBWLw" name="PRIVATE_MACRO" visibility="private">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_9JLP8e0QEeWCUNqZSfBWLw">
+              <body>This is a private inline operation</body>
+            </ownedComment>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_9JLP8u0QEeWCUNqZSfBWLw" name="parameter1">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_9JLP8-0QEeWCUNqZSfBWLw">
+                <body>The arg of the inline operation</body>
+              </ownedComment>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_9JLP9O0QEeWCUNqZSfBWLw" name="return" type="_e_DSYcSXEeOfKd0Yj87vFg" direction="return">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_9JLP9e0QEeWCUNqZSfBWLw">
+                <body>The return value</body>
+              </ownedComment>
+            </ownedParameter>
+          </ownedOperation>
           <nestedClassifier xmi:type="uml:DataType" xmi:id="_2eGeww9fEeWawdzS12uxpQ" name="callback_t" visibility="private">
             <ownedComment xmi:type="uml:Comment" xmi:id="_2eGexA9fEeWawdzS12uxpQ">
               <body>Callback definition</body>
@@ -482,6 +497,13 @@
               </ownedComment>
             </ownedLiteral>
           </nestedClassifier>
+          <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_6wP-0O0SEeWCuI7QswxgRQ" name="List of constants" visibility="private">
+            <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_8an18O0SEeWCuI7QswxgRQ" name="MAX_BUFFER_SIZE">
+              <ownedComment xmi:type="uml:Comment" xmi:id="_WlVPUO0TEeWyM_HsBLoaUA" annotatedElement="_8an18O0SEeWCuI7QswxgRQ">
+                <body>Maximum buffer size allowed.</body>
+              </ownedComment>
+            </ownedLiteral>
+          </nestedClassifier>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_3vS6YA9XEeWawdzS12uxpQ" name="aClass">
           <ownedComment xmi:type="uml:Comment" xmi:id="_-d_nAA9XEeWawdzS12uxpQ" annotatedElement="_e_DH2MSXEeOfKd0Yj87vFg">
@@ -516,6 +538,12 @@
           </ownedAttribute>
           <ownedAttribute xmi:type="uml:Property" xmi:id="_2xJWew9fEeWawdzS12uxpQ" name="reference" visibility="private" type="_2xJWkw9fEeWawdzS12uxpQ">
             <defaultValue xmi:type="uml:LiteralString" xmi:id="_2xJWfA9fEeWawdzS12uxpQ" value="function2"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_2SKC4O0SEeWCuI7QswxgRQ" name="MIN_SIZE" visibility="private">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_2SKC4e0SEeWCuI7QswxgRQ">
+              <body>Constant MIN_SIZE</body>
+            </ownedComment>
+            <defaultValue xmi:type="uml:LiteralString" xmi:id="_2SKC4u0SEeWCuI7QswxgRQ" value="(32U)"/>
           </ownedAttribute>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_2xJWfQ9fEeWawdzS12uxpQ" name="function1">
             <ownedComment xmi:type="uml:Comment" xmi:id="_2xJWfg9fEeWawdzS12uxpQ">
@@ -912,4 +940,6 @@ Check comment with several lines.</body>
   <embedded_C:Typedef xmi:id="_2xJW3A9fEeWawdzS12uxpQ" base_DataType="_2xJWxg9fEeWawdzS12uxpQ" base_Enumeration="_2xJWxg9fEeWawdzS12uxpQ" MappedType="uint16"/>
   <embedded_C:Value xmi:id="_2xJW3Q9fEeWawdzS12uxpQ" Value="MAX_SIZE" base_EnumerationLiteral="_2xJWyA9fEeWawdzS12uxpQ"/>
   <embedded_C:Singleton xmi:id="_7OzT4A9nEeW-Tc1smijpdA" base_Class="_6Yf-AA9nEeW-Tc1smijpdA"/>
+  <embedded_C:Inline xmi:id="_9NyqMO0QEeWCUNqZSfBWLw" base_Operation="_9JLP8O0QEeWCUNqZSfBWLw" Value=""/>
+  <embedded_C:Constant xmi:id="_8axm8O0SEeWCuI7QswxgRQ" base_EnumerationLiteral="_8an18O0SEeWCuI7QswxgRQ" Declaration="1254"/>
 </xmi:XMI>

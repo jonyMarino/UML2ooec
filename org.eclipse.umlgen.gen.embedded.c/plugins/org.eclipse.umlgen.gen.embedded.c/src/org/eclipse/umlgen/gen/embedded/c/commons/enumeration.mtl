@@ -14,3 +14,15 @@
 
 [query public selectEnumerationWithConstants(seq : Sequence(uml::Enumeration)) : Sequence(uml::Enumeration) =  
 seq->select(e : uml::Enumeration | (e.hasAtLeastOneConstant()))->asSequence()/]
+
+[query public isPrivate(e : uml::Enumeration) : Boolean = 
+(visibility = VisibilityKind::private)/]
+
+[query public isPublic(e : uml::Enumeration) : Boolean = 
+(visibility = VisibilityKind::public)/]
+
+[query public getPublic(seq : Sequence(uml::Enumeration)) : Sequence(uml::Enumeration) =  
+seq->select(e : uml::Enumeration | e.isPublic())->asSequence()/]
+
+[query public getPrivate(seq : Sequence(uml::Enumeration)) : Sequence(uml::Enumeration) =  
+seq->select(e : uml::Enumeration | e.isPrivate())->asSequence()/]

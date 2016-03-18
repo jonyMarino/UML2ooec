@@ -13,6 +13,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
@@ -52,6 +53,9 @@
 /*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
 
 /*## class TopLevel::[name/] */
+
+[comment ---------- generate macros & constants ------------------------/]
+[genCDefines()/]
 
 [comment ---------- generate type definitions --------------------------/]
 [genCTypes()/]

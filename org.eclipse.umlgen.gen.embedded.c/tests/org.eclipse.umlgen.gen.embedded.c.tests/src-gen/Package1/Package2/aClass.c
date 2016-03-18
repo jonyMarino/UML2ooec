@@ -28,6 +28,11 @@
 
 /*## class TopLevel::aClass */
 
+/*! 
+ * \brief Constant MIN_SIZE
+ */
+#define MIN_SIZE (32U)
+
 
 
 /***************************************** FUNCTION *****************************************/

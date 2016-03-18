@@ -31,6 +31,11 @@
 /*## class TopLevel::anObject */
 
 /*! 
+ * \brief Maximum buffer size allowed.
+ */
+#define MAX_BUFFER_SIZE 1254
+
+/*! 
  * \brief Callback definition
  */
 typedef void (callback_t) (void);
@@ -101,6 +106,23 @@ static uint32 var2;
  *      - REQ_FUNC_001
  */
 signed long long var3;
+
+/************************************** INLINE FUNCTION *************************************/
+/*!
+ * \brief This is a private inline operation
+ *        
+ * \param parameter1 [in]
+ *        The arg of the inline operation
+ *        
+ * \return uint16 : The return value
+ *        
+ * <b>Function detailed processing extracted from source code</b>
+ *
+ ********************************************************************************************/
+/*## operation PRIVATE_MACRO(parameter1) */
+#define PRIVATE_MACRO(parameter1) \
+/* Start of user code for PRIVATE_MACRO */ \
+/* End of user code for PRIVATE_MACRO */
 
 /***************************************** FUNCTION *****************************************/
 /*!

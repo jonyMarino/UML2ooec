@@ -37,7 +37,7 @@
 
 [/for]
 [/let]
-[let seqEnum : Sequence(uml::NamedElement) = c.ownedElement->filter(uml::Enumeration)->asSequence()]
+[let seqEnum : Sequence(uml::NamedElement) = getPublic(c.ownedElement->filter(uml::Enumeration)->asSequence())]
 [for (en : uml::NamedElement | seqEnum->orderByContents())]
 [en.oclAsType(uml::Enumeration).genEnumerationLiteralDefines()/]
 
@@ -61,6 +61,12 @@
  */
 [/if]
 #define [p.name/] [p.default/]
+
+[/for]
+[/let]
+[let seqEnum : Sequence(uml::NamedElement) = getPrivate(c.ownedElement->filter(uml::Enumeration)->asSequence())]
+[for (en : uml::NamedElement | seqEnum->orderByContents())]
+[en.oclAsType(uml::Enumeration).genEnumerationLiteralDefines()/]
 
 [/for]
 [/let]
