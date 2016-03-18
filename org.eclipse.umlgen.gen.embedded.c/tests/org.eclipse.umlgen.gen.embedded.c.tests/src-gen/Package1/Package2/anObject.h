@@ -44,25 +44,6 @@
 #define MAX_SIZE (1024)
 
 /*! 
- * \brief Callback definition
- */
-typedef void (callback_t) (void);
-
-/*! 
- * \brief A structure
- *
- * <b>Requirements traceability</b>
- *      - REQ_FUNC_001
- */
-typedef struct struct1_t
-{
-    /*! Comment of field1 */
-    volatile int8 field1;
-    /*! Comment of field2 */
-    char* field2;
-} struct1_t;
-
-/*! 
  * \brief A structure
  */
 typedef struct struct2_t
@@ -103,19 +84,6 @@ typedef struct struct3_t
     /*! Comment of field3 */
     int8 field3:5;
 } struct3_t;
-
-/*! 
- * \brief Comment of enum1
- *
- * <b>Requirements traceability</b>
- *      - REQ_FUNC_001
- */
-typedef enum enum1
-{
-    leteral1 = MAX_SIZE, /**< Comment of leteral1 */
-    leteral2, /**< Comment of leteral2 */
-    leteral3 = 255 /**< Comment of leteral3 */
-} enum1;
 
 /*! 
  * \brief Comment of enum1

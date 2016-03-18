@@ -16,6 +16,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 
@@ -51,6 +52,9 @@
 /*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
 
 /*## class TopLevel::[name/] */
+
+[comment ---------- generate type definitions --------------------------/]
+[genCTypes()/]
 
 [comment ---------- generate constants ---------------------------------/]
 [if (aClass.hasCConstants())]

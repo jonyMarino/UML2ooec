@@ -359,12 +359,12 @@
               </ownedComment>
             </ownedParameter>
           </ownedOperation>
-          <nestedClassifier xmi:type="uml:DataType" xmi:id="_2eGeww9fEeWawdzS12uxpQ" name="callback_t">
+          <nestedClassifier xmi:type="uml:DataType" xmi:id="_2eGeww9fEeWawdzS12uxpQ" name="callback_t" visibility="private">
             <ownedComment xmi:type="uml:Comment" xmi:id="_2eGexA9fEeWawdzS12uxpQ">
               <body>Callback definition</body>
             </ownedComment>
           </nestedClassifier>
-          <nestedClassifier xmi:type="uml:DataType" xmi:id="_2eGexQ9fEeWawdzS12uxpQ" name="struct1_t">
+          <nestedClassifier xmi:type="uml:DataType" xmi:id="_2eGexQ9fEeWawdzS12uxpQ" name="struct1_t" visibility="private">
             <ownedComment xmi:type="uml:Comment" xmi:id="_2eGexg9fEeWawdzS12uxpQ">
               <body>A structure</body>
             </ownedComment>
@@ -452,7 +452,7 @@
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_2eGe7Q9fEeWawdzS12uxpQ" value=""/>
             </ownedAttribute>
           </nestedClassifier>
-          <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_2eGe7g9fEeWawdzS12uxpQ" name="enum1">
+          <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_2eGe7g9fEeWawdzS12uxpQ" name="enum1" visibility="private">
             <ownedComment xmi:type="uml:Comment" xmi:id="_2eGe7w9fEeWawdzS12uxpQ">
               <body>Comment of enum1</body>
             </ownedComment>
