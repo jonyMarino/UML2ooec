@@ -20,9 +20,7 @@
 
 /* Dependency with parent package */
 #include "Package1/Package1.h"
-/* Dependency Package2_anObject: anObject <- Package2 */
-#include "Package1/Package2/anObject.h"
-/* Dependency Package2_anObject: anObject <- Package2 */
+/*! \brief Required types are necessary for Package 2. */
 #include "Package1/Package2/anObject.h"
 
 /**********************************************************************************

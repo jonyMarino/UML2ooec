@@ -17,7 +17,7 @@
 
 /* Dependency with own header */
 #include "Package1/Package2/aSingleton.h"
-/* Dependency aSingleton_aClass: aClass <- aSingleton */
+/*! \brief Dependency with aClass. */
 #include "Package1/Package2/aClass.h"
 
 /**********************************************************************************
