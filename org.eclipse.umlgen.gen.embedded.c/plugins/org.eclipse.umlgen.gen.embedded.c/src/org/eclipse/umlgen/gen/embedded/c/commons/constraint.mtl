@@ -25,14 +25,14 @@ c.getValue(c.getAppliedStereotype('embedded_C::Requirement'), 'Parent')/]
 not(seq->select(e : uml::Element | (e.oclAsType(uml::NamedElement).name.matches(el.name)))->asSequence()->isEmpty())/]
 
 [query public isConstrained(el : uml::NamedElement, seq : Sequence(uml::Constraint)) : Boolean = 
-not(seq->select(c : uml::Constraint | (el.matchesInSequence(c.constrainedElement->asSequence())))->asSequence()->isEmpty())/]
+not(seq->select(c : uml::Constraint | (el.matchesInSequence(c.constrainedElement->asSequence()->reject(oclAsType(uml::NamedElement).name->size() = 0))))->asSequence()->isEmpty())/]
 
 [query public getAllConstraints(m : uml::Model) : Sequence(uml::Constraint) = 
 m.eAllContents(uml::Constraint)->select(c : uml::Constraint | not(c.name->isEmpty()))/]
 
 [template public getRequirementList(e : uml::NamedElement, s : String) post(trim())]
 [let seqC : Sequence(uml::Constraint) = getAllRequirements(getModel().getAllConstraints())]
-[for (c : uml::Constraint | seqC->sortedBy(name))][if (e.matchesInSequence(c.constrainedElement->asSequence()))]
+[for (c : uml::Constraint | seqC->sortedBy(name))][if (e.matchesInSequence(c.constrainedElement->asSequence()->reject(oclAsType(uml::NamedElement).name->size() = 0)))]
 [s/] - [c.name/]
 [/if]
 [/for]
