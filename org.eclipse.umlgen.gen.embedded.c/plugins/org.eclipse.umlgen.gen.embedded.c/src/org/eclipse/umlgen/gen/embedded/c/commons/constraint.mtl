@@ -15,9 +15,6 @@
 [query public getAllRequirements(seq : Sequence(uml::Constraint)) : Sequence(uml::Constraint) =  
 seq->select(c : uml::Constraint | (hasStereotype(c, 'embedded_C::Requirement')))->asSequence()/]
 
-[query public getVerificationMethod(c : uml::Constraint) : String = 
-c.getValue(c.getAppliedStereotype('embedded_C::Requirement'), 'Verification').oclAsType(uml::EnumerationLiteral).name/]
-
 [query public getAllUserRequirements(c : uml::Constraint) : Sequence(String) = 
 c.getValue(c.getAppliedStereotype('embedded_C::Requirement'), 'Parent')/]
 

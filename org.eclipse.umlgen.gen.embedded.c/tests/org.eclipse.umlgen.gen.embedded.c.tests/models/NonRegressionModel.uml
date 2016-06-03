@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:embedded_C="http://www.spacebel.com/1.0.1/embedded_C" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.spacebel.com/1.0.1/embedded_C pathmap://UMLGEN_PROFILES/Embedded_C/embedded_C.profile.uml#_i2LuAJUQEeWnPNAS6tX0cw">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:embedded_C="http://www.spacebel.com/1.0.2/embedded_C" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.spacebel.com/1.0.2/embedded_C pathmap://UMLGEN_PROFILES/Embedded_C/embedded_C.profile.uml#_H1zBkCmUEea-zvjfLd3pdw">
   <uml:Model xmi:id="_p9LegLaPEeOXD7t4vJkovQ" name="MyModel">
     <packagedElement xmi:type="uml:Package" xmi:id="_e_DH2MSXEeOfKd0Yj87vFg" name="Package1">
       <ownedComment xmi:type="uml:Comment" xmi:id="_Z_Ci4MSdEeOfKd0Yj87vFg" annotatedElement="_e_DH2MSXEeOfKd0Yj87vFg">
@@ -845,15 +845,15 @@ Check comment with several lines.</body>
       <packagedElement xmi:type="uml:Usage" xmi:id="_znJq0HyPEeSnpN2aHI8zOw" name="Software_external_lib" client="_e_DH2MSXEeOfKd0Yj87vFg" supplier="_uKGMQHyPEeSnpN2aHI8zOw"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_xAPCkCxkEeSiB-7w4XuokA">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SOTIAJULEeWjks-0Q6MIJg" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SOTIAZULEeWjks-0Q6MIJg" key="Version" value="1.0.1"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SOTIApULEeWjks-0Q6MIJg" key="Comment" value="Added None as verification method"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SOTIA5ULEeWjks-0Q6MIJg" key="Copyright" value="Spacebel SA"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SOTIBJULEeWjks-0Q6MIJg" key="Date" value="2015-11-27"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SOTIBZULEeWjks-0Q6MIJg" key="Author" value="Johan Hardy"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_o5blICmVEea5qYWiMJNW4Q" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o5blISmVEea5qYWiMJNW4Q" key="Version" value="1.0.2"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o5blIimVEea5qYWiMJNW4Q" key="Comment" value="Added combinations of test verification method as verification method"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o5blIymVEea5qYWiMJNW4Q" key="Copyright" value="Spacebel SA"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o5blJCmVEea5qYWiMJNW4Q" key="Date" value="2016-06-03"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_o5blJSmVEea5qYWiMJNW4Q" key="Author" value="Johan Hardy"/>
       </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xBPIICxkEeSiB-7w4XuokA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://UMLGEN_PROFILES/Embedded_C/embedded_C.profile.uml#_i2LuAJUQEeWnPNAS6tX0cw"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLGEN_PROFILES/Embedded_C/embedded_C.profile.uml#_H1zBkCmUEea-zvjfLd3pdw"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UMLGEN_PROFILES/Embedded_C/embedded_C.profile.uml#_KMczkP3OEeKacbbsUeqjMA"/>
     </profileApplication>

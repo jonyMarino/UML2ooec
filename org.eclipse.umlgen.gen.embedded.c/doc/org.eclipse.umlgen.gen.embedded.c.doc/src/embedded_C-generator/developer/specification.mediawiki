@@ -78,7 +78,7 @@ For the sake of simplicity, a minimum number of stereotypes have been defined.
 
 '''REQ-PROF-009''': The stereotype 'Requirement' shall be applicable for any uml::Constraint. It shall have the following attributes:
 * The attribute ‘parents’ shall make the traceability between requirement baseline and technical specification. The value of the ‘parents’ can be empty or it can be a list of requirement IDs.
-* It shall possible to specify how the requirement is verified (Review, Inspection, Test, Analysis, None). By default, the verification by test shall be selected.
+* It shall possible to specify how the requirement is verified (Review, Inspection, Test, Analysis, None or combination with Test). By default, the verification by test shall be selected.
 
 [[Image:./../../images/specification/Stereotype_Requirement.JPEG|frame]]
 
