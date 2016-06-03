@@ -218,10 +218,10 @@ The following requirements specify the model to text transformations for uml::Cl
 * The includes of parent uml::Package and dependencies (uml::Usage)
 * Comments documenting the uml::Class (with Doxygen tokens)
 * Traceability with the specification (requirement list)
-* Definitions of macros or constants
-* Definitions of types
+* Definitions of public macros or constants
+* Definitions of public types
 * Declaration of global variables
-* Declaration of inline functions
+* Declaration of public inline functions
 * Declaration of prototypes of public operations
 
 [[Image:./../../images/specification/Object_h.jpg|frame]]
@@ -231,6 +231,8 @@ The following requirements specify the model to text transformations for uml::Cl
 * A configurable comment placed at the top of the file
 * The path of the file
 * The includes of its own header and dependencies (uml::Usage)
+* Definitions of private macros or constants
+* Definitions of private types
 * Declaration of variables
 * Declaration of prototypes of private operations
 * Declaration of variables that use private operations

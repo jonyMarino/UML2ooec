@@ -47,7 +47,7 @@
 
 [template private genComment(u : uml::Usage) post(trim())]
 [if ownedComment->notEmpty()]
-/*! [ownedComment.format('\x5cbrief ', false, ' *         ', 120)/] */
+/*! [ownedComment.format('', false, ' *  ', 120)/] */
 [else]
 /*! \brief Dependency with [supplier.name/]. */
 [/if]

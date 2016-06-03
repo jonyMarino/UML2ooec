@@ -17,7 +17,7 @@
 
 /* Dependency with own header */
 #include "Package1/Package2/aClass.h"
-/*! \brief aClass needs anObject for some operations. */
+/*! aClass needs anObject for some operations. */
 #include "Package1/Package2/anObject.h"
 
 /**********************************************************************************
