@@ -20,7 +20,7 @@
 
 /* Dependency with parent package */
 #include "Package1/Package1.h"
-/*! Required types are necessary for Package 2. */
+/* Required types are necessary for Package 2. */
 #include "Package1/Package2/anObject.h"
 
 /**********************************************************************************

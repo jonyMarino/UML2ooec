@@ -17,7 +17,7 @@
 
 /* Dependency with own header */
 #include "Package1/Package2/aSingleton.h"
-/*! \brief Dependency with aClass. */
+/* Dependency with aClass. */
 #include "Package1/Package2/aClass.h"
 
 /**********************************************************************************

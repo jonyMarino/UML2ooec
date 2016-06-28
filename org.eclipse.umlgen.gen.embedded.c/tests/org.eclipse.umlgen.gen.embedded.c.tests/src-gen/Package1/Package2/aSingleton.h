@@ -20,7 +20,7 @@
 
 /* Dependency with parent package */
 #include "Package1/Package2/Package2.h"
-/*! \brief Dependency with anObject. */
+/* Dependency with anObject. */
 #include "Package1/Package2/anObject.h"
 
 /**********************************************************************************

@@ -20,11 +20,11 @@
 
 /* Dependency with parent package */
 #include "Package1/Package2/Package2.h"
-/*! anObject requires the singleton operations.
+/* anObject requires the singleton operations.
  *  This is a test comment for Usage.
  *  Check comment with several lines. */
 #include "Package1/Package2/aSingleton.h"
-/*! anObject requires the singleton operations.
+/* anObject requires the singleton operations.
  *  This is a test comment for Usage.
  *  Check comment with several lines. */
 #include "Package1/Package2/privateSingleton.h"
