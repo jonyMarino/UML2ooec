@@ -1,0 +1,150 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2017 FIUBA
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino (FIUBA) - initial API and implementation
+[/comment]
+[module ImplementationFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::method/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::methods/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+
+[comment archivo de informacion privada /]
+[template public generate_implementationFile(aClass : uml::Class)]
+
+
+/**********************************************************************************
+ * Copyright: [getCopyright()/]
+ * Project: [aClass.getModel().name/]
+ * File: [getFilePath()/][getName()/].c
+ * Code Management Tool File Version: [getVersion()/]
+[if (isSvnDateEnabled())]
+ * Date: $Date$
+[/if]
+ * SDD Component: [name/]
+ * Language: C
+ * Author: [getAuthor()/]
+[if (isSvnIdEnabled())]
+ * Last Change: $Id$
+[/if]
+ **********************************************************************************/
+
+/*!
+ * \file [getFilePath()/][getName()/].c
+ * \brief [name/]
+ */
+
+[comment ---------- generate includes ----------------------------------/]
+[genCIncludes()/]
+
+#include "[aClass.name/]_protected.h"
+
+/**********************************************************************************
+ * [getFilePath()/][getName()/].c
+ **********************************************************************************/
+/*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
+
+/*## class TopLevel::[name/] */
+
+[comment ---------- generate macros & constants ------------------------/]
+[genCDefines()/]
+
+[comment ---------- generate type definitions --------------------------/]
+[genCTypes()/]
+
+[comment ---------- generate constants ---------------------------------/]
+[if (aClass.hasCConstants())]
+[genCConstants()/]
+[/if]
+
+
+};
+
+const void * const [aClass.name/] = &_[aClass.name/];
+
+/**********************************************************************************
+ * File Path: [getFullFilePath()/][getName()/].c
+ **********************************************************************************/
+[/template]
+
+[template public generateSelectorsImplementation (aClass : Class) ]
+// Selectors    
+[for (o : Operation | aClass.ownedOperation) ]      
+[if not o.isLeaf and not isAMethodRedefinition(o)]
+[generateMethodImplementationHeader(o)/]{
+	struct [aClass.name/] * self = cast([aClass.name/],_self);
+	[initParameters(o)/]
+	const struct [aClass.name/]Class * class = classOf(_self);
+	assert(class -> [o.name/]);
+	[if hasReturnType(o)]
+	return class -> [o.name/](_self[generateParameters(o,'_')/]);
+	[else]
+	class -> [o.name/](_self[generateParameters(o,'_')/]);
+	[/if]
+}
+
+[o.generateReturnType()/] super_[o.name/] (const void * _class, const void * _self[generateParameters(o,'_')/]){
+	const struct [aClass.name/]Class * superclass = super(_class);
+	struct [aClass.name/] * self = cast([aClass.name/],_self);
+	[initParameters(o)/]
+	assert(self && superclass -> [o.name/]);
+	[if hasReturnType(o)]
+	return superclass -> [o.name/](self[generateParameters(o,'_')/]);
+	[else]
+	superclass -> [o.name/](self[generateParameters(o,'_')/]);
+	[/if]
+}
+[/if]
+[/for]
+[/template]
+
+[template public generateFinalMethodsImplementation (aClass : Class) ]
+// Final Methods 
+[for (o : Operation | aClass.ownedOperation) ]      
+[if o.isLeaf]
+[generateMethodImplementationHeader(o)/]{
+	struct [aClass.name/] * self = cast([aClass.name/],_self);
+	[initParameters(o)/]
+	//[protected('user code2')]
+	//TO DO
+	//[/protected]
+}
+[/if]
+[/for]
+[/template]
+
+[template public generateDynamicMethodsImplementation (aClass : Class) ]
+// Dynamic Methods 
+[for (o : Operation | aClass.ownedOperation) ]      
+[if not o.isLeaf]
+[generateDynamicMethodImplementationHeader(o)/]{
+	struct [aClass.name/] * self = cast([aClass.name/],_self);
+	[initParameters(o)/]
+	//[protected('user code'+i)]
+	//TO DO
+	//[/protected]
+}
+[/if]
+[/for]
+[/template]
+
+[template private initParameters(aMethod : Operation)]
+[for (p:Parameter | aMethod.ownedParameter)]
+[if (p.direction <> ParameterDirectionKind::return) and p.type.oclIsKindOf(Class)]struct [p.type.name/] * [p.name/] = cast([p.type.name/], _[p.name/]);[/if]
+[/for]
+[/template]

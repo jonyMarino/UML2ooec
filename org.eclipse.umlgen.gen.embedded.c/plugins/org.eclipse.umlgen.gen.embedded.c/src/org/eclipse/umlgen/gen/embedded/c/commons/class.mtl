@@ -21,3 +21,9 @@
 [query public isPrivate(c : uml::Class) : Boolean = (c.visibility = VisibilityKind::private)/]
 
 [query public isPublic(c : uml::Class) : Boolean = (c.visibility = VisibilityKind::public)/]
+
+[query public entireClassesHierarchechy(c: Class) : OrderedSet ( Class ) =
+c->asOrderedSet()->addAll( c.superClass->iterate(ac : Class;os:OrderedSet(Class) = OrderedSet{}| os->addAll(entireClassesHierarchechy(ac))->asOrderedSet())) /]
+
+[query public firstAncestor(c: Class) :   Class  =
+entireClassesHierarchechy(c)->last() /]
