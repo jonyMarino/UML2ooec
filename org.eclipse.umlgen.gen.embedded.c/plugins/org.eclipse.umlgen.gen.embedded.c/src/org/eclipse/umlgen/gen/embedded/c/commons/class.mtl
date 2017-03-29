@@ -25,5 +25,14 @@
 [query public entireClassesHierarchechy(c: Class) : OrderedSet ( Class ) =
 c->asOrderedSet()->addAll( c.superClass->iterate(ac : Class;os:OrderedSet(Class) = OrderedSet{}| os->addAll(entireClassesHierarchechy(ac))->asOrderedSet())) /]
 
-[query public firstAncestor(c: Class) :   Class  =
-entireClassesHierarchechy(c)->last() /]
+[query public firstAncestorName(c: Class) :   String  =
+entireClassesHierarchechy(c)->last().name /]
+
+[query public lastAncestorName(c: Class) :   String  =
+if ( entireClassesHierarchechy(c)->size() = 1 ) then
+	c.name
+else
+	entireClassesHierarchechy(c)->at(2).name
+endif
+ /]
+
