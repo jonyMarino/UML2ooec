@@ -40,7 +40,7 @@ not(getNotInline(getNotPrivate(getNotAbstract(getNotStatic(getOwnedOperations())
 [query public hasCOperationsDeclarations(c : uml::Class) : Boolean = 
 not(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations())))->isEmpty())/]
 
-[template private genParameter(param : uml::Parameter) post(trim())]
+[template public genParameter(param : uml::Parameter) post(trim())]
 [if (isConstantData())]const [/if][getType()/][genPointer()/][if (isConstantPointer())] const[/if] [getName()/]
 [/template]
 

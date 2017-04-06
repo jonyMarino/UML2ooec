@@ -4,11 +4,13 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 
 [template public generateSuperMethodsDeclaration (aClass : Class) ]
 // Selector for Super Methods declarations
 [for (o : Operation | aClass.ownedOperation) ]      
-[if o.visibility <> VisibilityKind::private and not o.isLeaf and not o.isAMethodRedefinition()]
+[if o.visibility <> VisibilityKind::private and o.isVirtual() and not o.isAMethodRedefinition()]
 [o.generateReturnType()/] super_[o.name/] (const void * class, const void * self[generateParameters(o,'')/]);
 [/if]
 [/for]
@@ -17,7 +19,7 @@
 [template public generateNotRedifinedMethods (aClass : Class) ]
 // Not redifined methods
 [for (o : Operation | aClass.getSuperClasses().allNotFinalOperations()->reject(o:Operation | aClass.ownedOperation->exists(redefine(o)))) ]      
-[if (o.visibility <> VisibilityKind::private) and (not o.isLeaf)]
+[if (o.visibility <> VisibilityKind::private) and (o.isVirtual())]
 #define [aClass.name/]_[o.name/] [aClass.getSuperClasses().name/]_[o.name/] // [o.type.name/] [aClass.name/]_[o.name/] ( const void * self[generateParameters(o,'')/]);
 [/if]
 [/for]
@@ -41,7 +43,7 @@
 [template public generateMethodDeclarationsNotFinal (aClass : Class, visibility: VisibilityKind) ]
 // Method declarations not final    
 [for (o : Operation | aClass.ownedOperation) ]      
-[if o.visibility = visibility and not o.isLeaf and not isAMethodRedefinition(o)]
+[if o.visibility = visibility and (o.isVirtual()) and not isAMethodRedefinition(o)]
 [generateMethod(o)/];
 [/if]
 [/for]
@@ -50,7 +52,7 @@
 [template public generateMethodDeclarationsFinal (aClass : Class, visibility: VisibilityKind) ]
 // Method declarations final
 [for (o : Operation | aClass.ownedOperation) ]      
-[if o.visibility = visibility and o.isLeaf]
+[if o.visibility = visibility and (not o.isVirtual())]
 [generateMethod(o)/];
 [/if]
 [/for]
@@ -81,7 +83,7 @@
 [/template]
 
 [template public generateParameters(o : Operation,prefix:String) ]
-[for(p:Parameter | noReturnParameters(o)) before(', ') separator(', ')][generateParameter(p,prefix)/][/for]
+[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][generateParameter(p,prefix)/][/for]
 [/template]
 
 [template public generateParameterType(aParameter : Parameter) ]
@@ -100,6 +102,7 @@
 [if getReturn(ownedParameter->asSequence())->isEmpty()]void[else][for (p : Parameter | getReturn(ownedParameter->asSequence()))][getType()/][genPointer()/][/for][/if]
 [/template]
 
-[query public noReturnParameters(o: Operation) : Set ( Parameter ) =
-o.ownedParameter->select(p:Parameter|p.direction<>ParameterDirectionKind::return)/]
+[template public generateSOOPCMethodPrototype (o : Operation) ]
+[generateReturnType(o)/] [o.class.name/]_[o.name/] ([o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for])/])
+[/template]
 

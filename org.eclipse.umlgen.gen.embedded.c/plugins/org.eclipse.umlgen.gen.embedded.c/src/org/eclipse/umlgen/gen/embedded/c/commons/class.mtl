@@ -11,6 +11,7 @@
 [/comment]
 [module class('http://www.eclipse.org/uml2/5.0.0/UML')/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 
 [query public isSingleton(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Singleton')/]
 
@@ -29,10 +30,18 @@ c->asOrderedSet()->addAll( c.superClass->iterate(ac : Class;os:OrderedSet(Class)
 entireClassesHierarchechy(c)->last().name /]
 
 [query public lastAncestorName(c: Class) :   String  =
-if ( entireClassesHierarchechy(c)->size() = 1 ) then
+if ( not hasSuperclass() ) then
 	c.name
 else
-	entireClassesHierarchechy(c)->at(2).name
+	c.superClass.name
 endif
  /]
+
+[query public hasSuperclass(c: Class) :   Boolean  =
+ c.superClass->size() > 1 /]
+
+[query public hasVirtualMethods(aClass: Class) :   Boolean  =
+ aClass.entireClassesHierarchechy()->one( c : Class | c.ownedOperation->one( o : Operation | o.isVirtual() ) ) /]
+
+
 

@@ -87,24 +87,12 @@
 
 [template public generateSelectorsImplementation (aClass : Class) ]
 // Selectors    
-[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))->select( op | not isAMethodRedefinition(op) ) ]
+[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getNotRedefiner(getOwnedOperations(aClass))))))->select( op | not isAMethodRedefinition(op) ) ]
 [for (o : Operation | seqOp) ]      
-[generateMethodImplementationHeader(o)/]{
-	struct [aClass.name/] * self = cast([aClass.name/],_self);
-	[initParameters(o)/]
-	const struct [aClass.name/]Class * class = classOf(_self);
-	assert(class -> [o.name/]);
-	[if hasReturnType(o)]return [/if] class -> [o.name/](_self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
+[generateSOOPCMethodPrototype(o)/]{
 	
-}
-
-[o.generateReturnType()/] super_[o.name/] (const void * _class, const void * _self[generateParameters(o,'_')/]){
-	const struct [aClass.name/]Class * superclass = super(_class);
-	struct [aClass.name/] * self = cast([aClass.name/],_self);
-	[initParameters(o)/]
-	assert(self && superclass -> [o.name/]);
-	[if hasReturnType(o)]return[/if] superclass -> [o.name/](self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
-
+	[if hasReturnType(o)]return [/if] self[ for (c:Class | aClass.entireClassesHierarchechy()->excluding(aClass)->excluding( not hasVirtualMethods() ) )] -> super[/for]-> [o.name/](_self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
+	
 }
 [/for]
 [/let]
@@ -143,23 +131,18 @@
 // Virtual Methods 
 [let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
 [for (o : Operation | seqOp) ]      
-[generateDynamicMethodImplementationHeader(o)/]{
-	struct [aClass.name/] * self = cast([aClass.name/],_self);
-	[initParameters(o)/]
+[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for])/]){
+	[if (o.isAbstract)]
+	ASSERT(0); /* purely-virtual function should never be called */
+	[if not getReturn(ownedParameter->asSequence())->isEmpty()]
+	return 0U; /* to avoid compiler warnings */
+	[/if]
+	[else]
 	//[protected('user code'+i)]
 	//TO DO
 	//[/protected]
+	[/if]
 }
 [/for]
 [/let]
-[/template]
-
-[template private initParameters(aMethod : Operation) post ( trim() )]
-[for (p:Parameter | aMethod.ownedParameter)]
-[if ( not p.name.oclIsUndefined() )and (p.direction <> ParameterDirectionKind::return)]
-[if (not p.type.oclIsUndefined() ) and p.type.oclIsKindOf(Class) ]
-struct [p.type.name/] * [p.name/] = cast([p.type.name/], _[p.name/]);
-[/if]
-[/if]
-[/for]
 [/template]

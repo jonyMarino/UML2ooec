@@ -2,8 +2,12 @@
 [module DescriptionFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::class /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
 [comment][import org::eclipse::umlgen::gen::embedded::c::templates::properties /][/comment]
 
 [query public reqOutgoingNavigableOwnedEnd(aClass : Class) : Set(Property)
@@ -19,7 +23,7 @@
    = aClass.getAssociations()->select(navigableOwnedEnd->select(type <> aClass)->size() = 1).navigableOwnedEnd->select(type <> aClass)->asOrderedSet()
 /]
 
-[template public generateDescriptionFile(aClass : Class)]
+[template public generate_descriptionFile(aClass : Class)]
 
 [comment archivo de informacion protegida /]
 [file (aClass.name+'_protected.h', false, 'UTF-8')  ]
@@ -38,18 +42,16 @@ struct [aClass.name.toUpperFirst()/]{
 	const struct [aClass.getSuperClasses().name/] _;
 	[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
 	[for (n : uml::NamedElement | seq->orderByContents())]
-	[generateProperty(p)/]; 
+	[n.oclAsType(uml::Property).generateProperty()/]; 
 	[/for]	
 	[/let]
-
-
 };
 
 //MetaClass for class [aClass.name.toUpperFirst()/] declaration
 struct [aClass.name.toUpperFirst()/]Class{
 	const struct [aClass.getSuperClasses().name/]Class _;
 	[for (o : Operation | aClass.ownedOperation->reject(o:Operation | aClass.getSuperClasses().allNotFinalOperations()->exists(redefine(o))))  ]
-	[if not o.isLeaf]
+	[if not o.isVirtual]
 	[o.generateReturnType()/] (*[o.name/])[generateAllParameters(o,'')/]; 
 	[/if]
 	[/for]
