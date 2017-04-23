@@ -1,6 +1,7 @@
 [comment encoding = UTF-8 /]
 [module methods('http://www.eclipse.org/uml2/5.0.0/UML')]
 
+[import org::eclipse::umlgen::gen::embedded::c::commons::class /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
@@ -103,6 +104,10 @@
 [/template]
 
 [template public generateSOOPCMethodPrototype (o : Operation) ]
-[generateReturnType(o)/] [o.class.name/]_[o.name/] ([o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for])/])
+[generateReturnType(o)/] [o.class.name/]_[o.name/] ([generateSOOPCMethodArguments()/])
+[/template]
+
+[template public generateSOOPCMethodArguments (o : Operation) ]
+[o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]
 [/template]
 

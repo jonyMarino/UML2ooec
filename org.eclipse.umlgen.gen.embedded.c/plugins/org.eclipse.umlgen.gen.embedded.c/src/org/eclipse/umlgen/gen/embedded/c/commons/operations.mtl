@@ -92,13 +92,13 @@ seq->select(op : uml::Operation | op.isVirtual())->asSequence()/]
 seq->select(op : uml::Operation | not(op.isVirtual()))->asSequence()/]
 
 [comment][query public isVirtual(o : uml::Operation) : Boolean = 
-if o.hasStereotype('embedded_C::Virtual') then true
+if o.hasStereotype('embedded_C::Virtual') and (not o.isPrivate()) then true
 else false 
 endif
 /][/comment]
 
 [query public isVirtual(o : uml::Operation) : Boolean = 
-if o.isLeaf then false
+if o.isLeaf or o.isPrivate()  then false
 else true 
 endif
 /]

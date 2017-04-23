@@ -19,7 +19,7 @@
 
 [import org::eclipse::umlgen::gen::embedded::c::files::SOOPC::ImplementationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::SOOPC::DeclarationFile/]
-[import org::eclipse::umlgen::gen::embedded::c::files::SOOPC::DescriptionFile/]
+[comment][import org::eclipse::umlgen::gen::embedded::c::files::SOOPC::DescriptionFile/][/comment]
 
 [template private genFileName(classifier : uml::Classifier, extension : String) post(trim())]
 [if (not(eContainer().oclIsUndefined()))]
@@ -72,12 +72,12 @@
 [comment ------------------------------------------- /]
 [comment Generate d Files                            /]
 [comment ------------------------------------------- /]
-[if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
+[comment][if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
 [if  ( ( not aNamedElement.oclAsType(uml::Class).isSingleton() ) and ( not  aNamedElement.oclAsType(uml::Class).isObject() ) )]
 [file (aNamedElement.oclAsType(uml::Class).genFileName('.d'), false, 'UTF-8')]
 [aNamedElement.oclAsType(uml::Class).generate_descriptionFile()/]
 [/file]
 [/if]
-[/if]
+[/if][/comment]
 
 [/template]

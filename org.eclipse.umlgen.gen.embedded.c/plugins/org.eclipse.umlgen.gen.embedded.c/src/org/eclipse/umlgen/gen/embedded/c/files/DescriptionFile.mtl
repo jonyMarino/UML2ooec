@@ -1,6 +1,7 @@
 [comment encoding = UTF-8 /]
 [module DescriptionFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
+[comment]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
@@ -73,3 +74,4 @@ extern const struct [aClass.name.toUpperFirst()/]Class _[aClass.name.toUpperFirs
 
 [/file]
 [/template]
+[/comment]
