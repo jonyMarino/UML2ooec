@@ -27,6 +27,9 @@
 [query public entireClassesHierarchechy(c: Class) : OrderedSet ( Class ) =
 c->asOrderedSet()->addAll( c.superClass->iterate(ac : Class;os:OrderedSet(Class) = OrderedSet{}| os->addAll(entireClassesHierarchechy(ac))->asOrderedSet())) /]
 
+[query public getAllOperations(aClass: Class) : Sequence ( Operation ) =
+entireClassesHierarchechy(aClass)->collect( c: Class | c.ownedOperation )->asSequence() /]
+
 [query public getAncestors (aClass : Class) : Set(Class) = aClass.entireClassesHierarchechy()->excluding(aClass)/]
 
 

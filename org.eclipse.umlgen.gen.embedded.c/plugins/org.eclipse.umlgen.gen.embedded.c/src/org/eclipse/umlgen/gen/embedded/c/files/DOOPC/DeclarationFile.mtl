@@ -28,7 +28,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
 
-[template public SOOPC_generateDeclarationFile(aClass : uml::Class)]
+[template public DOOPC_generateDeclarationFile(aClass : uml::Class)]
 /**********************************************************************************
  * Copyright: [getCopyright()/]
  * Project: [aClass.getModel().name/]
@@ -78,38 +78,20 @@
 [/if]
  */
 
-[if aClass.hasVirtualMethods() ]
-/*## class TopLevel::[name/] */
-//Class [aClass.name/] V-Table
-typedef struct{
-	[if aClass.hasSuperclass() and aClass.superClass->exists ( hasVirtualMethods() ) ]
-	[aClass.getSuperClasses().name/]Vtbl superClass;
-	[/if]
-	[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
-	[for (o : Operation | seqOp)  ]
-	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]); 
-	[/for]
-	[/let]
-}[aClass.name/]Vtbl;
-
-[/if]
-
 //Class [aClass.name/] declaration
 typedef struct {
 	[if aClass.hasSuperclass() ]
-	[aClass.getSuperClasses().name/] super;
-	[if not aClass.superClass->exists(hasVirtualMethods())]
-	[aClass.name/]Vtbl const *vptr;
-	[/if]
-	[else]
-	[if aClass.hasVirtualMethods()]
-	[aClass.name/]Vtbl const *vptr;
-	[/if]
+	[aClass.getSuperClasses().name/] * super;
 	[/if]
 	[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
 	[for (n : uml::NamedElement | seq->orderByContents())]
 	[n.oclAsType(uml::Property).generateProperty()/]; 
 	[/for]	
+	[/let]
+	[let seqOp : Sequence(uml::Operation) =  getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getAllOperations ( aClass ) ) ) ) ) ) ]
+	[for (o : Operation | seqOp)  ]
+	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]); 
+	[/for]
 	[/let]
 }[aClass.name/];
 
@@ -143,6 +125,21 @@ typedef struct {
 [/for]
 
 [/if]
+
+/* Constructors and destructors:*/
+void [aClass.name/]_Init([aClass.name/]* const self,	
+	[let seqOp : Sequence(uml::Operation) =  getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getAllOperations ( aClass ) ) ) ) ) ) ]
+	[for (o : Operation | seqOp)  separator(',')]
+	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]) 
+	[/for]
+	[/let]);
+void [aClass.name/]_Cleanup([aClass.name/]* const self);
+
+[aClass.name/] * [aClass.name/]_Create(void);
+
+void [aClass.name/]_Destroy([aClass.name/]* const self);
+
+
 #endif
 
 /**********************************************************************************

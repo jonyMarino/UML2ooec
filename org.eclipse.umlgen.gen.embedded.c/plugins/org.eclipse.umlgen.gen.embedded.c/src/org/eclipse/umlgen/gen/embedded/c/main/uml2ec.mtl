@@ -19,7 +19,8 @@
 
 [import org::eclipse::umlgen::gen::embedded::c::files::SOOPC::ImplementationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::SOOPC::DeclarationFile/]
-[comment][import org::eclipse::umlgen::gen::embedded::c::files::SOOPC::DescriptionFile/][/comment]
+[import org::eclipse::umlgen::gen::embedded::c::files::DOOPC::ImplementationFile/]
+[import org::eclipse::umlgen::gen::embedded::c::files::DOOPC::DeclarationFile/]
 
 [template private genFileName(classifier : uml::Classifier, extension : String) post(trim())]
 [if (not(eContainer().oclIsUndefined()))]
@@ -52,7 +53,7 @@
 [if  (aNamedElement.oclAsType(uml::Class).isSingleton() or aNamedElement.oclAsType(uml::Class).isObject())]
 [aNamedElement.oclAsType(uml::Class).generate_cFile()/]
 [else]
-[aNamedElement.oclAsType(uml::Class).generate_implementationFile()/]
+[aNamedElement.oclAsType(uml::Class).DOOPC_generateImplementationFile()/]
 [/if]
 [/file]
 [/if]
@@ -64,7 +65,7 @@
 [if  (aNamedElement.oclAsType(uml::Class).isSingleton() or aNamedElement.oclAsType(uml::Class).isObject())]
 [aNamedElement.oclAsType(uml::Class).generate_hFile()/]
 [else]
-[aNamedElement.oclAsType(uml::Class).generate_declarationFile()/]
+[aNamedElement.oclAsType(uml::Class).DOOPC_generateDeclarationFile()/]
 [/if]
 [/file]
 [/if]
