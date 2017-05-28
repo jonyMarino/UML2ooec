@@ -78,20 +78,12 @@
 [/if]
  */
 
-[if aClass.hasVirtualMethods() ]
 /*## class TopLevel::[name/] */
-//Class [aClass.name/] V-Table
-typedef struct{
-	[if aClass.hasSuperclass() and aClass.superClass->exists ( hasVirtualMethods() ) ]
-	[aClass.getSuperClasses().name/]Vtbl superClass;
-	[/if]
-	[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
-	[for (o : Operation | seqOp)  ]
-	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]); 
-	[/for]
-	[/let]
-}[aClass.name/]Vtbl;
 
+[if aClass.hasVirtualMethods() ]
+
+//Class [aClass.name/] V-Table
+struct [aClass.name/]Vtbl;
 [/if]
 
 //Class [aClass.name/] declaration
@@ -99,7 +91,7 @@ typedef struct {
 	[if aClass.hasSuperclass() ]
 	[aClass.getSuperClasses().name/] super;
 	[if not aClass.superClass->exists(hasVirtualMethods())]
-	[aClass.name/]Vtbl const *vptr;
+	struct [aClass.name/]Vtbl const *vptr;
 	[/if]
 	[else]
 	[if aClass.hasVirtualMethods()]
@@ -112,6 +104,22 @@ typedef struct {
 	[/for]	
 	[/let]
 }[aClass.name/];
+
+[if aClass.hasVirtualMethods() ]
+
+//Class [aClass.name/] V-Table
+typedef struct [aClass.name/]Vtbl{
+	[if aClass.hasSuperclass() and aClass.superClass->exists ( hasVirtualMethods() ) ]
+	[aClass.getSuperClasses().name/]Vtbl superClass;
+	[/if]
+	[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
+	[for (o : Operation | seqOp)  ]
+	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]); 
+	[/for]
+	[/let]
+}[aClass.name/]Vtbl;
+
+[/if]
 
 [comment ---------- generate macros & constants ------------------------/]
 [genHDefines()/]
