@@ -18,6 +18,10 @@
 
 [query public isObject(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Object')/]
 
+[comment][query public isTDA(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::TDA')/][/comment]
+
+[query public isTDA(c : uml::Class) : Boolean = c.isLeaf/]
+
 [query public getOwnedOperations(c : uml::Class) : Sequence(uml::Operation) = c.ownedOperation->asSequence()/]
 
 [query public isPrivate(c : uml::Class) : Boolean = (c.visibility = VisibilityKind::private)/]
@@ -69,6 +73,10 @@ o.class.entireClassesHierarchechy()->excluding(class).allNotFinalOperations()->e
 		null
 	endif
 /]
+
+[query public getAllInterfaces(aClass : Class) : Bag(NamedElement) = aClass.clientDependency->filter(Realization).supplier /]
+
+
 
 [template public getFirstClassDefinerName(aClass: Class ,aMethod: Operation) post(substituteAll('\t','').trim())]
 	[if (aClass.ownedOperation->exists(m:Operation | m.redefine( aMethod ) ))]
