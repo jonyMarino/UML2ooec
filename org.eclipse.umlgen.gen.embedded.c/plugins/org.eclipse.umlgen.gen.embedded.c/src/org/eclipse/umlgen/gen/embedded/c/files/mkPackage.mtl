@@ -1,0 +1,87 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2015 Spacebel SA.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Johan Hardy (Spacebel) - initial API and implementation
+[/comment]
+[module hPackage('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+
+[template public generate_mkPackage(aPackage : uml::Package) post(trim())]
+##################################################################################
+ # Copyright: [getCopyright()/]
+ # Project: [aPackage.getModel().name/]
+ # File: [getFilePath()/][getName()/].mk
+ # Code Management Tool File Version: [getVersion()/]
+[if (isSvnDateEnabled())]
+ # Date: $Date$
+[/if]
+ # SDD Component: [name/]
+ # Author: [getAuthor()/]
+[if (isSvnIdEnabled())]
+ # Last Change: $Id$
+[/if]
+##################################################################################
+
+###################################
+# Directory Definition
+###################################
+
+[getName().toUpper()/]_DIR						 = $(BASE_DIR)[getName()/]
+
+###################################
+# Automatically generated Directory 
+# Definitions ( do no modify! )
+###################################
+
+
+C_INCLUDE_DIRS					+= $(ID)$([getName().toUpper()/]_DIR)
+C_INCLUDE_DIRS					+= $(ID)$(BASE_DIR)
+C_INCLUDE_DIRS_FOR_GCC			+= -I$([getName().toUpper()/]_DIR)
+C_INCLUDE_DIRS_FOR_GCC			+= -I$(BASE_DIR)
+C_INCLUDE_DIRS_FOR_GCC			+= -I../util
+
+###################################
+# Slave Sources
+###################################
+SUBDIRS							+= $([getName().toUpper()/]_DIR)
+SUBDIRS							+= $(BASE_DIR)
+[getName().toUpper()/]_SRCS						 =	[for (elem : NamedElement | aPackage.ownedMember->select(elem : NamedElement | elem.oclIsKindOf(Class) or elem.oclIsKindOf(Interface))) separator('\t')]$([aPackage.getName().toUpper()/]_DIR)/[elem.name/].c	\
+[/for]
+													$([getName().toUpper()/]_DIR)/[getName()/].c
+									
+
+
+									
+SRCS							+=	$([getName().toUpper()/]_SRCS)
+
+###################################
+# Slave Objets
+###################################
+
+[getName().toUpper()/]_OBJS						 =	$(subst $([getName().toUpper()/]_DIR),$(OBJECT_DIR),$([getName().toUpper()/]_SRCS:.c=.o))
+OBJS							+=	$([getName().toUpper()/]_OBJS)
+
+
+
+##################################################################################
+ # File Path: [getFullFilePath()/][getName()/]/[getName()/].mk
+##################################################################################
+[/template]
+
+[template public genPackageMakefileName(aPackage : uml::Package)]
+[if (not name.oclIsUndefined())]
+[getFullFilePath()/][getName()/]/[getName()/].mk
+[/if]
+[/template]
