@@ -56,6 +56,12 @@ endif
 
 [query public declaresVirtualMethods (aClass : Class) : Boolean = getVirtual( getOwnedOperations( aClass ) )->notEmpty()/]
 
+[query public getVirtual(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
+seq->select(op : uml::Operation | op.isVirtual() or op.isAMethodRedefinition())->asSequence()/]
+
+[query public getNotVirtual(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
+seq->select(op : uml::Operation | not(op.isVirtual()) and not op.isAMethodRedefinition())->asSequence()/]
+
 
 [query public allNotFinalOperations(c: Class) : OrderedSet ( Operation ) =
 c.entireClassesHierarchechy()->reverse()->iterate(c1:Class;os:OrderedSet(Operation) = OrderedSet{}| os->addAll(c1.ownedOperation->reject(o:Operation|os->exists(redefine(o))))) /]

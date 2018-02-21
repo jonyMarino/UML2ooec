@@ -107,7 +107,15 @@
 [generateReturnType(o)/] [o.class.name/]_[o.name/] ([generateSOOPCMethodArguments()/])
 [/template]
 
+[template public generateOOCMethodPrototype (o : Operation) ]
+[generateReturnType(o)/] [o.class.name.toLowerCase()/]_[o.name/] ([generateOOCMethodArguments()/])
+[/template]
+
 [template public generateSOOPCMethodArguments (o : Operation) ]
 [o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]
+[/template]
+
+[template public generateOOCMethodArguments (o : Operation) ]
+[o.class.name/] self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]
 [/template]
 

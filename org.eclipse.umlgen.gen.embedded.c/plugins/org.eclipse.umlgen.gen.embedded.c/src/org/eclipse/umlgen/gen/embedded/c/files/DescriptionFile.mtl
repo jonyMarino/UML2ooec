@@ -9,8 +9,9 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
+[/comment]
 [comment][import org::eclipse::umlgen::gen::embedded::c::templates::properties /][/comment]
-
+[comment]
 [query public reqOutgoingNavigableOwnedEnd(aClass : Class) : Set(Property)
    = reqSelfAssociationsNavigableOwnedEnd(aClass)
       ->union(reqOtherAssociationsNavigableOwnedEnd(aClass))->asOrderedSet()

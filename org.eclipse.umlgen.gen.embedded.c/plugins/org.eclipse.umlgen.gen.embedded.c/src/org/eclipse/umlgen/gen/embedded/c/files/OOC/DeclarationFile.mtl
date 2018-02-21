@@ -1,15 +1,18 @@
 [comment encoding = UTF-8 /]
 [comment]
- * Copyright (c) 2015 Spacebel SA.
+ * Copyright (c) 2018 FIUBA
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     Johan Hardy (Spacebel) - initial API and implementation
+ *     Jonathan Marino (FIUBA) 
 [/comment]
-[module hFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[module DeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
@@ -21,17 +24,15 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
 
-[template public generate_hFile(aClass : uml::Class)]
-/* Stereotypes
-[for(s:Stereotype| aClass.getApplicableStereotypes())]
-	[s/]
-[/for]
-*/
+[template public OOC_generateDeclarationFile(aClass : uml::Class)]
 /**********************************************************************************
  * Copyright: [getCopyright()/]
  * Project: [aClass.getModel().name/]
- * File: [getFilePath()/][getName()/].h
+ * File: [getFilePath()/][getName().toLowerCase()/].h
  * Code Management Tool File Version: [getVersion()/]
 [if (isSvnDateEnabled())]
  * Date: $Date$
@@ -45,7 +46,7 @@
  **********************************************************************************/
 
 /*!
- * \file [getFilePath()/][getName()/].h
+ * \file [getFilePath()/][getName().toLowerCase()/].h
  * \brief [name/]
  */
 
@@ -54,6 +55,14 @@
 
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
+[if ( aClass.hasSuperclass( ) ) ]
+#include "[aClass.getSuperClasses().name/].h"
+[else]
+#include <ooc/ooc.h>
+[/if]
+[for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
+#include "[namedElement.name/].h"
+[/for]
 
 /**********************************************************************************
  * [getFilePath()/][getName()/].h
@@ -75,7 +84,45 @@
 [/if]
  */
 
-/*## class TopLevel::[name/] */
+[if (aClass.hasSuperclass())]
+DeclareClass( [aClass.name/], [aClass.getSuperClasses().name/] );
+[else]
+DeclareClass( [aClass.name/], Base );
+[/if]
+
+[comment ---------- generate prototypes of prublic operations ----------/]
+
+
+[aClass.name/] [aClass.name.toLowerCase()/]_new( void );
+
+[for (o : Operation | getNotVirtual( getOwnedOperations(aClass) ) ) ]      
+[generateOOCMethodPrototype(o)/];
+[/for]
+
+
+/* Virtual function definitions
+ */
+
+[if (aClass.hasSuperclass())]
+Virtuals( [aClass.name/], [aClass.getSuperClasses().name/] );
+[else]
+Virtuals( [aClass.name/], Base );
+[/if]
+
+[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
+[let seqOp2 : Sequence(uml::Operation) = seqOp->select(op : uml::Operation | aClass.getAllInterfaces()->collect(ownedOperation)->forAll( o:Operation | not redefine(op,o)  ) ) ]
+[for (o : Operation | seqOp2)  ]
+	[o.generateReturnType()/] (*[o.name/])([o.generateOOCMethodArguments()/]);
+[/for]
+[/let]
+[/let]
+
+[for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
+	Interface( [namedElement.name/] );
+[/for]
+
+EndOfVirtuals;
+
 
 [comment ---------- generate macros & constants ------------------------/]
 [genHDefines()/]
@@ -83,29 +130,18 @@
 [comment ---------- generate type definitions --------------------------/]
 [genHTypes()/]
 
-[comment ---------- generate constants ---------------------------------/]
-[if (aClass.hasHConstants())]
-[genHConstants()/]
-
-[/if]
-[comment ---------- generate variable definitions ----------------------/]
-[if (aClass.hasHVariables())]
-[genHVariables()/]
-
-[/if]
 [comment ---------- generate public inline functions -------------------/]
 [if (aClass.hasHInlineOperations())]
 [genHInlineOperations()/]
-
 [/if]
-[comment ---------- generate prototypes of prublic operations ----------/]
-[if (aClass.hasHPublicOperationsPrototypes())]
-[genHPublicOperationsPrototypes()/]
 
-[/if]
 #endif
 
 /**********************************************************************************
- * File Path: [getFullFilePath()/][getName()/].h
+ * File Path: [getFullFilePath()/][getName().toLowerCase()/].h
  **********************************************************************************/
+
+
+
+
 [/template]
