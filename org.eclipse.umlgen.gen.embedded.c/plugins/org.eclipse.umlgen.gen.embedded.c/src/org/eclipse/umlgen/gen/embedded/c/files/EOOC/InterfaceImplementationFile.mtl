@@ -79,7 +79,7 @@ const struct [anInterface.name/]_interface [anInterface.name/]_interface = &a;
 // Selectors    
 [let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ][for (o : Operation | seqOp) ]      
 [generateSOOPCMethodPrototype(o)/]{
-	[if hasReturnType(o)]return [/if] self[ for (c:Class | aClass.getAllAncestorsWithVirtualMethods())] -> super[/for]-> vptr -> [o.name/](_self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
+[comment]	[if hasReturnType(o)]return [/if] self[ for (c:Class | aClass.getAllAncestorsWithVirtualMethods())] -> super[/for]-> vptr -> [o.name/](_self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);[/comment]
 }
 [/for]
 [/let]
@@ -108,7 +108,7 @@ const struct [anInterface.name/]_interface [anInterface.name/]_interface = &a;
 	[o.class.superClass.name/]_ctor (self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.name/][/for])
 	[/if]
 	[if aClass.hasVirtualMethods() and o.name = 'ctor']
- 	self -> [ for (c:Class | aClass.getAllAncestorsWithVirtualMethods() ) separator('.') after('.')]super[/for]vptr = &vtbl; /* override the vptr */	
+[comment] 	self -> [ for (c:Class | aClass.getAllAncestorsWithVirtualMethods() ) separator('.') after('.')]super[/for]vptr = &vtbl; /* override the vptr */	[/comment]
 	[/if]
 	//TO DO
 	//[/protected]

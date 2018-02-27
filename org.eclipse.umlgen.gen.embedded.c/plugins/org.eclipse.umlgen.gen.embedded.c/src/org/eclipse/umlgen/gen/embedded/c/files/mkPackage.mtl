@@ -9,7 +9,7 @@
  * Contributors:
  *     Johan Hardy (Spacebel) - initial API and implementation
 [/comment]
-[module hPackage('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[module mkPackage('http://www.eclipse.org/uml2/5.0.0/UML')/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
@@ -50,7 +50,6 @@ C_INCLUDE_DIRS					+= $(ID)$([getName().toUpper()/]_DIR)
 C_INCLUDE_DIRS					+= $(ID)$(BASE_DIR)
 C_INCLUDE_DIRS_FOR_GCC			+= -I$([getName().toUpper()/]_DIR)
 C_INCLUDE_DIRS_FOR_GCC			+= -I$(BASE_DIR)
-C_INCLUDE_DIRS_FOR_GCC			+= -I../util
 
 ###################################
 # Slave Sources

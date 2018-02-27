@@ -14,13 +14,16 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 
-[query public isSingleton(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Singleton')/]
+[comment][query public isSingleton(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Singleton')/][/comment]
+[query public isSingleton(c : uml::Class) : Boolean = c.isFinalSpecialization and not c.isLeaf/]
 
-[query public isObject(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Object')/]
+
+[comment][query public isObject(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Object')/][/comment]
+[query public isObject(c : uml::Class) : Boolean = not c.isFinalSpecialization and  c.isLeaf/]
 
 [comment][query public isTDA(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::TDA')/][/comment]
 
-[query public isTDA(c : uml::Class) : Boolean = c.isLeaf/]
+[query public isTDA(c : uml::Class) : Boolean = not c.isFinalSpecialization and  not c.isLeaf/]
 
 [query public getOwnedOperations(c : uml::Class) : Sequence(uml::Operation) = c.ownedOperation->asSequence()/]
 
