@@ -1,0 +1,98 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018 FIUBA
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino (FIUBA) 
+[/comment]
+[module OocImplementationHeaderFile('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::OOC::OocClass/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
+
+[template public OOC_generateImplementationHeaderFile(aClass : uml::Class)]
+/**********************************************************************************
+ * Copyright: [getCopyright()/]
+ * Project: [aClass.getModel().name/]
+ * File: [getFilePath()/][getName().toLowerCase()/].h
+ * Code Management Tool File Version: [getVersion()/]
+[if (isSvnDateEnabled())]
+ * Date: $Date$
+[/if]
+ * SDD Component: [name/]
+ * Language: C
+ * Author: [getAuthor()/]
+[if (isSvnIdEnabled())]
+ * Last Change: $Id$
+[/if]
+ **********************************************************************************/
+
+/*!
+ * \file [getFilePath()/]implement/[getName().toLowerCase()/].h
+ * \brief [name/]
+ */
+
+/**********************************************************************************
+ * [getFilePath()/]implement/[getName().toLowerCase()/].h
+ **********************************************************************************/
+/*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
+
+
+#ifndef IMPLEMENT_[getName().toUpperCase()/]_H
+#define IMPLEMENT_[getName().toUpperCase()/]_H
+
+[comment ---------- generate includes ----------------------------------/]
+#ifndef [getName().toUpperCase()/]_H
+#error Do #include "[getName().toLowerCase()/].h" right before doing #include "implement/[getName().toLowerCase()/].h"
+#endif
+
+
+#include "Implement/[aClass.getSuperClassName()/].h"
+[comment][for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
+#include "[namedElement.name/].h"
+[/for][/comment]
+
+/*! 
+ * \package [name/]
+[if ownedComment->notEmpty()]
+ * [ownedComment.format('\x5cbrief ', false, ' * ', 120)/]
+[/if]
+[if (isTraceabilityEnabled())]
+[if (aClass.isConstrained(getModel().getAllConstraints()))]
+ *
+ * <b>Requirements traceability</b>
+ [aClass.getRequirementList('*   ')/]
+[/if]
+[/if]
+ */
+
+ClassMembers( [aClass.name/] , [aClass.getSuperClassName()/] )
+[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
+[for (n : uml::NamedElement | seq->orderByContents())]
+[n.oclAsType(uml::Property).generateProperty()/]; 
+[/for]	
+[/let]
+EndOfClassMembers;
+
+
+#endif
+
+[/template]

@@ -9,12 +9,12 @@
  * Contributors:
  *     Jonathan Marino (FIUBA) 
 [/comment]
-[module DeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
+[module OocDeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::OOC::OocClass/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
@@ -50,16 +50,16 @@
  * \brief [name/]
  */
 
-#ifndef [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
-#define [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
+#ifndef [getName().toUpperCase()/]_H
+#define [getName().toUpperCase()/]_H
 
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
-[if ( aClass.hasSuperclass( ) ) ]
+[comment][if ( aClass.hasSuperclass( ) ) ]
 #include "[aClass.getSuperClasses().name/].h"
-[else]
+[else][/comment]
 #include <ooc/ooc.h>
-[/if]
+[comment][/if][/comment]
 [for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
 #include "[namedElement.name/].h"
 [/for]
@@ -84,11 +84,8 @@
 [/if]
  */
 
-[if (aClass.hasSuperclass())]
-DeclareClass( [aClass.name/], [aClass.getSuperClasses().name/] );
-[else]
-DeclareClass( [aClass.name/], Base );
-[/if]
+DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
+
 
 [comment ---------- generate prototypes of prublic operations ----------/]
 
@@ -103,11 +100,9 @@ DeclareClass( [aClass.name/], Base );
 /* Virtual function definitions
  */
 
-[if (aClass.hasSuperclass())]
-Virtuals( [aClass.name/], [aClass.getSuperClasses().name/] );
-[else]
-Virtuals( [aClass.name/], Base );
-[/if]
+
+Virtuals( [aClass.name/], [aClass.getSuperClassName()/] );
+
 
 [let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
 [let seqOp2 : Sequence(uml::Operation) = seqOp->select(op : uml::Operation | aClass.getAllInterfaces()->collect(ownedOperation)->forAll( o:Operation | not redefine(op,o)  ) ) ]

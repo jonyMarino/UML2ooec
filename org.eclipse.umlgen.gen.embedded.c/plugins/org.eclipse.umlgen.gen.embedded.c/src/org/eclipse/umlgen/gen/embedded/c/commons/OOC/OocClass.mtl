@@ -1,0 +1,10 @@
+[comment encoding = UTF-8 /]
+[module OocClass('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::class/]
+
+[query public getSuperClassName (aClass : Class) : String = 
+if ( aClass.hasSuperclass( ) ) then
+	aClass.getSuperClasses().name
+else
+	'Base'
+endif
+/]

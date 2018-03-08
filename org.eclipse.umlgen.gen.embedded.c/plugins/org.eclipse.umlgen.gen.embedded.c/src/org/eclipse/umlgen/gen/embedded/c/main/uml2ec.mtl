@@ -25,8 +25,10 @@
 [import org::eclipse::umlgen::gen::embedded::c::files::EOOC::DeclarationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::EOOC::InterfaceDeclarationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::EOOC::InterfaceImplementationFile/]
-[import org::eclipse::umlgen::gen::embedded::c::files::OOC::ImplementationFile/][/comment]
-[import org::eclipse::umlgen::gen::embedded::c::files::OOC::DeclarationFile/]
+[import org::eclipse::umlgen::gen::embedded::c::files::OOC::OocImplementationFile/][/comment]
+[import org::eclipse::umlgen::gen::embedded::c::files::OOC::OocDeclarationFile/]
+[import org::eclipse::umlgen::gen::embedded::c::files::OOC::OocImplementationHeaderFile/]
+
 [comment][import org::eclipse::umlgen::gen::embedded::c::files::OOC::InterfaceDeclarationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::OOC::InterfaceImplementationFile/][/comment]
 
@@ -34,6 +36,16 @@
 [if (not(eContainer().oclIsUndefined()))]
 [if (eContainer().oclIsTypeOf(Package))]
 [getFullFilePath()/][getFileName()/][extension/]  
+[/if]
+[/if]
+[/template]
+
+
+
+[template private genImplementationHeaderFileName(classifier : uml::Classifier) post(trim())]
+[if (not(eContainer().oclIsUndefined()))]
+[if (eContainer().oclIsTypeOf(Package))]
+[getFullFilePath()/]Implement/[getFileName()/].h 
 [/if]
 [/if]
 [/template]
@@ -70,11 +82,24 @@
 [comment ------------------------------------------- /]
 [if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
 [file (aNamedElement.oclAsType(uml::Class).genFileName('.h'), false, 'UTF-8')]
-[if  (aNamedElement.oclAsType(uml::Class).isSingleton() or aNamedElement.oclAsType(uml::Class).isObject() or aNamedElement.oclAsType(uml::Class).isLeaf)]
+[comment][if  (aNamedElement.oclAsType(uml::Class).isSingleton() or aNamedElement.oclAsType(uml::Class).isObject() or aNamedElement.oclAsType(uml::Class).isLeaf)]
 [aNamedElement.oclAsType(uml::Class).generate_hFile()/]
-[else]
+[else][/comment]
 [aNamedElement.oclAsType(uml::Class).OOC_generateDeclarationFile()/]
+[comment][/if][/comment]
+[/file]
 [/if]
+
+[comment ------------------------------------------- /]
+[comment Generate Implementation h Files                            /]
+[comment ------------------------------------------- /]
+[if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
+[file (aNamedElement.oclAsType(uml::Class).genImplementationHeaderFileName(), false, 'UTF-8')]
+[comment][if  (aNamedElement.oclAsType(uml::Class).isSingleton() or aNamedElement.oclAsType(uml::Class).isObject() or aNamedElement.oclAsType(uml::Class).isLeaf)]
+[aNamedElement.oclAsType(uml::Class).generate_hFile()/]
+[else][/comment]
+[aNamedElement.oclAsType(uml::Class).OOC_generateImplementationHeaderFile()/]
+[comment][/if][/comment]
 [/file]
 [/if]
 
