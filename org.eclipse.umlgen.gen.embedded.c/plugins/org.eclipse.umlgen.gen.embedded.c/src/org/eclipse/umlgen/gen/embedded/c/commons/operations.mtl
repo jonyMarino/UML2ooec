@@ -97,3 +97,7 @@ if o.isLeaf or o.isPrivate()  then false
 else true 
 endif
 /]
+
+[query public getOperationParameters(operation : uml::Operation) : Sequence(uml::Parameter) = 
+ownedParameter->select(direction <> ParameterDirectionKind::return)->asSequence()/]
+

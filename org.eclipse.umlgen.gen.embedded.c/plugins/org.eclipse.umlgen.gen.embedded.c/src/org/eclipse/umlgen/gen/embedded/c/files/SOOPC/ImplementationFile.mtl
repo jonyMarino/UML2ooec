@@ -130,7 +130,7 @@
 
 [template public generateDynamicMethodsImplementation (aClass : Class) ]
 // Virtual Methods 
-[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
+[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
 [generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
 	[if (o.isAbstract)]

@@ -92,9 +92,11 @@ DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
 
 [aClass.name/] [aClass.name.toLowerCase()/]_new( void );
 
-[for (o : Operation | getNotVirtual( getOwnedOperations(aClass) ) ) ]      
-[generateOOCMethodPrototype(o)/];
+[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
+[for (o : Operation | seqOp) ]      
+[generateReturnType(o)/] [aClass.getName().toLower()/]_[o.name/] ([o.generateOOCMethodArguments()/]);
 [/for]
+[/let]
 
 
 /* Virtual function definitions

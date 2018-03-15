@@ -19,8 +19,6 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 
-[query public getOperationParameters(operation : uml::Operation) : Sequence(uml::Parameter) = 
-ownedParameter->select(direction <> ParameterDirectionKind::return)->asSequence()/]
 
 [query public hasOperationParameters(operation : uml::Operation) : Boolean = 
 (ownedParameter->size() = 0) or (ownedParameter->size() = 1) and (ownedParameter->select(direction = ParameterDirectionKind::return)->notEmpty())/]

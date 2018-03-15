@@ -48,6 +48,8 @@ else
 endif
  /]
 
+[query public getAllAncestorsWithVirtualMethods (aClass : Class) : Set(Class) = aClass.getAncestors()->select( c1: Class | c1.hasVirtualMethods() )/]
+
 [query public hasSuperclass(c: Class) :   Boolean  =
  c.superClass->size() > 0 /]
 

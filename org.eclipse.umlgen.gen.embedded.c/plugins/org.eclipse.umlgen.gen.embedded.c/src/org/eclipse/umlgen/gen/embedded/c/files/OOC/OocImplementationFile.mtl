@@ -11,7 +11,7 @@
 [/comment]
 [module OocImplementationFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
-[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::OOC::OocClass/]
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::method/]
@@ -27,7 +27,6 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 
-[query public getAllAncestorsWithVirtualMethods (aClass : Class) : Set(Class) = aClass.getAncestors()->select( c1: Class | c1.hasVirtualMethods() )/]
 
 
 [comment archivo de informacion privada /]
@@ -77,104 +76,169 @@
 [genCConstants()/]
 [/if]
 
-#define SELF        ((struct [aClass.name/]_attribute*)self)
-#define AS_SELF(a)  ((struct [aClass.name/]_attribute*)(a) )
-[if ( aClass.hasSuperclass( ) ) ]
-#define SUPER       (([aClass.getSuperClasses().name/] *)self)
-[else]
-#define SUPER       (( object          *)self)
-[/if]
+
+/* This is a MyChild class implementation file
+ */
+
+#include "[aClass.getName().toLowerCase()/].h"
+#include "implement/[aClass.getName().toLowerCase()/].h"
+
+#include <ooc/exception.h>
+
+/** @class [aClass.getName()/]
+ *  @brief MyChild class - brief description. [comment]todo[/comment]
+ * 	@see [aClass.getName().toLowerCase()/].h
+ */
+
+/** @file [aClass.getName().toLowerCase()/].h 
+ *  @brief [aClass.getName()/] class - brief description.[comment]todo[/comment]
+ * MyChild is a .....
+ */ 
+
+/* Allocating the class description table and the vtable
+ */
+
+AllocateClass( [aClass.getName()/], [aClass.getSuperClassName()/] );
+
+/* Class virtual function prototypes
+ */
 
 
-
-const struct [aClass.name/]_interface [aClass.name/]_interface;
-
-void* [aClass.name/]_interfaces([aClass.name/] * self, void *ref_i)
-{
-[for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
-	if (ref_i == &[namedElement.name/]_interface)
-		return &(*self)->[namedElement.oclAsType(Interface).ownedOperation->first().name/];
+[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
+[for (o : Operation | seqOp) ]      
+static
+[generateReturnType(o)/]
+[o.class.name/]_[o.name/] ([o.generateOOCMethodArguments()/]){
+	//[protected('for '+o.class.name+'_'+o.name)]
+	//TO DO
+	//[/protected]
+}
 [/for]
-[if ( aClass.hasSuperclass( ) ) ]
-		return [aClass.getSuperClasses().name/]_interfaces(self,ref_i);
-[else]
-	return object_interfaces(SUPER,ref_i);
-[/if]
+[/let]
+
+
+/* Class initializing
+ */
+
+static
+void
+[aClass.getName()/]_initialize( Class this )
+{
+	[aClass.getName()/]Vtable vtab = & [aClass.getName()/]VtableInstance;
+	
+	[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
+	[for (o : Operation | seqOp) ]      
+	vtab->[o.name/]	= 	[o.class.name/]_[o.name/];
+	[/for]
+	[/let]
+	
+
+	[comment]todo: preguntar si hay forma de obtenerlo y que pasa si se llama varias veces a ooc_init_class
+	ooc_init_class( !!! Classes that are USED by MyChild !!! ); Remove if you initialize it other place![/comment]
+	
+	/* Allocate global resources here */
+	//[protected('for '+aClass.getName()+'_initialize')]
+	//TO DO
+	ooc_init_class( !!! Classes that are USED by [aClass.getName()/] !!! ); Remove if you initialize it other place!
+	//[/protected]
+	
+}
+
+/* Class finalizing
+ */
+
+#ifndef OOC_NO_FINALIZE
+static
+void
+[aClass.getName()/]_finalize( Class this )
+{
+	//[protected('for '+aClass.getName()+'_finalize')]
+	/* Release global resources! */
+	//[/protected]
+}
+#endif
+
+
+/* Constructor
+ */
+
+static
+void
+[aClass.getName()/]_constructor( [aClass.getName()/] self, const void * params )
+{
+	assert( ooc_isInitialized( [aClass.getName()/] ) );
+	
+	
+	chain_constructor( [aClass.getName()/], self,
+	//[protected('for '+aClass.getName()+'_constructor')]
+	NULL ); !!! TODO !!! change the third parameter as required! 
+	//[/protected]
+
+}
+
+/* Destructor
+ */
+
+static
+void
+[aClass.getName()/]_destructor( [aClass.getName()/] self, [aClass.getName()/]Vtable vtab )
+{
+	//[protected('for '+aClass.getName()+'_destructor')]
+	//TODO
+	//[/protected]
+
+}
+
+/* Copy constuctor
+ */
+
+static
+int
+[aClass.getName()/]_copy( [aClass.getName()/] self, const [aClass.getName()/] from )
+{
+	//[protected('for '+aClass.getName()+'_copy')]
+	/* makes the default object copying (bit-by-bit) */
+	return OOC_COPY_DEFAULT;
+	
+	/*Other alternatives:*/
+
+	/* Copies data by hand */
+	//self->data = from->data;
+	//...
+	//return OOC_COPY_DONE;
+	
+	/* Prevent object duplication */
+	//return OOC_NO_COPY;
+	//[/protected]
+}
+
+/*	=====================================================
+	Class member functions
+ */
+
+
+[aClass.getName()/]
+[aClass.getName().toLower()/]_new( void )
+{
+	//[protected('for '+aClass.getName().toLower()+'_new')]
+	ooc_init_class( [aClass.getName()/] ); !!! TODO !!! You may want to remove the initialization from here ...
+	//[/protected]	
+	return ([aClass.getName()/]) ooc_new( [aClass.getName()/], NULL );
 }
 
 
-[generateFinalMethodsImplementation()/]
-
-[generateDynamicMethodsImplementation()/]
-
-
-
-
-
-const struct [aClass.name/]_interface [aClass.name/]_interface={
-	[aClass.name/]_interfaces
-	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
-   	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
-	[let seqOp3 : Sequence(uml::Operation) = seqOp2->select(op : uml::Operation | aClass.getAllInterfaces()->collect(ownedOperation)->forAll( o:Operation | not redefine(op,o)  ) ) ]
-	[for (o : Operation |  seqOp3 ) before(',')separator (',')]      
-	[aClass.getFirstClassDefinerName(o)/]_[o.name/]
-	[/for]	
-	[/let]
-	[/let]
-	[/for]
-	[for (interface: NamedElement | aClass.getAllInterfaces())]
-	[for (o : Operation |  interface.oclAsType(Interface).ownedOperation ) before(',')separator (',')]      
-	[aClass.name/]_[o.name/]
-	[/for]
-	[/for]
-};
-
+[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
+[for (o : Operation | seqOp) ]      
+[generateReturnType(o)/]
+[aClass.getName().toLower()/]_[o.name/] ([o.generateOOCMethodArguments()/]){
+	//[protected('for '+o.name)]
+	//TO DO
+	//[/protected]
+}
+[/for]
+[/let]
 /**********************************************************************************
  * File Path: [getFullFilePath()/][getName()/].c
  **********************************************************************************/
 [/template]
 
-[template public generateSelectorsImplementation (aClass : Class) ]
-// Selectors    
-[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ][for (o : Operation | seqOp) ]      
-[generateSOOPCMethodPrototype(o)/]{
-	[if hasReturnType(o)]return [/if] self[ for (c:Class | aClass.getAllAncestorsWithVirtualMethods())] -> super[/for]-> vptr -> [o.name/](_self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
-}
-[/for]
-[/let]
-[/template]
-
-
-[template public generateFinalMethodsImplementation (aClass : Class) ]
-// Final Methods 
-[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
-[for (o : Operation | seqOp) ]      
-[generateSOOPCMethodPrototype(o)/]{
-
-	//[protected('for '+o.name)]
-	//TO DO
-	//[/protected]
-}
-[/for]
-[/let]
-[/template]
-
-[template public generateDynamicMethodsImplementation (aClass : Class) ]
-// Virtual Methods 
-[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
-[for (o : Operation | seqOp) ]      
-[generateReturnType(o)/] [o.class.name/]_[o.name/] ([o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
-	[if (o.isAbstract)]
-	ASSERT(0); /* purely-virtual function should never be called */
-	[if not getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]
-	return 0U; /* to avoid compiler warnings */
-	[/if]
-	[else]
-	//[protected('for '+o.name)]
-	//TO DO
-	//[/protected]
-	[/if]
-}
-[/for]
-[/let]
-[/template]
