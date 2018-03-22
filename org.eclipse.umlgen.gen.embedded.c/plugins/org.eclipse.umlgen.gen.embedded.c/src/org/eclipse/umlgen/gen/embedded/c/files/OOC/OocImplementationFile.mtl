@@ -30,9 +30,7 @@
 
 
 [comment archivo de informacion privada /]
-[template public OOC_generateImplementationFile(aClass : uml::Class)]
-
-
+[template public generateOOCImplementationFile(aClass : uml::Class)]
 /**********************************************************************************
  * Copyright: [getCopyright()/]
  * Project: [aClass.getModel().name/]
@@ -85,13 +83,13 @@
 
 #include <ooc/exception.h>
 
-/** @class [aClass.getName()/]
- *  @brief MyChild class - brief description. [comment]todo[/comment]
- * 	@see [aClass.getName().toLowerCase()/].h
+/** \class [aClass.getName()/]
+ *  \brief MyChild class - brief description. [comment]todo[/comment]
+ * 	\see [aClass.getName().toLowerCase()/].h
  */
 
-/** @file [aClass.getName().toLowerCase()/].h 
- *  @brief [aClass.getName()/] class - brief description.[comment]todo[/comment]
+/** \file [aClass.getName().toLowerCase()/].h 
+ *  \brief [aClass.getName()/] class - brief description.[comment]todo[/comment]
  * MyChild is a .....
  */ 
 
@@ -139,7 +137,7 @@ void
 	/* Allocate global resources here */
 	//[protected('for '+aClass.getName()+'_initialize')]
 	//TO DO
-	ooc_init_class( !!! Classes that are USED by [aClass.getName()/] !!! ); Remove if you initialize it other place!
+	//ooc_init_class( !!! Classes that are USED by [aClass.getName()/] !!! ); Remove if you initialize it other place!
 	//[/protected]
 	
 }
@@ -170,10 +168,9 @@ void
 	
 	
 	chain_constructor( [aClass.getName()/], self,
-	//[protected('for '+aClass.getName()+'_constructor')]
-	NULL ); !!! TODO !!! change the third parameter as required! 
-	//[/protected]
-
+	/*[protected('for '+aClass.getName()+'_constructor')]*/
+	NULL ); //!!! TODO !!! change the third parameter as required! 
+	/*[/protected]*/
 }
 
 /* Destructor
@@ -221,7 +218,7 @@ int
 [aClass.getName().toLower()/]_new( void )
 {
 	//[protected('for '+aClass.getName().toLower()+'_new')]
-	ooc_init_class( [aClass.getName()/] ); !!! TODO !!! You may want to remove the initialization from here ...
+	ooc_init_class( [aClass.getName()/] );// !!! TODO !!! You may want to remove the initialization from here ...
 	//[/protected]	
 	return ([aClass.getName()/]) ooc_new( [aClass.getName()/], NULL );
 }

@@ -85,19 +85,6 @@ else o.name
 endif
 /]
 
-
-[comment][query public isVirtual(o : uml::Operation) : Boolean = 
-if o.hasStereotype('embedded_C::Virtual') and (not o.isPrivate()) then true
-else false 
-endif
-/][/comment]
-
-[query public isVirtual(o : uml::Operation) : Boolean = 
-if o.isLeaf or o.isPrivate()  then false
-else true 
-endif
-/]
-
 [query public getOperationParameters(operation : uml::Operation) : Sequence(uml::Parameter) = 
 ownedParameter->select(direction <> ParameterDirectionKind::return)->asSequence()/]
 

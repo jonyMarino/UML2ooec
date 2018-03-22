@@ -23,11 +23,6 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 
 [template public generate_hFile(aClass : uml::Class)]
-/* Stereotypes
-[for(s:Stereotype| aClass.getApplicableStereotypes())]
-	[s/]
-[/for]
-*/
 /**********************************************************************************
  * Copyright: [getCopyright()/]
  * Project: [aClass.getModel().name/]

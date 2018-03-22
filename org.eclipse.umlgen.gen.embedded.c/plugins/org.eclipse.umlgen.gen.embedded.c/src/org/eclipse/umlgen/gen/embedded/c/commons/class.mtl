@@ -1,6 +1,6 @@
 [comment encoding = UTF-8 /]
 [comment]
- * Copyright (c) 2015 Spacebel SA.
+ * Copyright (c) 2015 Spacebel SA.,2018
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,16 +14,9 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 
-[comment][query public isSingleton(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Singleton')/][/comment]
-[query public isSingleton(c : uml::Class) : Boolean = c.isFinalSpecialization and not c.isLeaf/]
+[query public isSingleton(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Singleton')/]
 
-
-[comment][query public isObject(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Object')/][/comment]
-[query public isObject(c : uml::Class) : Boolean = not c.isFinalSpecialization and  c.isLeaf/]
-
-[comment][query public isTDA(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::TDA')/][/comment]
-
-[query public isTDA(c : uml::Class) : Boolean = not c.isFinalSpecialization and  not c.isLeaf/]
+[query public isObject(c : uml::Class) : Boolean = c.hasStereotype('embedded_C::Object')/]
 
 [query public getOwnedOperations(c : uml::Class) : Sequence(uml::Operation) = c.ownedOperation->asSequence()/]
 
@@ -88,6 +81,11 @@ o.class.entireClassesHierarchechy()->excluding(class).allNotFinalOperations()->e
 [query public getAllInterfaces(aClass : Class) : Bag(NamedElement) = aClass.clientDependency->filter(Realization).supplier /]
 
 
+[query public isOocClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::OOC')/]
+
+[query public isSoopcClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::SOOPC')/]
+
+[query public isDynaceClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::Dynace')/]
 
 [template public getFirstClassDefinerName(aClass: Class ,aMethod: Operation) post(substituteAll('\t','').trim())]
 	[if (aClass.ownedOperation->exists(m:Operation | m.redefine( aMethod ) ))]
