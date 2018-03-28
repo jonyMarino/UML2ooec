@@ -36,12 +36,20 @@
 [/if]
 [/template]
 
+[template private genOOCFileName(classifier : uml::Classifier, extension : String) post(trim())]
+[if (not(eContainer().oclIsUndefined()))]
+[if (eContainer().oclIsTypeOf(Package))]
+[getFullFilePath()/][getFileName()/][extension/]  
+[/if]
+[/if]
+[/template]
+
 
 
 [template private genImplementationHeaderFileName(classifier : uml::Classifier) post(trim())]
 [if (not(eContainer().oclIsUndefined()))]
 [if (eContainer().oclIsTypeOf(Package))]
-[getFullFilePath()/]Implement/[getFileName()/].h 
+[getFullFilePath()/]implement/[getFileName()/].h 
 [/if]
 [/if]
 [/template]

@@ -56,12 +56,12 @@ for class Foo.
  **********************************************************************************/
 
 /*!
- * \file [getFilePath()/]implement/[getName().toLowerCase()/].h
+ * \file [getFilePath()/]implement/[getName()/].h
  * \brief [name/]
  */
 
 /**********************************************************************************
- * [getFilePath()/]implement/[getName().toLowerCase()/].h
+ * [getFilePath()/]implement/[getName()/].h
  **********************************************************************************/
 /*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
 
