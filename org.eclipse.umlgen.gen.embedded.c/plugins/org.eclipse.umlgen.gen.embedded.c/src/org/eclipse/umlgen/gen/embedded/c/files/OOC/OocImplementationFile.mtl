@@ -168,7 +168,8 @@ void
 	
 	
 	chain_constructor( [aClass.getName()/], self,
-	/*[protected('for '+aClass.getName()+'_constructor')]*/
+	/*[protected('for '+aClass.getName()+'_constructor')]
+*/
 	NULL ); //!!! TODO !!! change the third parameter as required! 
 	/*[/protected]*/
 }

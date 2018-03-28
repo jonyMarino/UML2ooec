@@ -31,7 +31,7 @@
 
 
 [comment archivo de informacion privada /]
-[template public SOOPC_generateImplementationFile(aClass : uml::Class)]
+[template public generate_SOOPCImplementationFile(aClass : uml::Class)]
 
 
 /**********************************************************************************
@@ -105,7 +105,8 @@
 [generateSOOPCMethodPrototype(o)/]{
 	[if o.name = 'ctor']
 	static [aClass.name/]Vtbl const vtbl={
-	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
+	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]
+agregar llaves   
    	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
 	[for (o : Operation |  seqOp2 ) separator (',')]      
 	[aClass.getFirstClassDefinerName(o)/]_[o.name/]_[/for]	
@@ -116,10 +117,10 @@
 
 	//[protected('user code for '+o.name)]
 	[if ( (o.name = 'ctor') and (aClass.hasSuperclass()) and (aClass.getSingleInheritanceSuperClass().ownedOperation->exists(op:Operation | op.name = 'ctor')))]
-	[o.class.superClass.name/]_ctor (self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.name/][/for])
+	[o.class.superClass.name/]_ctor (([o.class.superClass.name/]*)self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.name/][/for]);
 	[/if]
 	[if aClass.hasVirtualMethods() and o.name = 'ctor']
- 	self -> [ for (c:Class | aClass.getAllAncestorsWithVirtualMethods() ) separator('.') after('.')]super[/for]vptr = &vtbl; /* override the vptr */	
+ 	(([aClass.getLastAncestor()/]*)self) -> vptr = ([aClass.getLastAncestor()/]Vtbl*)&vtbl; /* override the vptr */		
 	[/if]
 	//TO DO
 	//[/protected]
@@ -132,7 +133,7 @@
 // Virtual Methods 
 [let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
-[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([o.getFirstDeclarer().getName()/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
 	[if (o.isAbstract)]
 	ASSERT(0); /* purely-virtual function should never be called */
 	[if not getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]

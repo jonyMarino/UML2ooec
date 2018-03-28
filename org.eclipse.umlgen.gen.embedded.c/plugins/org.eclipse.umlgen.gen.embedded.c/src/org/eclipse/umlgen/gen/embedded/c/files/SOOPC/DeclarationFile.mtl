@@ -56,7 +56,7 @@
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
 [if ( aClass.hasSuperclass( ) ) ]
-#include "[aClass.getSuperClasses().name/].h"
+#include "[aClass.getFullFilePath()/][aClass.getSuperClasses().name/].h"
 [/if]
 /**********************************************************************************
  * [getFilePath()/][getName()/].h
