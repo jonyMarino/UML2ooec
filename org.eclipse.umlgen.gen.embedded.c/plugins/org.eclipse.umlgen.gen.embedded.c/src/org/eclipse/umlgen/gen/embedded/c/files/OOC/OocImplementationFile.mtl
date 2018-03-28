@@ -28,6 +28,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 
 
+[query public intersection (set1 : Sequence(Operation),set2: Sequence(Operation) ) : Sequence(Operation) = set1->removeAll ( set1->removeAll(set2) )/]
 
 [comment archivo de informacion privada /]
 [template public generateOOCImplementationFile(aClass : uml::Class)]
@@ -75,11 +76,10 @@
 [/if]
 
 
-/* This is a MyChild class implementation file
+/* This is [aClass.getName()/] class implementation file
  */
 
-#include "[aClass.getName().toLowerCase()/].h"
-#include "implement/[aClass.getName().toLowerCase()/].h"
+#include "implement/[aClass.getName()/].h"
 
 #include <ooc/exception.h>
 
@@ -124,9 +124,12 @@ void
 {
 	[aClass.getName()/]Vtable vtab = & [aClass.getName()/]VtableInstance;
 	
-	[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
-	[for (o : Operation | seqOp) ]      
-	vtab->[o.name/]	= 	[o.class.name/]_[o.name/];
+	[let aClassVirtuals : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
+	[for (classLink : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
+   	[let classLinkVirtuals : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( classLink ) ) ) ) ) ) ]
+	[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
+	vtab->[for(ancestorClass : Class | entireClassesHierarchechy(o.class)->reverse()->excluding(aClass))][ancestorClass.getName()/].[/for][o.name/] = [o.class.name/]_[o.name/];[/for]	
+	[/let]
 	[/for]
 	[/let]
 	
@@ -168,7 +171,8 @@ void
 	
 	
 	chain_constructor( [aClass.getName()/], self,
-	/*[protected('for '+aClass.getName()+'_constructor')]*/
+	/*[protected('for '+aClass.getName()+'_constructor')]
+*/
 	NULL ); //!!! TODO !!! change the third parameter as required! 
 	/*[/protected]*/
 }
@@ -238,4 +242,6 @@ int
  * File Path: [getFullFilePath()/][getName()/].c
  **********************************************************************************/
 [/template]
+
+
 
