@@ -140,15 +140,4 @@
 [/file]
 [/if]
 
-[comment ------------------------------------------- /]
-[comment Generate d Files                            /]
-[comment ------------------------------------------- /]
-[comment][if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
-[if  ( ( not aNamedElement.oclAsType(uml::Class).isSingleton() ) and ( not  aNamedElement.oclAsType(uml::Class).isObject() ) )]
-[file (aNamedElement.oclAsType(uml::Class).genFileName('.d'), false, 'UTF-8')]
-[aNamedElement.oclAsType(uml::Class).generate_descriptionFile()/]
-[/file]
-[/if]
-[/if][/comment]
-
 [/template]

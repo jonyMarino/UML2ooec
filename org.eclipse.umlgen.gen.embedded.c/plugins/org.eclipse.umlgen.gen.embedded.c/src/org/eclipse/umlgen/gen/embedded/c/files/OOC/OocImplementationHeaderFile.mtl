@@ -75,10 +75,9 @@ for class Foo.
 #endif
 
 
-#include "Implement/[aClass.getSuperClassName()/].h"
-[comment][for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
-#include "[namedElement.name/].h"
-[/for][/comment]
+[if ( aClass.hasSuperclass( ) ) ]
+#include "[aClass.getSuperClasses().getFilePath()/]implement/[aClass.getSuperClassName()/].h"
+[/if]
 
 /*! 
  * \package [name/]

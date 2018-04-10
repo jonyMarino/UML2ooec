@@ -5,7 +5,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 
 [query public isVirtual(o : uml::Operation) : Boolean = 
-if o.hasStereotype('embedded_C::Virtual') and (not o.isPrivate()) then true
+if (o.hasStereotype('embedded_C::Virtual') or o.isAbstract)and (not o.isPrivate()) then true
 else false 
 endif
 /]

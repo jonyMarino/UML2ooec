@@ -120,7 +120,7 @@ agregar llaves
 	[o.class.superClass.name/]_ctor (([o.class.superClass.name/]*)self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.name/][/for]);
 	[/if]
 	[if aClass.hasVirtualMethods() and o.name = 'ctor']
- 	(([aClass.getLastAncestor()/]*)self) -> vptr = ([aClass.getLastAncestor()/]Vtbl*)&vtbl; /* override the vptr */		
+ 	(([aClass.getFirstAncestorWithVirtualMethods().getName()/]*)self) -> vptr = ([aClass.getFirstAncestorWithVirtualMethods().getName()/]Vtbl*)&vtbl; /* override the vptr */		
 	[/if]
 	//TO DO
 	//[/protected]
@@ -133,7 +133,7 @@ agregar llaves
 // Virtual Methods 
 [let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
-[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([o.getFirstDeclarer().getName()/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([aClass.getFirstClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
 	[if (o.isAbstract)]
 	ASSERT(0); /* purely-virtual function should never be called */
 	[if not getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]

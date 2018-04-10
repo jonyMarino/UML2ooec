@@ -55,11 +55,11 @@
 
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
-[comment][if ( aClass.hasSuperclass( ) ) ]
-#include "[aClass.getSuperClasses().name/].h"
-[else][/comment]
+[if ( aClass.hasSuperclass( ) ) ]
+#include "[aClass.getSuperClasses().getFilePath()/][aClass.getSuperClasses().name/].h"
+[else]
 #include <ooc/ooc.h>
-[comment][/if][/comment]
+[/if]
 [for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
 #include "[namedElement.name/].h"
 [/for]

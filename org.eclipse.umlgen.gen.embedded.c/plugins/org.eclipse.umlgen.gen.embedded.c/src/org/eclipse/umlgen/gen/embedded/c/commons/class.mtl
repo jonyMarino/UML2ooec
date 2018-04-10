@@ -44,7 +44,10 @@ else
 endif
  /]
 
-[query public getAllAncestorsWithVirtualMethods (aClass : Class) : Set(Class) = aClass.getAncestors()->select( c1: Class | c1.hasVirtualMethods() )/]
+[query public getAllAncestorsWithVirtualMethods (aClass : Class) : OrderedSet(Class) = aClass.getAncestors()->select( c1: Class | c1.hasVirtualMethods() )->asOrderedSet()/]
+
+[query public getFirstAncestorWithVirtualMethods (aClass : uml::Class) : uml::Class = aClass.getAllAncestorsWithVirtualMethods()->first()/]
+
 
 [query public hasSuperclass(c: Class) :   Boolean  =
  c.superClass->size() > 0 /]
@@ -86,6 +89,7 @@ o.class.entireClassesHierarchechy()->excluding(class).allNotFinalOperations()->e
 [query public isSoopcClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::SOOPC')/]
 
 [query public isDynaceClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::Dynace')/]
+
 
 [template public getFirstClassDefinerName(aClass: Class ,aMethod: Operation) post(substituteAll('\t','').trim())]
 	[if (aClass.ownedOperation->exists(m:Operation | m.redefine( aMethod ) ))]
