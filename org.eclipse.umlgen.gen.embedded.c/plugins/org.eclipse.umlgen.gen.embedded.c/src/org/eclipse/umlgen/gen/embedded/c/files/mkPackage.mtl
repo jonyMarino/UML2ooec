@@ -38,18 +38,7 @@
 # Directory Definition
 ###################################
 
-[getName().toUpper()/]_DIR						 = $(BASE_DIR)[getName()/]
-
-###################################
-# Automatically generated Directory 
-# Definitions ( do no modify! )
-###################################
-
-
-C_INCLUDE_DIRS					+= $(ID)$([getName().toUpper()/]_DIR)
-C_INCLUDE_DIRS					+= $(ID)$(BASE_DIR)
-C_INCLUDE_DIRS_FOR_GCC			+= -I$([getName().toUpper()/]_DIR)
-C_INCLUDE_DIRS_FOR_GCC			+= -I$(BASE_DIR)
+[getName().toUpper()/]_DIR						 = $(SRC_DIR)[getFullFilePath()/][getName()/]
 
 ###################################
 # Slave Sources
@@ -75,7 +64,7 @@ OBJS							+=	$([getName().toUpper()/]_OBJS)
 
 
 ##################################################################################
- # File Path: [getFullFilePath()/][getName()/]/[getName()/].mk
+ # File Path: [getFullFilePath()/][getName()/].mk
 ##################################################################################
 [/template]
 

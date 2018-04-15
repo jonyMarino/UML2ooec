@@ -56,12 +56,12 @@
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
 [if ( aClass.hasSuperclass( ) ) ]
-#include "[aClass.getSuperClasses().getFilePath()/][aClass.getSuperClasses().name/].h"
+#include "[aClass.getSuperClasses().getFullFilePath()/][aClass.getSuperClasses().name/].h"
 [else]
 #include <ooc/ooc.h>
 [/if]
 [for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
-#include "[namedElement.name/].h"
+#include "[namedElement.getFullFilePath()/][namedElement.name/].h"
 [/for]
 
 /**********************************************************************************

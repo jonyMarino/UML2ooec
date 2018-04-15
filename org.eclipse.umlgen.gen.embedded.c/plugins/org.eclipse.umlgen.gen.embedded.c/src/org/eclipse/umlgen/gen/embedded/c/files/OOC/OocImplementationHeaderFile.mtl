@@ -76,7 +76,7 @@ for class Foo.
 
 
 [if ( aClass.hasSuperclass( ) ) ]
-#include "[aClass.getSuperClasses().getFilePath()/]implement/[aClass.getSuperClassName()/].h"
+#include "[aClass.getSuperClasses().getFullFilePath()/]implement/[aClass.getSuperClassName()/].h"
 [/if]
 
 /*! 
