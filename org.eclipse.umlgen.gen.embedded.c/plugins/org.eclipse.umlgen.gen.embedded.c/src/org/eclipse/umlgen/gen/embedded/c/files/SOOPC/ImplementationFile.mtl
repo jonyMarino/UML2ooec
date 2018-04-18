@@ -109,7 +109,7 @@
 agregar llaves   
    	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
 	[for (o : Operation |  seqOp2 ) separator (',')]      
-	[aClass.getFirstClassDefinerName(o)/]_[o.name/]_[/for]	
+	[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
 	[/let]
 	[/for]
 };
@@ -133,7 +133,7 @@ agregar llaves
 // Virtual Methods 
 [let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
-[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([aClass.getFirstClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([aClass.getLastClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
 	[if (o.isAbstract)]
 	ASSERT(0); /* purely-virtual function should never be called */
 	[if not getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]

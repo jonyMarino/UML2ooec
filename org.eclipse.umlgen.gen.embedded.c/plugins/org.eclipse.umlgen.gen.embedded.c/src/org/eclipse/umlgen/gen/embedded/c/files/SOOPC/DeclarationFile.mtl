@@ -22,6 +22,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::structure/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::property /]
@@ -100,7 +101,7 @@ typedef struct {
 	[/if]
 	[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
 	[for (n : uml::NamedElement | seq->orderByContents())]
-	[n.oclAsType(uml::Property).generateProperty()/]; 
+	[n.oclAsType(uml::Property).genFields()/]
 	[/for]	
 	[/let]
 }[aClass.name/];
