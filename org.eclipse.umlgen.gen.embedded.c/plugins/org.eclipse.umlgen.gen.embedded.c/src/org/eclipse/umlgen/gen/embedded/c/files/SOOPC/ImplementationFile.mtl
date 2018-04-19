@@ -106,7 +106,7 @@
 	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]
    	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
 	[for (o : Operation |  seqOp2 ) separator (',')]      
-		([o.genVirtualMethodCast()/])[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
+		[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
 	[/let]
 	[if (c <> aClass)]		},[/if]
 	[/for]
