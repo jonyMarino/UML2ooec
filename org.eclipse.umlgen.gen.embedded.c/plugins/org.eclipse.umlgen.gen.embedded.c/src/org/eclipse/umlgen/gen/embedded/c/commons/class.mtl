@@ -44,9 +44,9 @@ else
 endif
  /]
 
-[query public getAllAncestorsWithVirtualMethods (aClass : Class) : OrderedSet(Class) = aClass.getAncestors()->select( c1: Class | c1.hasVirtualMethods() )->asOrderedSet()/]
+[query public getAllRelatedClassesWithVirtualMethods (aClass : Class) : OrderedSet(Class) = aClass.entireClassesHierarchechy()->select( c1: Class | c1.hasVirtualMethods() )->asOrderedSet()/]
 
-[query public getFirstAncestorWithVirtualMethods (aClass : uml::Class) : uml::Class = aClass.getAllAncestorsWithVirtualMethods()->first()/]
+[query public getFirstRelatedClassWithVirtualMethods (aClass : uml::Class) : uml::Class = aClass.getAllRelatedClassesWithVirtualMethods()->last()/]
 
 
 [query public hasSuperclass(c: Class) :   Boolean  =

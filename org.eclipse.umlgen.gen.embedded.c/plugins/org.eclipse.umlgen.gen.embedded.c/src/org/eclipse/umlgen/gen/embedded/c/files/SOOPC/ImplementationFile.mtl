@@ -27,9 +27,6 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 
-[query public getAllAncestorsWithVirtualMethods (aClass : Class) : Set(Class) = aClass.getAncestors()->select( c1: Class | c1.hasVirtualMethods() )/]
-
-
 [comment archivo de informacion privada /]
 [template public generate_SOOPCImplementationFile(aClass : uml::Class)]
 
@@ -91,7 +88,7 @@
 // Selectors    
 [let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ][for (o : Operation | seqOp) ]      
 [generateSOOPCMethodPrototype(o)/]{
-	[if hasReturnType(o)]return [/if] self[ for (c:Class | aClass.getAllAncestorsWithVirtualMethods())] -> super[/for]-> vptr -> [o.name/](self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
+	[if hasReturnType(o)]return [/if] (**([aClass.getName()/]Vtbl**)self).[o.name/](self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
 }
 [/for]
 [/let]
@@ -105,25 +102,31 @@
 [generateSOOPCMethodPrototype(o)/]{
 	[if o.name = 'ctor']
 	static [aClass.name/]Vtbl const vtbl={
+	[for (c : OclAny | aClass.getAncestors()) ]{[/for] [comment]There are as many anidated structures as ancestors[/comment]
 	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]
-agregar llaves   
    	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
 	[for (o : Operation |  seqOp2 ) separator (',')]      
 	[aClass.getFirstClassDefinerName(o)/]_[o.name/]_[/for]	
 	[/let]
+	[if (c <> aClass)]},[/if]
 	[/for]
 };
 	[/if]
 
-	//[protected('user code for '+o.name)]
-	[if ( (o.name = 'ctor') and (aClass.hasSuperclass()) and (aClass.getSingleInheritanceSuperClass().ownedOperation->exists(op:Operation | op.name = 'ctor')))]
+	[if ( o.name = 'ctor' )]
+	//[protected('user code for calling super constructor')]
+	[if ( (aClass.hasSuperclass()) and (aClass.getSingleInheritanceSuperClass().ownedOperation->exists(op:Operation | op.name = 'ctor')))]
 	[o.class.superClass.name/]_ctor (([o.class.superClass.name/]*)self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.name/][/for]);
 	[/if]
-	[if aClass.hasVirtualMethods() and o.name = 'ctor']
- 	(([aClass.getFirstAncestorWithVirtualMethods().getName()/]*)self) -> vptr = ([aClass.getFirstAncestorWithVirtualMethods().getName()/]Vtbl*)&vtbl; /* override the vptr */		
+	//[/protected]
+	[if aClass.hasVirtualMethods() ]
+ 	(([aClass.getFirstRelatedClassWithVirtualMethods().getName()/]*)self) -> vptr = ([aClass.getFirstRelatedClassWithVirtualMethods().getName()/]Vtbl*)&vtbl; /* override the vptr */		
 	[/if]
+	[/if]
+	//[protected('user code for '+o.name)]
 	//TO DO
 	//[/protected]
+	
 }
 [/for]
 [/let]
@@ -134,16 +137,16 @@ agregar llaves
 [let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
 [generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([aClass.getFirstClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
-	[if (o.isAbstract)]
-	ASSERT(0); /* purely-virtual function should never be called */
+	[comment][if (o.isAbstract)]
+	assert(0); /* purely-virtual function should never be called */
 	[if not getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]
 	return 0U; /* to avoid compiler warnings */
 	[/if]
-	[else]
+	[else][/comment]
 	//[protected('user code'+i)]
 	//TO DO
 	//[/protected]
-	[/if]
+	[comment][/if][/comment]
 }
 [/for]
 [/let]
