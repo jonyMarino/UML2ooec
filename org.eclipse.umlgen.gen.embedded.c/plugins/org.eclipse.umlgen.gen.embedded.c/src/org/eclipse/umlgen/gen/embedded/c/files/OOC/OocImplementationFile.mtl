@@ -106,7 +106,7 @@ AllocateClass( [aClass.getName()/], [aClass.getSuperClassName()/] );
 [for (o : Operation | seqOp) ]      
 static
 [generateReturnType(o)/]
-[o.class.name/]_[o.name/] ([o.generateOOCMethodArguments()/]){
+[o.class.name/]_[o.name/] ([getFirstClassDefinerName(aClass,o)/] self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
 	//[protected('for '+o.class.name+'_'+o.name)]
 	//TO DO
 	//[/protected]
