@@ -1,0 +1,7 @@
+[comment encoding = UTF-8 /]
+[module class('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::class]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::method/]
+
+[query public hasAbtractMethods (c : uml::Class) : Boolean = c.ownedOperation->exists( op : uml::Operation | op.isVirtual() and op.isAbstract )/]
+

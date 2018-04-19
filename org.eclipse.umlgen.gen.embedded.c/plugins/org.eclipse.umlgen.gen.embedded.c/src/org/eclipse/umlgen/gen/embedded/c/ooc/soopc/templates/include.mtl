@@ -1,0 +1,12 @@
+[comment encoding = UTF-8 /]
+[module include('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::include]
+
+[import org::eclipse::umlgen::gen::embedded::c::ooc::commons::class/]
+
+[template public genCIncludes(c : uml::Class) overrides genCIncludes]
+[super/]
+[if (c.hasAbtractMethods())]
+#include <assert.h>
+[/if]
+[/template]
+

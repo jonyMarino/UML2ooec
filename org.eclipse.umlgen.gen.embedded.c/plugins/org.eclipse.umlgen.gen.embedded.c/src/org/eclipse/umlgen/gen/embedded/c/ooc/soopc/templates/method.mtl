@@ -1,0 +1,15 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::methods]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+
+[template public genVirtualMethodPrototype (o : Operation) ]
+[generateReturnType(o)/] [o.class.getName()/]_[o.getName()/]_ ([o.class.getName()/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for])
+[/template]
+
+[template public genVirtualMethodCast (o : Operation) ]
+[generateReturnType(o)/] (*) ([o.class.getFirstClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for])
+[/template]

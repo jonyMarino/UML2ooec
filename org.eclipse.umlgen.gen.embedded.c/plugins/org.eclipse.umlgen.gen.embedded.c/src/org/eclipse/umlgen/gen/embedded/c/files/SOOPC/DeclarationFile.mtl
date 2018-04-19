@@ -28,6 +28,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::property /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
+[import org::eclipse::umlgen::gen::embedded::c::ooc::soopc::templates::method/]
 
 [template public SOOPC_generateDeclarationFile(aClass : uml::Class)]
 /**********************************************************************************
@@ -150,8 +151,15 @@ typedef struct [aClass.name/]Vtbl{
 [generateSOOPCMethodPrototype(o)/];
 [/if]
 [/for]
-
 [/if]
+
+[comment ---------- generate prototypes of virtual methods ----------/]
+[if (aClass.hasHPublicOperationsPrototypes())]
+[for (o : Operation | aClass.ownedOperation -> select( op:uml::Operation | op.isVirtual() )) ]      
+[genVirtualMethodPrototype(o)/];
+[/for]
+[/if]
+
 #endif
 
 /**********************************************************************************

@@ -20,17 +20,16 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::methods/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::ooc::soopc::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::type/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::ooc::soopc::templates::method/]
 
 [comment archivo de informacion privada /]
 [template public generate_SOOPCImplementationFile(aClass : uml::Class)]
-
-
 /**********************************************************************************
  * Copyright: [getCopyright()/]
  * Project: [aClass.getModel().name/]
@@ -53,6 +52,7 @@
  */
 [comment ---------- generate includes ----------------------------------/]
 [genCIncludes()/]
+
 
 
 /**********************************************************************************
@@ -106,11 +106,11 @@
 	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]
    	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
 	[for (o : Operation |  seqOp2 ) separator (',')]      
-	[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
+		([o.genVirtualMethodCast()/])[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
 	[/let]
-	[if (c <> aClass)]},[/if]
+	[if (c <> aClass)]		},[/if]
 	[/for]
-};
+	};
 	[/if]
 
 	[if ( o.name = 'ctor' )]
@@ -136,18 +136,20 @@
 // Virtual Methods 
 [let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
-[generateReturnType(o)/] [o.class.name/]_[o.name/]_ ([aClass.getLastClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
-	[comment][if (o.isAbstract)]
+[o.genVirtualMethodPrototype()/]{
+	[if (o.isAbstract)]
 	assert(0); /* purely-virtual function should never be called */
-	[if not getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]
+	[if getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]
 	return 0U; /* to avoid compiler warnings */
 	[/if]
-	[else][/comment]
+	[else]
 	//[protected('user code'+i)]
 	//TO DO
 	//[/protected]
-	[comment][/if][/comment]
+	[/if]
 }
 [/for]
 [/let]
 [/template]
+
+
