@@ -17,6 +17,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::method/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::methods/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
@@ -102,17 +103,30 @@ AllocateClass( [aClass.getName()/], [aClass.getSuperClassName()/] );
  */
 
 
-[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
+[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()]
 [for (o : Operation | seqOp) ]      
 static
 [generateReturnType(o)/]
-[o.class.name/]_[o.name/] ([getFirstClassDefinerName(aClass,o)/] self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+[aClass.getName()/]_[o.name/] ([aClass.getName()/] self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
 	//[protected('for '+o.class.name+'_'+o.name)]
 	//TO DO
 	//[/protected]
 }
 [/for]
 [/let]
+
+[comment][for (anInterface : uml::Interface | aClass.getAllInterfaces().oclAsType(uml::Interface)) separator(', ')]
+[for (o : Operation | anInterface.getOwnedOperations( ) ) ]      
+static
+[generateReturnType(o)/]
+[aClass.getName()/]_[o.getName()/] ([aClass.getName()/] self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+	//[protected('for '+aClass.getName()+'_'+o.getName())]
+	//TO DO
+	//[/protected]
+}
+[/for]
+[/for][/comment]
+
 
 
 /* Class initializing
@@ -131,6 +145,14 @@ void
 	vtab->[for(ancestorClass : Class | entireClassesHierarchechy(o.class)->reverse()->excluding(aClass))][ancestorClass.getName()/].[/for][o.name/] = [o.class.name/]_[o.name/];
 	[/for]	
 	[/let]
+	[for ( aClassLinkInterface : uml::Interface | classLink.getAllInterfaces().oclAsType(uml::Interface) )]
+	//vtab->[for(ancestorClass : Class | aClass.getAncestors()->select(c | classLink.getAncestors()->excludes(c) ) )][ancestorClass.getName()/].[/for][aClassLinkInterface.getName()/].
+	[let aClassLinkInterfaceOperations : Sequence(uml::Operation) = aClassLinkInterface.getOwnedOperations() ]
+	[for (anInterfaceOperation : Operation |  aClassVirtuals->intersection( aClassLinkInterfaceOperations ) ) ]      
+	vtab->[for(ancestorClass : Class | aClass.getAncestors()->select(c | classLink.getAncestors()->excludes(c) ) )][ancestorClass.getName()/].[/for][aClassLinkInterface.getName()/].[anInterfaceOperation.getName()/] = [aClass.getName()/]_[anInterfaceOperation.getName()/];
+	[/for]	
+	[/let]
+	[/for]
 	[/for]
 	[/let]
 	

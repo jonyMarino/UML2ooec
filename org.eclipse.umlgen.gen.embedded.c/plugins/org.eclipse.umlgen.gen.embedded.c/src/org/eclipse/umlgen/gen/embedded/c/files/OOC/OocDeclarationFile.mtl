@@ -106,7 +106,7 @@ DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
 Virtuals( [aClass.name/], [aClass.getSuperClassName()/] );
 
 
-[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
+[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getVirtual()->getNotInline() ]
 [let seqOp2 : Sequence(uml::Operation) = seqOp->select(op : uml::Operation | aClass.getAllInterfaces()->collect(ownedOperation)->forAll( o:Operation | not redefine(op,o)  ) ) ]
 [for (o : Operation | seqOp2)  ]
 	[o.generateReturnType()/] (*[o.name/])([o.generateOOCMethodArguments()/]);
