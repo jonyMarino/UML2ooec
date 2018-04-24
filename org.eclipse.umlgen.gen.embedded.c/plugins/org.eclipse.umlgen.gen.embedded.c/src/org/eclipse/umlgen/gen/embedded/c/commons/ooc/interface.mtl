@@ -1,0 +1,5 @@
+[comment encoding = UTF-8 /]
+[module interface('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[query public getOwnedOperations(anInterface : uml::Interface) : Sequence(uml::Operation) = anInterface.ownedOperation->asSequence()/]

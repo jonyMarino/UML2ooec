@@ -21,10 +21,10 @@ for class Foo.
 
 [module OocImplementationHeaderFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
-[import org::eclipse::umlgen::gen::embedded::c::commons::OOC::ooc_operations /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::ooc_operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::OOC::OocClass/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::OocClass/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]

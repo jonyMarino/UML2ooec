@@ -11,7 +11,7 @@
 [/comment]
 [module OocImplementationFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
-[import org::eclipse::umlgen::gen::embedded::c::commons::OOC::OocClass/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::OocClass/]
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::method/]
@@ -142,14 +142,14 @@ void
 	[for (classLink : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
 	[let classLinkVirtuals : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( classLink ) ) ) ) ) ) ]
 	[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
-	vtab->[for(ancestorClass : Class | entireClassesHierarchechy(o.class)->reverse()->excluding(aClass))][ancestorClass.getName()/].[/for][o.name/] = [o.class.name/]_[o.name/];
+	(([classLink.getName()/]Vtable)vtab)->[o.name/] = [o.class.name/]_[o.name/];
 	[/for]	
 	[/let]
 	[for ( aClassLinkInterface : uml::Interface | classLink.getAllInterfaces().oclAsType(uml::Interface) )]
 	//vtab->[for(ancestorClass : Class | aClass.getAncestors()->select(c | classLink.getAncestors()->excludes(c) ) )][ancestorClass.getName()/].[/for][aClassLinkInterface.getName()/].
 	[let aClassLinkInterfaceOperations : Sequence(uml::Operation) = aClassLinkInterface.getOwnedOperations() ]
 	[for (anInterfaceOperation : Operation |  aClassVirtuals->intersection( aClassLinkInterfaceOperations ) ) ]      
-	vtab->[for(ancestorClass : Class | aClass.getAncestors()->select(c | classLink.getAncestors()->excludes(c) ) )][ancestorClass.getName()/].[/for][aClassLinkInterface.getName()/].[anInterfaceOperation.getName()/] = [aClass.getName()/]_[anInterfaceOperation.getName()/];
+	(([classLink.getName()/]Vtable)vtab)->[aClassLinkInterface.getName()/].[anInterfaceOperation.getName()/] = [aClass.getName()/]_[anInterfaceOperation.getName()/];
 	[/for]	
 	[/let]
 	[/for]

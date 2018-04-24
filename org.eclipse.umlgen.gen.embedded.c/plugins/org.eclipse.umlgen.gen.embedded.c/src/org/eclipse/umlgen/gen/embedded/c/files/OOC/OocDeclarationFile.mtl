@@ -14,7 +14,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::OOC::OocClass/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::OocClass/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
@@ -92,7 +92,7 @@ DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
 
 [aClass.name/] [aClass.name.toLowerCase()/]_new( void );
 
-[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
+[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getOwnedOperations(aClass))))]
 [for (o : Operation | seqOp) ]      
 [generateReturnType(o)/] [aClass.getName().toLower()/]_[o.name/] ([o.generateOOCMethodArguments()/]);
 [/for]
