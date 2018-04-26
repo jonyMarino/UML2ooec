@@ -1,0 +1,22 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::methods]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::class /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+
+[template public generateOOCMethodPrototype (anOperation : Operation ) ]
+[anOperation.generateReturnType()/] [anOperation.class.name.toLowerCase()/]_[anOperation.name/] ([generateOOCMethodArguments()/])
+[/template]
+
+[template public generateOOCMethodArguments (anOperation : Operation) ]
+[anOperation.class.name/] self[anOperation.generateMethodParametersDef()/]
+[/template]
+
+[template public generateMethodParametersDef (anOperation : uml::Operation) ]
+[for (getOperationParameters(anOperation)) before(', ')separator(', ')][genParameter()/][/for]
+[/template]
+

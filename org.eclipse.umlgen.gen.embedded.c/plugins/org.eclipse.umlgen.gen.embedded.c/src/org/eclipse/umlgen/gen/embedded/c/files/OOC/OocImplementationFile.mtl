@@ -19,7 +19,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::methods/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
@@ -30,6 +30,15 @@
 
 
 [query public intersection (set1 : Sequence(Operation),set2: Sequence(Operation) ) : Sequence(Operation) = set1->select( op:uml::Operation | set2->exists( op2:uml::Operation | op.redefine(op2)) )/]
+
+
+[template generateMethodUpCast(anOperation: uml::Operation, aClass: uml::Class) ?( aClass.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp) ) )] [comment]and aClass.getAncestors()->includes( anOperation.class)[/comment] 
+([anOperation.generateReturnType()/](*)([aClass.getName()/] self[anOperation.generateMethodParametersDef()/]))
+[/template]
+
+[template generateInterfaceMethodUpCast(anOperation: uml::Operation, anInterface: uml::Interface) ?( anInterface.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp)) )]  [comment]and anOperation.class.interfaces(anInterface[/comment]
+([anOperation.generateReturnType()/](*)(Object self[anOperation.generateMethodParametersDef()/]))
+[/template]
 
 [comment archivo de informacion privada /]
 [template public generateOOCImplementationFile(aClass : uml::Class)]
@@ -107,7 +116,7 @@ AllocateClass( [aClass.getName()/], [aClass.getSuperClassName()/] );
 [for (o : Operation | seqOp) ]      
 static
 [generateReturnType(o)/]
-[aClass.getName()/]_[o.name/] ([aClass.getName()/] self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+[aClass.getName()/]_[o.name/] ([aClass.getName()/] self[o.generateMethodParametersDef()/]){
 	//[protected('for '+o.class.name+'_'+o.name)]
 	//TO DO
 	//[/protected]
@@ -140,16 +149,15 @@ void
 	
 	[let aClassVirtuals : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
 	[for (classLink : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
-	[let classLinkVirtuals : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( classLink ) ) ) ) ) ) ]
+	[let classLinkVirtuals : Sequence(uml::Operation) =   classLink.getOwnedOperations()->getNotInline()->getNotStatic()->getVirtual()->getNotPrivate()->getNotRedefiner()->getNotInterfaceRedefiner() ]
 	[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
-	(([classLink.getName()/]Vtable)vtab)->[o.name/] = [o.class.name/]_[o.name/];
+	(([classLink.getName()/]Vtable)vtab)->[o.name/] = [o.generateMethodUpCast(classLink)/][o.class.name/]_[o.name/];
 	[/for]	
 	[/let]
 	[for ( aClassLinkInterface : uml::Interface | classLink.getAllInterfaces().oclAsType(uml::Interface) )]
-	//vtab->[for(ancestorClass : Class | aClass.getAncestors()->select(c | classLink.getAncestors()->excludes(c) ) )][ancestorClass.getName()/].[/for][aClassLinkInterface.getName()/].
 	[let aClassLinkInterfaceOperations : Sequence(uml::Operation) = aClassLinkInterface.getOwnedOperations() ]
 	[for (anInterfaceOperation : Operation |  aClassVirtuals->intersection( aClassLinkInterfaceOperations ) ) ]      
-	(([classLink.getName()/]Vtable)vtab)->[aClassLinkInterface.getName()/].[anInterfaceOperation.getName()/] = [aClass.getName()/]_[anInterfaceOperation.getName()/];
+	(([classLink.getName()/]Vtable)vtab)->[aClassLinkInterface.getName()/].[anInterfaceOperation.getName()/] = [anInterfaceOperation.generateInterfaceMethodUpCast(aClassLinkInterface)/][aClass.getName()/]_[anInterfaceOperation.getName()/];
 	[/for]	
 	[/let]
 	[/for]
@@ -265,6 +273,8 @@ int
  * File Path: [getFullFilePath()/][getName()/].c
  **********************************************************************************/
 [/template]
+
+
 
 
 

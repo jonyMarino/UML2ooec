@@ -81,7 +81,7 @@ o.class.entireClassesHierarchechy()->excluding(class).allNotFinalOperations()->e
 	endif
 /]
 
-[query public getAllInterfaces(aClass : Class) : Bag(NamedElement) = aClass.clientDependency->filter(Realization).supplier /]
+[query public getAllInterfaces(aClass : Class) : Bag(Interface) = aClass.clientDependency->filter(Realization).supplier->filter(uml::Interface) /]
 
 
 [query public isOocClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::OOC')/]

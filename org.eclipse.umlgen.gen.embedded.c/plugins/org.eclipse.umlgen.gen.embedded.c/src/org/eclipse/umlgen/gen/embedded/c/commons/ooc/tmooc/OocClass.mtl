@@ -1,6 +1,9 @@
 [comment encoding = UTF-8 /]
 [module OocClass('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::class/]
 
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface /]
+
 [query public getSuperClassName (aClass : Class) : String = 
 if ( aClass.hasSuperclass( ) ) then
 	aClass.getSuperClasses().name
@@ -8,3 +11,11 @@ else
 	'Base'
 endif
 /]
+
+[query public getNotInterfaceRedefiner (seq : Sequence(uml::Operation) ) : Sequence(uml::Operation) =  
+seq->select(op : uml::Operation | not(op.isAnInterfaceMethodRedefinition()))->asSequence()/]
+
+
+[query public isAnInterfaceMethodRedefinition (anOperation : uml::Operation ) : Boolean =  
+anOperation.class.entireClassesHierarchechy().getAllInterfaces().getOwnedOperations()->exists(anInterfaceOperation:Operation |(anInterfaceOperation.name = anOperation.name))/]
+

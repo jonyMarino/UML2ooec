@@ -12,7 +12,7 @@
 [module OocDeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
-[import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::OocClass/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
