@@ -51,8 +51,8 @@
  * \brief [name/]
  */
 
-#ifndef [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
-#define [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
+#ifndef [getName().toUpper()/]_H
+#define [getName().toUpper()/]_H
 
 [comment ---------- generate includes ----------------------------------/]
 
@@ -79,7 +79,7 @@
 
 #include <ooc/ooc.h>
 
-[anInterface.generateDeclareInterface(false)/]
+[anInterface.generateDeclareInterface()/]
 
 #endif
 

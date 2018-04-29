@@ -89,7 +89,7 @@
 /* This is [aClass.getName()/] class implementation file
  */
 
-#include "implement/[aClass.getName()/].h"
+#include "[aClass.getFullFilePath()/]implement/[aClass.getName()/].h"
 
 #include <ooc/exception.h>
 
@@ -109,9 +109,9 @@
 [if (aClass.hasInterfaces())]
 InterfaceRegister( [aClass.getName()/] )
 {
-[for(aLinkClass: uml::Class | aClass.entireClassesHierarchechy())]
+[for(aLinkClass: uml::Class | aClass.entireClassesHierarchechy()) after(',')]
 [for (anInterface: uml::Interface | aLinkClass.getAllInterfaces() ) separator(',')]
-	AddInterface( [aLinkClass.getName()/], [anInterface.getName()/] )
+	Add[if(anInterface.isMixin())]Mixin[else]Interface[/if]( [aLinkClass.getName()/], [anInterface.getName()/] )
 [/for]
 [/for]
 };

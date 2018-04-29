@@ -5,10 +5,11 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::function /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
 
-[template public generateDeclareInterface(anInterface : Interface, mixin: Boolean)]
+[template public generateDeclareInterface(anInterface : Interface)]
 
-Declare[if(mixin)]Mixin[/if]Interface( [anInterface.getName()/]  )
+Declare[if(anInterface.isMixin())]Mixin[/if]Interface( [anInterface.getName()/]  )
 
 	[let seqOp : OrderedSet(uml::Operation) = anInterface.ownedOperation ]
 	[for (o : Operation | seqOp)  ]

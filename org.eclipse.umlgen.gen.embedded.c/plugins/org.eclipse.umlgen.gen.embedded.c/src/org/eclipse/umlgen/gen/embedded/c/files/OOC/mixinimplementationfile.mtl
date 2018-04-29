@@ -1,6 +1,6 @@
 [comment encoding = UTF-8 /]
 [comment]
- * Copyright (c) 2018 
+ * Copyright (c) 2018
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *     Jonathan Marino - initial API and implementation
 [/comment]
-[module interfaceimplementationfile('http://www.eclipse.org/uml2/5.0.0/UML')]
+[module mixinimplementationfile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::interface /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
@@ -30,7 +30,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::method /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
 
-[template public generateOOCInterfaceImplementationFile(anInterface : uml::Interface)?(not anInterface.isMixin())]
+[template public generateOOCInterfaceImplementationFile(anInterface : uml::Interface)?(anInterface.isMixin())]
 
 /**********************************************************************************
  * Copyright: [getCopyright()/]
@@ -52,7 +52,8 @@
  * \file [getFilePath()/][getName()/].c
  * \brief [name/]
  */
-
+[comment ---------- generate includes ----------------------------------/]
+[genCIncludes()/]
 
 /**********************************************************************************
  * [getFilePath()/][getName()/].c
@@ -63,9 +64,99 @@
 
 
 
-#include "[anInterface.getName()/].h"
+#include "[anInterface.getFullFilePath()/]implement/[anInterface.getName()/].h"
 
-AllocateInterface( [anInterface.getName()/] );
+AllocateMixin( [anInterface.getName()/] );
+
+/* Initialization, finalization
+ */
+
+static
+void
+[anInterface.getName()/]_initialize(void)
+{
+	//[protected('for '+anInterface.getName()+'_initialize')]
+	//TO DO
+	//[/protected]
+}
+
+static
+void
+[anInterface.getName()/]_finalize(void)
+{
+	//[protected('for '+anInterface.getName()+'_finalize')]
+	//TO DO
+	//[/protected]
+}
+
+
+/* Construction, destruction
+ */
+
+static
+void
+[anInterface.getName()/]_constructor( [anInterface.getName()/] [anInterface.getName().toLower()/], [anInterface.getName()/]Data self )
+{
+
+	//[protected('for '+anInterface.getName()+'_constructor')]
+	//TO DO
+	// Build up your [anInterface.getName()/]DataFields.
+	// This method is called ones for every Object, and every field is zeroed at entry.
+	//self->data = ?
+	//[/protected]
+	
+}
+
+static
+int
+[anInterface.getName()/]_copy( [anInterface.getName()/] [anInterface.getName().toLower()/], [anInterface.getName()/]Data self, const [anInterface.getName()/]Data from )
+{
+	//[protected('for '+anInterface.getName()+'_copy')]
+	return OOC_COPY_DEFAULT;
+	//return OOC_COPY_DONE;
+	//return OOC_NO_COPY;
+	//[/protected]
+}
+
+static
+void
+[anInterface.getName()/]_destructor( [anInterface.getName()/] [anInterface.getName().toLower()/], [anInterface.getName()/]Data self )
+{
+	//[protected('for '+anInterface.getName()+'_destructor')]
+	//TODO
+	//[/protected]
+}
+
+
+/* Method implementations
+ */
+
+[let seqOp : Sequence(uml::Operation) = anInterface.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()]
+[for (o : Operation | seqOp) ]      
+static
+[generateReturnType(o)/]
+[anInterface.getName()/]_[o.name/] (Object carrier[o.generateMethodParametersDef()/]){
+	//[protected('for '+o.class.name+'_'+o.name)]
+	//TODO
+	//[anInterface.getName()/]Data self = ooc_get_mixin_data( carrier, [anInterface.getName()/] );
+	//[/protected]
+}
+[/for]
+[/let]
+
+
+/* Populating the interface's virtual table
+ */
+
+void
+[anInterface.getName()/]_populate( [anInterface.getName()/] [anInterface.getName().toLower()/] )
+{
+	[let seqOp : Sequence(uml::Operation) = anInterface.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()]
+	[for (anOperation : uml::Operation | seqOp) ]      
+	[anInterface.getName().toLower()/]->[anOperation.getName()/]	=	[anInterface.getName()/]_[anOperation.name/];
+	[/for]
+	[/let]	
+}
 
 
 /**********************************************************************************

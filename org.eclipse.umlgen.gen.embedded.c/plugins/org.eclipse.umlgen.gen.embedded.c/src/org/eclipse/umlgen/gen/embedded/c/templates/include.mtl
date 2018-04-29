@@ -27,7 +27,7 @@
 #include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"[/if]
 [/template]
 
-[template private genCIncludeOwnHeader(c : uml::Class) post(trim())]
+[template private genCIncludeOwnHeader(c : uml::Classifier) post(trim())]
 /* Dependency with own header */
 #include "[getFullFilePath()/][name/].h"
 [/template]
@@ -91,7 +91,7 @@
 [/if]
 [/template]
 
-[template public genCIncludes(c : uml::Class) post(trim())]
+[template public genCIncludes(c : uml::Classifier) post(trim())]
 [genCIncludeOwnHeader()/]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first()->isEmpty())]
 [let seq : Sequence(uml::Usage) = getAllPrivateUsage(ancestors(Package)->select(oclIsTypeOf(uml::Package))->first().ownedElement->filter(uml::Usage)->asSequence())]
