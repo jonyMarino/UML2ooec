@@ -24,6 +24,7 @@ for class Foo.
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::ooc_operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::OocClass/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
@@ -80,6 +81,10 @@ for class Foo.
 #include "[aClass.getSuperClasses().getFullFilePath()/]implement/[aClass.getSuperClassName()/].h"
 [/if]
 
+[for (anInterface: uml::Interface | aClass.getAllInterfaces()->select(isMixin()) ) separator(',')]
+#include "[anInterface.getFullFilePath()/]implement/[anInterface.getName()/].h"
+[/for]
+
 /*! 
  * \package [name/]
 [if ownedComment->notEmpty()]
@@ -99,6 +104,9 @@ ClassMembers( [aClass.name/] , [aClass.getSuperClassName()/] )
 [for (n : uml::NamedElement | seq->orderByContents())]
 	[n.oclAsType(uml::Property).genFields()/]
 [/for]	
+[for (anInterface: uml::Interface | aClass.getAllInterfaces()->select(isMixin()) ) separator(',')]
+	MixinData([anInterface.getName()/]);
+[/for]
 [/let]
 EndOfClassMembers;
 

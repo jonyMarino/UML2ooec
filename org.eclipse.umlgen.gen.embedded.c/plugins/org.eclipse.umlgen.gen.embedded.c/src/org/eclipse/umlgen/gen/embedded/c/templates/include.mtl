@@ -14,7 +14,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::usage/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 
-[template private genHIncludeParentPackage(c : uml::Class) post(trim())]
+[template private genHIncludeParentPackage(c : uml::Classifier) post(trim())]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().oclIsUndefined())]
 /* Dependency with parent package */
 #include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"
@@ -77,7 +77,7 @@
 [/let]
 [/template]
 
-[template public genHIncludes(c : uml::Class) post(trim())]
+[template public genHIncludes(c : uml::Classifier) post(trim())]
 [genHIncludeParentPackage()/]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first()->isEmpty())]
 [let seq : Sequence(uml::Usage) = getAllPublicUsage(ancestors(Package)->select(oclIsTypeOf(uml::Package))->first().ownedElement->filter(uml::Usage)->asSequence())]

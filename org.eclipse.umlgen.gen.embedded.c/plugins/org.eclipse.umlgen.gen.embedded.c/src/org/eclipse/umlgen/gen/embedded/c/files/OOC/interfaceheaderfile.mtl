@@ -55,7 +55,7 @@
 #define [getName().toUpper()/]_H
 
 [comment ---------- generate includes ----------------------------------/]
-
+[genHIncludes()/]
 
 /**********************************************************************************
  * [getFilePath()/][getName().toLowerCase()/].h
