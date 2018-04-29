@@ -32,11 +32,11 @@
 [query public intersection (set1 : Sequence(Operation),set2: Sequence(Operation) ) : Sequence(Operation) = set1->select( op:uml::Operation | set2->exists( op2:uml::Operation | op.redefine(op2)) )/]
 
 
-[template generateMethodUpCast(anOperation: uml::Operation, aClass: uml::Class) ?( aClass.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp) ) )] [comment]and aClass.getAncestors()->includes( anOperation.class)[/comment] 
+[template public generateMethodUpCast(anOperation: uml::Operation, aClass: uml::Class) ?( aClass.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp) ) )] [comment]and aClass.getAncestors()->includes( anOperation.class)[/comment] 
 ([anOperation.generateReturnType()/](*)([aClass.getName()/] self[anOperation.generateMethodParametersDef()/]))
 [/template]
 
-[template generateInterfaceMethodUpCast(anOperation: uml::Operation, anInterface: uml::Interface) ?( anInterface.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp)) )]  [comment]and anOperation.class.interfaces(anInterface[/comment]
+[template public generateInterfaceMethodUpCast(anOperation: uml::Operation, anInterface: uml::Interface) ?( anInterface.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp)) )]  [comment]and anOperation.class.interfaces(anInterface[/comment]
 ([anOperation.generateReturnType()/](*)(Object self[anOperation.generateMethodParametersDef()/]))
 [/template]
 
@@ -106,8 +106,22 @@
 /* Allocating the class description table and the vtable
  */
 
-AllocateClass( [aClass.getName()/], [aClass.getSuperClassName()/] );
+[if (aClass.hasInterfaces())]
+InterfaceRegister( [aClass.getName()/] )
+{
+[for(aLinkClass: uml::Class | aClass.entireClassesHierarchechy())]
+[for (anInterface: uml::Interface | aLinkClass.getAllInterfaces() ) separator(',')]
+	AddInterface( [aLinkClass.getName()/], [anInterface.getName()/] )
+[/for]
+[/for]
+};
+[/if]
 
+[if (aClass.hasInterfaces())]
+AllocateClassWithInterface( [aClass.getName()/], [aClass.getSuperClassName()/] );
+[else]
+AllocateClass( [aClass.getName()/], [aClass.getSuperClassName()/] );
+[/if]
 /* Class virtual function prototypes
  */
 
