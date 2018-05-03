@@ -24,8 +24,19 @@
 
 [query public isPublic(c : uml::Class) : Boolean = (c.visibility = VisibilityKind::public)/]
 
-[query public entireClassesHierarchechy(c: Class) : OrderedSet ( Class ) =
-c->asOrderedSet()->addAll( c.superClass->iterate(ac : Class;os:OrderedSet(Class) = OrderedSet{}| os->addAll(entireClassesHierarchechy(ac))->asOrderedSet())) /]
+[**
+ * \template entireClassesHierarchechy 
+ * \brief 	devuelve toda la cadena de clases de la herencia single 
+ * el primer elemento de la lista devuelta sera la clase consultada seguida de su padre
+ * y así sucesivamente
+*/]
+[query public entireClassesHierarchechy(aClass: Class) : OrderedSet ( Class ) =
+if aClass<>null then
+	aClass.superClass.entireClassesHierarchechy()->asOrderedSet()->prepend(aClass)
+else
+	OrderedSet{}
+endif
+ /]
 
 [query public getAllOperations(aClass: Class) : Sequence ( Operation ) =
 entireClassesHierarchechy(aClass)->collect( c: Class | c.ownedOperation )->asSequence() /]
@@ -38,9 +49,9 @@ entireClassesHierarchechy(c)->last().name /]
 
 [query public lastAncestorName(c: Class) :   String  =
 if ( not hasSuperclass() ) then
-	c.name
+	c.getName()
 else
-	c.superClass.name
+	c.superClass.getName()
 endif
  /]
 
@@ -117,7 +128,9 @@ endif
 		[if (c.ownedOperation->exists(m:Operation | m.redefine( aMethod ) ))]
 			[c.name/]
 		[else]
-			[getFirstClassDefinerName(classes->excluding(c)->asOrderedSet(),aMethod)/]
+[comment] **Note** : at the time of writing, the OCL standard library sports a bug which changes *OrderedSets* in *Sets* when excluding elements.[/comment]
+[comment]			[getFirstClassDefinerName(classes->excluding(c)->asOrderedSet(),aMethod)/][/comment]
+			[getFirstClassDefinerName(classes->asSequence()->excluding(c)->asOrderedSet(),aMethod)/]
 		[/if]
 	[/let]
 [/template]
