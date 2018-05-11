@@ -1,0 +1,37 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+[module class('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::method/]
+
+[**
+ * The documentation of the template genSuperClassesList.
+ * @param aClass
+ */]
+[template public genSuperClassesList(aClass : Class) post(trim())]
+[for(aSuperClass:uml::Class | aClass.superClass) before(':') separator(',')]
+[aSuperClass.getName()/]
+[/for]
+[/template]
+
+[template public genVisibility(aClass : uml::Class)]
+[if (aClass.visibility = VisibilityKind::public)]public [/if]
+[/template]
+
+[template public genInitFunctionDeclaration(aClass : uml::Class) post(trim())]
+[if (aClass.hasInitMethod())]
+init: [aClass.getOwnedOperations()->select(aMethod: uml::Operation | aMethod.name.startsWith('init'))->first().getName()/];
+[/if]
+[/template]

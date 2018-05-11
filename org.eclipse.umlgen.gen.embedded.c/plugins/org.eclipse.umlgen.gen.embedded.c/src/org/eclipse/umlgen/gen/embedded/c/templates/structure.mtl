@@ -17,13 +17,13 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::datatype/]
 
-[template private genMultiplicity(p : uml::Property) ? (not(isArrray())) post(trim())]
+[template protected genMultiplicity(p : uml::Property) ? (not(isArrray())) post(trim())]
 [if (p.upper <> '*' and p.upperBound() > 1)]
 ['['/][p.upper/][']'/]
 [/if]
 [/template]
 
-[template private genAttribute(p : uml::Property) ? (hasAttribute())]
+[template protected genAttribute(p : uml::Property) ? (hasAttribute())]
  __attribute__ [p.getAttribute()/]
 [/template]
 

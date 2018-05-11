@@ -14,14 +14,14 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::usage/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 
-[template private genHIncludeParentPackage(c : uml::Classifier) post(trim())]
+[template protected genHIncludeParentPackage(c : uml::Classifier) post(trim())]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().oclIsUndefined())]
 /* Dependency with parent package */
 #include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"
 [/if]
 [/template]
 
-[template private genHIncludeParentPackage(p : uml::Package) post(trim())]
+[template protected genHIncludeParentPackage(p : uml::Package) post(trim())]
 [if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().oclIsUndefined())]
 /* Dependency with parent package */
 #include "[getFullFilePath()/][ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first().name/].h"[/if]
@@ -37,15 +37,15 @@
 #include "[getFullFilePath()/][name/]/[name/].h"
 [/template]
 
-[template private genInclude(supplier : uml::NamedElement) ? (supplier.oclIsTypeOf(uml::Class) or supplier.oclIsTypeOf(uml::Package)) post(trim())]
+[template protected genInclude(supplier : uml::NamedElement) ? (supplier.oclIsTypeOf(uml::Class) or supplier.oclIsTypeOf(uml::Package)) post(trim())]
 #include "[supplier.oclAsType(uml::NamedElement).getFullFilePath()/][if supplier.oclIsTypeOf(uml::Package)][supplier.name/]/[/if][supplier.name/].h"
 [/template]
 
-[template private genInclude(supplier : uml::NamedElement) ? (supplier.oclIsTypeOf(uml::Interface)) post(trim())]
+[template protected genInclude(supplier : uml::NamedElement) ? (supplier.oclIsTypeOf(uml::Interface)) post(trim())]
 #include [supplier.oclAsType(uml::Interface).name/]
 [/template]
 
-[template private genComment(u : uml::Usage) post(trim())]
+[template protected genComment(u : uml::Usage) post(trim())]
 [if ownedComment->notEmpty()]
 /* [ownedComment.format('', false, ' *  ', 120)/] */
 [else]

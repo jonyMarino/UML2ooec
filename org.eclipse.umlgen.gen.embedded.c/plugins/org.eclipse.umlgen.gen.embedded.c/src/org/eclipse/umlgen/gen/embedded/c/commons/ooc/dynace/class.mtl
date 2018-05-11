@@ -1,0 +1,9 @@
+[comment encoding = UTF-8 /]
+[module class('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::method /]
+
+[query public hasInitMethod (aClass : Class) : Boolean = 
+not aClass.getOwnedOperations()->select(aMethod:uml::Operation | aMethod.isInitMethod())->isEmpty()
+/]
+

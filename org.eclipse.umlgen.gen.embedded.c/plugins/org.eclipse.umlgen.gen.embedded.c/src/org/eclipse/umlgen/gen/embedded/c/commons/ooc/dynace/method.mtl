@@ -1,0 +1,20 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::method/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+
+[query public isInitMethod(o : uml::Operation) : Boolean = 
+if (o.hasStereotype('embedded_C::Initialization') or o.name.startsWith('init')) then true
+else false 
+endif
+/]
+
+[query public getInitMethods(seqOp : Sequence( uml::Operation ) ) : Sequence( uml::Operation ) = 
+seqOp->select( anOperation: uml::Operation | anOperation.isInitMethod() )
+/]
+
+[query public getNotInitMethods(seqOp : Sequence( uml::Operation ) ) : Sequence( uml::Operation ) = 
+seqOp->select( anOperation: uml::Operation | not anOperation.isInitMethod() )
+/]
+

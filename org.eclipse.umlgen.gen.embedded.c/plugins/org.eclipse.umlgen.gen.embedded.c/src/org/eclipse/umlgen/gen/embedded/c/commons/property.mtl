@@ -45,8 +45,11 @@ seq->select(p : uml::Property | not(p.isUsesStaticMethods()))->asSequence()/]
 [query public getHasNoTypeApplied(seq : Sequence(uml::Property)) : Sequence(uml::Property) =  
 seq->select(p : uml::Property | (p.type->isEmpty()))->asSequence()/]
 
+[query public hasTypeApplied(aProperty : uml::Property) : Boolean =  
+ not(aProperty.type->isEmpty())/]
+
 [query public getHasTypeApplied(seq : Sequence(uml::Property)) : Sequence(uml::Property) =  
-seq->select(p : uml::Property | not(p.type->isEmpty()))->asSequence()/]
+seq->select(p : uml::Property | p.hasTypeApplied() )->asSequence()/]
 
 [query public isArrray(p : uml::Property) : Boolean = 
 if p.hasStereotype('embedded_C::Array') then true

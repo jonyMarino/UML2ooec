@@ -1,0 +1,81 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+[module dFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::class/]
+ 
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::method/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::method/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::class/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::include/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+
+[comment archivo de informacion privada /]
+[template public generate_dFile(aClass : uml::Class)]
+/**********************************************************************************
+ * Copyright: [getCopyright()/]
+ * Project: [aClass.getModel().name/]
+ * File: [getFilePath()/][getName()/].c
+ * Code Management Tool File Version: [getVersion()/]
+[if (isSvnDateEnabled())]
+ * Date: $Date$
+[/if]
+ * SDD Component: [name/]
+ * Language: Dynace
+ * Author: [getAuthor()/]
+[if (isSvnIdEnabled())]
+ * Last Change: $Id$
+[/if]
+ **********************************************************************************/
+
+/*!
+ * \file [getFilePath()/][getName()/].d
+ * \brief [name/]
+ */
+
+[genIncludes()/]
+
+/**********************************************************************************
+ * [getFilePath()/][getName()/].d
+ **********************************************************************************/
+
+[genVisibility()/]defclass  [getName()/][genSuperClassesList()/][if (hasAttributes() or hasInitMethod())]{
+	[genVariables()/]
+	[if (hasInitMethod())]
+	[genInitFunctionDeclaration()/]
+	[/if]
+}[/if];
+
+[if (hasInitMethod())]
+[genInitFunction()/]
+[/if]
+
+[genClassMethods()/]
+
+[genInstanceMethods()/]
+
+
+
+/**********************************************************************************
+ * File Path: [getFullFilePath()/][getName()/].d
+ **********************************************************************************/
+[/template]
