@@ -11,6 +11,7 @@
 [/comment]
 [module interfaceDeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::interface /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
@@ -28,26 +29,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 
 [template public generateOOCInterfaceHeaderFile(anInterface : uml::Interface)]
-/**********************************************************************************
- * Copyright: [getCopyright()/]
- * Project: [anInterface.getModel().name/]
- * File: [getFilePath()/][getName()/].h
- * Code Management Tool File Version: [getVersion()/]
-[if (isSvnDateEnabled())]
- * Date: $Date$
-[/if]
- * SDD Component: [name/]
- * Language: C
- * Author: [getAuthor()/]
-[if (isSvnIdEnabled())]
- * Last Change: $Id$
-[/if]
- **********************************************************************************/
-
-/*!
- * \file [getFilePath()/][getName()/].h
- * \brief [name/]
- */
+[anInterface.genFileComment(getFilePath().toString(),'h','C')/]
 
 #ifndef [getName().toUpper()/]_H
 #define [getName().toUpper()/]_H

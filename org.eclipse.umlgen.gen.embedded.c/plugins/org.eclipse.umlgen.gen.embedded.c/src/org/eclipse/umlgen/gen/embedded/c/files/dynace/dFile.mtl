@@ -11,6 +11,7 @@
 [/comment]
 [module dFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::class/]
  
@@ -26,32 +27,11 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::type/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::include/]
-[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
-[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::function /]
 
 [comment archivo de informacion privada /]
 [template public generate_dFile(aClass : uml::Class)]
-/**********************************************************************************
- * Copyright: [getCopyright()/]
- * Project: [aClass.getModel().name/]
- * File: [getFilePath()/][getName()/].c
- * Code Management Tool File Version: [getVersion()/]
-[if (isSvnDateEnabled())]
- * Date: $Date$
-[/if]
- * SDD Component: [name/]
- * Language: Dynace
- * Author: [getAuthor()/]
-[if (isSvnIdEnabled())]
- * Last Change: $Id$
-[/if]
- **********************************************************************************/
-
-/*!
- * \file [getFilePath()/][getName()/].d
- * \brief [name/]
- */
+[aClass.genFileComment(getFilePath().toString(),'d','Dynace')/]
 
 [genIncludes()/]
 

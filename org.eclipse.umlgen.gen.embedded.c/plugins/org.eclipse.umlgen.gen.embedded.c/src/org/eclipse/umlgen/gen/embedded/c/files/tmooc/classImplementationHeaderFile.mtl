@@ -21,6 +21,7 @@ for class Foo.
 
 [module classImplementationHeaderFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
@@ -35,32 +36,13 @@ for class Foo.
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::structure/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
 
 
 [template public OOC_generateImplementationHeaderFile(aClass : uml::Class)]
-/**********************************************************************************
- * Copyright: [getCopyright()/]
- * Project: [aClass.getModel().name/]
- * File: [getFilePath()/][getName().toLowerCase()/].h
- * Code Management Tool File Version: [getVersion()/]
-[if (isSvnDateEnabled())]
- * Date: $Date$
-[/if]
- * SDD Component: [name/]
- * Language: C
- * Author: [getAuthor()/]
-[if (isSvnIdEnabled())]
- * Last Change: $Id$
-[/if]
- **********************************************************************************/
-
-/*!
- * \file [getFilePath()/]implement/[getName()/].h
- * \brief [name/]
- */
+[aClass.genFileComment(getFilePath().toString()+'implement/','h','C')/]
 
 /**********************************************************************************
  * [getFilePath()/]implement/[getName()/].h

@@ -11,6 +11,7 @@
 [/comment]
 [module classImplementationFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class/]
 
@@ -26,8 +27,6 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::type/]
-[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
-[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 
 
 
@@ -42,26 +41,7 @@
 
 [comment archivo de informacion privada /]
 [template public generateOOCImplementationFile(aClass : uml::Class)]
-/**********************************************************************************
- * Copyright: [getCopyright()/]
- * Project: [aClass.getModel().name/]
- * File: [getFilePath()/][getName()/].c
- * Code Management Tool File Version: [getVersion()/]
-[if (isSvnDateEnabled())]
- * Date: $Date$
-[/if]
- * SDD Component: [name/]
- * Language: C
- * Author: [getAuthor()/]
-[if (isSvnIdEnabled())]
- * Last Change: $Id$
-[/if]
- **********************************************************************************/
-
-/*!
- * \file [getFilePath()/][getName()/].c
- * \brief [name/]
- */
+[aClass.genFileComment(getFilePath().toString(),'c','C')/]
 
 [comment ---------- generate includes ----------------------------------/]
 [genCIncludes()/]
