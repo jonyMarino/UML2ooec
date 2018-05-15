@@ -1,4 +1,3 @@
-
 [comment encoding = UTF-8 /]
 [comment]
  * Copyright (c) 2017 FIUBA
@@ -10,31 +9,27 @@
  * Contributors:
  *     Jonathan Marino (FIUBA) - initial API and implementation
 [/comment]
-[module ImplementationFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[module cFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
-[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
-
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
+ 
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::method/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::methods/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::method/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::soopc::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::type/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
-
-[query public getAllAncestorsWithVirtualMethods (aClass : Class) : Set(Class) = aClass.getAncestors()->select( c1: Class | c1.hasVirtualMethods() )/]
-
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::soopc::method/]
 
 [comment archivo de informacion privada /]
-[template public EOOC_generateImplementationFile(aClass : uml::Class)]
-
-
+[template public generate_SOOPCImplementationFile(aClass : uml::Class)]
 /**********************************************************************************
  * Copyright: [getCopyright()/]
  * Project: [aClass.getModel().name/]
@@ -55,9 +50,9 @@
  * \file [getFilePath()/][getName()/].c
  * \brief [name/]
  */
-
 [comment ---------- generate includes ----------------------------------/]
 [genCIncludes()/]
+
 
 
 /**********************************************************************************
@@ -66,7 +61,6 @@
 /*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
 
 /*## class TopLevel::[name/] */
-
 [comment ---------- generate macros & constants ------------------------/]
 [genCDefines()/]
 
@@ -78,57 +72,12 @@
 [genCConstants()/]
 [/if]
 
-#define SELF        ((struct [aClass.name/]_attribute*)self)
-#define AS_SELF(a)  ((struct [aClass.name/]_attribute*)(a) )
-[if ( aClass.hasSuperclass( ) ) ]
-#define SUPER       (([aClass.getSuperClasses().name/] *)self)
-[else]
-#define SUPER       (( object          *)self)
-[/if]
-
-
-
-const struct [aClass.name/]_interface [aClass.name/]_interface;
-
-void* [aClass.name/]_interfaces([aClass.name/] * self, void *ref_i)
-{
-[for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
-	if (ref_i == &[namedElement.name/]_interface)
-		return &(*self)->[namedElement.oclAsType(Interface).ownedOperation->first().name/];
-[/for]
-[if ( aClass.hasSuperclass( ) ) ]
-		return [aClass.getSuperClasses().name/]_interfaces(self,ref_i);
-[else]
-	return object_interfaces(SUPER,ref_i);
-[/if]
-}
-
-
-[generateFinalMethodsImplementation()/]
 
 [generateDynamicMethodsImplementation()/]
 
+[generateFinalMethodsImplementation()/]
 
-
-
-
-const struct [aClass.name/]_interface [aClass.name/]_interface={
-	[aClass.name/]_interfaces
-	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
-   	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
-	[let seqOp3 : Sequence(uml::Operation) = seqOp2->select(op : uml::Operation | aClass.getAllInterfaces()->collect(ownedOperation)->forAll( o:Operation | not redefine(op,o)  ) ) ]
-	[for (o : Operation |  seqOp3 ) before(',')separator (',')]      
-	[aClass.getLastClassDefinerName(o)/]_[o.name/]
-	[/for]	
-	[/let]
-	[/let]
-	[/for]
-	[for (interface: NamedElement | aClass.getAllInterfaces())]
-	[for (o : Operation |  interface.oclAsType(Interface).ownedOperation ) before(',')separator (',')]      
-	[aClass.name/]_[o.name/]
-	[/for]
-	[/for]
-};
+[generateSelectorsImplementation()/]
 
 /**********************************************************************************
  * File Path: [getFullFilePath()/][getName()/].c
@@ -139,7 +88,7 @@ const struct [aClass.name/]_interface [aClass.name/]_interface={
 // Selectors    
 [let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ][for (o : Operation | seqOp) ]      
 [generateSOOPCMethodPrototype(o)/]{
-	[if hasReturnType(o)]return [/if] self[ for (c:Class | aClass.getAllAncestorsWithVirtualMethods())] -> super[/for]-> vptr -> [o.name/](_self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
+	[if hasReturnType(o)]return [/if] (**([aClass.getName()/]Vtbl**)self).[o.name/](self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
 }
 [/for]
 [/let]
@@ -151,10 +100,33 @@ const struct [aClass.name/]_interface [aClass.name/]_interface={
 [let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
 [generateSOOPCMethodPrototype(o)/]{
+	[if o.name = 'ctor']
+	static [aClass.name/]Vtbl const vtbl={
+	[for (c : OclAny | aClass.getAncestors()) ]{[/for] [comment]There are as many anidated structures as ancestors[/comment]
+	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]
+   	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
+	[for (o : Operation |  seqOp2 ) separator (',')]      
+		[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
+	[/let]
+	[if (c <> aClass)]		},[/if]
+	[/for]
+	};
+	[/if]
 
-	//[protected('for '+o.name)]
+	[if ( o.name = 'ctor' )]
+	//[protected('user code for calling super constructor')]
+	[if ( (aClass.hasSuperclass()) and (aClass.getSingleInheritanceSuperClass().ownedOperation->exists(op:Operation | op.name = 'ctor')))]
+	[o.class.superClass.name/]_ctor (([o.class.superClass.name/]*)self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.name/][/for]);
+	[/if]
+	//[/protected]
+	[if aClass.hasVirtualMethods() ]
+ 	(([aClass.getFirstRelatedClassWithVirtualMethods().getName()/]*)self) -> vptr = ([aClass.getFirstRelatedClassWithVirtualMethods().getName()/]Vtbl*)&vtbl; /* override the vptr */		
+	[/if]
+	[/if]
+	//[protected('user code for '+o.name)]
 	//TO DO
 	//[/protected]
+	
 }
 [/for]
 [/let]
@@ -162,16 +134,16 @@ const struct [aClass.name/]_interface [aClass.name/]_interface={
 
 [template public generateDynamicMethodsImplementation (aClass : Class) ]
 // Virtual Methods 
-[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
+[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
 [for (o : Operation | seqOp) ]      
-[generateReturnType(o)/] [o.class.name/]_[o.name/] ([o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+[o.genVirtualMethodPrototype()/]{
 	[if (o.isAbstract)]
-	ASSERT(0); /* purely-virtual function should never be called */
-	[if not getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]
+	assert(0); /* purely-virtual function should never be called */
+	[if getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]
 	return 0U; /* to avoid compiler warnings */
 	[/if]
 	[else]
-	//[protected('for '+o.name)]
+	//[protected('user code for '+o.class.getName()+'_'+o.getName())]
 	//TO DO
 	//[/protected]
 	[/if]

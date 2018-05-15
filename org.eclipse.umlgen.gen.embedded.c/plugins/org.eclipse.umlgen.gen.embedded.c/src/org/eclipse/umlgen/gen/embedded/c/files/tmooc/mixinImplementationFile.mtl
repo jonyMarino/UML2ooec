@@ -9,7 +9,7 @@
  * Contributors:
  *     Jonathan Marino - initial API and implementation
 [/comment]
-[module mixinimplementationfile('http://www.eclipse.org/uml2/5.0.0/UML')]
+[module mixinImplementationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::interface /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
@@ -27,8 +27,6 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::property /]
-[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
-[import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
 
 [template public generateOOCInterfaceImplementationFile(anInterface : uml::Interface)?(anInterface.isMixin())]
 

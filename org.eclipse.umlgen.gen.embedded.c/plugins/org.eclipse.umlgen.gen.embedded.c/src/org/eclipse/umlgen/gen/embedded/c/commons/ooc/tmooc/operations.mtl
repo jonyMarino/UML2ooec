@@ -1,8 +1,9 @@
 [comment encoding = UTF-8 /]
-[module ooc_operations('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[module operations('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::operations/]
 
 [query public isProtected(op : uml::Operation) : Boolean = 
 (visibility = VisibilityKind::protected)/]
 
 [query public getProtected(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
 seq->select(op : uml::Operation | op.isProtected())->asSequence()/]
+

@@ -3,11 +3,11 @@
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class /]
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::method /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::operations/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::function /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::function /]
 
 [template protected genOperationParametersDef(op : uml::Operation) overrides genOperationParametersDef ? ((hasOperationParameters())) post(trim())]
 [/template]
@@ -50,7 +50,7 @@ public
 [/template]
 
 [template public genClassMethods(cl : uml::Class) post(trim())]
-[let seqOp : Sequence(uml::Operation) = getOwnedOperations(cl)->getStatic()->getNotAbstract()->getNotInitMethods()]
+[let seqOp : Sequence(uml::Operation) = getOwnedOperations(cl)->getStatic()->getNotAbstract()->getNotInitializers()]
 [if (not seqOp->isEmpty())]
 /************************************ CLASS METHODS ****************************************/
 
@@ -63,7 +63,7 @@ public
 [/template]
 
 [template public genInstanceMethods(cl : uml::Class) post(trim())]
-[let seqOp : Sequence(uml::Operation) = getOwnedOperations(cl)->getNotStatic()->getNotAbstract()->getNotInitMethods()]
+[let seqOp : Sequence(uml::Operation) = getOwnedOperations(cl)->getNotStatic()->getNotAbstract()->getNotInitializers()]
 [if (not seqOp->isEmpty())]
 /************************************ INSTANCE METHODS *************************************/
 
@@ -75,16 +75,5 @@ public
 [/let]
 [/template]
 
-[query public getInitFunction(aClass : uml::Class) : uml::Operation = aClass.getOwnedOperations()->getInitMethods()->first()/]
 
-[template public genInitFunction(aClass : uml::Class) post(trim())]
-[let initFunction : uml::Operation = getInitFunction()]
-/************************************ INIT FUNCTION **************************************/
-
-void [initFunction.getName()/](void){
-    /* [protected('for ' + name + ' */')]
-    /* [/protected] for [name/] */
-}
-[/let]
-[/template]
 

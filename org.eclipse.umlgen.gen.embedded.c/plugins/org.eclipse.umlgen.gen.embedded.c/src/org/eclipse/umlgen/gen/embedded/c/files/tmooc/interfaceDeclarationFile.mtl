@@ -7,36 +7,31 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     Jonathan Marino 
+ *     Jonathan Marino - initial API and implementation
 [/comment]
+[module interfaceDeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
-
-[module mixinimplementationheaderfile('http://www.eclipse.org/uml2/5.0.0/UML')]
-
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::ooc_operations /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::interface /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::OocClass/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::type/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::structure/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
-[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
-[import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
 
-[template public generateMixinImplementationHeaderFile(anInterface : uml::Interface)?(anInterface.isMixin())]
+[template public generateOOCInterfaceHeaderFile(anInterface : uml::Interface)]
 /**********************************************************************************
  * Copyright: [getCopyright()/]
  * Project: [anInterface.getModel().name/]
- * File: [getFilePath()/][getName().toLowerCase()/].h
+ * File: [getFilePath()/][getName()/].h
  * Code Management Tool File Version: [getVersion()/]
 [if (isSvnDateEnabled())]
  * Date: $Date$
@@ -50,23 +45,21 @@
  **********************************************************************************/
 
 /*!
- * \file [getFilePath()/]implement/[getName()/].h
+ * \file [getFilePath()/][getName()/].h
  * \brief [name/]
  */
 
-/**********************************************************************************
- * [getFilePath()/]implement/[getName()/].h
- **********************************************************************************/
-/*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
-
-
-#ifndef IMPLEMENT_[getName().toUpperCase()/]_H
-#define IMPLEMENT_[getName().toUpperCase()/]_H
+#ifndef [getName().toUpper()/]_H
+#define [getName().toUpper()/]_H
 
 [comment ---------- generate includes ----------------------------------/]
-#ifndef [getName().toUpperCase()/]_H
-#error Do #include "[getName().toLowerCase()/].h" right before doing #include "implement/[getName().toLowerCase()/].h"
-#endif
+[genHIncludes()/]
+
+/**********************************************************************************
+ * [getFilePath()/][getName().toLowerCase()/].h
+ **********************************************************************************/
+
+/*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
 
 /*! 
  * \package [name/]
@@ -82,14 +75,13 @@
 [/if]
  */
 
-MixinMembers( [anInterface.getName()/] )
-[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
-[for (n : uml::NamedElement | seq->orderByContents())]
-	[n.oclAsType(uml::Property).genFields()/]
-[/for]	
-[/let]
-EndOfClassMembers;
+#include <ooc/ooc.h>
+
+[anInterface.generateDeclareInterface()/]
 
 #endif
 
+/**********************************************************************************
+ * File Path: [getFullFilePath()/][getName()/].h
+ **********************************************************************************/
 [/template]

@@ -1,8 +1,8 @@
 [comment encoding = UTF-8 /]
-[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::methods]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::ooc::method]
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::class /]
-[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]

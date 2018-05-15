@@ -11,7 +11,7 @@
 [/comment]
 [module structure('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::structure/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::property/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::property/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]

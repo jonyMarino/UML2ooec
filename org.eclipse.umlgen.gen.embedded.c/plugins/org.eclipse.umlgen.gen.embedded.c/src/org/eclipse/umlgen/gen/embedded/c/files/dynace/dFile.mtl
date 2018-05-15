@@ -15,7 +15,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::class/]
  
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::method/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
@@ -28,6 +28,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::include/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::function /]
 
 [comment archivo de informacion privada /]
 [template public generate_dFile(aClass : uml::Class)]
@@ -58,14 +59,14 @@
  * [getFilePath()/][getName()/].d
  **********************************************************************************/
 
-[genVisibility()/]defclass  [getName()/][genSuperClassesList()/][if (hasAttributes() or hasInitMethod())]{
+[genVisibility()/]defclass  [getName()/][genSuperClassesList()/][if (hasAttributes() or hasInitFunction())]{
 	[genVariables()/]
-	[if (hasInitMethod())]
+	[if (hasInitFunction())]
 	[genInitFunctionDeclaration()/]
 	[/if]
 }[/if];
 
-[if (hasInitMethod())]
+[if (hasInitFunction())]
 [genInitFunction()/]
 [/if]
 

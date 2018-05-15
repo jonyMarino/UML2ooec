@@ -85,6 +85,3 @@ else o.name
 endif
 /]
 
-[query public getOperationParameters(operation : uml::Operation) : Sequence(uml::Parameter) = 
-ownedParameter->select(direction <> ParameterDirectionKind::return)->asSequence()/]
-

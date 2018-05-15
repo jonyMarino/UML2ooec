@@ -24,3 +24,4 @@ else
 endif
 /]
 
+[query public intersection (set1 : Sequence(Operation),set2: Sequence(Operation) ) : Sequence(Operation) = set1->select( op:uml::Operation | set2->exists( op2:uml::Operation | op.redefine(op2)) )/]

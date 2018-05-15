@@ -1,0 +1,20 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::ooc::method]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+
+
+[template public generateSOOPCMethodPrototype (o : Operation) ]
+[generateReturnType(o)/] [o.class.name/]_[o.name/] ([generateSOOPCMethodArguments()/])
+[/template]
+
+[template public generateSOOPCMethodArguments (o : Operation) ]
+[o.class.name/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]
+[/template]
+
+[template public genVirtualMethodPrototype (o : Operation) ]
+[generateReturnType(o)/] [o.class.getName()/]_[o.getName()/]_ ([o.class.getFirstClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for])
+[/template]

@@ -16,3 +16,7 @@
 [query public isVariadic(anOperation : uml::Operation) : Boolean = 
 ownedParameter->exists( aParameter : uml::Parameter | aParameter.name = '...')/]
 
+
+[query public getOperationParameters(operation : uml::Operation) : Sequence(uml::Parameter) = 
+ownedParameter->select(direction <> ParameterDirectionKind::return)->asSequence()/]
+

@@ -1,13 +1,13 @@
 [comment encoding = UTF-8 /]
 [comment]
- * Copyright (c) 2018 FIUBA
+ * Copyright (c) 2018
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     Jonathan Marino (FIUBA) 
+ *     Jonathan Marino - initial API and implementation
 [/comment]
 
 
@@ -19,13 +19,14 @@ for class Foo.
 [/comment]
 
 
-[module OocImplementationHeaderFile('http://www.eclipse.org/uml2/5.0.0/UML')]
+[module classImplementationHeaderFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::ooc_operations /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::operations /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::OocClass/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
@@ -37,8 +38,7 @@ for class Foo.
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::property /]
-[import org::eclipse::umlgen::gen::embedded::c::commons::method /]
-[import org::eclipse::umlgen::gen::embedded::c::templates::properties /]
+
 
 [template public OOC_generateImplementationHeaderFile(aClass : uml::Class)]
 /**********************************************************************************
