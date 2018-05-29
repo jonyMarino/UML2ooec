@@ -20,9 +20,9 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::type/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::soopc::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::soopc::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::structure/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
@@ -33,14 +33,12 @@
 [template public SOOPC_generateDeclarationFile(aClass : uml::Class)]
 [aClass.genFileComment(getFilePath().toString(),'h','C')/]
 
-#ifndef [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
-#define [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
+#ifndef [getFullFilePath().substituteAll('/', '_')/][getName()/]_H
+#define [getFullFilePath().substituteAll('/', '_')/][getName()/]_H
 
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
-[if ( aClass.hasSuperclass( ) ) ]
-#include "[aClass.getFullFilePath()/][aClass.getSuperClasses().name/].h"
-[/if]
+
 /**********************************************************************************
  * [getFilePath()/][getName()/].h
  **********************************************************************************/
@@ -77,56 +75,17 @@
 
 [/if]
 [comment ---------- generate variable definitions ----------------------/]
-[comment][if (aClass.hasHVariables())][/comment]
-[comment][genHVariables()/][/comment]
+[genHVariables()/]
 
-[comment][/if][/comment]
+[comment ---------- generate variable table ----------------------------/]
+[genVTable()/]
+
 [comment ---------- generate public inline functions -------------------/]
 [if (aClass.hasHInlineOperations())]
 [genHInlineOperations()/]
 
 [/if]
 
-[if aClass.hasVirtualMethods() ]
-
-//Class [aClass.name/] V-Table
-struct [aClass.name/]Vtbl;
-[/if]
-
-//Class [aClass.name/] declaration
-typedef struct {
-	[if aClass.hasSuperclass() ]
-	[aClass.getSuperClasses().name/] super;
-	[if not aClass.superClass->exists(hasVirtualMethods())]
-	struct [aClass.name/]Vtbl const *vptr;
-	[/if]
-	[else]
-	[if aClass.hasVirtualMethods()]
-	struct [aClass.name/]Vtbl const *vptr;
-	[/if]
-	[/if]
-	[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
-	[for (n : uml::NamedElement | seq->orderByContents())]
-	[n.oclAsType(uml::Property).genFields()/]
-	[/for]	
-	[/let]
-}[aClass.name/];
-
-[if aClass.hasVirtualMethods() ]
-
-//Class [aClass.name/] V-Table
-typedef struct [aClass.name/]Vtbl{
-	[if aClass.hasSuperclass() and aClass.superClass->exists ( hasVirtualMethods() ) ]
-	[aClass.getSuperClasses().name/]Vtbl superClass;
-	[/if]
-	[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
-	[for (o : Operation | seqOp)  ]
-	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]); 
-	[/for]
-	[/let]
-}[aClass.name/]Vtbl;
-
-[/if]
 [comment ---------- generate prototypes of prublic operations ----------/]
 [if (aClass.hasHPublicOperationsPrototypes())]
 [for (o : Operation | aClass.ownedOperation) ]      
@@ -134,13 +93,12 @@ typedef struct [aClass.name/]Vtbl{
 [generateSOOPCMethodPrototype(o)/];
 [/if]
 [/for]
-[/if]
 
 [comment ---------- generate prototypes of virtual methods ----------/]
-[if (aClass.hasHPublicOperationsPrototypes())]
 [for (o : Operation | aClass.ownedOperation -> select( op:uml::Operation | op.isVirtual() )) ]      
 [genVirtualMethodPrototype(o)/];
 [/for]
+
 [/if]
 
 #endif

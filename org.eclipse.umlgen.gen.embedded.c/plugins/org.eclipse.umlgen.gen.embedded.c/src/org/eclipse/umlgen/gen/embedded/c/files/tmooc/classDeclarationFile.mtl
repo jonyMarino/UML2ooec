@@ -39,11 +39,11 @@
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
 [if ( aClass.hasSuperclass( ) ) ]
-#include "[aClass.getSuperClasses().getFullFilePath()/][aClass.getSuperClasses().name/].h"
+#include "[aClass.getSuperClasses().getFullFilePath()/][aClass.getSuperClassName()/].h"
 [else]
 #include <ooc/ooc.h>
 [/if]
-[for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
+[for (namedElement : NamedElement | aClass.getAllInterfaces())]
 #include "[namedElement.getFullFilePath()/][namedElement.name/].h"
 [/for]
 
@@ -97,7 +97,7 @@ Virtuals( [aClass.name/], [aClass.getSuperClassName()/] );
 [/let]
 [/let]
 
-[for (namedElement : NamedElement | aClass.getAllInterfaces()) separator(', ')]
+[for (namedElement : NamedElement | aClass.getAllInterfaces())]
 	Interface( [namedElement.name/] );
 [/for]
 

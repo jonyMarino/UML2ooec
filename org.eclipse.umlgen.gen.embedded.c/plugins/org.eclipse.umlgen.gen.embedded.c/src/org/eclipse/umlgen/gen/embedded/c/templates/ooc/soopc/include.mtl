@@ -1,6 +1,7 @@
 [comment encoding = UTF-8 /]
 [module include('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::include]
 
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
 
 [template public genCIncludes(c : uml::Class) overrides genCIncludes]
@@ -10,3 +11,9 @@
 [/if]
 [/template]
 
+[template public genHIncludes(aClass : uml::Class) overrides genHIncludes]
+[super/]
+[if ( aClass.hasSuperclass( ) ) ]
+#include "[aClass.getFullFilePath()/][aClass.getSuperClasses().name/].h"
+[/if]
+[/template]

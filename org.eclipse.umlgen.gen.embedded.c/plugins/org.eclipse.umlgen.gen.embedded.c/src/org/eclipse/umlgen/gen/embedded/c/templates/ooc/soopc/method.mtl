@@ -3,9 +3,28 @@
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 
+[template public genVTable (aClass : uml::Class) ]
+[if aClass.hasVirtualMethods() ]
+
+//Class [aClass.name/] V-Table
+typedef struct [aClass.name/]Vtbl{
+	[if aClass.hasSuperclass() and aClass.superClass->exists ( hasVirtualMethods() ) ]
+	[aClass.getSuperClasses().name/]Vtbl superClass;
+	[/if]
+	[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
+	[for (o : Operation | seqOp)  ]
+	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]); 
+	[/for]
+	[/let]
+}[aClass.name/]Vtbl;
+
+[/if]
+[/template]
 
 [template public generateSOOPCMethodPrototype (o : Operation) ]
 [generateReturnType(o)/] [o.class.name/]_[o.name/] ([generateSOOPCMethodArguments()/])
@@ -17,4 +36,72 @@
 
 [template public genVirtualMethodPrototype (o : Operation) ]
 [generateReturnType(o)/] [o.class.getName()/]_[o.getName()/]_ ([o.class.getFirstClassDefinerName(o)/] * self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for])
+[/template]
+
+[template public generateSelectorsImplementation (aClass : Class) ]
+// Selectors    
+[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ][for (o : Operation | seqOp) ]      
+[generateSOOPCMethodPrototype(o)/]{
+	[if hasReturnType(o)]return [/if] (**([aClass.getName()/]Vtbl**)self).[o.name/](self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
+}
+[/for]
+[/let]
+[/template]
+
+
+[template public generateFinalMethodsImplementation (aClass : Class) ]
+// Final Methods 
+[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
+[for (o : Operation | seqOp) ]      
+[generateSOOPCMethodPrototype(o)/]{
+	[if o.name = 'ctor']
+	static [aClass.name/]Vtbl const vtbl={
+	[for (c : OclAny | aClass.getAncestors()) ]{[/for] [comment]There are as many anidated structures as ancestors[/comment]
+	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]
+   	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
+	[for (o : Operation |  seqOp2 ) separator (',')]      
+		[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
+	[/let]
+	[if (c <> aClass)]		},[/if]
+	[/for]
+	};
+	[/if]
+
+	[if ( o.name = 'ctor' )]
+	//[protected('for calling super constructor')]
+	[if ( (aClass.hasSuperclass()) and (aClass.getSingleInheritanceSuperClass().ownedOperation->exists(op:Operation | op.name = 'ctor')))]
+	[o.class.superClass.name/]_ctor (([o.class.superClass.name/]*)self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.name/][/for]);
+	[/if]
+	//[/protected]
+	[if aClass.hasVirtualMethods() ]
+ 	(([aClass.getFirstRelatedClassWithVirtualMethods().getName()/]*)self) -> vptr = ([aClass.getFirstRelatedClassWithVirtualMethods().getName()/]Vtbl*)&vtbl; /* override the vptr */		
+	[/if]
+	[/if]
+	//[protected('for '+o.name)]
+	//TO DO
+	//[/protected]
+	
+}
+[/for]
+[/let]
+[/template]
+
+[template public generateDynamicMethodsImplementation (aClass : Class) ]
+// Virtual Methods 
+[let seqOp : Sequence(uml::Operation) = getVirtual(getNotInline(getNotStatic(getNotPrivate(getOwnedOperations(aClass)))))]
+[for (o : Operation | seqOp) ]      
+[o.genVirtualMethodPrototype()/]{
+	[if (o.isAbstract)]
+	assert(0); /* purely-virtual function should never be called */
+	[if getOperationParameters(o)->exists ( p : uml::Parameter | p.isReturnParam( )  ) ]
+	return 0U; /* to avoid compiler warnings */
+	[/if]
+	[else]
+	//[protected('for '+o.getName())]
+	//TO DO
+	//[/protected]
+	[/if]
+}
+[/for]
+[/let]
 [/template]
