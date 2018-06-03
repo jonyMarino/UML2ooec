@@ -9,14 +9,13 @@
  * Contributors:
  *     Jonathan Marino - initial API and implementation
 [/comment]
-[module method('http://www.eclipse.org/uml2/5.0.0/UML')]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::function]
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::class /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 
 [template public generateReturnType(aMethod: Operation) post(trim())]
 [if getReturn(ownedParameter->asSequence())->isEmpty()]void[else][for (p : Parameter | getReturn(ownedParameter->asSequence()))][getType()/][genPointer()/][/for][/if]

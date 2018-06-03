@@ -3,6 +3,7 @@
 
 
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function /]
 
 [query public getSuperClassName (aClass : Class) : String = 
 if ( aClass.hasSuperclass( ) ) then
@@ -19,3 +20,18 @@ seq->select(op : uml::Operation | not(op.isAnInterfaceMethodRedefinition()))->as
 [query public isAnInterfaceMethodRedefinition (anOperation : uml::Operation ) : Boolean =  
 anOperation.class.entireClassesHierarchechy().getAllInterfaces().getOwnedOperations()->exists(anInterfaceOperation:Operation |(anInterfaceOperation.name = anOperation.name))/]
 
+[query public getConstructor(aClass : uml::Class) : uml::Operation =  
+aClass.getOwnedOperations()->select(op : uml::Operation | op.name = aClass.name)->asSequence()->first()/]
+
+
+[query public hasConstructorParams (aClass : uml::Class ) : Boolean = 
+if (aClass.getConstructor().oclIsUndefined()) then
+	false
+else
+	if(aClass.getConstructor().getOperationParameters()->notEmpty()) then
+		true
+	else
+		false
+	endif
+endif
+/]

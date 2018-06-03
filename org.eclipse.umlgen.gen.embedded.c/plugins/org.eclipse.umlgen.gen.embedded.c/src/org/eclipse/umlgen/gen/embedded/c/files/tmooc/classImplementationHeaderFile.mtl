@@ -28,6 +28,7 @@ for class Foo.
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::method/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
@@ -93,7 +94,7 @@ ClassMembers( [aClass.name/] , [aClass.getSuperClassName()/] )
 EndOfClassMembers;
 
 
-[for (o : Operation | getNotVirtual( getProtected ( getOwnedOperations(  aClass  ) ) ) ) ]      
+[for (o : Operation | aClass.getOwnedOperations()->getProtected()->getNotVirtual()->getNotConstructor() ) ]      
 [generateOOCMethodPrototype(o)/];
 [/for]
 

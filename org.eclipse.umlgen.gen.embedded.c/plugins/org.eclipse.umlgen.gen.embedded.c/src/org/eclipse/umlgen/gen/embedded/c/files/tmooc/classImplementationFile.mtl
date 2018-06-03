@@ -26,7 +26,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
-[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::type/]
 
 
 
@@ -54,8 +54,12 @@
 
 /*## class TopLevel::[name/] */
 
+
 [comment ---------- generate macros & constants ------------------------/]
 [genCDefines()/]
+#include "[aClass.getFullFilePath()/]implement/[aClass.getName()/].h"
+
+#include <ooc/exception.h>
 
 [comment ---------- generate type definitions --------------------------/]
 [genCTypes()/]
@@ -66,12 +70,7 @@
 [/if]
 
 
-/* This is [aClass.getName()/] class implementation file
- */
 
-#include "[aClass.getFullFilePath()/]implement/[aClass.getName()/].h"
-
-#include <ooc/exception.h>
 
 /** \class [aClass.getName()/]
  *  \brief MyChild class - brief description. [comment]todo[/comment]
@@ -139,9 +138,11 @@ static
 void
 [aClass.getName()/]_initialize( Class this )
 {
+	[if (aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()->notEmpty())]
 	[aClass.getName()/]Vtable vtab = & [aClass.getName()/]VtableInstance;
-	
-	[let aClassVirtuals : Sequence(uml::Operation) = getVirtual(getNotInline(getNotAbstract(getNotStatic(getNotPrivate(getOwnedOperations(aClass))))))]
+	[/if]
+
+	[let aClassVirtuals : Sequence(uml::Operation) = aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()]
 	[for (classLink : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
 	[let classLinkVirtuals : Sequence(uml::Operation) =   classLink.getOwnedOperations()->getNotInline()->getNotStatic()->getVirtual()->getNotPrivate()->getNotRedefiner()->getNotInterfaceRedefiner() ]
 	[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
@@ -196,9 +197,9 @@ void
 	
 	
 	chain_constructor( [aClass.getName()/], self,
-	/*[protected('for '+aClass.getName()+'_constructor')]
-*/
-	NULL ); //!!! TODO !!! change the third parameter as required! 
+	/*[protected('for '+aClass.getName()+'_constructor*/')]
+
+	params ); /*!!! TODO !!! change the third parameter as required! */
 	/*[/protected]*/
 }
 
@@ -243,14 +244,7 @@ int
  */
 
 
-[aClass.getName()/]
-[aClass.getName().toLower()/]_new( void )
-{
-	//[protected('for '+aClass.getName().toLower()+'_new')]
-	ooc_init_class( [aClass.getName()/] );// !!! TODO !!! You may want to remove the initialization from here ...
-	//[/protected]	
-	return ([aClass.getName()/]) ooc_new( [aClass.getName()/], NULL );
-}
+[genNewMethodImplementation()/]
 
 
 [let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
@@ -267,6 +261,8 @@ int
  * File Path: [getFullFilePath()/][getName()/].c
  **********************************************************************************/
 [/template]
+
+
 
 
 

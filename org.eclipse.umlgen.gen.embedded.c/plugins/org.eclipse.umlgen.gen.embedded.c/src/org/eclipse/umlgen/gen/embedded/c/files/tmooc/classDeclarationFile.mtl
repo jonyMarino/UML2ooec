@@ -13,7 +13,7 @@
 
 [import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class/]
@@ -73,9 +73,9 @@ DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
 [comment ---------- generate prototypes of prublic operations ----------/]
 
 
-[aClass.name/] [aClass.name.toLowerCase()/]_new( void );
+[genNewMethodPrototype()/];
 
-[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getOwnedOperations(aClass))))]
+[let seqOp : Sequence(uml::Operation) = getOwnedOperations()->getNotAbstract()->getNotInline()->getNotVirtual()->getNotConstructor()]
 [for (o : Operation | seqOp) ]      
 [generateReturnType(o)/] [aClass.getName().toLower()/]_[o.name/] ([o.generateOOCMethodArguments()/]);
 [/for]
@@ -89,12 +89,10 @@ DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
 Virtuals( [aClass.name/], [aClass.getSuperClassName()/] );
 
 
-[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getVirtual()->getNotInline() ]
-[let seqOp2 : Sequence(uml::Operation) = seqOp->select(op : uml::Operation | aClass.getAllInterfaces()->collect(ownedOperation)->forAll( o:Operation | not redefine(op,o)  ) ) ]
-[for (o : Operation | seqOp2)  ]
+[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getVirtual()->getNotInline()->getNotRedefiner()->getNotInterfaceRedefiner()  ]
+[for (o : Operation | seqOp)  ]
 	[o.generateReturnType()/] (*[o.name/])([o.generateOOCMethodArguments()/]);
 [/for]
-[/let]
 [/let]
 
 [for (namedElement : NamedElement | aClass.getAllInterfaces())]
@@ -125,3 +123,5 @@ EndOfVirtuals;
 
 
 [/template]
+
+
