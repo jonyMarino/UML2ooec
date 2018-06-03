@@ -87,7 +87,7 @@ ClassMembers( [aClass.name/] , [aClass.getSuperClassName()/] )
 [for (n : uml::NamedElement | seq->orderByContents())]
 	[n.oclAsType(uml::Property).genFields()/]
 [/for]	
-[for (anInterface: uml::Interface | aClass.getAllInterfaces()->select(isMixin()) ) separator(',')]
+[for (anInterface: uml::Interface | aClass.getAllInterfaces()->select(isMixin()) )]
 	MixinData([anInterface.getName()/]);
 [/for]
 [/let]

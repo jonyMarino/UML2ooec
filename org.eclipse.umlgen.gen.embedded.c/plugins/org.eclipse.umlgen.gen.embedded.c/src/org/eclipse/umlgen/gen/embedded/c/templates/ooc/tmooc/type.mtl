@@ -1,0 +1,29 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+[module type('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::type /]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::datatype/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function /]
+
+
+[template public genCTypes(aClass : uml::Class) overrides genCTypes post(trim())]
+[super/]
+[if (hasConstructorParams())]
+struct ConstructorParams_t{
+	[for (aParameter: uml::Parameter | getConstructor().getOperationParameters())]
+	[aParameter.genParameter()/];
+	[/for]
+};
+[/if]
+[/template]

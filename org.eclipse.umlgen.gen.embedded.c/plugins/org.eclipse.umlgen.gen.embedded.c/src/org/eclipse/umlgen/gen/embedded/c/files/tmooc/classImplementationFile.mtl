@@ -191,15 +191,21 @@ void
 
 static
 void
-[aClass.getName()/]_constructor( [aClass.getName()/] self, const void * params )
+[aClass.getName()/]_constructor( [aClass.getName()/] self, const void * _params )
 {
+
+
+
 	assert( ooc_isInitialized( [aClass.getName()/] ) );
 	
 	
-	chain_constructor( [aClass.getName()/], self,
-	/*[protected('for '+aClass.getName()+'_constructor*/')]
-
-	params ); /*!!! TODO !!! change the third parameter as required! */
+	
+	/*[protected('for '+aClass.getName()+'_constructor */')]
+	[if (hasConstructorParams())]
+	/*Uncomment if usefull:*/
+	/*const struct ConstructorParams_t * params = _params;*/
+	[/if]
+	chain_constructor( [aClass.getName()/], self,_params ); /*!!! TODO !!! change the third parameter as required! */
 	/*[/protected]*/
 }
 
