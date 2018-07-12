@@ -88,11 +88,8 @@
 [if (aClass.hasInterfaces())]
 InterfaceRegister( [aClass.getName()/] )
 {
-[for(aLinkClass: uml::Class | aClass.entireClassesHierarchechy()) ]
-[for (anInterface: uml::Interface | aLinkClass.getAllInterfaces() ) ]
-	Add[if(anInterface.isMixin())]Mixin[else]Interface[/if]( [aLinkClass.getName()/], [anInterface.getName()/] ),
-[/for]
-[/for]
+[for (anInterface: uml::Interface | aClass.getAllInterfaces() ) separator(',')]
+	Add[if(anInterface.isMixin())]Mixin[else]Interface[/if]( [aClass.getName()/], [anInterface.getName()/] )[/for]
 };
 [/if]
 
