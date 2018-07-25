@@ -125,7 +125,7 @@ static
 
 /* Populating the interface's virtual table
  */
-
+static
 void
 [anInterface.getName()/]_populate( [anInterface.getName()/] [anInterface.getName().toLower()/] )
 {

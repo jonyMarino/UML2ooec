@@ -68,7 +68,7 @@ MixinMembers( [anInterface.getName()/] )
 	[n.oclAsType(uml::Property).genFields()/]
 [/for]	
 [/let]
-EndOfClassMembers;
+EndOfMixinMembers;
 
 #endif
 
