@@ -89,7 +89,7 @@ DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
 Virtuals( [aClass.name/], [aClass.getSuperClassName()/] );
 
 
-[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getVirtual()->getNotInline()->getNotRedefiner()->getNotInterfaceRedefiner()  ]
+[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getVirtual()->getNotInline()->getNotRedefine()->getNotInterfaceRedefiner()  ]
 [for (o : Operation | seqOp)  ]
 	[o.generateReturnType()/] (*[o.name/])([o.generateOOCMethodArguments()/]);
 [/for]

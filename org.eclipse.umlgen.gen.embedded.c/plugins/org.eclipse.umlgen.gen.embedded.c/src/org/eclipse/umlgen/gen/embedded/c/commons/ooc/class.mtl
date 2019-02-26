@@ -6,27 +6,27 @@
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
 
 [**
- * \template entireClassesHierarchechy 
+ * \template getEntireClassesHierarchechy 
  * \brief 	devuelve toda la cadena de clases de la herencia single 
  * el primer elemento de la lista devuelta sera la clase consultada seguida de su padre
  * y así sucesivamente
 */]
-[query public entireClassesHierarchechy(aClass: Class) : OrderedSet ( Class ) =
+[query public getEntireClassesHierarchechy(aClass: Class) : OrderedSet ( Class ) =
 if aClass<>null then
-	aClass.superClass.entireClassesHierarchechy()->asOrderedSet()->prepend(aClass)
+	aClass.superClass.getEntireClassesHierarchechy()->asOrderedSet()->prepend(aClass)
 else
 	OrderedSet{}
 endif
  /]
 
 [query public getAllOperations(aClass: Class) : Sequence ( Operation ) =
-entireClassesHierarchechy(aClass)->collect( c: Class | c.ownedOperation )->asSequence() /]
+getEntireClassesHierarchechy(aClass)->collect( c: Class | c.ownedOperation )->asSequence() /]
 
-[query public getAncestors (aClass : Class) : Set(Class) = aClass.entireClassesHierarchechy()->excluding(aClass)/]
+[query public getAncestors (aClass : Class) : Set(Class) = aClass.getEntireClassesHierarchechy()->excluding(aClass)/]
 
 
 [query public firstAncestorName(c: Class) :   String  =
-entireClassesHierarchechy(c)->last().name /]
+getEntireClassesHierarchechy(c)->last().name /]
 
 [query public lastAncestorName(c: Class) :   String  =
 if ( not hasSuperclass() ) then
@@ -36,7 +36,7 @@ else
 endif
  /]
 
-[query public getAllRelatedClassesWithVirtualMethods (aClass : Class) : OrderedSet(Class) = aClass.entireClassesHierarchechy()->select( c1: Class | c1.hasVirtualMethods() )->asOrderedSet()/]
+[query public getAllRelatedClassesWithVirtualMethods (aClass : Class) : OrderedSet(Class) = aClass.getEntireClassesHierarchechy()->select( c1: Class | c1.hasVirtualMethods() )->asOrderedSet()/]
 
 [query public getFirstRelatedClassWithVirtualMethods (aClass : uml::Class) : uml::Class = aClass.getAllRelatedClassesWithVirtualMethods()->last()/]
 
@@ -45,7 +45,7 @@ endif
  c.superClass->size() > 0 /]
 
 [query public hasVirtualMethods(aClass: Class) :   Boolean  =
- aClass.entireClassesHierarchechy()->exists( c : Class | declaresVirtualMethods(c) ) /]
+ aClass.getEntireClassesHierarchechy()->exists( c : Class | declaresVirtualMethods(c) ) /]
 
 [query public declaresVirtualMethods (aClass : Class) : Boolean = getVirtual( getOwnedOperations( aClass ) )->notEmpty()/]
 
@@ -57,13 +57,13 @@ seq->select(op : uml::Operation | not(op.isVirtual()) and not op.isAMethodRedefi
 
 
 [query public allNotFinalOperations(c: Class) : OrderedSet ( Operation ) =
-c.entireClassesHierarchechy()->reverse()->iterate(c1:Class;os:OrderedSet(Operation) = OrderedSet{}| os->addAll(c1.ownedOperation->reject(o:Operation|os->exists(redefine(o))))) /]
+c.getNotInline ( getNotStatic ( getNotPrivate (  getOwnedOperations ( c ) ) ) )->select(op : uml::Operation | op.isVirtual()) /]
 
-[query public getNotRedefiner(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
+[query public getNotRedefine(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
 seq->select(op : uml::Operation | not(op.isAMethodRedefinition()))->asSequence()/]
 
 [query public isAMethodRedefinition(o: Operation) : Boolean =
-o.class.entireClassesHierarchechy()->excluding(class).allNotFinalOperations()->exists(o1:Operation |redefine(o1,o))/]
+o.class.getEntireClassesHierarchechy()->excluding(class).allNotFinalOperations()->exists(o1:Operation |redefine(o1,o))/]
 
 [query public getSingleInheritanceSuperClass(aClass: Class) :   Class  =
 	if ( aClass.hasSuperclass()) then
@@ -117,7 +117,7 @@ endif
 [/template]
 
 [template public getFirstClassDefinerName(aClass: Class ,aMethod: Operation) post(substituteAll('\t','').trim())]
-	[getFirstClassDefinerName(aClass.entireClassesHierarchechy()->reverse(),aMethod )/]
+	[getFirstClassDefinerName(aClass.getEntireClassesHierarchechy()->reverse(),aMethod )/]
 [/template]
 
 [query public hasAttributes (aClass : Class) : Boolean = not aClass.attribute->isEmpty()/]

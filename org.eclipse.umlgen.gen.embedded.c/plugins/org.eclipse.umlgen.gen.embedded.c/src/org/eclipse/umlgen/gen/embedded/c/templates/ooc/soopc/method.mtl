@@ -16,7 +16,7 @@ typedef struct [aClass.name/]Vtbl{
 	[if aClass.hasSuperclass() and aClass.superClass->exists ( hasVirtualMethods() ) ]
 	[aClass.getSuperClasses().name/]Vtbl superClass;
 	[/if]
-	[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
+	[let seqOp : Sequence(uml::Operation) = getNotRedefine ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ]
 	[for (o : Operation | seqOp)  ]
 	[o.generateReturnType()/] (*[o.name/])([o.generateSOOPCMethodArguments()/]); 
 	[/for]
@@ -40,7 +40,7 @@ typedef struct [aClass.name/]Vtbl{
 
 [template public generateSelectorsImplementation (aClass : Class) ]
 // Selectors    
-[let seqOp : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ][for (o : Operation | seqOp) ]      
+[let seqOp : Sequence(uml::Operation) = getNotRedefine ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( aClass ) ) ) ) ) ) ][for (o : Operation | seqOp) ]      
 [generateSOOPCMethodPrototype(o)/]{
 	[if hasReturnType(o)]return [/if] (**([aClass.getName()/]Vtbl**)self).[o.name/](self[for (p:Parameter | getOperationParameters(o)) before(',') separator(',')] [p.getName()/] [/for]);
 }
@@ -57,8 +57,8 @@ typedef struct [aClass.name/]Vtbl{
 	[if o.name = 'ctor']
 	static [aClass.name/]Vtbl const vtbl={
 	[for (c : OclAny | aClass.getAncestors()) ]{[/for] [comment]There are as many anidated structures as ancestors[/comment]
-	[for (c : Class | entireClassesHierarchechy(aClass)->reverse()) ]
-   	[let seqOp2 : Sequence(uml::Operation) = getNotRedefiner ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
+	[for (c : Class | getEntireClassesHierarchechy(aClass)->reverse()) ]
+   	[let seqOp2 : Sequence(uml::Operation) = getNotRedefine ( getNotInline ( getNotStatic ( getNotPrivate ( getVirtual ( getOwnedOperations ( c ) ) ) ) ) ) ]
 	[for (o : Operation |  seqOp2 ) separator (',')]      
 		[aClass.getLastClassDefinerName(o)/]_[o.name/]_[/for]	
 	[/let]

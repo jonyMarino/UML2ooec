@@ -140,8 +140,8 @@ void
 	[/if]
 
 	[let aClassVirtuals : Sequence(uml::Operation) = aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()]
-	[for (classLink : Class | entireClassesHierarchechy(aClass)->reverse()) ]   
-	[let classLinkVirtuals : Sequence(uml::Operation) =   classLink.getOwnedOperations()->getNotInline()->getNotStatic()->getVirtual()->getNotPrivate()->getNotRedefiner()->getNotInterfaceRedefiner() ]
+	[for (classLink : Class | getEntireClassesHierarchechy(aClass)->reverse()) ]   
+	[let classLinkVirtuals : Sequence(uml::Operation) =   classLink.getOwnedOperations()->getNotInline()->getNotStatic()->getVirtual()->getNotPrivate()->getNotRedefine()->getNotInterfaceRedefiner() ]
 	[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
 	(([classLink.getName()/]Vtable)vtab)->[o.name/] = [o.generateMethodUpCast(classLink)/][o.class.name/]_[o.name/];
 	[/for]	

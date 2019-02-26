@@ -18,7 +18,7 @@ seq->select(op : uml::Operation | not(op.isAnInterfaceMethodRedefinition()))->as
 
 
 [query public isAnInterfaceMethodRedefinition (anOperation : uml::Operation ) : Boolean =  
-anOperation.class.entireClassesHierarchechy().getAllInterfaces().getOwnedOperations()->exists(anInterfaceOperation:Operation |(anInterfaceOperation.name = anOperation.name))/]
+anOperation.class.getEntireClassesHierarchechy().getAllInterfaces().getOwnedOperations()->exists(anInterfaceOperation:Operation |(anInterfaceOperation.name = anOperation.name))/]
 
 [query public getConstructor(aClass : uml::Class) : uml::Operation =  
 aClass.getOwnedOperations()->select(op : uml::Operation | op.name = aClass.name)->asSequence()->first()/]
