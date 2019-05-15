@@ -1,0 +1,66 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2017 FIUBA
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino (FIUBA) - initial API and implementation
+[/comment]
+[module cFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
+ 
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::method/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::soopc::include/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::soopc::method/]
+
+[comment archivo de informacion privada /]
+[template public generate_SOOPCImplementationFile(aClass : uml::Class)]
+[aClass.genFileComment(getFilePath().toString(),'c','C')/]
+
+[comment ---------- generate includes ----------------------------------/]
+[genCIncludes()/]
+
+
+
+/**********************************************************************************
+ * [getFilePath()/][getName()/].c
+ **********************************************************************************/
+/*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
+
+/*## class TopLevel::[name/] */
+[comment ---------- generate macros & constants ------------------------/]
+[genCDefines()/]
+
+[comment ---------- generate type definitions --------------------------/]
+[genCTypes()/]
+
+[comment ---------- generate constants ---------------------------------/]
+[if (aClass.hasCConstants())]
+[genCConstants()/]
+[/if]
+
+
+[generateDynamicMethodsImplementation()/]
+
+[generateFinalMethodsImplementation()/]
+
+[generateSelectorsImplementation()/]
+
+/**********************************************************************************
+ * File Path: [getFullFilePath()/][getName()/].c
+ **********************************************************************************/
+[/template]

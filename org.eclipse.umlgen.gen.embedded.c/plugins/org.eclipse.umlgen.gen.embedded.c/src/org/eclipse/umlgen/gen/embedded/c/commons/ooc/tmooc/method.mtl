@@ -1,0 +1,8 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::ooc::method]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+
+[query public getNotConstructor(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
+seq->select(op : uml::Operation | not(op.name = op.class.name))->asSequence()/]

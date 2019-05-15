@@ -1,0 +1,55 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+[module variable('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::structure/]
+
+[template public genVariables( seqProp : Sequence(uml::Property) )  post(trim())]
+[for (p : uml::Property | seqProp->sortedBy(name)->sortedBy(visibility) )]
+[comment][if not(p.isDerived) and not(p.isUsesStaticMethods())]
+/*! 
+ * \var [p.name/]
+
+[if ownedComment->notEmpty()]
+ * [ownedComment.format('\x5cbrief ', false, ' *        ', 120)/]
+[/if]
+[if (isTraceabilityEnabled())]
+[if (p.isConstrained(getModel().getAllConstraints()))]
+ *
+ * <b>Requirements traceability</b>
+ [p.getRequirementList('*     ')/]
+[/if]
+[/if]
+ */[/comment]
+[p.genDynaceFields()/]
+
+[comment][/if][/comment]
+[/for]
+[/template]
+
+
+[template public genVariables(aClass : uml::Class)  post(trim())]
+	[let seqInstanceAttributes: Sequence(uml::Property) = aClass.ownedAttribute->asSequence()->select( attr:uml::Property | not attr.isStatic )]
+		[seqInstanceAttributes->genVariables()/]
+	[/let]
+	[let seqClassAttributes: Sequence(uml::Property) = aClass.ownedAttribute->asSequence()->select( attr:uml::Property | attr.isStatic )]
+	[if (not seqClassAttributes->isEmpty()) ]
+	class:
+	[/if]
+		[seqClassAttributes->genVariables()/]
+	[/let]
+[/template]

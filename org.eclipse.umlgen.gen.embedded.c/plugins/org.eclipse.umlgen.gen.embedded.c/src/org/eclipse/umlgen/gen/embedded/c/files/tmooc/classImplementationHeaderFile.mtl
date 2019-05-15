@@ -1,0 +1,103 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+
+
+[comment]
+5.2
+Class Implementation header file. This file contains all declarations that are protected
+for class Foo.
+
+[/comment]
+
+
+[module classImplementationHeaderFile('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::operations /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::method/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::type/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::structure/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+
+
+[template public OOC_generateImplementationHeaderFile(aClass : uml::Class)]
+[aClass.genFileComment(getFilePath().toString()+'implement/','h','C')/]
+
+/**********************************************************************************
+ * [getFilePath()/]implement/[getName()/].h
+ **********************************************************************************/
+/*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
+
+
+#ifndef IMPLEMENT_[getName().toUpperCase()/]_H
+#define IMPLEMENT_[getName().toUpperCase()/]_H
+
+[comment ---------- generate includes ----------------------------------/]
+#ifndef [getName().toUpperCase()/]_H
+#error Do #include "[getName().toLowerCase()/].h" right before doing #include "implement/[getName().toLowerCase()/].h"
+#endif
+
+
+[if ( aClass.hasSuperclass( ) ) ]
+#include "[aClass.getSuperClasses().getFullFilePath()/]implement/[aClass.getSuperClassName()/].h"
+[/if]
+
+[for (anInterface: uml::Interface | aClass.getAllInterfaces()->select(isMixin()) ) separator(',')]
+#include "[anInterface.getFullFilePath()/]implement/[anInterface.getName()/].h"
+[/for]
+
+/*! 
+ * \package [name/]
+[if ownedComment->notEmpty()]
+ * [ownedComment.format('\x5cbrief ', false, ' * ', 120)/]
+[/if]
+[if (isTraceabilityEnabled())]
+[if (aClass.isConstrained(getModel().getAllConstraints()))]
+ *
+ * <b>Requirements traceability</b>
+ [aClass.getRequirementList('*   ')/]
+[/if]
+[/if]
+ */
+
+ClassMembers( [aClass.name/] , [aClass.getSuperClassName()/] )
+[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
+[for (n : uml::NamedElement | seq->orderByContents())]
+	[n.oclAsType(uml::Property).genFields()/]
+[/for]	
+[for (anInterface: uml::Interface | aClass.getAllInterfaces()->select(isMixin()) )]
+	MixinData([anInterface.getName()/]);
+[/for]
+[/let]
+EndOfClassMembers;
+
+
+[for (o : Operation | aClass.getOwnedOperations()->getProtected()->getNotVirtual()->getNotConstructor() ) ]      
+[generateOOCMethodPrototype(o)/];
+[/for]
+
+#endif
+
+[/template]

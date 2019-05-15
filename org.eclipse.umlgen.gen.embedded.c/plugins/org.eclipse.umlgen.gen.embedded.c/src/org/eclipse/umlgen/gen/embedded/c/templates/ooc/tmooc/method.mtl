@@ -1,0 +1,53 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::ooc::method]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::method /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::class/]
+
+[template public generateOOCMethodPrototype (anOperation : Operation ) ]
+[anOperation.generateReturnType()/] [anOperation.class.name.toLowerCase()/]_[anOperation.name/] ([generateOOCMethodArguments()/])
+[/template]
+
+[template public generateOOCMethodArguments (anOperation : Operation) ]
+[anOperation.class.name/] self[anOperation.generateMethodParametersDef()/]
+[/template]
+
+[template public generateMethodParametersDef (anOperation : uml::Operation) ]
+[for (getOperationParameters(anOperation)) before(', ')separator(', ')][genParameter()/][/for]
+[/template]
+
+[template private genConstructorParams(aClass : Class) post(trim())]
+[if (aClass.getConstructor().oclIsUndefined())]
+void
+[else]
+[aClass.getConstructor().genOperationParametersDef()/]
+[/if]
+[/template]
+
+[template public genNewMethodPrototype (aClass : uml::Class) ]
+[getName()/] [getName().toLowerCase()/]_new( [genConstructorParams()/] )
+[/template]
+
+[template public genNewMethodImplementation (aClass : uml::Class) ]
+[genNewMethodPrototype()/]
+{
+	//[protected('for '+aClass.getName().toLower()+'_new')]
+	ooc_init_class( [aClass.getName()/] );// !!! TODO !!! You may want to remove the initialization from here ...
+	//[/protected]
+	[if (hasConstructorParams())]
+	struct ConstructorParams_t cp = {
+		[for (paramenter: uml::Parameter | getConstructor().getOperationParameters()) separator(', ')]
+		[paramenter.getName()/][/for]
+
+	};
+	[/if]
+	return ([aClass.getName()/]) ooc_new( [aClass.getName()/], [if (hasConstructorParams())]&cp[else]NULL[/if] );
+}
+[/template]
+

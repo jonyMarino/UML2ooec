@@ -1,22 +1,25 @@
 [comment encoding = UTF-8 /]
 [comment]
- * Copyright (c) 2015 Spacebel SA.
+ * Copyright (c) 2018
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     Johan Hardy (Spacebel) - initial API and implementation
+ *     Jonathan Marino - initial API and implementation
 [/comment]
-[module DeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
+[module classDeclarationFile('http://www.eclipse.org/uml2/5.0.0/UML')]
 
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
-[import org::eclipse::umlgen::gen::embedded::c::templates::methods /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::class/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method /]
 [import org::eclipse::umlgen::gen::embedded::c::templates::define/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::type/]
 [import org::eclipse::umlgen::gen::embedded::c::templates::include/]
@@ -24,35 +27,25 @@
 [import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property /]
 
-[template public generate_declarationFile(aClass : uml::Class)]
-/**********************************************************************************
- * Copyright: [getCopyright()/]
- * Project: [aClass.getModel().name/]
- * File: [getFilePath()/][getName()/].h
- * Code Management Tool File Version: [getVersion()/]
-[if (isSvnDateEnabled())]
- * Date: $Date$
-[/if]
- * SDD Component: [name/]
- * Language: C
- * Author: [getAuthor()/]
-[if (isSvnIdEnabled())]
- * Last Change: $Id$
-[/if]
- **********************************************************************************/
 
-/*!
- * \file [getFilePath()/][getName()/].h
- * \brief [name/]
- */
+[template public OOC_generateDeclarationFile(aClass : uml::Class)]
+[aClass.genFileComment(getFilePath().toString(),'h','C')/]
 
-#ifndef [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
-#define [getFullFilePath().substituteAll('/', '_')/][getName().substituteAll('/', '_')/]_H
+#ifndef [getName().toUpperCase()/]_H
+#define [getName().toUpperCase()/]_H
 
 [comment ---------- generate includes ----------------------------------/]
 [genHIncludes()/]
-#include "[aClass.getSuperClasses().name/].h"
+[if ( aClass.hasSuperclass( ) ) ]
+#include "[aClass.getSuperClasses().getFullFilePath()/][aClass.getSuperClassName()/].h"
+[else]
+#include <ooc/ooc.h>
+[/if]
+[for (namedElement : NamedElement | aClass.getAllInterfaces())]
+#include "[namedElement.getFullFilePath()/][namedElement.name/].h"
+[/for]
 
 /**********************************************************************************
  * [getFilePath()/][getName()/].h
@@ -74,9 +67,40 @@
 [/if]
  */
 
-/*## class TopLevel::[name/] */
+DeclareClass( [aClass.name/], [aClass.getSuperClassName()/] );
 
-extern const void * const [aClass.name.toUpperFirst()/];
+
+[comment ---------- generate prototypes of prublic operations ----------/]
+
+
+[genNewMethodPrototype()/];
+
+[let seqOp : Sequence(uml::Operation) = getOwnedOperations()->getNotAbstract()->getNotInline()->getNotVirtual()->getNotConstructor()]
+[for (o : Operation | seqOp) ]      
+[generateReturnType(o)/] [aClass.getName().toLower()/]_[o.name/] ([o.generateOOCMethodArguments()/]);
+[/for]
+[/let]
+
+
+/* Virtual function definitions
+ */
+
+
+Virtuals( [aClass.name/], [aClass.getSuperClassName()/] );
+
+
+[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getVirtual()->getNotInline()->getNotRedefine()->getNotInterfaceRedefiner()  ]
+[for (o : Operation | seqOp)  ]
+	[o.generateReturnType()/] (*[o.name/])([o.generateOOCMethodArguments()/]);
+[/for]
+[/let]
+
+[for (namedElement : NamedElement | aClass.getAllInterfaces())]
+	Interface( [namedElement.name/] );
+[/for]
+
+EndOfVirtuals;
+
 
 [comment ---------- generate macros & constants ------------------------/]
 [genHDefines()/]
@@ -84,31 +108,20 @@ extern const void * const [aClass.name.toUpperFirst()/];
 [comment ---------- generate type definitions --------------------------/]
 [genHTypes()/]
 
-[comment ---------- generate constants ---------------------------------/]
-[if (aClass.hasHConstants())]
-[genHConstants()/]
-
-[/if]
-[comment ---------- generate variable definitions ----------------------/]
-[comment][if (aClass.hasHVariables())][/comment]
-[comment][genHVariables()/][/comment]
-
-[comment][/if][/comment]
 [comment ---------- generate public inline functions -------------------/]
 [if (aClass.hasHInlineOperations())]
 [genHInlineOperations()/]
-
 [/if]
-[comment ---------- generate prototypes of prublic operations ----------/]
-[if (aClass.hasHPublicOperationsPrototypes())]
-[generateMethodDeclarationsNotFinal(VisibilityKind::public)/]
 
-[generateMethodDeclarationsFinal(VisibilityKind::public)/]
-
-[/if]
 #endif
 
 /**********************************************************************************
- * File Path: [getFullFilePath()/][getName()/].h
+ * File Path: [getFullFilePath()/][getName().toLowerCase()/].h
  **********************************************************************************/
+
+
+
+
 [/template]
+
+

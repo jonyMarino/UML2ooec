@@ -1,0 +1,27 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+
+[query public isVirtual(o : uml::Operation) : Boolean = 
+if (o.hasStereotype('embedded_C::Virtual') or o.isAbstract or not o.isLeaf)and (not o.isPrivate()) and (not o.isStatic) then true
+else false 
+endif
+/]
+
+[query public redefine(o1: Operation, o2:Operation) : Boolean =
+(o1.name = o2.name) and o1.isVirtual() and o2.isVirtual() /]
+
+
+[query public hasReturnType(o: Operation) : Boolean =
+if o.type.oclIsUndefined() then false
+else
+	if o.type.name='void' then false
+	else
+	true
+	endif
+endif
+/]
+
+[query public intersection (set1 : Sequence(Operation),set2: Sequence(Operation) ) : Sequence(Operation) = set1->select( op:uml::Operation | set2->exists( op2:uml::Operation | op.redefine(op2)) )/]

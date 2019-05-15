@@ -1,0 +1,125 @@
+[comment encoding = UTF-8 /]
+[module class('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::class/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
+
+[**
+ * \template getEntireClassesHierarchechy 
+ * \brief 	devuelve toda la cadena de clases de la herencia single 
+ * el primer elemento de la lista devuelta sera la clase consultada seguida de su padre
+ * y así sucesivamente
+*/]
+[query public getEntireClassesHierarchechy(aClass: Class) : OrderedSet ( Class ) =
+if aClass<>null then
+	aClass.superClass.getEntireClassesHierarchechy()->asOrderedSet()->prepend(aClass)
+else
+	OrderedSet{}
+endif
+ /]
+
+[query public getAllOperations(aClass: Class) : Sequence ( Operation ) =
+getEntireClassesHierarchechy(aClass)->collect( c: Class | c.ownedOperation )->asSequence() /]
+
+[query public getAncestors (aClass : Class) : Set(Class) = aClass.getEntireClassesHierarchechy()->excluding(aClass)/]
+
+
+[query public firstAncestorName(c: Class) :   String  =
+getEntireClassesHierarchechy(c)->last().name /]
+
+[query public lastAncestorName(c: Class) :   String  =
+if ( not hasSuperclass() ) then
+	c.getName()
+else
+	c.superClass.getName()
+endif
+ /]
+
+[query public getAllRelatedClassesWithVirtualMethods (aClass : Class) : OrderedSet(Class) = aClass.getEntireClassesHierarchechy()->select( c1: Class | c1.hasVirtualMethods() )->asOrderedSet()/]
+
+[query public getFirstRelatedClassWithVirtualMethods (aClass : uml::Class) : uml::Class = aClass.getAllRelatedClassesWithVirtualMethods()->last()/]
+
+
+[query public hasSuperclass(c: Class) :   Boolean  =
+ c.superClass->size() > 0 /]
+
+[query public hasVirtualMethods(aClass: Class) :   Boolean  =
+ aClass.getEntireClassesHierarchechy()->exists( c : Class | declaresVirtualMethods(c) ) /]
+
+[query public declaresVirtualMethods (aClass : Class) : Boolean = getVirtual( getOwnedOperations( aClass ) )->notEmpty()/]
+
+[query public getVirtual(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
+seq->select(op : uml::Operation | op.isVirtual() or op.isAMethodRedefinition())->asSequence()/]
+
+[query public getNotVirtual(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
+seq->select(op : uml::Operation | not(op.isVirtual()) and not op.isAMethodRedefinition())->asSequence()/]
+
+
+[query public allNotFinalOperations(c: Class) : OrderedSet ( Operation ) =
+c.getNotInline ( getNotStatic ( getNotPrivate (  getOwnedOperations ( c ) ) ) )->select(op : uml::Operation | op.isVirtual()) /]
+
+[query public getNotRedefine(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
+seq->select(op : uml::Operation | not(op.isAMethodRedefinition()))->asSequence()/]
+
+[query public isAMethodRedefinition(o: Operation) : Boolean =
+o.class.getEntireClassesHierarchechy()->excluding(class).allNotFinalOperations()->exists(o1:Operation |redefine(o1,o))/]
+
+[query public getSingleInheritanceSuperClass(aClass: Class) :   Class  =
+	if ( aClass.hasSuperclass()) then
+		aClass.superClass->asOrderedSet()->first()
+	else
+		null
+	endif
+/]
+
+[query public getAllInterfaces(aClass : Class) : Bag(Interface) = aClass.clientDependency->filter(Realization).supplier->filter(uml::Interface) /]
+
+[query public hasInterfaces(aClass : Class) : Boolean = 
+if(aClass.getAllInterfaces()->notEmpty()) then
+	true
+else 
+	if (aClass.getSingleInheritanceSuperClass() <> null ) then
+		aClass.getSingleInheritanceSuperClass().hasInterfaces()
+	else
+		false
+	endif
+endif
+ /]
+
+[query public isOocClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::OOC')/]
+
+[query public isSoopcClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::SOOPC')/]
+
+[query public isDynaceClass(aClass : uml::Class) : Boolean = aClass.hasStereotype('embedded_C::Dynace')/]
+
+
+[template public getLastClassDefinerName(aClass: Class ,aMethod: Operation) post(substituteAll('\t','').trim())]
+	[if (aClass.ownedOperation->exists(m:Operation | m.redefine( aMethod ) ))]
+		[aClass.name/]
+	[else]
+	[if aClass.hasSuperclass()]
+		[aClass.getSingleInheritanceSuperClass().getLastClassDefinerName(aMethod)/]
+	[/if]
+	[/if]
+[/template]
+
+[template public getFirstClassDefinerName(classes: OrderedSet(Class) ,aMethod: Operation) post(substituteAll('\t','').trim())]
+	[let c: uml::Class = classes->first() ]
+		[if (c.ownedOperation->exists(m:Operation | m.redefine( aMethod ) ))]
+			[c.name/]
+		[else]
+[comment] **Note** : at the time of writing, the OCL standard library sports a bug which changes *OrderedSets* in *Sets* when excluding elements.[/comment]
+[comment]			[getFirstClassDefinerName(classes->excluding(c)->asOrderedSet(),aMethod)/][/comment]
+			[getFirstClassDefinerName(classes->asSequence()->excluding(c)->asOrderedSet(),aMethod)/]
+		[/if]
+	[/let]
+[/template]
+
+[template public getFirstClassDefinerName(aClass: Class ,aMethod: Operation) post(substituteAll('\t','').trim())]
+	[getFirstClassDefinerName(aClass.getEntireClassesHierarchechy()->reverse(),aMethod )/]
+[/template]
+
+[query public hasAttributes (aClass : Class) : Boolean = not aClass.attribute->isEmpty()/]
+
+[query public hasAbtractMethods (c : uml::Class) : Boolean = c.ownedOperation->exists( op : uml::Operation | op.isVirtual() and op.isAbstract )/]

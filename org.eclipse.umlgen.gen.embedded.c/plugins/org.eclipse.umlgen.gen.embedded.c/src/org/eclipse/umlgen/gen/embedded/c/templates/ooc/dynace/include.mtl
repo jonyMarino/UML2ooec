@@ -1,0 +1,29 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+[module include('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::usage/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+
+[template public genIncludes(c : uml::Classifier) post(trim())]
+[genHIncludeParentPackage()/]
+[if not(ancestors(Package)->asOrderedSet()->select(oclIsTypeOf(uml::Package))->first()->isEmpty())]
+[let seq : Sequence(uml::Usage) = ancestors(Package)->select(oclIsTypeOf(uml::Package))->first().ownedElement->filter(uml::Usage)->asSequence()]
+[for (u : uml::Usage | seq->orderByContents())]
+[if client->notEmpty() and (not(client->excludes(c)))]
+[u.genComment()/]
+[supplier.genInclude()/]
+[/if]
+[/for]
+[/let]
+[/if]
+[/template]

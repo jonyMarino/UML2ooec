@@ -1,0 +1,79 @@
+[comment encoding = UTF-8 /]
+[module method('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::function]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::dynace::operations /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::typedelements/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::dynace::function /]
+
+[template protected genOperationParametersDef(op : uml::Operation) overrides genOperationParametersDef ? ((hasOperationParameters())) post(trim())]
+[/template]
+
+[template private genVisibility(anOperation : uml::Operation) post(trim()) ]
+[if( visibility = VisibilityKind::private)]
+private
+[else]
+public
+[/if]
+[/template]
+
+[template private genMethod (anOperation : uml::Operation) ]
+[genOperationHeader()/]
+/*## method [name/] */
+[genVisibility()/] [genMethodsType()/] [genReturnType()/] [getName()/]([genOperationParametersDef()/]){
+    /* [protected('for ' + name + ' */')]
+    /* [/protected] for [name/] */
+}
+[/template]
+
+[template private genReturnType(anOperation : uml::Operation) ]
+[if not getReturn(ownedParameter->asSequence())->isEmpty()][for (p : Parameter | getReturn(ownedParameter->asSequence()))][getType()/][genPointer()/][/for][/if]
+[/template]
+
+[template private genMethodsType (anOperation : uml::Operation) post(trim())]
+	[if(anOperation.isStatic)]
+		[if(anOperation.isVariadic())]
+			cvmeth
+		[else]
+			cmeth
+		[/if]
+	[else]
+		[if(anOperation.isVariadic())]
+			ivmeth
+		[else]
+			imeth
+		[/if]
+	[/if]
+[/template]
+
+[template public genClassMethods(cl : uml::Class) post(trim())]
+[let seqOp : Sequence(uml::Operation) = getOwnedOperations(cl)->getStatic()->getNotAbstract()->getNotInitializers()]
+[if (not seqOp->isEmpty())]
+/************************************ CLASS METHODS ****************************************/
+
+[/if]
+[for (o : uml::Operation | seqOp->sortedBy(name)->sortedBy(visibility))]
+[o.genMethod()/]
+
+[/for]
+[/let]
+[/template]
+
+[template public genInstanceMethods(cl : uml::Class) post(trim())]
+[let seqOp : Sequence(uml::Operation) = getOwnedOperations(cl)->getNotStatic()->getNotAbstract()->getNotInitializers()]
+[if (not seqOp->isEmpty())]
+/************************************ INSTANCE METHODS *************************************/
+
+[/if]
+[for (o : uml::Operation | seqOp->sortedBy(name)->sortedBy(visibility))]
+[o.genMethod()/]
+
+[/for]
+[/let]
+[/template]
+
+
+

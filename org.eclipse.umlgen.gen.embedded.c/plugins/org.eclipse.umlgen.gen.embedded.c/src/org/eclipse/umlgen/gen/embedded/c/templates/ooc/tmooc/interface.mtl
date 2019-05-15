@@ -1,0 +1,22 @@
+[comment encoding = UTF-8 /]
+[module interface('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::method /]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations /]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
+
+[template public generateDeclareInterface(anInterface : Interface)]
+
+Declare[if(anInterface.isMixin())]Mixin[/if]Interface( [anInterface.getName()/]  )
+
+	[let seqOp : OrderedSet(uml::Operation) = anInterface.ownedOperation ]
+	[for (o : Operation | seqOp)  ]
+	[o.generateReturnType()/] (*[o.getName()/])(Object self[for(p:Parameter | o.getOperationParameters()) before(', ') separator(', ')][p.genParameter()/][/for]);
+	[/for]
+	[/let]
+
+EndOfInterface;
+
+[/template]

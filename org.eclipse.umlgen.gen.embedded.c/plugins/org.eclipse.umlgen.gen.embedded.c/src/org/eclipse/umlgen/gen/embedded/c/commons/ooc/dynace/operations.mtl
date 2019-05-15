@@ -1,0 +1,18 @@
+[comment encoding = UTF-8 /]
+[module operations('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+
+[query public isInitializer(o : uml::Operation) : Boolean = 
+if (o.hasStereotype('embedded_C::Initializer') or o.name.startsWith('init')) then true
+else false 
+endif
+/]
+
+[query public getInitializer(aClass : uml::Class) : uml::Operation = aClass.getOwnedOperations()->select( anOperation: uml::Operation | anOperation.isInitializer() )->first()/]
+
+[query public getNotInitializers(seqOp : Sequence( uml::Operation ) ) : Sequence( uml::Operation ) = 
+seqOp->select( anOperation: uml::Operation | not anOperation.isInitializer() )
+/]
+

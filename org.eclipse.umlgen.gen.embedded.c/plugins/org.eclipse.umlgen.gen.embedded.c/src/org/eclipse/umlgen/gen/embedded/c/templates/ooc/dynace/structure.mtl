@@ -1,0 +1,38 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+[module structure('http://www.eclipse.org/uml2/5.0.0/UML') extends org::eclipse::umlgen::gen::embedded::c::templates::structure/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::property/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::datatype/]
+
+
+
+[template private genArrayField(p : uml::Property) post(trim())]
+[if ownedComment->notEmpty()]/*! [ownedComment.format('', false, ' * ', 120)/] */[/if]
+[if p.hasTypeApplied()][type.name/][/if][genPointer().trim()/] [name/]['['/][getMultiplicity()/][']'/][genAttribute()/];
+[/template]
+
+[template private genSimpleField(p : uml::Property) post(trim())]
+[if ownedComment->notEmpty()]/*! [ownedComment.format('', false, ' * ', 120)/] */[/if]
+[if (isVolatile())]volatile [/if][if (isStruct())]struct [/if][if p.hasTypeApplied()][type.name/][/if][genPointer().trim()/] [name/][genMultiplicity()/][genAttribute()/];
+[/template]
+
+[template public genDynaceFields(p : uml::Property) post(trim())]
+[if (p.isArrray())]
+[p.genArrayField()/]
+[else]
+[p.genSimpleField()/]
+[/if]
+[/template]

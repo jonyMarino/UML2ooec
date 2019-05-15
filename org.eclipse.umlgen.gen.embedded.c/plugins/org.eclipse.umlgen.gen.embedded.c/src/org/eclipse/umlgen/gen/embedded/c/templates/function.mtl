@@ -1,6 +1,6 @@
 [comment encoding = UTF-8 /]
 [comment]
- * Copyright (c) 2015 Spacebel SA.
+ * Copyright (c) 2015 Spacebel SA.,2018
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *     Johan Hardy (Spacebel) - initial API and implementation
+ *	Jonathan Marino - Visibility changes to extend module
 [/comment]
 [module function('http://www.eclipse.org/uml2/5.0.0/UML')/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
@@ -44,15 +45,15 @@ not(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations())))->isEmpty())
 [if (isConstantData())]const [/if][getType()/][genPointer()/][if (isConstantPointer())] const[/if] [getName()/]
 [/template]
 
-[template private genOperationParametersDef(op : uml::Operation) ? ((hasOperationParameters())) post(trim())]
+[template protected genOperationParametersDef(op : uml::Operation) ? ((hasOperationParameters())) post(trim())]
 void
 [/template]
 
-[template private genOperationParametersDef(op : uml::Operation) ? (not(hasOperationParameters())) post(trim())]
+[template protected genOperationParametersDef(op : uml::Operation) ? (not(hasOperationParameters())) post(trim())]
 [for (getOperationParameters(op)) separator(', ')][genParameter()/][/for]
 [/template]
 
-[template private genOperationHeader(operation : uml::Operation) post(trim())]
+[template protected genOperationHeader(operation : uml::Operation) post(trim())]
 [if operation.isInline()]
 /************************************** INLINE FUNCTION *************************************/
 [elseif operation.isAsm()]

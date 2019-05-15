@@ -85,20 +85,3 @@ else o.name
 endif
 /]
 
-[query public getVirtual(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
-seq->select(op : uml::Operation | op.isVirtual())->asSequence()/]
-
-[query public getNotVirtual(seq : Sequence(uml::Operation)) : Sequence(uml::Operation) =  
-seq->select(op : uml::Operation | not(op.isVirtual()))->asSequence()/]
-
-[comment][query public isVirtual(o : uml::Operation) : Boolean = 
-if o.hasStereotype('embedded_C::Virtual') and (not o.isPrivate()) then true
-else false 
-endif
-/][/comment]
-
-[query public isVirtual(o : uml::Operation) : Boolean = 
-if o.isLeaf or o.isPrivate()  then false
-else true 
-endif
-/]

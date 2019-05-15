@@ -1,0 +1,53 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2015 Spacebel SA.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Johan Hardy (Spacebel) - initial API and implementation
+[/comment]
+[module variable('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::property/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::constraint/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::services::configuration/]
+[import org::eclipse::umlgen::gen::embedded::c::services::queries/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::structure/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::soopc::method/]
+
+
+[template public genHVariables(aClass : uml::Class) ? (not(isSingleton()) and not(isObject())) post(trim())]
+/*!
+ * \brief Type definition of the class [aClass.name/]
+ */
+[if aClass.hasVirtualMethods() ]
+//Class [aClass.name/] V-Table
+struct [aClass.name/]Vtbl;
+[/if]
+
+//Class [aClass.name/] declaration
+typedef struct {
+	[if aClass.hasSuperclass() ]
+	[aClass.getSuperClasses().name/] super;
+	[if not aClass.superClass->exists(hasVirtualMethods())]
+	struct [aClass.name/]Vtbl const *vptr;
+	[/if]
+	[else]
+	[if aClass.hasVirtualMethods()]
+	struct [aClass.name/]Vtbl const *vptr;
+	[/if]
+	[/if]
+	[let seq : Sequence(uml::NamedElement) = getNotReadOnly(getHasTypeApplied(getNotUsesStaticMethods(ownedAttribute->asSequence())))]
+	[for (n : uml::NamedElement | seq->orderByContents())]
+	[n.oclAsType(uml::Property).genFields()/]
+	[/for]	
+	[/let]
+}[aClass.name/];
+[/template]
+
+

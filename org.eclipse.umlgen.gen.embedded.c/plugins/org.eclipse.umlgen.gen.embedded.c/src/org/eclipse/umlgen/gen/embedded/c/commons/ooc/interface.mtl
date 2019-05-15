@@ -1,0 +1,9 @@
+[comment encoding = UTF-8 /]
+[module interface('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+
+[query public getOwnedOperations(anInterface : uml::Interface) : Sequence(uml::Operation) = anInterface.ownedOperation->asSequence()/]
+
+[query public isMixin(anInterface : uml::Interface) : Boolean = anInterface.attribute->notEmpty() or anInterface.hasStereotype('embedded_C::Mixin') /]
+

@@ -1,25 +1,15 @@
 [comment encoding = UTF-8 /]
-[comment]
- * Copyright (c) 2015 Spacebel SA.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Johan Hardy (Spacebel) - initial API and implementation
-[/comment]
-[module uml2ec('http://www.eclipse.org/uml2/5.0.0/UML')/]
+[module devOOC('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
 [import org::eclipse::umlgen::gen::embedded::c::files::cPackage/]
 [import org::eclipse::umlgen::gen::embedded::c::files::hPackage/]
 [import org::eclipse::umlgen::gen::embedded::c::files::cFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::hFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::mkPackage/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
-[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
-[comment]SOOPC imports[/comment]
-[import org::eclipse::umlgen::gen::embedded::c::files::soopc::cFile/]
-[import org::eclipse::umlgen::gen::embedded::c::files::soopc::hFile/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
+
 [comment]OOC imports[/comment]
 [import org::eclipse::umlgen::gen::embedded::c::files::tmooc::classDeclarationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::tmooc::classImplementationHeaderFile/]
@@ -28,8 +18,6 @@
 [import org::eclipse::umlgen::gen::embedded::c::files::tmooc::interfaceImplementationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::tmooc::mixinImplementationFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::tmooc::mixinImplementationHeaderFile/]
-
-
 
 [template private genFileName(classifier : uml::Classifier, extension : String) post(trim())]
 [if (not(eContainer().oclIsUndefined()))]
@@ -57,7 +45,9 @@
 [/if]
 [/template]
 
-[template public main(aNamedElement : uml::NamedElement)]
+[template public devOOC(aNamedElement : uml::NamedElement)]
+	
+	[comment @main /]
 [comment @main/]
 [comment -------------------------------------------------------------------------------------- /]
 [comment Generate package files                                                                 /]
@@ -81,48 +71,26 @@
 [comment ------------------------------------------- /]
 
 [if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package) ]
-[if  ( aNamedElement.oclAsType(uml::Class).isSoopcClass() )]
-[file (aNamedElement.oclAsType(uml::Class).genFileName('.c'), false, 'UTF-8')]
-[aNamedElement.oclAsType(uml::Class).generate_SOOPCImplementationFile()/]
-[/file]
-[elseif (aNamedElement.oclAsType(uml::Class).isOocClass()) ]
 [file (aNamedElement.oclAsType(uml::Class).genFileName('.c'), false, 'UTF-8')]
 [aNamedElement.oclAsType(uml::Class).generateOOCImplementationFile()/]
 [/file]
-[else]
-[file (aNamedElement.oclAsType(uml::Class).genFileName('.c'), false, 'UTF-8')]
-[aNamedElement.oclAsType(uml::Class).generate_cFile()/]
-[/file]
-[/if]
 [/if]
 [comment ------------------------------------------- /]
 [comment Generate h Files                            /]
 [comment ------------------------------------------- /]
 [if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
-[if  ( aNamedElement.oclAsType(uml::Class).isSoopcClass() )]
-[file (aNamedElement.oclAsType(uml::Class).genFileName('.h'), false, 'UTF-8')]
-[aNamedElement.oclAsType(uml::Class).SOOPC_generateDeclarationFile()/]
-[/file]
-[elseif  ( aNamedElement.oclAsType(uml::Class).isOocClass() )]
 [file (aNamedElement.oclAsType(uml::Class).genFileName('.h'), false, 'UTF-8')]
 [aNamedElement.oclAsType(uml::Class).OOC_generateDeclarationFile()/]
 [/file]
-[else]
-[file (aNamedElement.oclAsType(uml::Class).genFileName('.h'), false, 'UTF-8')]
-[aNamedElement.oclAsType(uml::Class).generate_hFile()/]
-[/file]
-[/if]
 [/if]
 
 [comment ------------------------------------------- /]
 [comment Generate Implementation h Files      	     /]
 [comment ------------------------------------------- /]
 [if (aNamedElement.oclIsTypeOf(uml::Class)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
-[if  ( aNamedElement.oclAsType(uml::Class).isOocClass())]
 [file (aNamedElement.oclAsType(uml::Class).genImplementationHeaderFileName(), false, 'UTF-8')]
 [aNamedElement.oclAsType(uml::Class).OOC_generateImplementationHeaderFile()/]
 [/file]
-[/if]
 [/if]
 
 [comment ------------------------------------------- /]
@@ -135,6 +103,15 @@
 [/if]
 
 [comment ------------------------------------------- /]
+[comment Generate Mixin Implementation h Files                            /]
+[comment ------------------------------------------- /]
+[if (aNamedElement.oclIsTypeOf(uml::Interface)) and aNamedElement.owner.oclIsTypeOf(uml::Package) and  (aNamedElement.oclAsType(uml::Interface).isMixin())  ]
+[file (aNamedElement.oclAsType(uml::Interface).genImplementationHeaderFileName(), false, 'UTF-8')]
+[aNamedElement.oclAsType(uml::Interface).generateMixinImplementationHeaderFile()/]
+[/file]
+[/if]
+
+[comment ------------------------------------------- /]
 [comment Generate Interface c Files                            /]
 [comment ------------------------------------------- /]
 [if (aNamedElement.oclIsTypeOf(uml::Interface)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
@@ -142,5 +119,5 @@
 [aNamedElement.oclAsType(uml::Interface).generateOOCInterfaceImplementationFile()/]
 [/file]
 [/if]
-
+	
 [/template]

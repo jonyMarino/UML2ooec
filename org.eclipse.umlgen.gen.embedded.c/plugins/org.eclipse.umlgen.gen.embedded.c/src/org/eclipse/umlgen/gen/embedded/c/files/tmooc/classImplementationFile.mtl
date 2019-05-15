@@ -1,0 +1,273 @@
+[comment encoding = UTF-8 /]
+[comment]
+ * Copyright (c) 2017,2018
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Jonathan Marino - initial API and implementation
+[/comment]
+[module classImplementationFile('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::comment/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::tmooc::class/]
+
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::method/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::parameter/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::operations/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::function/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::method/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::define/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::include/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::variable/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::constant/]
+[import org::eclipse::umlgen::gen::embedded::c::templates::ooc::tmooc::type/]
+
+
+
+
+[template public generateMethodUpCast(anOperation: uml::Operation, aClass: uml::Class) ?( aClass.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp) ) )] [comment]and aClass.getAncestors()->includes( anOperation.class)[/comment] 
+([anOperation.generateReturnType()/](*)([aClass.getName()/] self[anOperation.generateMethodParametersDef()/]))
+[/template]
+
+[template public generateInterfaceMethodUpCast(anOperation: uml::Operation, anInterface: uml::Interface) ?( anInterface.getOwnedOperations()->exists(anOp | anOperation.redefine(anOp)) )]  [comment]and anOperation.class.interfaces(anInterface[/comment]
+([anOperation.generateReturnType()/](*)(Object self[anOperation.generateMethodParametersDef()/]))
+[/template]
+
+[comment archivo de informacion privada /]
+[template public generateOOCImplementationFile(aClass : uml::Class)]
+[aClass.genFileComment(getFilePath().toString(),'c','C')/]
+
+[comment ---------- generate includes ----------------------------------/]
+[genCIncludes()/]
+
+
+/**********************************************************************************
+ * [getFilePath()/][getName()/].c
+ **********************************************************************************/
+/*## package [getFullFilePath().concat('/').substituteAll('//', '').substituteAll('/', '::')/] */
+
+/*## class TopLevel::[name/] */
+
+
+[comment ---------- generate macros & constants ------------------------/]
+[genCDefines()/]
+#include "[aClass.getFullFilePath()/]implement/[aClass.getName()/].h"
+
+#include <ooc/exception.h>
+
+[comment ---------- generate type definitions --------------------------/]
+[genCTypes()/]
+
+[comment ---------- generate constants ---------------------------------/]
+[if (aClass.hasCConstants())]
+[genCConstants()/]
+[/if]
+
+
+
+
+/** \class [aClass.getName()/]
+ *  \brief MyChild class - brief description. [comment]todo[/comment]
+ * 	\see [aClass.getName().toLowerCase()/].h
+ */
+
+/** \file [aClass.getName().toLowerCase()/].h 
+ *  \brief [aClass.getName()/] class - brief description.[comment]todo[/comment]
+ * [aClass.getName()/] is a .....
+ */ 
+
+/* Allocating the class description table and the vtable
+ */
+
+[if (aClass.hasInterfaces())]
+InterfaceRegister( [aClass.getName()/] )
+{
+[for (anInterface: uml::Interface | aClass.getAllInterfaces() ) separator(',')]
+	Add[if(anInterface.isMixin())]Mixin[else]Interface[/if]( [aClass.getName()/], [anInterface.getName()/] )[/for]
+};
+[/if]
+
+[if (aClass.hasInterfaces())]
+AllocateClassWithInterface( [aClass.getName()/], [aClass.getSuperClassName()/] );
+[else]
+AllocateClass( [aClass.getName()/], [aClass.getSuperClassName()/] );
+[/if]
+/* Class virtual function prototypes
+ */
+
+
+[let seqOp : Sequence(uml::Operation) = aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()]
+[for (o : Operation | seqOp) ]      
+static
+[generateReturnType(o)/]
+[aClass.getName()/]_[o.name/] ([aClass.getName()/] self[o.generateMethodParametersDef()/]){
+	//[protected('for '+o.class.name+'_'+o.name)]
+	//TO DO
+	//[/protected]
+}
+[/for]
+[/let]
+
+[comment][for (anInterface : uml::Interface | aClass.getAllInterfaces().oclAsType(uml::Interface)) separator(', ')]
+[for (o : Operation | anInterface.getOwnedOperations( ) ) ]      
+static
+[generateReturnType(o)/]
+[aClass.getName()/]_[o.getName()/] ([aClass.getName()/] self[for(p:Parameter | getOperationParameters(o)) before(', ') separator(', ')][p.genParameter()/][/for]){
+	//[protected('for '+aClass.getName()+'_'+o.getName())]
+	//TO DO
+	//[/protected]
+}
+[/for]
+[/for][/comment]
+
+
+
+/* Class initializing
+ */
+
+static
+void
+[aClass.getName()/]_initialize( Class this )
+{
+	[if (aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()->notEmpty())]
+	[aClass.getName()/]Vtable vtab = & [aClass.getName()/]VtableInstance;
+	[/if]
+
+	[let aClassVirtuals : Sequence(uml::Operation) = aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()]
+	[for (classLink : Class | getEntireClassesHierarchechy(aClass)->reverse()) ]   
+	[let classLinkVirtuals : Sequence(uml::Operation) =   classLink.getOwnedOperations()->getNotInline()->getNotStatic()->getVirtual()->getNotPrivate()->getNotRedefine()->getNotInterfaceRedefiner() ]
+	[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
+	(([classLink.getName()/]Vtable)vtab)->[o.name/] = [o.generateMethodUpCast(classLink)/][o.class.name/]_[o.name/];
+	[/for]	
+	[/let]
+	[for ( aClassLinkInterface : uml::Interface | classLink.getAllInterfaces().oclAsType(uml::Interface) )]
+	[let aClassLinkInterfaceOperations : Sequence(uml::Operation) = aClassLinkInterface.getOwnedOperations() ]
+	[for (anInterfaceOperation : Operation |  aClassVirtuals->intersection( aClassLinkInterfaceOperations ) ) ]      
+	(([classLink.getName()/]Vtable)vtab)->[aClassLinkInterface.getName()/].[anInterfaceOperation.getName()/] = [anInterfaceOperation.generateInterfaceMethodUpCast(aClassLinkInterface)/][aClass.getName()/]_[anInterfaceOperation.getName()/];
+	[/for]	
+	[/let]
+	[/for]
+	[/for]
+	[/let]
+	
+
+	[comment]todo: preguntar si hay forma de obtenerlo y que pasa si se llama varias veces a ooc_init_class
+	ooc_init_class( !!! Classes that are USED by MyChild !!! ); Remove if you initialize it other place![/comment]
+	
+	/* Allocate global resources here */
+	//[protected('for '+aClass.getName()+'_initialize')]
+	//TO DO
+	//ooc_init_class( !!! Classes that are USED by [aClass.getName()/] !!! ); Remove if you initialize it other place!
+	//[/protected]
+	
+}
+
+/* Class finalizing
+ */
+
+#ifndef OOC_NO_FINALIZE
+static
+void
+[aClass.getName()/]_finalize( Class this )
+{
+	//[protected('for '+aClass.getName()+'_finalize')]
+	/* Release global resources! */
+	//[/protected]
+}
+#endif
+
+
+/* Constructor
+ */
+
+static
+void
+[aClass.getName()/]_constructor( [aClass.getName()/] self, const void * _params )
+{
+
+
+
+	assert( ooc_isInitialized( [aClass.getName()/] ) );
+	
+	
+	
+	/*[protected('for '+aClass.getName()+'_constructor */')]
+	[if (hasConstructorParams())]
+	/*Uncomment if usefull:*/
+	/*const struct ConstructorParams_t * params = _params;*/
+	[/if]
+	chain_constructor( [aClass.getName()/], self,_params ); /*!!! TODO !!! change the third parameter as required! */
+	/*[/protected]*/
+}
+
+/* Destructor
+ */
+
+static
+void
+[aClass.getName()/]_destructor( [aClass.getName()/] self, [aClass.getName()/]Vtable vtab )
+{
+	//[protected('for '+aClass.getName()+'_destructor')]
+	//TODO
+	//[/protected]
+
+}
+
+/* Copy constuctor
+ */
+
+static
+int
+[aClass.getName()/]_copy( [aClass.getName()/] self, const [aClass.getName()/] from )
+{
+	//[protected('for '+aClass.getName()+'_copy')]
+	/* makes the default object copying (bit-by-bit) */
+	return OOC_COPY_DEFAULT;
+	
+	/*Other alternatives:*/
+
+	/* Copies data by hand */
+	//self->data = from->data;
+	//...
+	//return OOC_COPY_DONE;
+	
+	/* Prevent object duplication */
+	//return OOC_NO_COPY;
+	//[/protected]
+}
+
+/*	=====================================================
+	Class member functions
+ */
+
+
+[genNewMethodImplementation()/]
+
+
+[let seqOp : Sequence(uml::Operation) = getNotVirtual(getNotInline(getNotAbstract(getNotStatic(getOwnedOperations(aClass)))))]
+[for (o : Operation | seqOp) ]      
+[generateReturnType(o)/]
+[aClass.getName().toLower()/]_[o.name/] ([o.generateOOCMethodArguments()/]){
+	//[protected('for '+o.name)]
+	//TO DO
+	//[/protected]
+}
+[/for]
+[/let]
+/**********************************************************************************
+ * File Path: [getFullFilePath()/][getName()/].c
+ **********************************************************************************/
+[/template]
+
+
+
+
+
+
+

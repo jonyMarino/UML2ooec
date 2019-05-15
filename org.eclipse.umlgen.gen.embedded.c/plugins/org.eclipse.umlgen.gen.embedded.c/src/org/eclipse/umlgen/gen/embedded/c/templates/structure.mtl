@@ -1,6 +1,6 @@
 [comment encoding = UTF-8 /]
 [comment]
- * Copyright (c) 2015 Spacebel SA.
+ * Copyright (c) 2015 Spacebel SA.,2018
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * 
  * Contributors:
  *     Johan Hardy (Spacebel) - initial API and implementation
+ *	Jonathan Marino - Visibility change for module extension
 [/comment]
 [module structure('http://www.eclipse.org/uml2/5.0.0/UML')/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
@@ -17,13 +18,13 @@
 [import org::eclipse::umlgen::gen::embedded::c::services::queries/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::datatype/]
 
-[template private genMultiplicity(p : uml::Property) ? (not(isArrray())) post(trim())]
+[template protected genMultiplicity(p : uml::Property) ? (not(isArrray())) post(trim())]
 [if (p.upper <> '*' and p.upperBound() > 1)]
 ['['/][p.upper/][']'/]
 [/if]
 [/template]
 
-[template private genAttribute(p : uml::Property) ? (hasAttribute())]
+[template protected genAttribute(p : uml::Property) ? (hasAttribute())]
  __attribute__ [p.getAttribute()/]
 [/template]
 
