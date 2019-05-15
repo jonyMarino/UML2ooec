@@ -1,3 +1,13 @@
+h1. Bienvenido al generador de código de mi Tesis
+
+Este generador de código es una modificación del generador "Eclipse UML Generators", particularmente del "UML to embedded C generator". El mismo permite generar código para los frameworks SOOPC, OOC de Tibor Miseta, y Dynace. Para esto sea modificado el profile del generador para incluir los estereotipos SOOPC, OOC y Dynace para seleccionar el framework. Los estereotipos deben ser aplicados a las clases e interfaces a generar para que produzcan código bajo cada framework. Además se ha creado el estereotipo mixin que puede ser aplicado a interfaces en OOC.
+
+Para compilr el generador entrar en org.eclipse.umlgen.gen.embedded.c/releng/org.eclipse.umlgen.gen.embedded.c.build 
+y en la consola tipear `mvn clean package`
+Luego de esto se generan los plugins del generador que pueden ser instalados en eclipse (Luna o Mars). Los mismos se encuentrarán en org.eclipse.umlgen.gen.embedded.c/releng/org.eclipse.umlgen.gen.embedded.c.repository/target/repository/  
+
+La documentación original de como utilizar el generador se encuentra [aquí]( https://www.eclipse.org/umlgen/documentation/releases/1.0.0/org.eclipse.umlgen.gen.embedded.c.doc/embedded_C-generator/user/user-guide.html)
+
 h1. Welcome to Eclipse UML Generators
 
 UML Generators Project provides components that automatically bridge the gap between UML models and source code. Either by extracting data from UML models (and UML profiles or decoration models) to produce source code or  by reverse-engineering source code to produce UML models.
