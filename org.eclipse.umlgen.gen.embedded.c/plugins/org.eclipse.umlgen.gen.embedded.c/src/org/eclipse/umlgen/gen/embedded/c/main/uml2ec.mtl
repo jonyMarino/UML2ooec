@@ -17,6 +17,7 @@
 [import org::eclipse::umlgen::gen::embedded::c::files::mkPackage/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::namedelement/]
 [import org::eclipse::umlgen::gen::embedded::c::commons::ooc::class/]
+[import org::eclipse::umlgen::gen::embedded::c::commons::ooc::interface/]
 [comment]SOOPC imports[/comment]
 [import org::eclipse::umlgen::gen::embedded::c::files::soopc::cFile/]
 [import org::eclipse::umlgen::gen::embedded::c::files::soopc::hFile/]
@@ -131,6 +132,15 @@
 [if (aNamedElement.oclIsTypeOf(uml::Interface)) and aNamedElement.owner.oclIsTypeOf(uml::Package)]
 [file (aNamedElement.oclAsType(uml::Interface).genFileName('.h'), false, 'UTF-8')]
 [aNamedElement.oclAsType(uml::Interface).generateOOCInterfaceHeaderFile()/]
+[/file]
+[/if]
+
+[comment ------------------------------------------- /]
+[comment Generate Mixin Implementation h Files                            /]
+[comment ------------------------------------------- /]
+[if (aNamedElement.oclIsTypeOf(uml::Interface)) and aNamedElement.owner.oclIsTypeOf(uml::Package) and  (aNamedElement.oclAsType(uml::Interface).isMixin())  ]
+[file (aNamedElement.oclAsType(uml::Interface).genImplementationHeaderFileName(), false, 'UTF-8')]
+[aNamedElement.oclAsType(uml::Interface).generateMixinImplementationHeaderFile()/]
 [/file]
 [/if]
 

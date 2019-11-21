@@ -141,18 +141,18 @@ void
 
 	[let aClassVirtuals : Sequence(uml::Operation) = aClass.getOwnedOperations()->getNotPrivate()->getNotStatic()->getNotAbstract()->getNotInline()->getVirtual()]
 	[for (classLink : Class | getEntireClassesHierarchechy(aClass)->reverse()) ]   
-	[let classLinkVirtuals : Sequence(uml::Operation) =   classLink.getOwnedOperations()->getNotInline()->getNotStatic()->getVirtual()->getNotPrivate()->getNotRedefine()->getNotInterfaceRedefiner() ]
-	[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
+		[let classLinkVirtuals : Sequence(uml::Operation) =   classLink.getOwnedOperations()->getNotInline()->getNotStatic()->getVirtual()->getNotPrivate()->getNotRedefine()->getNotInterfaceRedefiner() ]
+		[for (o : Operation |  aClassVirtuals->intersection( classLinkVirtuals ) ) ]      
 	(([classLink.getName()/]Vtable)vtab)->[o.name/] = [o.generateMethodUpCast(classLink)/][o.class.name/]_[o.name/];
-	[/for]	
-	[/let]
-	[for ( aClassLinkInterface : uml::Interface | classLink.getAllInterfaces().oclAsType(uml::Interface) )]
-	[let aClassLinkInterfaceOperations : Sequence(uml::Operation) = aClassLinkInterface.getOwnedOperations() ]
-	[for (anInterfaceOperation : Operation |  aClassVirtuals->intersection( aClassLinkInterfaceOperations ) ) ]      
+		[/for]	
+		[/let]
+		[for ( aClassLinkInterface : uml::Interface | classLink.getAllInterfaces().oclAsType(uml::Interface) )]
+			[let aClassLinkInterfaceOperations : Sequence(uml::Operation) = aClassLinkInterface.getOwnedOperations() ]
+			[for (anInterfaceOperation : Operation |  aClassVirtuals->intersection( aClassLinkInterfaceOperations ) ) ]      
 	(([classLink.getName()/]Vtable)vtab)->[aClassLinkInterface.getName()/].[anInterfaceOperation.getName()/] = [anInterfaceOperation.generateInterfaceMethodUpCast(aClassLinkInterface)/][aClass.getName()/]_[anInterfaceOperation.getName()/];
-	[/for]	
-	[/let]
-	[/for]
+			[/for]	
+			[/let]
+		[/for]
 	[/for]
 	[/let]
 	
